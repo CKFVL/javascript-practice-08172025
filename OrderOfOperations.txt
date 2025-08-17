@@ -1,0 +1,17 @@
+B: Brackets (paranthesis)
+O: Order (exponential)
+D: Divide
+M: Multiply
+A: Addition
+S: Subtraction
+Comparison operators
+
+1. paranthesis i.e.(...)
+2. */
+3. +-
+4. comparison operators
+   e.g. console.log(3 > 5-5) prints false as math operator has high priority.
+
+-----------------------------------
+Example:
+'Items('+(1+1)+'): $'+ (2095+799)/100
