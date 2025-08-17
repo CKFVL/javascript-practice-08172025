@@ -64,3 +64,5 @@ To link another javascript file in a html, use
 we can use multiple javascript files using multiple script elements
 ###########################
 anchor tag (with target attribute)
+###########################
+<div>
