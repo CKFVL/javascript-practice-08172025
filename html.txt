@@ -50,6 +50,9 @@ It takes up the full available width (stretching out as far as it can horizontal
 Any elements that come after it will automatically appear on a new line below the paragraph (unless styled otherwise with CSS).
 Other common block elements include <div>, <h1>–<h6>, <ul>, <table>, etc.
 ###########################
+<br>
+break is empty and no closing tag is required
+###########################
 To link another css file in a html, use
 <link rel="stylesheet" href="styles/<file-path> >
 
