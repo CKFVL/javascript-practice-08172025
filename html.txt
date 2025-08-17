@@ -1,0 +1,61 @@
+TODO: https://courses.supersimple.dev/courses/html-css
+
+<!DOCTYPE html> // tells browser to use modern version of html
+<html>
+  <head> // contents in the head section won't be visible e.g. styles
+    <title>Buttons</title> // displayed in browser tab
+    <style>
+      .add-to-cart-button { // . means selecting the class
+        background-color: yellow;
+      }
+
+      .buy-now-button {
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <p>Adults Plain Cotton T-shirt</p>
+    <p>Price: $7.99</p>
+
+    <!-- I added some extra spaces to make the code
+    easier to read. -->
+    <button class="add-to-cart-button" onclick="
+      alert('Added');
+    ">Add to cart</button>
+
+    <button class="buy-now-button" onclick="
+      console.log('Loading...');
+      alert('Purchased');
+    ">Buy now</button>
+
+<script> // run javascript code
+      console.log('Welcome!');
+    </script>
+  </body>
+
+
+</html>
+
+###########################
+A block element takes up an entire line itself
+e.g., <p>, <div>
+
+<div> doesn't apply any styling while <p> adds an extra space above and below it.
+
+the <p> (paragraph) tag in HTML is a block-level element.
+That means:
+It starts on a new line in the browser.
+It takes up the full available width (stretching out as far as it can horizontally).
+Any elements that come after it will automatically appear on a new line below the paragraph (unless styled otherwise with CSS).
+Other common block elements include <div>, <h1>–<h6>, <ul>, <table>, etc.
+###########################
+To link another css file in a html, use
+<link rel="stylesheet" href="styles/<file-path> >
+
+we can use multiple stylesheets using multiple link elements
+###########################
+To link another javascript file in a html, use
+<script src="<file-path>"></script>
+
+we can use multiple javascript files using multiple script elements
