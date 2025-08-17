@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello</title>
+  </head>
+  <body>
+    <button>
+      hello
+    </button>
+    <script>
+      document.body.innerHTML='hello' // this will replace entire body of HTML
+      document.title='Learn HTML'
+    </script>
+  </body>
+</html>
+
+we can have HTML elements inside javascript
+
+DOM combines javascript and HTML together.
+
+document.body.innerHTML: replaces entire body of the HTML
+e.g. button replaces entire body of HTML
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello</title>
+  </head>
+  <body>
+    <button>
+      hello
+    </button>
+    <script>
+      document.body.innerHTML='<button> replaced html body</button>'
+      document.title='Learn HTML'
+    </script>
+  </body>
+</html>
+
+document.querySelector: can get any html element in the body and places inside script (when its placed inside script, it becomes a javascript object)
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello</title>
+  </head>
+  <body>
+    <button>
+      hello
+    </button>
+    <script>
+      console.log(document.querySelector('button'))
+    </script>
+  </body>
+</html>
+
+when any html element is placed inside script, it becomes a javascript object and its properties like CSS can be accessed
+
+Every HTML element has a property called innerHTML and provides access to change 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello</title>
+  </head>
+  <body>
+    <button>
+      hello
+    </button>
+    <script>
+      console.log(document.querySelector('button'))
+      document.querySelector('button').innerHTML='Hi'
+    </script>
+  </body>
+</html>
+
+If more than 2 buttons present, then use class attribute for second button to distinguish the second from first
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello</title>
+  </head>
+  <body>
+    <button>hello</button>
+    <button class="js-button">second button</button> // as class attribute can be used for CSS as well, better name it with prefix as `js-` to indicate is HTML element or javascript object.
+    <script>
+      console.log(document.querySelector('button'))
+      document.querySelector('button').innerHTML='Hi'
+
+      document.querySelector('.js-button').innerHTML='Hi from 2'
+    </script>
+  </body>
+</html>
+
+Example:
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello</title>
+  </head>
+  <body>
+    <button>hello</button>
+    
+    <button class="js-subscribe-button" onclick="const buttonElement = document.querySelector('.js-subscribe-button');
+
+    if(buttonElement.innerHTML === 'Subscribe'){
+        buttonElement.innerHTML='Subscribed'
+    }else if(buttonElement.innerHTML === 'Subscribed'){
+        buttonElement.innerHTML='Subscribe'
+    }">Subscribe</button>
+
+    <script>
+     
+    </script>
+  </body>
+</html>
+
+Make sure there are no spaces between HTML Tag otherwise use innerText to check the content in HTML element.
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello</title>
+  </head>
+  <body>
+    <button>hello</button>
+    
+    <button class="js-subscribe-button" onclick="const buttonElement = document.querySelector('.js-subscribe-button');
+
+    if(buttonElement.innerText === 'Subscribe'){
+        buttonElement.innerHTML='Subscribed'
+    }else if(buttonElement.innerHTML === 'Subscribed'){
+        buttonElement.innerHTML='Subscribe'
+    }">Subscribe</button>
+
+    <script>
+     
+    </script>
+  </body>
+</html>
+
+clean code by moving javascript code to script section
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello</title>
+  </head>
+  <body>
+    <button>hello</button>
+
+    <button class="js-subscribe-button" onclick=subscribe();>Subscribe</button>
+
+    <script>
+     
+     function subscribe(){
+      const buttonElement = document.querySelector('.js-subscribe-button');
+
+    if(buttonElement.innerText === 'Subscribe'){
+        buttonElement.innerHTML='Subscribed'
+    }else if(buttonElement.innerHTML === 'Subscribed'){
+        buttonElement.innerHTML='Subscribe'
+    }
+     }
+    </script>
+  </body>
+</html>
+
+Example 2:
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>hello</title>
+  </head>
+  <body>
+    
+    <p>Rock Paper Scissors</p>
+
+    <button class="js-rock-button" onclick="playGame('rock')">Rock</button>
+    <button class="js-paper-button" onclick="playGame('paper')">Paper</button>
+    <button class="js-scissors-button" onclick="playGame('scissors')">Scissors</button>
+
+    <p class="js-display-score-paragraph">0</p>
+
+    <button onclick="resetScore()">Reset Score</button>
+
+    <script>
+
+// Rock beats scissors : win
+// scissors cuts paper : win
+// paper covers rock : win
+// otherwise lose.
+
+let score= JSON.parse(localStorage.getItem('score')) || {
+              wins:0,
+              losses: 0,
+              ties:0
+          }
+      function playGame(playerMove){
+          const computerMove=pickComputerMove()
+
+          let result='';
+          
+
+          if(playerMove===computerMove){
+            score.ties+=1;
+            result='Tie.'
+          }else{
+            if(playerMove === 'rock' && computerMove === 'scissors'){
+              score.wins+=1;
+              result='You win.'
+            }else if(playerMove === 'scissors' && computerMove === 'paper'){
+              score.wins+=1;
+              result='You win.'
+            }else if(playerMove === 'paper' && computerMove === 'rock'){
+              score.wins+=1;
+              result='You win.'
+            }else{
+              score.losses+=1;
+              result='You lose.'
+            }
+          }
+          
+          localStorage.setItem('score', JSON.stringify(score));
+          console.log(result)
+
+          document.querySelector('.js-display-score-paragraph').innerHTML=`You picked ${playerMove}. Computer picked ${computerMove}. Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`
+          
+      }
+     
+     function pickComputerMove(){
+        const randomNumber=Math.random();
+        let computerMove='';
+        if(randomNumber >= 0 && randomNumber < 1/3){
+          computerMove = 'rock';
+        }else if(randomNumber >= 1/3 && randomNumber < 2/3){
+          computerMove = 'paper';
+        }else if(randomNumber >= 2/3 && randomNumber < 1){
+          computerMove = 'scissors';
+        }
+        
+        return computerMove;
+        }
+
+        function resetScore(){
+          score.wins=0; score.losses=0; score.ties=0; localStorage.removeItem('score'); 
+          document.querySelector('.js-display-score-paragraph').innerHTML=`You picked 0. Computer picked 0. Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`
+        }
+
+    </script>
+  </body>
+</html>
+
+
+##################################################
+<p> is a block element and takes up an entire line by itself
+
+##################################################
+
+  <!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM Projects</title>
+  </head>
+  <body>
+    <p>YouTube Subscribe Button</p>
+    <button onclick="
+      subscribe();
+    " class="js-subscribe-button">
+      Subscribe
+    </button>
+
+    <p>Amazon Shipping Calculator</p>
+    <input placeholder="Cost of order" class="js-cost-input" onkeydown="
+      handleCostKeydown(event);
+    ">
+    <button onclick="
+      calculateTotal();
+    ">Calculate</button>
+    <p class="js-total-cost"></p>
+
+    <script>
+      String(25)
+      console.log('25' - 5);
+      console.log('25' + 5);
+
+      window.document
+      window.console.log('window');
+      window.alert
+
+      function handleCostKeydown(event) {
+        if (event.key === 'Enter') {
+          calculateTotal();
+        }
+      }
+
+      function calculateTotal() {
+        const inputElement = document.querySelector('.js-cost-input');
+        let cost = Number(inputElement.value); // whenever the value is extracted from HTML element, its awlays a string type.
+
+        if (cost < 40) {
+          cost = cost + 10;
+        }
+
+        document.querySelector('.js-total-cost')
+          .innerHTML = `$${cost}`;
+      }
+
+      function subscribe() {
+        const buttonElement = document.querySelector('.js-subscribe-button');
+
+        if (buttonElement.innerText === 'Subscribe') {
+          buttonElement.innerHTML = 'Subscribed';
+        } else {
+          buttonElement.innerHTML = 'Subscribe';
+        }
+      }
+      
+    </script>
+  </body>
+</html>
+
