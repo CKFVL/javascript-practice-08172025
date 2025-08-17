@@ -66,3 +66,6 @@ we can use multiple javascript files using multiple script elements
 anchor tag (with target attribute)
 ###########################
 <div>
+###########################
+id selector: #<id-of-html-element>
+class selector:
