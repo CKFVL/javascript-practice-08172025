@@ -62,3 +62,5 @@ To link another javascript file in a html, use
 <script src="<file-path>"></script>
 
 we can use multiple javascript files using multiple script elements
+###########################
+anchor tag (with target attribute)
