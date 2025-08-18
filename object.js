@@ -63,6 +63,10 @@ const literalObject={}
 console.dir(protoTypeObject)
 console.dir(literalObject)
 // ########################################################################
+// to create an object with no properties/prototype
+const noPrototype = Object.create(null)
+console.dir(noPrototype)
+// ########################################################################
 'use strict'
 function myclass() {
 }
@@ -409,24 +413,6 @@ var literalobject = {
  console.log(literalobject.foo)
   
 //
-
-
-// ---------------------------------------------------------------------
-'use strict'
-function myclass() {
-}
-
-// Object.defineProperty
-myclass.prototype.x = 1;
-Object.defineProperty(myclass.prototype, "y", {
-  writable: true,
-  value: 1
-});
-
-var a = new myclass();
-a.x = 2;
-console.log(a.x); // 2
-console.log(myclass.prototype.x); // 1
 
 // ---------------------------------------------------------------------
 // to create an object with no properties/prototype
@@ -933,6 +919,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
