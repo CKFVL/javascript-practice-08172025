@@ -54,6 +54,16 @@ console.log(obj1 === obj2)  // true
 Here, obj1 and obj2 reference the same object, so the comparison evaluates to true.
 
 // ########################################################################
+// https://www.youtube.com/watch?v=RJaRRS27100
+var obj = { 0: 'a', 1: 'b', 2: 'c' }
+console.log(Object.keys(obj)) //keys only
+
+var obj2 = { foo: 'bar', baz: 42 }
+console.log(Object.values(obj2)) // values only
+
+console.log(Object.entries(obj2)) // entries only
+
+// ########################################################################
 // to check if a property exists in object (prototype)
 console.log(person5.hasOwnProperty('name'));
 // ########################################################################
@@ -1018,6 +1028,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
