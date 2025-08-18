@@ -67,6 +67,7 @@ console.dir(literalObject)
 // to create an object with no properties/prototype
 const noPrototype = Object.create(null)
 console.dir(noPrototype)
+
 // ########################################################################
 
 'use strict'
@@ -319,6 +320,31 @@ Object.setPrototypeOf(camry, toyota);
 console.dir(camry)
 console.log(camry.drive())
 console.log(camry.wifi())
+
+######################################################
+Object.setPrototypeOf(dest, source)
+Changes the prototype chain of dest to be source.
+In other words, source becomes the prototype (i.e., __proto__) of dest.
+As a result, dest will inherit properties from source, but those properties are not copied — they are looked up via the prototype chain.
+
+const animal = { speak() { console.log('hello') } }
+const dog = { name: 'tommy' }
+Object.setPrototypeOf(dog, animal)
+console.log(dog.speak())   // works via prototype
+
+*** Usually discouraged for performance reasons, because changing prototype at runtime can slow things down.
+
+Object.assign(dest, source)
+Copies the own, enumerable properties from source into dest.
+Does not affect prototype/inheritance.
+This is just copying values (shallow copy).
+
+const animal = { speak() { console.log('hello') } }
+const dog = { name: 'tommy' }
+Object.assign(dog, animal)
+console.log(dog.speak())  // copied directly onto dog
+
+This is how we often do mixins, simple cloning, or merging of objects.
 
 ######################################################
 The behavior of this in JavaScript depends on how a function is called, not how the object was created. 
@@ -992,6 +1018,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
