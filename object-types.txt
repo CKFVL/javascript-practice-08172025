@@ -11,3 +11,21 @@ Reference types:
 Object
 Array
 Function
+
+###################
+dot notation on object:
+let person={
+  name: 'pavan',
+  age: 40
+}
+
+// dot notation
+person.name='guru'
+
+// bracket notation
+person['name']='guru'
+
+bracket notation can be used when property has - in it or need to use another variable
+e.g.
+let newName='bhogala'
+person[newName]='kumar'
