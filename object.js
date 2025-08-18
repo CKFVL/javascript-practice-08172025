@@ -54,6 +54,9 @@ console.log(obj1 === obj2)  // true
 Here, obj1 and obj2 reference the same object, so the comparison evaluates to true.
 
 // ########################################################################
+// to check if a property exists in object (prototype)
+console.log(person5.hasOwnProperty('name'));
+// ########################################################################
 Sevral ways to create objects:
 -----------------------------
 1. new Object()
@@ -108,6 +111,27 @@ Sevral ways to create objects:
   const fobj=FactoryFunc('pavan', 40)
   fobj.greet()
 
+  Example 2:
+	var factoryObj = function (name, age, state) {
+	    var temp = {};
+	    //var temp = { name: "jhgjhh" };
+	    temp.name = name;
+	    temp.age = age;
+	    temp.state = state;
+	
+	    temp.printPerson = function () {//part of temp object and this refers to `temp`
+	        console.log(this.name + ", " + this.age + ", " + this.state
+	        )
+	    }
+	    return temp;
+	}
+
+		var person2 = factoryObj("kumar", "23", "tel")
+		var person1 = factoryObj("34", "ap")
+		
+		person1.printPerson()
+		person2.printPerson()
+  
 6. With call() or apply()
 	function Person(name, age) {
 	  this.name = name;
@@ -140,6 +164,32 @@ Sevral ways to create objects:
 	
 	const p3 = personProto("Charlie", 28);
 	console.log(p3.name); // Charlie
+
+ 	Example 2:
+    ---------
+	// prototype pattern
+	var prototypeObj = function () { };
+	prototypeObj.prototype.age = 343;
+	prototypeObj.prototype.name = "no name"
+	prototypeObj.prototype.city = "no cikty"
+	
+	prototypeObj.prototype.printPerson = function () {
+	    console.log(this.age + ", " + this.name + ", " + this.city)
+	}
+	
+	var person5 = new prototypeObj();
+	//person5.name = "nihi"
+	person5.age = 2
+	person5.city = "hyd"
+	person5.printPerson()
+	
+	// to check if a property exists in object (prototype)
+	console.log('name' in person5) // checks in person5 object and then in proptype too
+	console.log('namfsde' in person5)
+	console.log(person5.hasOwnProperty('name'));
+	
+	// if another object is created, then it gets default values defined in prototype
+	var p1=new prototypeObj();
 
 8. Merge properties from one or more objects into a new one.
 	const base = { name: 'Pavan' };
@@ -316,70 +366,10 @@ const object2={
 				var o = { a, b, c };
 			// function parameters can be destructured (with default values)
 
-// ##########################################################################
-// factory pattern
-var factoryObj = function (name, age, state) {
-    var temp = {};
-    //var temp = { name: "jhgjhh" };
-    temp.name = name;
-    temp.age = age;
-    temp.state = state;
 
-    temp.printPerson = function () {//part of temp object and this refers to `temp`
-        console.log(this.name + ", " + this.age + ", " + this.state
-        )
-    }
-    return temp;
-}
-
-var person2 = factoryObj("kumar", "23", "tel")
-var person1 = factoryObj("34", "ap")
-
-person1.printPerson()
-person2.printPerson()
 
 // ---------------------------------------------------------------------
-// constructor pattern
-var ConstrutorObj = function (name, age, state) {
-    this.name = name;
-    this.age = age;
-    this.state = state;
 
-    this.printPerson = function () {
-        console.log(this.name + ", " + this.age + ", " + this.state
-        )
-    }
-}
-
-var person3 = new ConstrutorObj("gruur", "23432", "sfsd")
-var person4 = new ConstrutorObj("qwew", "1231", "uyuy")
-person3.printPerson()
-person4.printPerson()
-
-// ---------------------------------------------------------------------
-// prototype pattern
-var prototypeObj = function () { };
-prototypeObj.prototype.age = 343;
-prototypeObj.prototype.name = "no name"
-prototypeObj.prototype.city = "no cikty"
-
-prototypeObj.prototype.printPerson = function () {
-    console.log(this.age + ", " + this.name + ", " + this.city)
-}
-
-var person5 = new prototypeObj();
-//person5.name = "nihi"
-person5.age = 2
-person5.city = "hyd"
-person5.printPerson()
-
-// to check if a property exists in object (prototype)
-console.log('name' in person5) // checks in person5 object and then in proptype too
-console.log('namfsde' in person5)
-console.log(person5.hasOwnProperty('name'));
-
-// if another object is created, then it gets default values defined in prototype
-var p1=new prototypeObj();
 
 // ---------------------------------------------------------------------
 // dynamic prototype: similar to constructor pattern but properties/functions can be created only when they don't exist
@@ -959,6 +949,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
