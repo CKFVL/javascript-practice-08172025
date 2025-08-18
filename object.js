@@ -356,6 +356,14 @@ console.log(dog.speak())  // copied directly onto dog
 
 This is how we often do mixins, simple cloning, or merging of objects.
 
+Summary
+Feature					Object.setPrototypeOf()						Object.assign()
+What it does			Sets the prototype of dest to source		Copies properties from source to dest
+Copying happens?		❌ No, properties are inherited				✅ Yes, shallow copy
+Relationship after use	dest.__proto__ === source					No prototype connection
+Use case				Inheritance / prototype chain manipulation	Merging / shallow cloning
+Performance impact		Slower, discouraged in hot code				Fast and safe
+
 ######################################################
 The behavior of this in JavaScript depends on how a function is called, not how the object was created. 
 However, the way you create an object can influence how you call the method, which affects what this refers to.
@@ -1028,6 +1036,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
