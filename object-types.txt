@@ -1,0 +1,13 @@
+Primitive types:
+----------------
+String
+boolean
+number
+undefined
+null
+
+Reference types:
+----------------
+Object
+Array
+Function
