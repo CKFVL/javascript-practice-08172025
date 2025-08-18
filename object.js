@@ -10,6 +10,11 @@ const object2={
 }
 console.log(object2['delivery-time');
 
+bracket notation can be used when property has - in it or need to use another variable
+e.g.
+let newName='bhogala'
+person[newName]='kumar'
+
 // function inside object called Method
 cosnt object3={
 	fun: function function1(){
@@ -932,6 +937,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
