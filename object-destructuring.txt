@@ -1,0 +1,38 @@
+Object destructuring:
+--------------------
+const object1={
+  message: "some value",
+  price: 99
+}
+
+can be extracted to
+const message = object1.message
+const price = object1.price
+
+//destructuring
+const {message, price} = object1
+
+message can be used in another object
+const object2={
+   message: message
+}
+instead use shortcut notation
+const object2={
+  message
+}
+
+// shortcut notation for method
+const object2={
+   message: message,
+   method = func function(){
+	console.log("hello")
+   }
+}
+instead use shortcut notation
+const object2={
+  message,
+  method(){
+	console.log("hello")
+  }
+}
+
