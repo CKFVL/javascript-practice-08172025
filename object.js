@@ -63,10 +63,12 @@ const literalObject={}
 console.dir(protoTypeObject)
 console.dir(literalObject)
 // ########################################################################
+// Objects can be initialized using new Object(), Object.create(), Object.assign({}, anotherObject)
 // to create an object with no properties/prototype
 const noPrototype = Object.create(null)
 console.dir(noPrototype)
 // ########################################################################
+
 'use strict'
 function myclass() {
 }
@@ -194,9 +196,8 @@ Sevral ways to create objects:
 	const p3 = personProto("Charlie", 28);
 	console.log(p3.name); // Charlie
 
- 	Example 2:
-    ---------
-	// prototype pattern
+ 	
+8. prototype pattern
 	var prototypeObj = function () { };
 	prototypeObj.prototype.age = 343;
 	prototypeObj.prototype.name = "no name"
@@ -242,7 +243,7 @@ Sevral ways to create objects:
 		console.log('name' in person6) // checks in person6 object and then in proptype too
 		console.log(person6.hasOwnProperty('name')) // checks in person6 object
 
-8. Merge properties from one or more objects into a new one (copy properties of one object to another)
+9. Merge properties from one or more objects into a new one (copy properties of one object to another)
 	const base = { name: 'Pavan' };
 	const info = { age: 30 };
 	
@@ -991,6 +992,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
