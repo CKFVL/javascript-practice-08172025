@@ -57,6 +57,28 @@ Here, obj1 and obj2 reference the same object, so the comparison evaluates to tr
 // to check if a property exists in object (prototype)
 console.log(person5.hasOwnProperty('name'));
 // ########################################################################
+const protoTypeObject=Object.create(Object.prototype);
+const literalObject={}
+// above both objects are same
+console.dir(protoTypeObject)
+console.dir(literalObject)
+// ########################################################################
+'use strict'
+function myclass() {
+}
+
+// Object.defineProperty
+myclass.prototype.x = 1;
+Object.defineProperty(myclass.prototype, "y", {
+  writable: true,
+  value: 1
+});
+
+var a = new myclass();
+a.x = 2;
+console.log(a.x); // 2
+console.log(myclass.prototype.x); // 1
+// ########################################################################
 Sevral ways to create objects:
 -----------------------------
 1. new Object()
@@ -70,6 +92,9 @@ Sevral ways to create objects:
 	this.age=age
    }
    const funcPerson=new Person('pavan', 40) // use new
+
+	// when constructor function is created using Object.create, passed arguments/Object as {} is not passed to function's `this`
+	// Object.create(Object.prototype)
 
 3. ES6 Class syntax
    class Person{
@@ -218,7 +243,7 @@ Sevral ways to create objects:
 	const info = { age: 30 };
 	
 	const person = Object.assign({}, base, info);
-
+######################################################
 The behavior of this in JavaScript depends on how a function is called, not how the object was created. 
 However, the way you create an object can influence how you call the method, which affects what this refers to.
 
@@ -384,11 +409,7 @@ var literalobject = {
  console.log(literalobject.foo)
   
 //
-const protoTypeObject=Object.create(Object.prototype);
-const literalObject={}
-// above both objects are same
-console.dir(protoTypeObject)
-console.dir(literalObject)
+
 
 // ---------------------------------------------------------------------
 'use strict'
@@ -912,6 +933,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
