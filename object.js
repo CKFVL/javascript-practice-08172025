@@ -191,6 +191,28 @@ Sevral ways to create objects:
 	// if another object is created, then it gets default values defined in prototype
 	var p1=new prototypeObj();
 
+ 	Example 2: (Informational)
+  	// dynamic prototype: similar to constructor pattern but properties/functions can be created only when they don't exist
+		var dynamicprototypeObj = function (name, age, city) {
+		    this.age = age;
+		    this.name = name
+		    this.city = city
+		
+		    if (typeof this.printPerson !== 'function') {
+		        console.log("function doesn't exists")
+		        this.printPerson = function () {
+		            console.log(this.age + ", " + this.name + ", " + this.city)
+		        }
+		    }
+		};
+		var person6 = new dynamicprototypeObj("sfddwekjjnkj", 222, "wewq");
+		person6.printPerson()
+		person6.age = 656
+		person6.printPerson()
+		// to check if a property exists in object (prototype)
+		console.log('name' in person6) // checks in person6 object and then in proptype too
+		console.log(person6.hasOwnProperty('name')) // checks in person6 object
+
 8. Merge properties from one or more objects into a new one.
 	const base = { name: 'Pavan' };
 	const info = { age: 30 };
@@ -285,46 +307,6 @@ Same behavior: this refers to the instance (p1).
  Again, this refers to the object the method is called on (person).
 
 // ########################################################################
-Object destructuring:
-
-const object1={
-      message: "some value",
-      price: 99
-}
-
-can be extracted to
-const message = object1.message
-const price = object1.price
-
-//destructuring
-const {message, price} = object1
-
-message can be used in another object
-const object2={
-   message: message
-}
-instead use shortcut notation
-const object2={
-  message
-}
-
-// shortcut notation for method
-const object2={
-   message: message,
-   method = func function(){
-	console.log("hello")
-   }
-}
-instead use shortcut notation
-const object2={
-  message,
-  method(){
-	console.log("hello")
-  }
-}
-
-
-// ########################################################################
 'use strict'
 // ways of creating objects
 // literal
@@ -372,26 +354,7 @@ const object2={
 
 
 // ---------------------------------------------------------------------
-// dynamic prototype: similar to constructor pattern but properties/functions can be created only when they don't exist
-var dynamicprototypeObj = function (name, age, city) {
-    this.age = age;
-    this.name = name
-    this.city = city
 
-    if (typeof this.printPerson !== 'function') {
-        console.log("function doesn't exists")
-        this.printPerson = function () {
-            console.log(this.age + ", " + this.name + ", " + this.city)
-        }
-    }
-};
-var person6 = new dynamicprototypeObj("sfddwekjjnkj", 222, "wewq");
-person6.printPerson()
-person6.age = 656
-person6.printPerson()
-// to check if a property exists in object (prototype)
-console.log('name' in person6) // checks in person6 object and then in proptype too
-console.log(person6.hasOwnProperty('name')) // checks in person6 object
 
 // getOwnPropertyNames
 //preventExtensions
@@ -949,6 +912,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
