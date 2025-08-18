@@ -16,3 +16,8 @@ Comparison operators
 -----------------------------------
 Example:
 'Items('+(1+1)+'): $'+ (2095+799)/100
+
+-----------------------------------
+Ternary operator: ? 
+Guard operator: || (to set fallback value when the condition before || is false)
+default operator: ?? (to set fallback value when the condition before is null or undefined as falsy)
