@@ -5,6 +5,7 @@ boolean
 number
 undefined
 null
+symbol
 
 Reference types:
 ----------------
