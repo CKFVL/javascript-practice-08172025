@@ -24,13 +24,35 @@ cosnt object3={
 
 object3.function1()
 // ########################################################################
-copying an object copies the reference, not the object
-comparison with == compares the object references but not equality check for values
-
 const obj1={name:'pavan'}
 const obj2={name:'pavan'}
 console.log(obj1==obj2) // false
 console.log(obj1===obj2) // false 
+
+In JavaScript, objects are reference types — the variables don’t store the actual object, they store a reference (memory address) to where the object lives in memory.
+So even if two objects contain exactly the same key-value pairs, they are considered different objects if they were created separately.
+
+const obj1 = { name: 'pavan' }
+const obj2 = { name: 'pavan' }
+
+console.log(obj1 == obj2)   // false
+console.log(obj1 === obj2)  // false
+
+Why both are false?
+== checks for loose equality. For objects, it still compares by reference, not by structure/value.
+=== checks for strict equality, also comparing the reference.
+
+Since obj1 and obj2 are two different objects stored at two different locations in memory, their references are different, so both comparisons return false.
+When would it return true?
+Only if both variables point to the exact same object instance:
+
+const obj1 = { name: 'pavan' }
+const obj2 = obj1
+
+console.log(obj1 == obj2)   // true
+console.log(obj1 === obj2)  // true
+Here, obj1 and obj2 reference the same object, so the comparison evaluates to true.
+
 // ########################################################################
 Sevral ways to create objects:
 -----------------------------
@@ -937,6 +959,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
