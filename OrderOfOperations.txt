@@ -11,7 +11,7 @@ Comparison operators
 3. +-
 4. comparison operators
    e.g. console.log(3 > 5-5) prints false as math operator has high priority.
-
+   use === OR !== for object comparisons with strict value and type equality
 -----------------------------------
 Example:
 'Items('+(1+1)+'): $'+ (2095+799)/100
