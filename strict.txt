@@ -1,0 +1,21 @@
+-	Strict mode eliminates some JavaScript silent errors by changing them to throw errors.
+-	It prevents, or throws errors, when relatively “unsafe” actions are taken (such as gaining access to the global object).
+-	Strict mode makes it easier to write “secure” JavaScript.
+
+How to use strict mode:
+Strict mode can be used in two ways – used in global scope for the entire script and can be applied to individual functions. Strict mode doesn’t work with block statements enclosed in {} braces.
+
+Examples of using Strict mode:
+// Using a variable, without declaring it, is not allowed:
+'use strict'; 
+ x = 3.14;
+ console.log(x)
+ 
+// Objects are variables too. 
+// Using an object, without declaring it, is not allowed: 
+x = {p1:10, p2:20}; // will throw an error 
+ console.log(x)
+ 
+ // Deleting a function is also not allowed 
+ Note: variables should not be deleted.
+ 
