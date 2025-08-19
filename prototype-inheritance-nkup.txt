@@ -1,0 +1,71 @@
+// every object in javascript has master Object and has a property called prototype, which allows to add new proeprties/methods.
+// when a new object is created from the prototype obejct, new object uses its properties.
+// advantage: prototype can be used when a variable or function/behaviour needs to be shared among the instances of function
+let car = function (model) {
+    this.model = model;
+}
+car.prototype.getModel() = function () {
+    return this.model;
+}
+console.log(car("jgjg"))
+
+// ###############################################################################################################################
+var x = function (j) {
+    this.i = 0;
+    this.j = j;
+};
+x.prototype.getJ = function () {
+    return this.j;
+};
+
+var x1 = new x(1); // prototype can be used when a variable or function/behaviour needs to be shared among the instances of function
+var x2 = new x(2);
+
+console.log(x1.getJ())
+console.log(x2.getJ())
+
+// ###############################################################################################################################
+'use strict'
+var Job = function() {
+  console.log("trying for job..")
+  this.pays = true;
+}
+
+// prototype method
+Job.prototype.print = function() {
+  console.log(this.pays ? 'please hire me' : 'no thank you');
+}
+
+//subclass
+var TechJob = function(title, pays) {
+  Job.call(this) // calls constructor of Job but doesn't inherits prototype. useful when another function wants to default values from parent function. e.g., this.pays
+  this.title = title;
+  this.pays = pays
+}
+
+// inherit all the methods from prototype of Job (no property will be inherited that is initialized in constructor). i.e., only print method is inherited.
+TechJob.prototype = Object.create(Job.prototype); // inherit from job prototype
+//TechJob.prototype.constructor = TechJob; // constructor property will be preserved in TechJob __proto__
+
+// not allowed before setting prototype of another function
+TechJob.prototype.techprint = function() {
+  console.log(this.pays ? 'please hire me for tech job' : 'no thank you, do not need tech job');
+}
+var softwarePosition = new TechJob('Javascript Programmer', true)
+var softwarePosition2 = new TechJob('vb Programmer', false)
+
+console.log(softwarePosition.print())
+console.log(softwarePosition2.print())
+
+
+console.log(softwarePosition.techprint())
+console.log(softwarePosition2.techprint())
+
+TechJob.prototype.print = function() {
+  console.log(this.pays ? 'please hire me for tech job' : 'no thank you, do not need tech job');
+}
+
+console.log(softwarePosition.print())
+console.log(softwarePosition2.print())
+
+// ###############################################################################################################################
