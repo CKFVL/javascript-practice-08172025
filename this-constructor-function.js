@@ -3,6 +3,14 @@
 // (but maintains closure that it encapsulates data passed to it and can be accessed with constructor object)
 // produces same results in both strict and non-strict mode
 ######################
+// new operator is mandatory if any property need to be accessed from object of constructor function
+// without new keyword, javascript considers it as a regular function
+
+let marooncar = Car('maroon');
+console.log(marooncar)// results undefined
+console.log(marooncar.color)//results `undefined` in non-strict mode and throws error in strict mode
+
+// ##########################################################
 //-   variable added to `this` scope can be accessed as `this.variable_name` OR `variable_name`
 //-   if a property is defined with same name (with var) as in global scope(`this`), then property with var shadows variable with `this` scope.
 //-   regular function doesn't have access to `this` in strict mode; but variable can be accessed with `variable_name` instead of `this.variable_name` in regular function
@@ -124,12 +132,14 @@ console.log(account.age)
 account.updateAge(42)
 
 ################################
+// to make sure object is constructed from cosntructor function, throw custom error
 'use strict'
 let CarThrowsError = function (color) {
     if (!new.target) throw 'CarThrowsError must be called with new'
     this.color = color;
 }
 let newredCarThrowsError = CarThrowsError('red')
+
 ################################
 // to make variables `private` in constructor function object, use getters/setters instead
 'use strict'
