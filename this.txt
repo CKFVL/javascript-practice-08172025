@@ -4,3 +4,39 @@
 // if a function is regular function i.e., not inside an object, this refers to global object
 //      in strict mode, global object can't be accessed inside a function using this
 // if a function is constructor function and is created using new operator, then this refers to arguments to it in new {} object
+
+READ THIS AFTER CHECKING other this examples in this project
+'use strict'
+this.color = "qwewq"
+console.log("test global scope" + color)
+console.log("test global scope" + this.color)
+var color = "sdsdf"
+console.log("test global scope" + color)
+
+console.log("***********************")
+
+// regular car
+function RegularCar(_color) {
+  color = _color; // window variables can be accessed without `this`
+  //this.color = _color // throws error in strict mode with regular function object creation
+  return color;
+}
+
+console.log(RegularCar('red'))
+
+//const car=new Car('green')
+let regularCar = new RegularCar('red')
+console.log(regularCar.color) 
+
+
+// constructor car
+function ConstructorCar(_color){
+  this.color=_color;
+  color=_color
+  console.log("******")
+  console.log(color)
+  return this.color;
+}
+let constructorCar=new ConstructorCar('black')
+console.log(constructorCar.color)
+
