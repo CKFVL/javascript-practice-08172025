@@ -4,9 +4,16 @@ the value of this inside a regular function depends entirely on how the function
 one-line trick to instantly figure out this in any regular function call
 Look to the left of the dot when the function is called - that's your this.
 
-Examples
-1. Dot present → this is the object before the dot
+Examples:
+1. No dot → global object (in browsers, this is global object or undefined in strict mode)
+function showBrand() {
+  console.log(this.brand);
+}
 
+showBrand(); // undefined (strict mode) OR window.brand (non-strict)
+---
+2. Dot present → this is the object before the dot
+Method Inside an Object: When a regular function is called as a method of an object, this refers to that object.
 const person={
   name: 'Pavan',
   start: function(){
@@ -15,17 +22,12 @@ const person={
 }
 
 person.start() // the assigner is whoever doing the calling
-
 ---
-2. No dot → global object (or undefined in strict mode)
-function showBrand() {
-  console.log(this.brand);
-}
-
-showBrand(); // undefined (strict mode) OR window.brand (non-strict)
-
+3. Detached Function Reference
+const detached = obj.show;
+detached(); // 👉 `this` is global object (or `undefined` in strict mode)
 ---
-3. Chained dots → the immediate left counts
+4. Chained dots → the immediate left counts
 const garage = {
   car: {
     brand: "BMW",
@@ -38,7 +40,7 @@ const garage = {
 garage.car.start(); // "BMW" ← left of dot is `garage.car`
 
 ---
-4. Call stored in a variable → loses caller info
+5. Call stored in a variable → loses caller info
 const bike = {
   brand: "Yamaha",
   start: function() {
@@ -48,7 +50,17 @@ const bike = {
 
 const startBike = bike.start;
 startBike(); // undefined → no left-of-dot
+---
+Inside setTimeout or Callback
 
+function timer() {
+  this.seconds = 0;
+  setTimeout(function() {
+    this.seconds++; // ❌ `this` is not the timer object
+    console.log(this.seconds); // NaN or undefined
+  }, 1000);
+}
+---
 This “left-of-dot rule” works for regular functions.
 Arrow functions are the rebel children — they ignore this rule and just take this from where they were created.
 
