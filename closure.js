@@ -182,3 +182,77 @@ function curry(a) {
 }
 
 console.log(curry(1)(2)(3)); // 6
+
+---
+var counter = (function () {
+    var i = 0;
+    return {
+        get: function () { // equivalent to get() in ES6 called as method notation
+            return i;
+        },
+        set: function (val) {
+            i = val;
+        },
+        increment: function () {
+            i++;
+        }
+    }
+}
+)();
+
+console.log(counter.get())
+counter.set(99)
+console.log(counter.get())
+counter.increment()
+console.log(counter.get())
+---
+// another example:
+'use strict'
+
+var fibonacci = function() {
+  var pre = 0,
+    cur = 1;
+  return {
+    next: function() { //equivalent to next() in ES6 called as method notation
+      var tmp = pre;
+      pre = cur;
+      cur += tmp;
+      return cur;
+    }
+  };
+}();
+
+for (;;) {
+  var limit = fibonacci.next()
+  if (limit > 50) {
+    console.log(limit)
+    break;
+  }
+}
+
+// above example in another way
+'use strict'
+
+var fibonacci = {
+  generate: function() { //equivalent to generate() in ES6 called as method notation
+    var pre = 0,
+      cur = 1;
+    return {
+      next: function() { //equivalent to next() in ES6 called as method notation
+        var tmp = pre;
+        pre = cur;
+        cur += tmp;
+        return cur;
+      }
+    };
+  }()
+};
+
+for (;;) {
+  var limit = fibonacci.generate.next()
+  if (limit > 50) {
+	  console.log(limit)
+    break;
+  }
+}
+
