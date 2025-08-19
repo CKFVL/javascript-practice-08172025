@@ -30,3 +30,27 @@ bracket notation can be used when property has - in it or need to use another va
 e.g.
 let newName='bhogala'
 person[newName]='kumar'
+
+####################
+var msg = "Hello JS";
+console.log(msg);
+console.log("not a number" / 2); //NaN
+console.log("not a number" / 2 + 5); // NaN
+
+console.log(typeof Symbol("id")); //symbol
+console.log(typeof "foo"); //string
+console.log(typeof Infinity); //number
+console.log(typeof (typeof 223)) //string
+
+console.log(typeof null); // For null returns "object"–this is an error in the language, it’s not actually an object.
+console.log(typeof undefined); // undefined
+console.log(null === undefined); // false
+console.log(null == undefined); // undefined and null are equal in value
+
+var y = new Number(123); // js number can be object too
+console.log("typeof y" + typeof y);
+console.log(typeof Math); //object
+console.log(typeof [1, 2, 3, 3]); //typeof array=object
+####################
+5 == '5.0' // results true as 5.0 is converted to 5
+5 === '5.0' // results false i.e. strict equality
