@@ -1,3 +1,28 @@
+// variable added to `this` scope can be accessed as `this.variable_name` OR `variable_name` within the object.
+// in both strict and non-strict mode, constructor function has access to `this` 
+// (but maintains closure that it encapsulates data passed to it and can be accessed with constructor object)
+// produces same results in both strict and non-strict mode
+######################
+//-   variable added to `this` scope can be accessed as `this.variable_name` OR `variable_name`
+//-   if a property is defined with same name (with var) as in global scope(`this`), then property with var shadows variable with `this` scope.
+//-   regular function doesn't have access to `this` in strict mode; but variable can be accessed with `variable_name` instead of `this.variable_name` in regular function
+'use strict'
+this.color = "qwewq"
+console.log("test global scope" + this.color)
+var color = "sdsdf"
+let Car = function (_color) {
+    this.color = _color;
+    color = _color;
+
+}
+// __proto__ creates object when followed constructor pattern
+let car = new Car('purple');
+console.log(car.color)
+
+console.log("test global scope" + this.color)
+console.log("test global scope" + color)
+
+######################
 // constructor function
 in both strict and non-strict mode, constructor function has access to `this` but the variables or objects mist be prefixed with this
 function BankAccount(newname, newage){
