@@ -5,6 +5,26 @@
 //      in strict mode, global object can't be accessed inside a function using this
 // if a function is constructor function and is created using new operator, then this refers to arguments to it in new {} object
 
+###########################
+'use strict'
+this.color = "qwewq"
+console.log("test global scope" + this.color)
+console.log("************")
+let color = "sdsdf"
+let Car = function (_color) {
+    this.color = _color;
+    console.log(this.color)
+    color = _color; // local to function if not delcared as var
+    console.log(color)
+}
+// __proto__ creates object when followed constructor pattern
+let car = new Car('purple');
+console.log("************")
+console.log(car.color) // prints undefined if line 7 not present in the car function
+console.log("************")
+console.log("test global scope" + this.color)
+console.log("test global scope" + color)
+###########################
 READ THIS AFTER CHECKING other this examples in this project
 'use strict'
 this.color = "qwewq"
