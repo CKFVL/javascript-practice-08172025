@@ -1,4 +1,5 @@
 // constructor function
+in both strict and non-strict mode, constructor function has access to `this` but the variables or objects mist be prefixed with this
 function BankAccount(newname, newage){
   this.name=newname; // if not bound to this, then it is not accessible for the object
   let age=newage;
