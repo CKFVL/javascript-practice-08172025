@@ -98,6 +98,13 @@ console.log(account.age)
 account.updateAge(42)
 
 ################################
+'use strict'
+let CarThrowsError = function (color) {
+    if (!new.target) throw 'CarThrowsError must be called with new'
+    this.color = color;
+}
+let newredCarThrowsError = CarThrowsError('red')
+################################
   setTimeout(function(){
     this.count+=100
     console.log(`this.count in regular function in setTimeout= ${this.count}`)
