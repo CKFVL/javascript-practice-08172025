@@ -24,3 +24,22 @@ Since ToyCar doesn’t define its own getColor, JavaScript goes up the prototype
 this.color inside getColor() refers to the object on which it’s called (i.e., toycar), so it returns "white".
 ################################
 ES6 class/extends version of your example using modern syntax:
+
+class Car{
+  constructor(_color){
+    this.color=_color;
+  }
+  
+  getColor(){
+    return this.color
+  }
+}
+
+class ToyCar extends Car{
+  constructor(_color){
+    super(_color) // calls the parent (Car) constructor
+  }
+}
+
+const toycar = new ToyCar('white');
+console.log(toycar.getColor()); // → "white"
