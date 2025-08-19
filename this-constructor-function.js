@@ -105,6 +105,23 @@ let CarThrowsError = function (color) {
 }
 let newredCarThrowsError = CarThrowsError('red')
 ################################
+// to make variables `private` in constructor function object, use getters/setters instead
+'use strict'
+let PrivateVariableCar = function (_color) {
+    this.getColor = function () {
+        return _color;
+    }
+    this.setColor = function (color) {
+        _color = color;
+    }
+}
+
+let privateVariableCar = new PrivateVariableCar('yellow');
+console.log(privateVariableCar.getColor())
+privateVariableCar.setColor('green')
+console.log(privateVariableCar.getColor())
+console.log(privateVariableCar._color) // undefined bcoz _color property is private to constructor function's getter and setter methods
+################################
   setTimeout(function(){
     this.count+=100
     console.log(`this.count in regular function in setTimeout= ${this.count}`)
