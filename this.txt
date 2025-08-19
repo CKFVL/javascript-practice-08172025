@@ -40,3 +40,4 @@ function ConstructorCar(_color){
 let constructorCar=new ConstructorCar('black')
 console.log(constructorCar.color)
 
+variable declared with `var` shadows variable declared with `this`
