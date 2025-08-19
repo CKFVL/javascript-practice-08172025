@@ -37,6 +37,7 @@ class Car{
 
 class ToyCar extends Car{
   constructor(_color){
+    // (super() is mandatory before using this in a subclass constructor.)
     super(_color) // calls the parent (Car) constructor
   }
 }
