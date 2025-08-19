@@ -139,6 +139,22 @@ Sevral ways to create objects:
    console.log(literalPerson.name)
    literalPerson.greet()
 
+	example 2:
+	---------
+    const video = {
+    title: 'a',
+    play() {
+        console.log(this);
+    }
+	};
+	video.play();
+	
+	// add method to video object
+	video.stop = function () {
+	    console.log(this);
+	}
+	video.stop();
+
 5. Factory function: A function that returns a new object
   function FactoryFunc(name, age){
   return {
@@ -1036,6 +1052,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
