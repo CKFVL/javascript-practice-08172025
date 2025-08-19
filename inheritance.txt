@@ -1,0 +1,26 @@
+// use of Object.create function: achieve inheritance from one constructor in another constructor
+'use strict'
+const Car = function (_color) {
+    this.color = _color;
+}
+Car.prototype = {
+    getColor() {
+        return this.color;
+    }
+}
+const ToyCar = function (_color) {
+    this.color = _color
+}
+// set Car prototype to ToyCar prototype
+ToyCar.prototype = Object.create(Car.prototype);//getColor() will be inherited in ToyCar too
+ToyCar.prototype.constructor = ToyCar;
+let toycar = new ToyCar('white');
+console.log(toycar.getColor())
+
+Explanation
+ToyCar.prototype = Object.create(Car.prototype)
+This sets up prototype chaining so that anything defined on Car.prototype becomes available to instances of ToyCar.
+Since ToyCar doesn’t define its own getColor, JavaScript goes up the prototype chain and finds getColor on Car.prototype.
+this.color inside getColor() refers to the object on which it’s called (i.e., toycar), so it returns "white".
+################################
+ES6 class/extends version of your example using modern syntax:
