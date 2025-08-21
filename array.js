@@ -258,17 +258,23 @@ console.log(filteredNumbers);
 
 // reduce: reads elements from left to right and produces a single value
 // takes 4 arguments: total, value, index, array itself
-var reducedNumbers = filteredNumbers.reduce(function (
-  total,//accumulator.reducer
-  n,//currentvalue
-  i,//current index
-  filteredNumbers//input array
-) {
-  return total + n;
-},
-  100); // reduce can accept initial value too
 
-console.log(reducedNumbers);
+let numbers1 = [45, 4, 9, 16, 25];
+let total=numbers1.reduce(
+  function(
+    total //accumulator.reducer
+  , currentVal, 
+  currentIndex, 
+  numbers1 // array itself
+  ){
+  return total+currentVal;
+},
+100 // initial value is optional
+)
+
+console.log(total)
+
+console.log(total);
 
 // similarly reduceRight
 
