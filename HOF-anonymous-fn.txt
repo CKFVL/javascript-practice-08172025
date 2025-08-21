@@ -1,3 +1,48 @@
+A callback function in JavaScript is simply a function that is passed as an argument to another function and is intended to be executed later (either synchronously or asynchronously).
+It’s called a “callback” because the receiving function calls it back at the appropriate time.
+
+Why use callbacks?
+To make functions reusable and customizable.
+To handle asynchronous tasks (like fetching data, reading files, timers, etc.).
+To separate logic from execution flow.
+
+Synchronous callback:
+----------------------
+function multiply(a,b){
+  console.log(`performing multiply for a, b =`+a+`, `+ b)
+  return a*b;
+}
+
+function sum(a,b){
+  console.log('performing sum')
+  return a+b;
+}
+
+function subtraction(a,b){
+  console.log('performing subtraction')
+  return a-b;
+}
+
+const calc=function(a, b, callback){
+  console.log(callback(a,b))
+}
+
+calc(2,3,multiply)
+calc(2,3, subtraction)
+
+Asynchronous callback:
+----------------------
+console.log('start')
+
+setTimeout(function(){
+  console.log('called after 2 min')
+},1000)
+
+console.log('end')
+
+##############################
+
+
 Local class: Use it if you need to create more than one instance of a class, access its constructor, or introduce a new, named type
  (because, for example, you need to invoke additional methods later).
 
