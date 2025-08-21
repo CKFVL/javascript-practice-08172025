@@ -1,0 +1,56 @@
+3 ways to create a string:
+--------------------------
+  - single quote (always preferred instead of double quotes)
+  - double quotes (preferred when single quotes are present within a string)
+    e.g. "I'm learning Javascript"
+    Escape characters:
+    \ with single quote
+     'I\'m learning Javascript', result=I'm learning Javascript
+    \ with double quote
+      "I\"m learning Javascript", result=I"m learning Javascript
+    \ with n: create new line
+  - backticks (also called as template strings also called as interpolation)
+    Examples:
+    `Items (${1+1}): $${(2095+799)/100}` which results Items (2): $28.94
+    
+    let amount=10033
+    console.log(`Total Items: $${amount}`);
+    *** cleaner way to insert values into string.
+
+Type coercion:
+-------------
+If a string contains only number and any math operation with *-/ and another number, then it will be converted to number
+const str='55'
+console.log(str-33) // results 22
+
+const str='55'
+console.log(str*33) // results 1815
+
+while with +, it will perform concatenate operation
+const str='3333'
+console.log(str+2222) // results as 33332222
+
+another way of doing calculations with string and numbers is using eval
+Why is eval() discouraged?
+Using eval() is generally considered unsafe and inefficient because:
+Security risk: If the string being evaluated comes from the user or an external source, it can execute malicious code.
+Performance cost: It prevents the JavaScript engine from optimizing the code properly.
+Debugging headaches: Errors inside eval() are harder to trace.
+
+1. If you’re just converting strings into numbers
+const num = Number('32222'); // or parseInt / parseFloat
+
+2. If you want to parse JSON safely
+const obj = JSON.parse('{"name":"pavan","age":30}');
+
+3. If you want to evaluate math expressions (like "5 + 10 * 4")
+👉 Use a library instead of eval() — for example:
+    npm install mathjs
+
+    import { evaluate } from "mathjs";
+    console.log(evaluate("5 + 10 * 4")); // 45
+
+Summary – Avoid eval() because:
+❗ Allows arbitrary code execution (security issue)
+🐢 Slower (cannot be optimized)
+😵 Hard to debug
