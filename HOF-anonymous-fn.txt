@@ -1,0 +1,14 @@
+Local class: Use it if you need to create more than one instance of a class, access its constructor, or introduce a new, named type
+ (because, for example, you need to invoke additional methods later).
+
+ Anonymous class: Use it if you need to declare fields or implement methods or additional methods at runtime.
+ *** declare and instantiate class at same time.
+
+ an object is created for both local and anonymous types. The difference however is you can't reuse the anonymous class
+
+ Lambda expression: Use it if you are encapsulating a single unit of behavior that you want to pass to other code.
+ For example, you would use a lambda expression if you want a certain action performed on each element of a collection, when a process is completed,
+ or when a process encounters an error.
+ Use it if you need a simple instance of a functional interface and none of the preceding criteria apply
+ (for example, you do not need a constructor, a named type, fields, or additional methods).
+
