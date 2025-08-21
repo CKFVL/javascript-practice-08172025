@@ -40,9 +40,35 @@ setTimeout(function(){
 
 console.log('end')
 
+// example of callback function in javascript library
+// The sort, map, forEach, filter, reduce methods in Array calls the callbackfn function one time for each element in the array.
+let cars=[{type:'sedan', brand: 'toyota', year:'1984', available:2},
+{type:'hatchback', brand: 'volvo', year:'1985', available:1},
+{type:'suv', brand: 'infinity', year:'1995', available:5},
+{type:'mini', brand: 'cooper', year:'2000', available:100}
+]
+
+let sortByYear=cars.sort(function(a, b){
+  return a.year-b.year
+})
+
+sortByYear.forEach(function(car){
+  console.log(car.year)
+})
+
+cars.forEach(function(car, index){
+  console.log(index, car)
+})
+
+let totalAvailableCars=0;
+cars.map(function(car, index){
+  totalAvailableCars+=car.available
+})
+
+console.log(totalAvailableCars)
+
+
 ##############################
-
-
 Local class: Use it if you need to create more than one instance of a class, access its constructor, or introduce a new, named type
  (because, for example, you need to invoke additional methods later).
 
