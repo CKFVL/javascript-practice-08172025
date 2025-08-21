@@ -149,13 +149,30 @@ fruitslc.forEach(f=> console.log(f))
 splicedArray.forEach(f=>console.log(f))
 
 ########################
-// splicing an array: add new items to array & returns items that were deleted
-// helpful to remove elements without leaving "holes" in the array
-fruitsarr.splice(2, 0, "Lemon", "Kiwi"); // add 2 elements and remove 0 elements
-console.log(fruitsarr)
-fruitsarr.splice(2, 2, "Lemon2", "Kiwi2"); // add 2 elements and remove 2 elements
-console.log(fruitsarr)
+let fruitslc = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+let slicedFruits=fruitslc.slice(2, 4)// startIndex, endIndex-1
+slicedFruits.forEach(sf=> console.log(sf))
 
+console.log('##########')
+let splicedFruits=fruitslc.splice(2, 4)// startIndex, endIndex
+splicedFruits.forEach(sf=> console.log(sf))
+
+console.log('##########')
+let fruitsnew = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+console.log(fruitsnew.length)
+console.log('@@@@@@@@@@@@@')
+let fruitslc2 = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+let splicedFruitsww=fruitslc2.splice(1,0, "kiwi", "watermelon") // splice(startIndex, endIndex)
+splicedFruitsww.forEach(f=>console.log(f))
+console.log('@@@@@@@@@@@@@')
+fruitslc2.forEach(f=>console.log(f))
+console.log('@@@@@@@@@@@@@')
+let splicedFruitsNew=fruitsnew.splice(1,3, "kiwi", "pomegranate", "jackfruit")
+splicedFruitsNew.forEach(fr=> console.log(fr))
+console.log('##########')
+fruitsnew.forEach(fn=>console.log(fn))
+
+########################
 // slice: slices out a piece of an array to new array and doesn't remove any elements from source array
 // a way of achieving immutability
 var fruitslc = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
@@ -165,7 +182,7 @@ console.log(fruitslc.slice(1, 3)); // slices out elements starting from 1 to 3
 console.log(fruitslc);
 
 //concat
-
+########################
 // Sorting arrays
 // sort function sorts array values as strings
 console.log(fruitslc.sort());
