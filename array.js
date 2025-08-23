@@ -334,7 +334,7 @@ myarray=[0,...myarray,6]
 // When you delete an array element, the array length is not affected. This holds even if you delete the last element of the array. When the delete operator removes an array element, that element is no longer in the array. In the following example, trees[3] is removed with delete.
 var trees = ['redwood', 'bay', 'cedar', 'oak', 'maple'];
 if (3 in trees) {
-    // this is not executed
+    // this is executed
     console.log("element exists")
 }
 
