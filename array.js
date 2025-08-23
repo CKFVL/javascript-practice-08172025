@@ -200,7 +200,7 @@ points.sort(function (a, b) {
 // If the result is negative a is sorted before b.
 // If the result is positive b is sorted before a.
 // If the result is 0 no changes is done with the sort order of the two values.
-
+########################
 // find the max and min value in array
 // there is no out of box method to find max or min value in array, instead sort the array first and get the
 // first or last element based on sorting order
@@ -234,10 +234,10 @@ cars.forEach(function (car, index, array) {
 //     return ((x < y) ? -1 : ((x > y) ? 1 : 0));
 //   });
 // };
-
+########################
 // Array iteration
 //forEach: takes 3 values-callback function takes (value, index & array itself)
-
+########################
 // map: creates a new array for each element that it performs a function
 // doesn't change source array
 // callback function takes (value, index & array itself)
@@ -247,7 +247,7 @@ var numbers2 = numbers1.map(function (n, i, numbers1) {
 });
 console.log(numbers1);
 console.log(numbers2);
-
+########################
 // filter: creates a new array for each element that it performs a function
 // doesn't change source array
 // -callback function takes (value, index & array itself)
@@ -255,7 +255,7 @@ var filteredNumbers = numbers2.filter(function (n, i, numbers2) {
   return n > 32;
 });
 console.log(filteredNumbers);
-
+########################
 // reduce: reads elements from left to right and produces a single value
 // takes 4 arguments: total, value, index, array itself
 
@@ -277,7 +277,7 @@ console.log(total)
 console.log(total);
 
 // similarly reduceRight
-
+########################
 // every : checks every element and true if all pass a test
 var numbers = [45, 4, 9, 16, 25];
 var allOver18 = numbers.every(myFunction);
@@ -287,12 +287,13 @@ function myFunction(value) {
 }
 
 console.log(allOver18);
-
+########################
 // similary Array.some
 
 //indexOf: searches for element and returns the element's index
 // lastIndexOf: searches from end of array
 //find(): returns the first element that passes a test
+// findIndex: returns the index of first element that passes a test
 var numbers = [4, 9, 16, 25, 29];
 var first = numbers.find(myFunction);
 
@@ -301,7 +302,6 @@ function myFunction(value, index, array) {
 }
 
 console.log(first);
-// findIndex: returns the index of first element that passes a test
 // ################################################################
 let spArray = []
 spArray.push(...newArr) //use spread for copying array
