@@ -77,3 +77,23 @@ redCar.drive()
 In short:
 Use a Factory Function when you want simplicity, encapsulation, or privacy.
 Use a Constructor Function (or class) when you want prototype-based inheritance and method sharing.
+
+Example with private data:
+function createBankAccount(initialBalance) {
+  let balance = initialBalance; // private via closure
+
+  return {
+    deposit(amount) {
+      balance += amount;
+    },
+    getBalance() {
+      return balance;
+    }
+  };
+}
+
+const acc = createBankAccount(100);
+acc.deposit(50);
+console.log(acc.getBalance()); // 150
+console.log(acc.balance);      // undefined ❌ (private!)
+
