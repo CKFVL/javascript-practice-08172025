@@ -74,3 +74,6 @@ let redCar=new Car('black');
 redCar.drive()
 
 ##############################
+In short:
+Use a Factory Function when you want simplicity, encapsulation, or privacy.
+Use a Constructor Function (or class) when you want prototype-based inheritance and method sharing.
