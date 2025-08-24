@@ -832,6 +832,23 @@ for (var e in o) {
 console.log(Object.keys(o))
 console.log(o.c)
 
+##################
+Object.defineProperty(newEmployee, 'name', {
+  configurable: false,
+  writable: false,
+  enumerable: true
+});
+If you don’t give a value, the default is undefined.
+So even though the property exists and is enumerable, its value is still undefined.
+
+Object.defineProperty(newEmployee, 'name', {
+  value: 'pavan',
+  configurable: false,
+  writable: false,
+  enumerable: true
+});
+
+####################
 
 // A data descriptor also has the following optional keys:
 //value
@@ -1090,6 +1107,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
