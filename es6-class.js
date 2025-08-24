@@ -96,4 +96,42 @@ const acc = createBankAccount(100);
 acc.deposit(50);
 console.log(acc.getBalance()); // 150
 console.log(acc.balance);      // undefined ❌ (private!)
+##############################
+ES6 class is really just syntactic sugar over constructor functions + prototypes, but there are important differences in behavior.
 
+  function Car(color) {
+  this.color = color;
+}
+
+Car.prototype.drive = function () {
+  console.log(`driving ${this.color} car`);
+};
+
+let redCar = new Car("red");
+redCar.drive(); // driving red car
+
+Key points:
+Plain function, invoked with new.
+Prototype methods defined manually (Car.prototype.method = ...).
+If you forget new, this will point to global object (or undefined in strict mode).
+
+ES6 Class (sytatic sugar)
+class Car {
+  constructor(color) {
+    this.color = color;
+  }
+
+  drive() {
+    console.log(`driving ${this.color} car`);
+  }
+}
+
+let blueCar = new Car("blue");
+blueCar.drive(); // driving blue car
+
+Key points:
+-  Syntatic sugar
+-  constructor() is where you initialize instance data.
+-  Methods automatically go on the prototype (just like in constructor functions).
+-  class is not hoisted (unlike function declarations).
+-  Calling without new throws a TypeError → safer.
