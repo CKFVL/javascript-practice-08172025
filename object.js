@@ -745,7 +745,7 @@ newEmployee.age=44
 newEmployee.age=77
 
 console.log(newEmployee.age) //77
-
+######################################################
 // In JavaScript, you cannot directly rename a property (there’s no Object.renameProperty).
 // But you can achieve the same effect by adding a new property with the new name and deleting the old one.
 let emp = { id: 1, name: "Pavan", age: 40 };
@@ -767,7 +767,7 @@ newEmployee.lastName='bhogala'
 console.log('@@@@@@@@@@@@@@@@@@@@@@@')
 console.log(newEmployee)
 console.log('@@@@@@@@@@@@@@@@@@@@@@@')
-
+######################################################
 let newEmployee2 = {id:23, name: 'bhogala', age: 34};
 let newEmployee3 = {id:24, name: 'vani', age: 41};
 
@@ -794,6 +794,8 @@ for(const emp in empArr){
 // configurable
 //true if and only if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object. 
 // Defaults to false.
+
+######################################################
 //enumerable
 //true if and only if this property shows up during enumeration of the properties on the corresponding object. 
 // Defaults to false.
@@ -1012,7 +1014,8 @@ arc.getArchive(); // [{ val: 11 }, { val: 13 }]
 'use strict'
 
 // Inheritance of properties
-//If an accessor property is inherited, its get and set methods will be called when the property is accessed and modified on descendant objects. If these methods use a variable to store the value, this value will be shared by all objects.
+//If an accessor property is inherited, its get and set methods will be called when the property is accessed and modified on descendant objects. 
+// If these methods use a variable to store the value, this value will be shared by all objects.
 function myclass() {
 }
 
@@ -1050,7 +1053,8 @@ console.log(a.x);
 console.log(b.x); // undefined OR 33 if stored_x is in myclass prototype
 console.log(myclass.prototype.stored_x) // 33 if stored_x is in myclass prototype
 
-//Unlike accessor properties, value properties are always set on the object itself, not on a prototype. However, if a non-writable value property is inherited, it still prevents from modifying the property on the object.
+//Unlike accessor properties, value properties are always set on the object itself, not on a prototype. 
+// However, if a non-writable value property is inherited, it still prevents from modifying the property on the object.
 function myclass() {
 }
 
@@ -1107,6 +1111,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
