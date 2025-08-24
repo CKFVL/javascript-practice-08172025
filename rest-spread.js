@@ -21,6 +21,12 @@ let[first, ...restArr]=[1,2,3,4]
 console.log(first)
 console.log(restArr)
 
+// Rest pulls out first two, collects the rest
+let [first, second, ...rest] = arr2;
+console.log(first);  // 10
+console.log(second); // 20
+console.log(rest);   // [30, 40, 50, 60, 70]
+
 // object destructuring
 let {a, ...restObj}={a:1, b:2, c:3}
 console.log(a)
