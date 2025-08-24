@@ -1,4 +1,5 @@
 Spread: Expands an iterable (array, object, string) into individual elements
+(Spread: "Take this box and dump out everything inside.")
 Example 1: Array Expansion
 let arr1=[1,2,3]
 let arr2=[3,...arr1,5] // Spread creates a new array with extra elements
@@ -13,9 +14,9 @@ function sum(x, y, z){
   console.log(x+y+z)
 }
 sum(...[1,2,3])
-
 #####################################
 Rest: Collects all elements into single array or object
+(Rest: "Take all these items and pack others/them into a box.")
 // array destructuring
 let[first, ...restArr]=[1,2,3,4]
 console.log(first)
