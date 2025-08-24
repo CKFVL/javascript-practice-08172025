@@ -1,7 +1,7 @@
 Spread: Expands an iterable (array, object, string) into individual elements
 Example 1: Array Expansion
 let arr1=[1,2,3]
-let arr2=[3,...arr1,5]
+let arr2=[3,...arr1,5] // Spread creates a new array with extra elements
 console.log(arr2)
 
 Example 2: Object expansion
