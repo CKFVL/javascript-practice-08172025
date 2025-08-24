@@ -9,6 +9,12 @@ Example 2: Object expansion
 let obj1={a:1, b:2}
 let obj2={...obj1, c:3}
 
+let person = { name: 'Pavan', age: 40, country: 'India' };
+// Spread adds properties
+let newPerson = { ...person, job: 'Engineer' };
+console.log(newPerson);
+// { name: 'Pavan', age: 40, country: 'India', job: 'Engineer' }
+
 Example 3: function arguments
 function sum(x, y, z){
   console.log(x+y+z)
@@ -32,6 +38,10 @@ console.log(rest);   // [30, 40, 50, 60, 70]
 let {a, ...restObj}={a:1, b:2, c:3}
 console.log(a)
 console.log(restObj)
+// Rest extracts properties
+let { name, ...others } = newPerson;
+console.log(name);   // Pavan
+console.log(others); // { age: 40, country: 'India', job: 'Engineer' }
 
 function sum(...numbers) {
   return numbers.reduce((acc, n) => acc + n, 0);
