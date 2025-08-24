@@ -721,24 +721,68 @@ export const isEmptyObject = (obj) => {
 };
 // ##########################################################################
 'use strict'
-
 // Object.defineProperty(obj, prop, descriptor)
-// This method allows a precise addition to or modification of a property on an object. Normal property addition through assignment creates properties which show up during property enumeration (for...in loop or Object.keys method), whose values may be changed, and which may be deleted. 
+// This method allows a precise addition to or modification of a property on an object. 
+// Normal property addition through assignment creates properties which show up during property enumeration (for...in loop or Object.keys method), 
+// whose values may be changed, and which may be deleted. 
 // This method allows these extra details to be changed from their defaults. 
 // By default, values added using Object.defineProperty() are immutable.
 
-var NewEmployee = {id:22};
-Object.defineProperty(NewEmployee, 'name', {configurable: false, writable:true}); // need to make name property writable to assign values to property otherwise the property will be immutable
+// need to make name property writable to assign values to property otherwise the property will be immutable
+let newEmployee = {id:22};
 
-NewEmployee.name='yitiy'
-console.log(NewEmployee.name)
+// configurable: Defaults to false.
+// true if and only if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object. 
+// enumerable: Defaults to false.
+// true if and only if this property shows up during enumeration of the properties on the corresponding object.
+Object.defineProperty(newEmployee, 'name', {configurable:false, writable: false, enumerable: true})
+newEmployee.name='pavan'
 
-// properties defined without Object.defineProperty can be assigned or changed anytime.
-NewEmployee.id=34 
-console.log(NewEmployee.id)
-Object.defineProperty(NewEmployee, 'id', {configurable: false, writable:false});
-//NewEmployee.id=37 
-console.log(NewEmployee.id)
+console.log(newEmployee.name) // undefined
+
+Object.defineProperty(newEmployee, 'age', {configurable:false, writable: true, enumerable: false})
+newEmployee.age=44
+newEmployee.age=77
+
+console.log(newEmployee.age) //77
+
+// In JavaScript, you cannot directly rename a property (there’s no Object.renameProperty).
+// But you can achieve the same effect by adding a new property with the new name and deleting the old one.
+let emp = { id: 1, name: "Pavan", age: 40 };
+// Rename "name" → "fullName"
+emp.fullName = emp.name;
+delete emp.name;
+console.log(emp); 
+// { id: 1, age: 40, fullName: "Pavan" }
+
+Object.defineProperty(newEmployee, 'middleName', {configurable:true, writable:true, enumerable: true})
+newEmployee.middleName='kumar'
+console.log('#########################')
+console.log(newEmployee)
+console.log('#########################')
+
+let middleNameDescriptor=Object.getOwnPropertyDescriptor(newEmployee, 'middleName')
+Object.defineProperty(newEmployee, 'lastName', {configurable:true, writable:true, enumerable: true})
+newEmployee.lastName='bhogala'
+console.log('@@@@@@@@@@@@@@@@@@@@@@@')
+console.log(newEmployee)
+console.log('@@@@@@@@@@@@@@@@@@@@@@@')
+
+let newEmployee2 = {id:23, name: 'bhogala', age: 34};
+let newEmployee3 = {id:24, name: 'vani', age: 41};
+
+//Object.defineProperty(newEmployee, 'name', {configurable:false, writable: true}) - throws error--Cannot redefine property: name
+let empArr=[newEmployee, newEmployee2, newEmployee3];
+for(const emp of empArr){
+  console.log(emp.name)
+  console.log(emp.age)
+}
+console.log('$$$$$$$$$$$$$$$$$$')
+for(const emp in empArr){
+  console.log(emp)
+  console.log(empArr[emp].name)
+  console.log(empArr[emp].age)
+}
 
 // Property descriptors present in objects come in two main flavors: data descriptors and accessor descriptors. 
 //A data descriptor is a property that has a value, which may or may not be writable. 
@@ -753,6 +797,41 @@ console.log(NewEmployee.id)
 //enumerable
 //true if and only if this property shows up during enumeration of the properties on the corresponding object. 
 // Defaults to false.
+var o = {}
+Object.defineProperty(o, 'a', {
+  value: 1,
+  enumerable: true
+})
+
+Object.defineProperty(o, 'b', {
+  value: 1,
+  enumerable: false
+})
+
+Object.defineProperty(o, 'c', {
+  value: 1 // enumerable defaults to false
+})
+
+Object.defineProperty(o, Symbol.for('d'), {
+  value: 1,
+  enumerable: true
+})
+
+Object.defineProperty(o, Symbol.for('f'), {
+  value: 1,
+  enumerable: false
+})
+
+// enumerable defaults to true when creating a property by setting it
+o.e = 99
+
+for (var e in o) {
+  console.log(e)
+}
+
+console.log(Object.keys(o))
+console.log(o.c)
+
 
 // A data descriptor also has the following optional keys:
 //value
@@ -822,48 +901,6 @@ Object.defineProperty(obj, 'key', {
   value: 'static'
 });
 
-
-//Writable attribute
-//When the writable property attribute is set to false, the property is said to be “non-writable”. It cannot be reassigned.
-'use strict'
-
-var o = {}
-
-Object.defineProperty(o, 'a', {
-  value: 1,
-  enumerable: true
-})
-
-
-Object.defineProperty(o, 'b', {
-  value: 1,
-  enumerable: false
-})
-
-Object.defineProperty(o, 'c', {
-  value: 1 // enumerable defaults to false
-})
-
-
-Object.defineProperty(o, Symbol.for('d'), {
-  value: 1,
-  enumerable: true
-})
-
-Object.defineProperty(o, Symbol.for('f'), {
-  value: 1,
-  enumerable: false
-})
-
-// enumerable defaults to true when creating a property by setting it
-o.e = 99
-
-for (var e in o) {
-  //console.log(e)
-}
-
-Object.keys(o);
-
 var sp = {
   ...o
 }
@@ -874,6 +911,7 @@ console.log(sp.d); // true
 console.log(sp[Symbol.for('d')])
 console.log(o.propertyIsEnumerable('d')); // true
 
+// ###########################################################################
 //Configurable attribute
 //The configurable attribute controls at the same time whether the property can be deleted from the object and whether its attributes (other than value and writable) can be changed.
 var o = {};
@@ -1052,6 +1090,7 @@ var personDetails:{
 }
 
 delete personDetails.age
+
 
 
 
