@@ -147,3 +147,50 @@ Strict mode	                Optional	                              Always in str
 enumerable of methods	      Methods are enumerable	                Methods are non-enumerable by default
 Subclassing / inheritance	  Via Object.create / manual setup	      Built-in extends and super keywords
 Private fields	            ❌ Manual (closures/WeakMaps needed)	  ✅ Native support with #field (ES2022+)
+#######################################
+class Mammal {
+    // empty constructor will be provided by default if no constructor declared
+}
+
+class Bat extends Mammal {
+    constructor(f, ...args) {
+        super() // this line is mandatory in sub class
+        //this.f=f;
+    }
+}
+
+const newBat = new Bat('f', 'a', 'b', 'c', 'd', 'e')
+console.log(newBat)
+
+// ##########################################################################
+// static methods
+// static methods won't be added to prototype
+// this can't be accessed in static method
+class Car {
+    constructor(price) {
+        this.price = price
+    }
+
+    static sellCar(car) {
+        return `selling for ${car.price}`
+    }
+}
+
+class Toyota extends Car {
+    constructor(price) {
+        super(price)
+    }
+    static sellCar(car) {
+        console.log(this.price)
+        return `Toyota ${super.sellCar(car)}`; // call static method in super class
+    }
+    sellNewCar(car) {
+        console.log(this.price)
+        return `new Toyota ${this.price}`; // use variable in super class
+    }
+}
+const camry = new Toyota(100)
+console.log(Toyota.sellCar(camry))
+
+const newcamry = new Toyota(300)
+console.log(newcamry.sellNewCar(newcamry))
