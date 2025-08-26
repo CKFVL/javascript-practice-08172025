@@ -16,6 +16,7 @@ Imagine we want to fetch user details, then fetch their orders, then fetch shipp
 Each step depends on the previous one. If any step fails, the chain should stop with an error.
 
 Chaining promises:
+------------------
 function fetchUser(userId){
   
   return new Promise((resolve, reject)=>{
