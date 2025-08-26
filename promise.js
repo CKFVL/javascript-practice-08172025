@@ -70,3 +70,54 @@ catch(error=> console.log(error)).finally('task completed')
 
 #############################################################
 Run Tasks in Parallel with Promise.all
+/*Example: Run Tasks in Parallel with Promise.all
+fails fast → if any promise rejects, everything is considered failed.
+*/
+Promise.all([fetchUser(1), fetchPayment(11), fetchOrders(21)])
+.then(([users, payments, orders])=> {
+  console.log('##########Promise.all#####################')
+  console.log(users);
+  console.log(payments);
+  console.log(orders)
+})
+.catch(error => {
+    console.error("Error occurred:", error);
+  });
+  
+/*Example: Tolerant Parallel Execution with Promise.allSettled
+If you don’t want failures to stop the whole thing, use Promise.allSettled.*/
+Promise.allSettled([fetchUser(1), fetchPayment(11), fetchOrders(212)])
+.then(([users, payments, orders])=> {
+  console.log('##########Promise.all#####################')
+  console.log(users);
+  console.log(payments);
+  console.log(orders)
+})
+.catch(error => {
+    console.error("Error occurred:", error);
+  });
+  
+/*Returns the result of the first promise to settle (fulfilled OR rejected).
+It’s like a race — whichever finishes first wins.*/
+Promise.race([fetchUser(1), fetchPayment(11), fetchOrders(212)])
+.then(result => {
+  console.log('##########Promise.race#####################')
+  console.log(result);
+})
+.catch(error => {
+    console.error("Error occurred:", error);
+  });
+
+/*
+Returns the result of the first fulfilled (successful) promise.
+It ignores rejections unless all promises fail.
+*/
+Promise.any([fetchUser(1), fetchPayment(11), fetchOrders(212)])
+.then(result => {
+  console.log('##########Promise.any#####################')
+  console.log(result);
+})
+.catch(error => {
+    console.error("Error occurred:", error);
+  });
+
