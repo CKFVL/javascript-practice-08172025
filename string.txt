@@ -17,7 +17,7 @@
     console.log(`Total Items: $${amount}`);
     *** cleaner way to insert values into string.
 
-Type coercion (since javascript is dynamic type language i.e., the type is associated with run-time values)
+Type coercion (javascript is dynamic type language i.e., the type is associated with run-time values)
 -------------
 If a string contains only number and any math operation with *-/ and another number, then it will be converted to number
 const str='55'
