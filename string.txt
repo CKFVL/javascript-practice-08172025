@@ -32,7 +32,7 @@ console.log(str+2222) // results as 33332222
 
 let a=6
 let b='2'
-const res=a/b // results=3 (javascript is dynamic type language i.e., the type is associated with run-time values)
+const res=a/b // results=3 (javascript is weak type language i.e., the type is associated with run-time values)
 
 another way of doing calculations with string and numbers is using eval
 Why is eval() discouraged?
