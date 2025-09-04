@@ -69,3 +69,6 @@ anchor tag (with target attribute)
 ###########################
 id selector: #<id-of-html-element>
 class selector:
+
+###########################
+<img src="src/assets/<image_file_name.png>" alt="<this text is displayed if image is not loaded>"/>
