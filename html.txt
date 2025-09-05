@@ -77,6 +77,12 @@ class selector:
 section tag:
 When breaking up a page into distinct parts.
 
+Avoid This:
+<section>
+  <div class="box"></div>
+</section>
+Don't use <section> just for styling or layout — that's what <div> is for.
+---
 import reactImg from "./assets/react-core-concepts.png"
 import componentsImg from "./assets/components.png"
 // custom component should start with uppercase
