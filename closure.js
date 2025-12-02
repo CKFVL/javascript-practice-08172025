@@ -32,6 +32,70 @@ It is fundamental to understanding:
   Arrow functions
   this context (especially in arrow functions)
   Scope chains
+
+const outeddr=new outer() // constructor function: 
+console.log(outeddr())
+console.log(outeddr())
+console.log(outeddr())
+
+weird side-effect:
+-	new creates an empty object, {}
+-	it binds the empty object to `this` inside outer()
+-	since you are not returning this and returning `inner`, the returned value overrides the newly-created object.
+
+So you still get the inner function back.
+So effectively:
+const outr = new outer();   // outr === inner function
+
+❗️ **Issue #2: Accessing outr.inner
+outr is the inner function itself.
+So:
+
+console.log(outr);       // prints the function inner()
+console.log(outr.inner); // undefined, because outr has no property "inner"
+
+✔️ Correct usage of closure
+function outer() {
+    let counter = 0;
+
+    function inner() {
+        counter++;
+        return counter;
+    }
+
+    return inner;
+}
+
+const outr = outer(); // without new
+console.log(outr()); // 1
+console.log(outr()); // 2
+console.log(outr()); // 3
+
+Output:
+1
+2
+3
+Each call increments the counter, and the value is preserved inside the closure.
+#####
+If you want an object-like API, use:
+
+function outer() {
+    let counter = 0;
+    
+    return {
+        inner() {
+            counter++;
+            return counter;
+        }
+    }
+}
+
+const obj = outer();
+console.log(obj.inner()); // 1
+console.log(obj.inner()); // 2
+
+
+
 ---
 Arrow functions also use lexical binding for this
 function Timer() {
