@@ -38,6 +38,7 @@ console.log(outeddr())
 console.log(outeddr())
 console.log(outeddr())
 
+Above code has issue, check below for correct usage:
 weird side-effect:
 -	new creates an empty object, {}
 -	it binds the empty object to `this` inside outer()
