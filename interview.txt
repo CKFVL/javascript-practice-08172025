@@ -66,3 +66,80 @@ can produce wrong sorting for numbers, so use comapre function instead
 ---
 use Math.max to find to find the highest number in an array
 use Math.min to find the smallest number in an array
+
+---
+type=module
+<script type=module src="scripts/amazon.js">
+
+---
+boolean.js
+falsy values: false, 0, '', NaN, Undefined, null [any value other than this is truthy]
+
+---
+&& operator
+
+|| operator
+
+---
+object destructuring:
+
+
+---
+object-properties.js:
+//A data descriptor is a property that has a value, which may or may not be writable. 
+//An accessor descriptor is a property described by a getter-setter pair of functions. 
+
+data descriptor:
+var o = {}; // Creates a new object
+o.a=37 // equivalent to
+// Example of an object property added
+// with defineProperty with a data property descriptor
+Object.defineProperty(o, 'a', {
+  value: 37,
+  writable: true,
+  enumerable: true,
+  configurable: true
+});
+
+// An accessor descriptor
+var bValue = 38;
+Object.defineProperty(o, 'b', {
+  // Using shorthand method names (ES2015 feature).
+  // This is equivalent to:
+  // get: function() { return bValue; },
+  // set: function(newValue) { bValue = newValue; },
+  get() { return bValue; },
+  set(newValue) { bValue = newValue; },
+  enumerable: true,
+  configurable: true
+});
+o.b; // 38
+
+---
+Object.defineProperty (value, configurable, writable, enumerable)
+	obj.a (configurable, writable, enumerable set to true by default)
+	Object.defineProperty(o, 'a', { value: 1 }); (configurable, writable, enumerable set to false by default)
+
+-	can be used when need to define setters and getters
+-	inheritance
+-	Unlike accessor properties, value properties are always set on the object itself, not on a prototype.
+
+by default, object created with Object.defineProperty() is immutable(i.e., enumerable:false, configurable: false, writable:false)
+// value assigned to object, via dot notation, object.property is not immutable (i.e., enumerable:true, configurable: true, writable:true)
+	// i.e., properties defined without Object.defineProperty can be assigned or changed anytime.
+// objects defined with Object.defineProperty() has the following optional keys: configurable and enumerable
+// object can't have both data (value & writable) and accessor descriptors (get & set)
+// if an object doesn't have any descriptor properties, it is data descriptor by default.
+// configurable property helps in determining whether a property can be deleted or its attributes can be changed (except value and writable)
+// enumerable property determines whether the property or symbol can be accessed via for...in loop or spread operator or Object.assign or Object.keys
+// To avoid inheritance, freeze the Object.prototype upfront, specify all options explicitly, or point to null 
+// with Object.create(null).
+// If a value is shared, then objects created using Object.defineProperty will read or write to the same value using accessor properties (get/set methods) and to the prototype properties too.
+// unlike accessor properties, value properties will always be set on object itself but not on prototype. However, if a non-writable value property is inherited, it still prevents from modifying the property on the object.
+
+---
+to veirfy if property exists
+console.log(obj.foo);         // 2
+console.log(Object.getOwnPropertyNames(obj)); // ["name", "score", "foo"]
+console.log(Object.getOwnPropertyDescriptor(obj, "foo"));
+
