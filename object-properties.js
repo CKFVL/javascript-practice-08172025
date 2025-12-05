@@ -311,11 +311,12 @@ console.log(myclass.prototype.y); // 1
 // object can't have both data (value & writable) and accessor descriptors (get & set)
 // if an object doesn't have any descriptor properties, it is data descriptor by default.
 // configurable property helps in determining whether a property can be deleted or its attributes can be changed (except value and writable)
-// enumerable property determines whether the property or symbol can be accessed via for...in loop or spread operator or Object.assign or Object.keys
+// enumerable property determines whether the property or symbol can be accessed via console.log(obj) (in most JS consoles) OR for...in loop OR spread operator OR Object.assign OR Object.keys
 // To avoid inheritance, freeze the Object.prototype upfront, specify all options explicitly, or point to null 
 // with Object.create(null).
 // If a value is shared, then objects created using Object.defineProperty will read or write to the same value using accessor properties (get/set methods) and to the prototype properties too.
-// unlike accessor properties, value properties will always be set on object itself but not on prototype. However, if a non-writable value property is inherited, it still prevents from modifying the property on the object.
+// unlike accessor properties, value properties will always be set on object itself but not on prototype. 
+// However, if a non-writable value property is inherited, it still prevents from modifying the property on the object.
 // ##########################################################################
 // Non-configurable properties:
 // can be created using Object.defineProperty() or Object.freeze().
@@ -362,22 +363,3 @@ var personDetails:{
 }
 
 delete personDetails.age
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
