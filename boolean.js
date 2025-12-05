@@ -57,7 +57,7 @@ Guard operator or "nullish coalescing" operator (??):
   let maxRetries2 = config.retries ?? 3;   // ✅ 0 (good default — only null/undefined are replaced)
 ----
 // find out if an expression (or a variable) is true
-console.log(Boolean(10 > 9));
+console.log(Boolean(10 > 9)); // true
 
 // everything with a value is true
 console.log(Boolean(100));
@@ -80,3 +80,4 @@ var x = true;
 var y = new Boolean(true);
 console.log(typeof x); // boolean
 console.log(typeof y); // object
+
