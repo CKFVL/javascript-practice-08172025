@@ -1,3 +1,8 @@
+*** only functions create scope, not objects.
+function () { } → creates new this
+() => { } → does NOT create new this
+{ } object literal → does NOT create new this
+
 const tagvideo = {
     title: 'tag',
     tags: ['a', 'b', 'c', 'd'],
