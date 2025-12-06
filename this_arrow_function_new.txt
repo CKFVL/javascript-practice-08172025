@@ -1,3 +1,4 @@
+https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/689c92ef-918c-8323-ab81-4d4b4d54cab4
 ✅ Key takeaway for arrow functions:
 Arrow functions don’t have their own this.
 In arrow functions, this is lexical — taken from the surrounding scope.
