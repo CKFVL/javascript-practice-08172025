@@ -15,6 +15,7 @@ In regular functions, this is not fixed — it’s assigned at the moment the fu
 ✅ Key takeaway for arrow functions:
 In arrow functions, this is lexical — taken from the surrounding scope.
 Arrow functions are the rebel children — they ignore this rule and just take this from where they were created/written
+Arrow functions capture this from their parent scope
 
 ---
 1️⃣ Global Context
