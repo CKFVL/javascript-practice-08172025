@@ -5,7 +5,7 @@ Refer lexicalBinding.txt
 this is not lexical in normal functions — it’s dynamic.
 In arrow functions, this is lexical — taken from the surrounding scope.
 
-Here’s the one-line trick to instantly figure out this in any regular function call:
+Here’s the one-line trick to instantly figure out this in any *** regular function call *** :
 *** Look to the left of the dot when the function is called — that’s your this.
 *** If there’s no dot, this is the global object (or undefined in strict mode).
 
