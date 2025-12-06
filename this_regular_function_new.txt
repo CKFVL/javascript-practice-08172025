@@ -254,3 +254,28 @@ Arrow functions don’t have their own this.
 They use the this of the place where they were created.
 
 Here, the arrow function is created inside the constructor, so it inherits the constructor’s this → the Timer instance.
+
+##############################
+
+Is the function an arrow function?
+  │
+  ├── YES → Inherit `this` from surrounding scope
+  │             ▲
+  │             │
+  │    Closest enclosing scope:
+  │      ├─ Regular function? → Use its `this`
+  │      ├─ Another arrow? → Keep climbing outward
+  │      └─ Global/module? → Use global/module `this`
+  │
+  └── NO (Regular function)
+        │
+        ├── Called with `new`? → `this` = New object
+        │
+        ├── Called with .call/.apply/.bind?
+        │        → `this` = First argument passed
+        │
+        ├── Called as obj.method()? → `this` = Object left of dot
+        │
+        └── None of the above?
+                 → `this` = Global object (non-strict) or undefined (strict)
+
