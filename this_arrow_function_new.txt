@@ -16,6 +16,9 @@ Here’s the one-line trick to instantly figure out this in any *** regular func
 📌 Rule of thumb:
 In regular functions, this is not fixed — it’s assigned at the moment the function is called, and the “assigner” is whoever is doing the calling.
 
+*** In regular functions, this is dynamic (decided at call time)
+*** In arrow functions, this is lexical (decided at creation time)
+
 ###############################
 ✅ Example 1: Arrow function inside object → does NOT bind this
 const user = {
