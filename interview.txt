@@ -143,3 +143,20 @@ console.log(obj.foo);         // 2
 console.log(Object.getOwnPropertyNames(obj)); // ["name", "score", "foo"]
 console.log(Object.getOwnPropertyDescriptor(obj, "foo"));
 
+---
+function.js
+
+---
+lexical binding:
+variable scope is determined based on the physical structure of the code (i.e., where the variables and functions are written) - this is known as lexical scope.
+
+javascript uses lexical binding meaning the scope of the variable is determined by it's position the source scode and the nested functions have access to variables declared in their outer scope.
+---
+currying_new.txt
+---
+this_regular_function_new.txt
+this_arrow_function_new.txt
+this_examples_new.txt
+
+
+
