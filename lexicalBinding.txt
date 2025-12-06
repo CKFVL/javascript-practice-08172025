@@ -1,0 +1,91 @@
+lexical binding:
+In javascript, the scope of the variable is determined by it's position in the source code and the nested functions have access to variables declared in their outer scope.
+
+in case of a regular function,
+function outer(){
+    let counter=0;
+    function inner(){
+        counter++
+        return counter
+    }
+    
+    return inner;
+}
+
+const outr=outer()
+console.log(outr()) // 1
+console.log(outr()) // 2
+console.log(outr()) // 3
+
+Another example:
+-----------------
+function outer() {
+  let name = "Pavan";
+
+  function inner() {
+    console.log(name); // Lexically bound to outer's scope
+  }
+
+  return inner;
+}
+
+const fn = outer();
+fn(); // Output: Pavan
+
+✅ What’s happening:
+inner() is lexically bound to the outer() function’s scope.
+Even after outer() has finished executing, the inner() function retains access to name because it was declared inside outer().
+This is possible because of closures, which are enabled by lexical binding.
+
+🧠 Why It Matters
+Lexical binding is predictable: you can read the code and know what variables are accessible.
+It is fundamental to understanding:
+  Closures
+  Arrow functions
+  this context (especially in arrow functions)
+  Scope chains
+
+Enables data hiding (encapsulation), currying, memoization, function factories, etc.,
+###############
+data hiding (encapsulation)
+function outer(){
+    let counter=0;
+    function inner(){
+        counter++
+        return counter
+    }
+    
+    return inner;
+}
+
+const outr=outer()
+console.log(outr()) // 1
+console.log(outr()) // 2
+console.log(outr()) // 3
+
+Another example:
+-----------------
+function outer() {
+  let name = "Pavan";
+
+  function inner() {
+    console.log(name); // Lexically bound to outer's scope
+  }
+
+  return inner;
+}
+
+const fn = outer();
+fn(); // Output: Pavan
+
+############################
+currying with closures:
+--------
+function curry(a){
+  return function(b){
+    return function(c){
+      return a+b+c
+    }
+  }
+}
+
