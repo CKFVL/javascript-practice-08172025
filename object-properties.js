@@ -29,6 +29,7 @@ for(const emp in empArr){
 //enumerable
 //true if and only if this property shows up during enumeration of the properties on the corresponding object. 
 // Defaults to false.
+// determines whether the property or symbol can be accessed via for...in loop or spread operator or Object.assign or Object.keys
 var o = {}
 Object.defineProperty(o, 'a', {
   value: 1,
