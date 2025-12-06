@@ -24,7 +24,9 @@ To link another javascript file in a html, use
 <script src="<file-path>"></script>
 
 ###################
-string
+javascript.js
+#################
+string.js
 ###################
 OrderOfOperations.txt
 ###################
