@@ -28,11 +28,44 @@ user.getName(); // undefined
 Why undefined?
 this inside arrow function does NOT refer to user.
 It refers to the outer scope (global), where name does not exist.
+Object literals do not create their own scope. 
+Even though the arrow function is written inside the user object literal, the object itself does NOT create a scope.
+✅ Correct Rule
 
+Arrow functions inherit this from the lexical (surrounding execution) scope, not from the object they are inside.
+Object literals do not create their own scope.
+So the getName arrow function’s surrounding scope is NOT user, but the global scope (or module scope).
 
+👉 Visualizing the scope
+const user = {          // ❌ does NOT create a new `this`
+  name: "Pavan",
+  getName: () => {      // ❗ arrow function binds this from OUTSIDE `user`
+    console.log(this.name);
+  }
+};
 
+user.getName();
+🔍 Where is this arrow function created?
+It’s created in the global scope, like this:
 
+// global scope
+const user = {
+  name: "Pavan",
+  getName: () => { console.log(this.name); }
+};
 
+So arrow function captures:
+this = globalThis
+
+Not the user object.
+
+🔥 Why doesn’t the object become the parent scope?
+Because only functions create scope, not objects.
+function () { } → creates new this
+() => { } → does NOT create new this
+{ } object literal → does NOT create new this
+
+And arrow functions don’t behave like methods.
 ###############################
 
 function Timer() { 
