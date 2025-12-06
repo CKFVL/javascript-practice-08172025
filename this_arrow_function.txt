@@ -1,0 +1,136 @@
+✅ Key takeaway for arrow functions:
+Arrow functions don’t have their own this.
+In arrow functions, this is lexical — taken from the surrounding scope.
+(Arrow functions capture this from their parent scope)
+Arrow functions are the rebel children — they ignore `this` rule and just take this from where they were created/written
+
+---
+✅ Key takeaway for regular functions:
+this is not lexical in normal functions — it’s dynamic.
+
+Here’s the one-line trick to instantly figure out this in any *** regular function call *** :
+*** Look to the left of the dot when the function is called — that’s your this.
+*** The object that actually calls the function decides what this will be inside that function.
+*** If there’s no dot, this is the global object (or undefined in strict mode).
+📌 Rule of thumb:
+In regular functions, this is not fixed — it’s assigned at the moment the function is called, and the “assigner” is whoever is doing the calling.
+
+###############################
+✅ Example 1: Arrow function inside object → does NOT bind this
+const user = {
+  name: "Pavan",
+  getName: () => {
+    console.log(this.name);
+  }
+};
+
+user.getName(); // undefined
+Why undefined?
+this inside arrow function does NOT refer to user.
+It refers to the outer scope (global), where name does not exist.
+
+
+
+
+
+###############################
+
+function Timer() { 
+this.seconds = 0; 
+setInterval(() => { this.seconds++; console.log(this.seconds); }, 1000); } 
+
+new Timer();
+
+✅ Code
+function Timer() {
+  this.seconds = 0;
+
+  setInterval(() => {
+    this.seconds++;
+    console.log(this.seconds);
+  }, 1000);
+}
+
+new Timer();
+
+✔️ First Key Point — Constructor call with new
+
+When you call:
+
+new Timer();
+
+
+JavaScript does the following internally:
+
+Creates a new empty object
+→ {}
+
+Sets this inside Timer() to that new object
+→ this = {} (the new Timer instance)
+
+It adds the property:
+
+this.seconds = 0;
+
+
+So now the object is:
+
+{ seconds: 0 }
+
+✔️ Second Key Point — Arrow function behavior
+
+Arrow functions do NOT have their own this.
+
+So in:
+
+setInterval(() => {
+  this.seconds++;
+  console.log(this.seconds);
+}, 1000);
+
+
+The arrow function borrows this from the surrounding scope.
+👉 The surrounding scope = the Timer constructor function.
+And inside the constructor, this refers to the Timer instance.
+So inside the arrow function:
+
+this.seconds means:
+the seconds property of the Timer instance
+
+This is why the seconds update works correctly.
+✔️ Third Key Point — What if you used a regular function?
+
+If you wrote:
+
+setInterval(function() {
+  this.seconds++;
+  console.log(this.seconds);
+}, 1000);
+
+
+Here, the callback is a regular function.
+Regular functions get this from how they are called, not where they are created.
+And setInterval() calls the callback without an object:
+callback(); // no object to the left of .
+
+
+So in a regular function:
+this becomes the global object (window in browsers)
+or undefined (in strict mode)
+
+Thus:
+this.seconds++   // ❌ would fail or modify window.seconds
+
+✔️ Conclusion
+Why does the arrow function work?
+Because:
+✔ Arrow functions capture this from their parent scope
+✔ Parent scope = Timer constructor
+✔ Timer constructor's this = Timer instance
+
+So the arrow function’s this → the Timer object.
+🎯 THE SIMPLEST SUMMARY
+Arrow functions don’t have their own this.
+They use the this of the place where they were created.
+
+Here, the arrow function is created inside the constructor, so it inherits the constructor’s this → the Timer instance.
