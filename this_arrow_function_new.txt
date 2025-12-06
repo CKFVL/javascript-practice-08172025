@@ -183,3 +183,25 @@ t.increment(); // 1
 
 
 Arrow function increment captures this from the instance automatically.
+
+#################
+Arrow Function Created Here
+          │
+          ▼
+Does arrow function have its own `this`?
+  │
+  └── No → Look one scope out
+                 │
+                 ▼
+  Is this scope a regular function?
+    │
+    ├── Yes → Use that function's `this`
+    │
+    └── No → Keep climbing outward
+                     │
+                     ▼
+    Did we reach global/module scope?
+        │
+        ├── Yes → Use global/module `this`
+        └── No → Keep climbing...
+
