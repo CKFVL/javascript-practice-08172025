@@ -1,0 +1,68 @@
+https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/693391c0-91e0-8320-98da-90fe817af68b
+
+Currying is a functional programming technique in JavaScript where a function that takes multiple arguments is transformed into a sequence of functions, each taking one argument at a time.
+🔥 Simple Definition
+Currying transforms:
+function f(a, b, c)
+into
+f(a)(b)(c)
+
+✅ Why Use Currying?
+Currying is useful for:
+
+✔ Reusability (create partially applied functions)
+✔ Cleaner and more readable code
+✔ Creating custom utility functions
+✔ Functional composition
+#####################################
+📌 Basic Example (Manual Currying)
+Normal function
+function add(a, b) {
+  return a + b;
+}
+
+Curried version
+function add(a) {
+  return function (b) {
+    return a + b;
+  };
+}
+
+console.log(add(10)(20)); // 30
+#####################################
+📌 Real-World Example (Partial Application)
+
+You can create specialized functions:
+
+function multiply(a) {
+  return function (b) {
+    return a * b;
+  };
+}
+
+const double = multiply(2);
+console.log(double(5)); // 10
+
+const triple = multiply(3);
+console.log(triple(5)); // 15
+
+#####################################
+📌 Infinite Currying Example
+Useful for accumulating values:
+
+function add(a) {
+  return function (b) {
+    if (b !== undefined) return add(a + b);
+    return a;
+  };
+}
+
+console.log(add(1)(2)(3)(4)()); // 10
+
+function recursiveMultiply(a){
+    return function(b){
+        if(b!=undefined) return recursiveMultiply(a*b)
+        return a;
+    }
+}
+console.log(recursiveMultiply(2)(3)(6)())
