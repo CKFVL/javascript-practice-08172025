@@ -2,6 +2,17 @@
 function () { } → creates new this
 () => { } → does NOT create new this
 { } object literal → does NOT create new this
+example:
+let length = 10;
+const object = {
+  length: 5,
+  log: () => {
+    console.log(this.length);
+  },
+};
+
+object.log(); // output: 10
+########################
 
 const tagvideo = {
     title: 'tag',
