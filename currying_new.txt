@@ -66,3 +66,98 @@ function recursiveMultiply(a){
     }
 }
 console.log(recursiveMultiply(2)(3)(6)())
+#######################################
+Order of Function Execution in Currying
+
+In this curried function:
+
+function curry(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+
+console.log(curry(1)(2)(3)); // 6
+
+Order of invocation is:
+**1 → a
+
+2 → b
+3 → c**
+
+So the order is a → b → c, NOT c → b → a.
+
+🔍 Why it’s a → b → c?
+
+Because each pair of parentheses calls the next returned function.
+
+Step by step:
+Step 1: curry(1)
+
+Calls outer function
+
+Returns inner function function(b)
+
+a = 1
+
+Step 2: (2)
+
+Calls the function returned from step 1
+
+Returns another function function(c)
+
+b = 2
+
+Step 3: (3)
+
+Calls the last returned function
+
+c = 3
+
+Finally returns a + b + c
+
+🧠 So the binding order is:
+
+a gets value first
+
+b gets value next
+
+c gets value last
+
+Each inner function remembers the outer variables because of closures.
+
+🧠 Mnemonic:
+
+Currying always captures outermost argument first and innermost argument last.
+
+👀 Visualization Using Colors
+curry(1)(2)(3)
+   |     |    |
+   a     b    c
+
+🧪 If we reversed the order?
+
+If the functions were defined like this:
+
+function reverse(a) {
+  return function(c) {
+    return function(b) {
+      return a + b + c;
+    };
+  };
+}
+
+reverse(1)(3)(2); // still 6
+
+
+Then the mapping would be:
+
+a = 1
+
+c = 3
+
+b = 2
+
+So order depends on how functions are nested, not the alphabetical order of parameters.
