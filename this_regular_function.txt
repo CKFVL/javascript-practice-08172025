@@ -1,0 +1,137 @@
+Refer lexicalBinding.txt
+---
+`this` doesn't always mean the current object- it's actually determined by how a function is called, not where it's written.
+✅ Key takeaway for regular functions:
+this is not lexical in normal functions — it’s dynamic.
+
+Here’s the one-line trick to instantly figure out this in any *** regular function call *** :
+*** Look to the left of the dot when the function is called — that’s your this.
+*** The object that actually calls the function decides what this will be inside that function.
+*** If there’s no dot, this is the global object (or undefined in strict mode).
+📌 Rule of thumb:
+In regular functions, this is not fixed — it’s assigned at the moment the function is called, and the “assigner” is whoever is doing the calling.
+
+
+✅ Key takeaway for arrow functions:
+In arrow functions, this is lexical — taken from the surrounding scope.
+Arrow functions are the rebel children — they ignore this rule and just take this from where they were created/written
+
+---
+1️⃣ Global Context
+Outside of any function:
+console.log(this); 
+
+In a browser: this → window object.
+In Node.js: this → {} (empty object in modules).
+---
+2️⃣ Inside a Regular Function
+The value of this depends on the caller:
+function showThis() {
+  console.log(this);
+}
+// Look to the left of the dot when the function is called 
+showThis();         // In non-strict mode: global object (window)
+                    // In strict mode: undefined
+---
+3️⃣ Inside an Object Method
+When called as an object’s property, this → that object.
+const person = {
+  name: "Pavan",
+  greet() {
+    console.log(this.name);
+  }
+};
+// Look to the left of the dot when the function is called 
+person.greet(); // "Pavan"
+
+Example 1 — Same function, different callers
+function showThis() {
+  console.log(this);
+}
+const obj1 = { name: "Obj1", show: showThis };
+const obj2 = { name: "Obj2", show: showThis };
+
+// Calling through obj1
+obj1.show(); // `this` is obj1 → { name: "Obj1", show: f }
+
+// Calling through obj2
+obj2.show(); // `this` is obj2 → { name: "Obj2", show: f }
+
+// Calling directly
+showThis(); // `this` is window (or undefined in strict mode)
+💡 The same showThis function is reused, but the value of this changes based on who calls it.
+
+Example 2 — Losing the caller
+const person = {
+  name: "Pavan",
+  greet() {
+    console.log(this.name);
+  }
+};
+person.greet(); // "Pavan"  (caller is `person`)
+const fn = person.greet;
+fn(); // undefined or error (caller is now global object)
+Here, when fn() runs, it’s no longer called through person, so this loses its link to that object.
+---
+Event Handlers
+this is usually set to the element that received the event.
+document.getElementById("btn").addEventListener("click", function () {
+  console.log(this); // The <button> element
+});
+---
+Explicit Binding
+We can control this with:
+.call(thisArg, ...args)
+.apply(thisArg, [args])
+.bind(thisArg)
+
+function greet() {
+  console.log(this.name);
+}
+
+const obj = { name: "Pavan" };
+greet.call(obj);  // "Pavan"
+greet.apply(obj); // "Pavan"
+
+const bound = greet.bind(obj);
+bound();          // "Pavan"
+---
+More examples:
+1. Dot present → this is the object before the dot
+const car = {
+  brand: "Tesla",
+  start: function() {
+    console.log(this.brand);
+  }
+};
+
+car.start(); // "Tesla"  ← left of dot = car
+
+2. No dot → global object (or undefined in strict mode)
+function showBrand() {
+  console.log(this.brand);
+}
+showBrand(); // undefined (strict mode) OR window.brand (non-strict)
+
+3. Chained dots → the immediate left counts
+const garage = {
+  car: {
+    brand: "BMW",
+    start: function() {
+      console.log(this.brand);
+    }
+  }
+};
+
+garage.car.start(); // "BMW" ← left of dot is `garage.car`
+
+4. Call stored in a variable → loses caller info
+const bike = {
+  brand: "Yamaha",
+  start: function() {
+    console.log(this.brand);
+  }
+};
+
+const startBike = bike.start;
+startBike(); // undefined → no left-of-dot
