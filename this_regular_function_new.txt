@@ -20,6 +20,8 @@ In arrow functions, this is lexical — taken from the surrounding scope.
 (Arrow functions capture this from their parent scope)
 Arrow functions are the rebel children — they ignore this rule and just take this from where they were created/written
 
+*** In regular functions, this is dynamic (decided at call time)
+*** In arrow functions, this is lexical (decided at creation time)
 ---
 1️⃣ Global Context
 Outside of any function:
