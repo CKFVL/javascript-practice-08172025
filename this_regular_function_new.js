@@ -143,6 +143,7 @@ const startBike = bike.start;
 startBike(); // undefined → no left-of-dot
 
 ################
+Inside setTimeout or Callback
 function Timer() { 
 this.seconds = 0; 
 setInterval(() => { this.seconds++; console.log(this.seconds); }, 1000); } 
@@ -257,6 +258,11 @@ They use the this of the place where they were created.
 
 Here, the arrow function is created inside the constructor, so it inherits the constructor’s this → the Timer instance.
 
+##############################
+  No caller:
+---------
+function test() { console.log(this); }
+test(); // window or undefined in strict mode
 ##############################
 
 Is the function an arrow function?
