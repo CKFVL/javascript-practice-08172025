@@ -1,5 +1,7 @@
 Refer lexicalBinding.txt
 ---
+reference: https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/689c92ef-918c-8323-ab81-4d4b4d54cab4
+https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/69339e84-f34c-8322-ae99-b4b917823954
 `this` doesn't always mean the current object- it's actually determined by how a function is called, not where it's written.
 ✅ Key takeaway for regular functions:
 this is not lexical in normal functions — it’s dynamic.
