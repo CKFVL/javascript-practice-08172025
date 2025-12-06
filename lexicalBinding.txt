@@ -1,3 +1,4 @@
+https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea/c/6892b9bd-eb34-8331-87b6-c22ab37b994d
 lexical binding:
 In javascript, the scope of the variable is determined by it's position in the source code and the nested functions have access to variables declared in their outer scope.
 
@@ -48,6 +49,24 @@ It is fundamental to understanding:
 Enables data hiding (encapsulation), currying, memoization, function factories, etc.,
 ###############
 data hiding (encapsulation)
+--------------------------
+function createUser(name) {
+  let password = "secret";
+
+  return {
+    getName: () => name,
+    checkPassword: (guess) => guess === password
+  };
+}
+
+const user = createUser("Pavan");
+
+console.log(user.getName()); // Pavan
+console.log(user.checkPassword("secret")); // true
+console.log(user.password); // undefined
+
+currying:
+-----------
 function outer(){
     let counter=0;
     function inner(){
@@ -78,7 +97,6 @@ function outer() {
 const fn = outer();
 fn(); // Output: Pavan
 
-############################
 currying with closures:
 --------
 function curry(a){
@@ -89,3 +107,56 @@ function curry(a){
   }
 }
 
+Function Factory:
+-----------------
+function multiplier(factor) {
+  return function (x) {
+    return x * factor;
+  };
+}
+
+const double = multiplier(2);
+const triple = multiplier(3);
+
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+
+Loop with Closure (using let)
+-----------------------------
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1000);
+}
+// Output: 0 1 2 (after 1 second)
+
+Loop with Closure (using var) - classic trap
+------------------------------------------
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), 1000);
+}
+// Output: 3 3 3 (not 0 1 2)
+
+Counter Module Pattern
+----------------------
+const Counter = (function () {
+  let count = 0;
+
+  return {
+    increment: () => ++count,
+    decrement: () => --count,
+    get: () => count,
+  };
+})();
+
+console.log(Counter.increment()); // 1
+console.log(Counter.increment()); // 2
+console.log(Counter.get()); // 2
+
+SetTimeout Closure:
+------------------
+function delayedMessage(msg, delay) {
+  setTimeout(() => {
+    console.log("Message:", msg);
+  }, delay);
+}
+
+delayedMessage("Hello", 2000); // remembers msg after 2 sec
