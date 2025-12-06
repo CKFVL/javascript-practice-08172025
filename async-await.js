@@ -45,6 +45,7 @@ async function getDataTryCatch(userId){
     }
 }
 getDataTryCatch(22)
+getDataTryCatch(1)
 
 #######################
 function step1(value, error){
