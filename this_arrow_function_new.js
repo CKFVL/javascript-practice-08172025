@@ -208,4 +208,61 @@ Does arrow function have its own `this`?
         │
         ├── Yes → Use global/module `this`
         └── No → Keep climbing...
+#######################
+Example 1 — Arrow inside a method
+const person={
+  name: 'pavan',
+  regularFn: function(){
+    const arrFn=()=>{
+      console.log(`${this.name}`)
+    }
+    
+    arrFn();
+  }
+}
 
+person.regularFn()
+arrowFn has no this of its own.
+It takes this from regularFn’s scope.
+In regularFn, this → obj, so arrowFn also sees obj.
+---
+Example 2 — Arrow at global level
+const arrow = () => {
+  console.log(this);
+};
+
+arrow(); // window (browser) or {} (Node)
+---
+Example 3 - 
+function Timer() {
+  this.seconds = 0; // OR seconds=0
+  setTimeout(() => {
+    this.seconds++;
+    console.log(this.seconds);
+  }, 1000);
+}
+Timer() // works
+---
+Example 4 — Arrow in setTimeout
+function Timer() {
+  this.seconds = 0;
+  setTimeout(() => {
+    this.seconds++;
+    console.log(this.seconds);
+  }, 1000);
+}
+
+new Timer();
+// Works — arrow gets `this` from Timer’s constructor function scope
+
+// If we used a regular function inside setInterval, this would be window or undefined.
+function Timer() {
+  this.seconds = 0;
+  setTimeout(function(){
+    this.seconds++; // Look to the left of the dot when the function is called - that's your this.
+    console.log(this.seconds);
+  }, 1000);
+}
+
+new Timer(); //NaN
+---

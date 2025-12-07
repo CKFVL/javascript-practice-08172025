@@ -24,12 +24,14 @@ To link another javascript file in a html, use
 <script src="<file-path>"></script>
 
 ###################
+javascript.js
+#################
+string.js
+###################
 OrderOfOperations.txt
 ###################
 ways to create array:
 const array=[1,2,3]
-
-
 ---
 const array1=[1,2,3] // array1 contains the reference of the values
   const array2=array1 // array2 contains the copy of reference which array1 references
@@ -161,6 +163,14 @@ this_arrow_function_new.txt
 this_examples_new.txt
 
 Also, refer MasterFlowForThis.jpeg
+
+---
+redirection
+
+---
+promise
+---
+async/await
 
 
 

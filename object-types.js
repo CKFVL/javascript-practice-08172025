@@ -1,0 +1,105 @@
+Primitive types:
+----------------
+String
+boolean
+number
+undefined
+null
+symbol
+
+Reference types:
+----------------
+Object
+Array
+Function
+
+###################
+dot notation on object:
+let person={
+  name: 'pavan',
+  age: 40
+}
+
+// dot notation
+person.name='guru'
+
+// bracket notation
+person['name']='guru'
+
+bracket notation can be used when property has - in it or need to use another variable
+e.g.
+let newName='bhogala'
+person[newName]='kumar'
+
+####################
+1. Strongly vs Weakly Typed
+This is about how strictly types are enforced:
+Strongly typed → No implicit, unsafe type coercions. Types must match or be converted explicitly.
+Weakly typed → The runtime/compiler allows mixing types and often coerces automatically.
+
+🔹 2. Statically vs Dynamically Typed
+This is about when types are checked:
+Statically typed → Types are checked at compile time (before running).
+Dynamically typed → Types are checked at runtime (while running).
+
+let a=6
+let b='2'
+const res=a/b // results=3 (javascript is dynamic type language i.e., the type is associated with run-time values)
+
+but typescript is static type language 
+
+Putting it together
+Language	        Strong/Weak	      Static/Dynamic	Example Behavior
+Java	            Strong	          Static	        Compiler enforces types before running.
+TypeScript	      Strong	          Static	        Type errors at compile time, JS output at runtime.
+Python	          Strong	          Dynamic	        You can’t add "5" + 2 (error), but types are checked at runtime.
+JavaScript	      Weak	            Dynamic	        "5" + 2 → "52" (automatic coercion).
+C	                Weak	            Static	        Implicit casts allowed (e.g., int to char) at compile time.
+####################
+String coercion:
+console.log("5"-2) // converts 5 to number
+
+Number coercion:
+console.log("10"-2) //8
+console.log("10"*"2") // 20
+console.log("10"/"2") // 5
+
+Boolean coercion:
+Falsy values:
+false, 0, "", null, undefined, NaN
+Example:
+if ("hello") {
+  console.log("true");
+}
+Non-empty string → coerced to true.
+
+Typical interview examples:
+console.log(null == undefined) // true
+console.log("5" == 5) // true
+console.log("5.0" === 5.0) // false
+console.log([] == 0) // true, because [] -> "" -> 0
+console.log(true+1) // tru -> 1
+
+
+var msg = "Hello JS";
+console.log(msg);
+console.log("not a number" / 2); //NaN
+console.log("not a number" / 2 + 5); // NaN
+
+console.log(typeof Symbol("id")); //symbol
+console.log(typeof "foo"); //string
+console.log(typeof Infinity); //number
+console.log(typeof (typeof 223)) //string
+
+console.log(typeof null); // For null returns "object"–this is an error in the language, it’s not actually an object.
+console.log(typeof undefined); // undefined
+console.log(null === undefined); // false
+console.log(null == undefined); // undefined and null are equal in value
+
+var y = new Number(123); // js number can be object too
+console.log("typeof y" + typeof y);
+console.log(typeof Math); //object
+console.log(typeof [1, 2, 3, 3]); //typeof array=object
+####################
+5 == '5.0' // results true as 5.0 is converted to 5
+5 === '5.0' // results false i.e. strict equality

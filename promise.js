@@ -1,8 +1,8 @@
 to understand Javascript Eventloop, webapi, micro/macro task queues
 https://www.youtube.com/watch?v=eiC58R16hb8
 
-A promise in the javascript represents a single value that will be available now, in the future or never (in case of error)
-It's used to handle asynchronous operations
+A Promise in JavaScript is an object that represents the eventual completion or failure of an asynchronous operation.
+It acts like a placeholder for a value that will be available now, later, or never.
 States:
   pending
   fulfilled
