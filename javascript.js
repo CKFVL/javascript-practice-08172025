@@ -10,10 +10,28 @@ x = true;      // now it's a boolean
 
 JavaScript allows this because it does not enforce type declarations.
 ##########################
-JavaScript is weakly typed (allows implicit type coercion)
+JavaScript is weakly typed (allows implicit type coercion=javascript automatically changes the type for you)
 let a=6
 let b='2'
 const res=a/b // results=3 (javascript is weak type language i.e., the type is associated with run-time values)
+
+String coercion:
+console.log("5"-2) // converts 5 to number
+
+Number coercion:
+console.log("10"-2) //8
+console.log("10"*"2") // 20
+console.log("10"/"2") // 5
+
+Boolean coercion:
+Falsy values:
+false, 0, "", null, undefined, NaN
+Example:
+if ("hello") {
+  console.log("true");
+}
+Non-empty string → coerced to true.
+
 
 If you want stronger typing, Use TypeScript, which adds compile-time type checking
 Edge cases
