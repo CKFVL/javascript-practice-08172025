@@ -56,6 +56,31 @@ Python	          Strong	          Dynamic	        You can’t add "5" + 2 (error
 JavaScript	      Weak	            Dynamic	        "5" + 2 → "52" (automatic coercion).
 C	                Weak	            Static	        Implicit casts allowed (e.g., int to char) at compile time.
 ####################
+String coercion:
+console.log("5"-2) // converts 5 to number
+
+Number coercion:
+console.log("10"-2) //8
+console.log("10"*"2") // 20
+console.log("10"/"2") // 5
+
+Boolean coercion:
+Falsy values:
+false, 0, "", null, undefined, NaN
+Example:
+if ("hello") {
+  console.log("true");
+}
+Non-empty string → coerced to true.
+
+Typical interview examples:
+console.log(null == undefined) // true
+console.log("5" == 5) // true
+console.log("5.0" === 5.0) // false
+console.log([] == 0) // true, because [] -> "" -> 0
+console.log(true+1) // tru -> 1
+
+
 var msg = "Hello JS";
 console.log(msg);
 console.log("not a number" / 2); //NaN
