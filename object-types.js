@@ -2,7 +2,7 @@ Primitive types:
 ----------------
 String
 boolean
-number
+number: javascript doesn't have special runtime value for integers, so there's no equivalent to int or float, so everything is Number
 undefined
 null
 symbol
