@@ -27,3 +27,10 @@ React build process will actually merges all the files into big files.
 this will make browsers that don't natively support import/native syntax can just download couple of javascript bundles instead of loading all individual files.
 
 ################
+default export of a variable: 
+
+export default "testvalue"
+
+Only 1 default export is allowed.
+
+################
