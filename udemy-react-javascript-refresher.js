@@ -16,3 +16,10 @@ type="module" makes sure the js file as module which unlocks importing a file in
 </noscript>
 
 ################
+react-scripts:
+as raw reactjs code (JSX is not standard js code) won't execute on browser
+react build process runs in background and injects transformed source (raw reactjs) code into script tags
+
+the code will be minified
+
+################
