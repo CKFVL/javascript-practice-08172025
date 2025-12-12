@@ -14,6 +14,39 @@ Array
 Function
 
 ###################
+difference between null and undefined javascript
+
+undefined: A variable is declared but not assigned any value
+default value for uninitialized variables, missing function args, missing object properties
+
+typeof undefined=undefined
+
+undefined cases:
+let a;
+console.log(a); // undefined
+
+function test(x) {
+  console.log(x);
+}
+test(); // undefined
+
+let obj = {};
+console.log(obj.value); // undefined
+
+null:
+A variable is explicitly assigned to represent "no value" and must be explicitly assigned by the developer
+
+typeof null=object
+
+null cases:
+let user = null;  // user intentionally has no value
+console.log(user); // null
+
+function getUser() {
+  return null; // means “no user found”
+}
+
+###################
 dot notation on object:
 let person={
   name: 'pavan',
