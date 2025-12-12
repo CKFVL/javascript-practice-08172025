@@ -75,6 +75,14 @@ use Math.min to find the smallest number in an array
 type=module
 <script type=module src="scripts/amazon.js">
 
+You got two different types of exports: default (unnamed) and named exports:
+default => export default ...;
+named => export const someData = ...;
+You can import default exports like this:
+import someNameOfYourChoice from './path/to/file.js';
+Surprisingly, someNameOfYourChoice is totally up to you.
+Named exports have to be imported by their name:
+import { someData } from './path/to/file.js';
 ---
 boolean.js
 falsy values: false, 0, '', NaN, Undefined, null [any value other than this is truthy]
