@@ -34,3 +34,8 @@ export default "testvalue"
 Only 1 default export is allowed.
 
 ################
+to import all variables from a file
+
+e.g. import * as util from "util.js" 
+
+################
