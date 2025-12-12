@@ -1,3 +1,9 @@
+findIndex accepts a function:
+hobbies.findIndex((item) => {
+  return item === 'sports'
+}
+)
+#####################
 Array doesn't actually contain values, it refers to the values in memory and called as reference
 e.g.
   const array1=[1,2,3] // array1 contains the reference of the values
