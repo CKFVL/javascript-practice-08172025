@@ -20,7 +20,11 @@ to have a copy of the reference, use slice()
 to get values from an array, destructuring can be used instead of indexes 
   const [firstValue, secondValue]=[1,2,3] // where firstValue=1, secondValue=2
 
-
+const nameArray=["Max", "Pavan"]
+const firstName=nameArray[0]
+const lastName=nameArray[1]
+destructure array:
+const [firstName, lastName]=["Max", "Pavan"]
 ###############
 Any value can be stored in an array
 e.g. [1, 'hello', true, {name: 'socks'}, [1, 2] ]
