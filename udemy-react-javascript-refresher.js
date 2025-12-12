@@ -19,7 +19,11 @@ type="module" makes sure the js file as module which unlocks importing a file in
 react-scripts:
 as raw reactjs code (JSX is not standard js code) won't execute on browser
 react build process runs in background and injects transformed source (raw reactjs) code into script tags
+also, the code will be minified
 
-the code will be minified
+In a typical javascript environment, type="module" makes sure the js file as module which unlocks importing a file into another using import/export.
+But in react, the script tags don't have type=module. 
+React build process will actually merges all the files into big files. 
+this will make browsers that don't natively support import/native syntax can just download couple of javascript bundles instead of loading all individual files.
 
 ################
