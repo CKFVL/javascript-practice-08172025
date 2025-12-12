@@ -1,3 +1,13 @@
+variable identifier rules:
+
+must not contain whitepace or special characters
+
+may contain numbers but not start with a number
+
+must not clash with reserved keywords
+
+######################
+
 Primitive types:
 ----------------
 String
