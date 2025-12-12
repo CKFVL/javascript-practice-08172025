@@ -15,6 +15,7 @@ Function
 
 ###################
 difference between null and undefined javascript
+https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/693c1f08-c6b4-8324-9853-e19bbdda59c2
 
 undefined: A variable is declared but not assigned any value
 default value for uninitialized variables, missing function args, missing object properties
