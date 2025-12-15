@@ -187,3 +187,11 @@ So JavaScript gives you:
 Number.isNaN(value) // ✅ correct check
 NOT:
 value === NaN       // ❌ always false
+-------
+console.log(1 < 2 < 3) --> true
+1 < 2 --> true
+true < 3 --> true (bcoz Booleans get coerced to numbers in comparisons, here true is coerced to 1)
+
+console.log(3 > 2 > 1)
+3 > 2 --> false
+false > 1 --> false (bcoz Booleans get coerced to numbers in comparisons, here false is coerced to 9)
