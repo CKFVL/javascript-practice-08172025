@@ -176,8 +176,13 @@ Because:
 NaN !== NaN // true 😄
 
 This happens because:
-*** NaN is not equal to anything, including itself
-This is also defined by IEEE-754
+*** NaN is only javascript type that is not equal to anything- including itself
+
+so, 
+NaN == NaN      // false
+NaN === NaN    // false
+Object.is(NaN, NaN) // true ✅ (special case)
+
 So JavaScript gives you:
 Number.isNaN(value) // ✅ correct check
 NOT:
