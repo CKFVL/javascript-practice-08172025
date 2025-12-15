@@ -147,3 +147,38 @@ console.log(typeof [1, 2, 3, 3]); //typeof array=object
 ####################
 5 == '5.0' // results true as 5.0 is converted to 5
 5 === '5.0' // results false i.e. strict equality
+####################
+typeof NaN is a number
+It represents undefined or unrepresentable numeric results
+Examples:
+  0 / 0          // NaN
+  Math.sqrt(-1)  // NaN
+  parseInt("x")  // NaN
+
+Why not a separate type?
+JavaScript has only one numeric type:
+Number
+
+It includes:
+Integers → 1
+Floating points → 3.14
+Special values:
+  Infinity
+  -Infinity
+  NaN
+
+So:
+typeof Infinity // "number"
+typeof NaN      // "number"
+
+Why this confuses people
+Because:
+NaN !== NaN // true 😄
+
+This happens because:
+NaN is not equal to anything, including itself
+This is also defined by IEEE-754
+So JavaScript gives you:
+Number.isNaN(value) // ✅ correct check
+NOT:
+value === NaN       // ❌ always false
