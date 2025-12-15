@@ -176,7 +176,7 @@ Because:
 NaN !== NaN // true 😄
 
 This happens because:
-NaN is not equal to anything, including itself
+*** NaN is not equal to anything, including itself
 This is also defined by IEEE-754
 So JavaScript gives you:
 Number.isNaN(value) // ✅ correct check
