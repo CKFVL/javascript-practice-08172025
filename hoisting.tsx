@@ -72,7 +72,6 @@ console.log(variable)
 var variable=30
 
 Hoisting phase (important)
-
 var declarations are hoisted to the top of their scope and initialized with undefined.
 So the engine internally sees this as:
   var variable;   // hoisted (only once)
