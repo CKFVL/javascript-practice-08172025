@@ -94,8 +94,9 @@ falsy values: false, 0, '', NaN, Undefined, null [any value other than this is t
 
 ---
 object destructuring:
-
-
+---
+hoisting.js
+temporalDeadZone
 ---
 object-properties.js:
 //A data descriptor is a property that has a value, which may or may not be writable. 
