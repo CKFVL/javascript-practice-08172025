@@ -1,3 +1,6 @@
+Scopes in js: local, global, closure
+---
+
 Lexical binding:
 ----------------
 the scope of the variable is based on the physical structure of the code (i.e. where variables or functions are written) - called as lexical scope or static scope
