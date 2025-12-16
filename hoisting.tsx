@@ -57,5 +57,32 @@ myFunc = function(){ // Now the function declaration is overwritten by the funct
 }
 myFunc() // 
 myFunc()
+############
+var variable=10;
+
+(()=>{
+    console.log(variable)
+    variable=20;
+    
+    console.log(variable)
+})();
+
+console.log(variable)
+
+var variable=30
+
+Hoisting phase (important)
+
+var declarations are hoisted to the top of their scope and initialized with undefined.
+So the engine internally sees this as:
+  var variable;   // hoisted (only once)
+  variable = 10;
+  (() => {
+    console.log(variable);
+    variable = 20;
+    console.log(variable);
+  })();
+  console.log(variable);
+  variable = 30;
 
 
