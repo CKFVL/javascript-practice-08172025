@@ -163,7 +163,34 @@ Arrow functions don’t have their own this.
 In arrow functions, this is lexical — taken from the surrounding scope.
 (Arrow functions capture this from their parent scope)
 Arrow functions are the rebel children — they ignore `this` rule and just take this from where they were created/written
+OR
+  Key rule for arrow functions:
+❌ Arrow functions do NOT have their own this
+✅ They capture this lexically from where they are defined
 
+example:
+Key rule for arrow functions:
+❌ Arrow functions do NOT have their own this
+✅ They capture this lexically from where they are defined
+
+Where is this arrow function defined?
+➡️ In the global scope, not inside obj’s execution context.
+In non-strict mode (browser):
+this === window
+
+And earlier we had:
+var fullname = "pavan kumar"
+// → window.fullname
+
+So:
+this.fullname → window.fullname → "pavan kumar"
+
+✅ Output
+pavan kumar
+
+⚠️ Even though it looks like a method, arrow functions never bind this to the object.
+console.log(obj.getFullnameV2())
+console.log(obj.getFullnameV3()) // error: getFullnameV3 is not a function, it already holds the returned value
 ---
 ✅ Key takeaway for regular functions:
 this is not lexical in normal functions — it’s dynamic.
