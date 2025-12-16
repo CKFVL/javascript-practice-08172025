@@ -192,6 +192,9 @@ console.log(1 < 2 < 3) --> true
 1 < 2 --> true
 true < 3 --> true (bcoz Booleans get coerced to numbers in comparisons, here true is coerced to 1)
 
+Fix: console.log(1 < 2 && 2 < 3)
+---
 console.log(3 > 2 > 1)
 3 > 2 --> false
 false > 1 --> false (bcoz Booleans get coerced to numbers in comparisons, here false is coerced to 9)
+Fix: console.log(3 > 2 && 2 > 1)
