@@ -8,6 +8,29 @@ call() invokes the function immediately, allowing you to manually set this and p
   const person = { name: 'Pavan' };
   
   greet.call(person, 'Hello', '!');
+
+---
+Example:
+const piyush={
+  name: "piyush garg",
+  sayName: function(){
+    console.log(this.name)
+  }
+}
+const jhon={
+  name: "John doe",
+  sayName: function(){
+    console.log(this.name)
+  }
+}
+jhon.sayName().call(piyush) // The function jhon.sayName() itself returns undefined
+TypeError: Cannot read properties of undefined (reading 'call')
+    at Object.<anonymous> (/index.js:13:15)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Function.executeUserEntryPoint [as runMain]
 ##################
 apply() is almost the same as call(), except it takes arguments as an array.
   greet.apply(person, ['Hi', '...']);
