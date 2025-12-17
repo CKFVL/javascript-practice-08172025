@@ -452,3 +452,16 @@ function Timer() {
 
 new Timer(); //NaN
 ---
+###############
+const user={
+  name: "Interview",
+  regualrFn: function(){
+    console.log('regularFn', this.name)
+  },
+  arrowFn: () => {
+    console.log("arrowFn:", this.name)
+  }
+};
+
+user.regularFn();
+user.arrowFn();
