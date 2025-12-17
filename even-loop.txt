@@ -10,6 +10,8 @@ Macro task:
 Micro task (runs high priority tasks)
     Promise
 ########################
+call stack -> Microtask queue -> Macrotask queue
+########################
 function a(){
     console.log("A")
 }
@@ -68,3 +70,38 @@ Macrotask Queue (setTimeout, setInterval, I/O)
 
 One-liner rule to remember
 Promises beat timeouts. Always.
+
+########################
+console.log(1)
+setTimeout(() => {
+    console.log(2)
+}, 0)
+Promise.resolve(console.log(3))
+console.log(4)
+
+Output: 1, 3, 4, 2
+
+⚠️ Important gotcha
+console.log(3) is executed immediately
+Its return value is undefined
+So this becomes:
+Promise.resolve(undefined) // This does NOT create a microtask
+
+➡️ prints 3 right now, synchronously
+➡️ No .then() → no microtask is scheduled
+
+✅ This DOES
+Promise.resolve().then(() => console.log(3))
+or
+Promise.resolve(3).then(console.log)
+
+*** Rule to remember:
+Arguments to functions are evaluated immediately
+Only .then(), await, or queueMicrotask() schedule microtasks.
+
+Macrotask Queue (setTimeout):
+setTimeout(() => {
+    console.log(2)
+}, 0)
+➡️ Runs after call stack + microtasks
+➡️ prints 2
