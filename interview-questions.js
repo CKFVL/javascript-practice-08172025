@@ -9,3 +9,4 @@ promise? functions in promise?
 local storage and cookie?
 diff between var, let and const?
 hoisting?
+retry api calls
