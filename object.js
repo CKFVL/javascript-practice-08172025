@@ -1112,6 +1112,13 @@ var personDetails:{
 
 delete personDetails.age
 
+Example:
+const obj={
+    height: 30
+}
+console.log(obj.height)
+delete obj.height
+console.log(obj.height)
 
 
 
