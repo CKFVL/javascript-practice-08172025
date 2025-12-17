@@ -42,3 +42,5 @@ https://www.youtube.com/watch?v=_tNErId8xlc
 
 ############
 https://github.com/anil-sidhu/JavaScript-100-objective-based-questions
+############
+https://www.youtube.com/@learndepthBySai/shorts
