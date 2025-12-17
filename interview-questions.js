@@ -11,3 +11,7 @@ diff between var, let and const?
 hoisting?
 retry api calls
 group array of objects by key javascript
+memoize (like caching) // https://www.youtube.com/watch?v=uhtmTe26rqo
+
+flattenarray
+  const a=[1,2,3,[4,[5,6]], 7,8]
