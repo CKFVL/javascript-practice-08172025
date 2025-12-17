@@ -17,3 +17,20 @@ flattenarray
   const a=[1,2,3,[4,[5,6]], 7,8]
 
 console.log(computeAmout().lacs(15).crore(5).lacs(20).thousand(45).crore(7).value())A)
+
+--
+var obj={
+  helloWorld: function(){
+    return "hello world, "+ this.name;
+  },
+  name: 'hello'
+}
+
+var obj2={
+  helloWorld: obj.helloWorld,
+  name: 'Bye'
+}
+
+console.log(obj2.helloWorld())
+
+console.log(obj2.helloWorld.call(obj))
