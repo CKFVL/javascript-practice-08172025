@@ -186,5 +186,19 @@ even-loop.txt
 callbackStarvation.js
 ---
 udemy-react-javascript-refresher.js
+############
+Top5 questions by chatgpt:
+LRU Cache
+https://www.youtube.com/watch?v=7_WxOdeCv9k
+
+Global execution context
+
+Task scheduler
+
+Event emitter
+https://www.youtube.com/watch?v=Gz8NVkPxOiM&list=PLinedj3B30sDi0keEOQU3n5p3Op28eN2e&index=10
+
+Debounce and throttle
+https://www.youtube.com/watch?v=3o47TTtF2u0&list=PLinedj3B30sDi0keEOQU3n5p3Op28eN2e&index=11
 
 
