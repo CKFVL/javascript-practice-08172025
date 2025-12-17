@@ -104,3 +104,37 @@ var variable=30
 // ⛔ Execution stops here
 // ➡️ The remaining lines do not run))
 
+############
+- arrow function is not hoisted
+func2();
+console.log(x)
+
+func1();
+const func1 = () =>{
+    console.log("fun1")
+}
+
+function fun2(){
+    console.log("fun2")
+}
+
+console.log(y)
+
+var x=5;
+var y=7;
+
+Output: 
+fun2
+undefined
+  and 
+as arrow functions are not hoisted.
+ReferenceError: func2 is not defined
+    at Object.<anonymous> (/tmp/V8WQ9tdT6F/main.js:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1706:14)
+    at Object..js (node:internal/modules/cjs/loader:1839:10)
+    at Module.load (node:internal/modules/cjs/loader:1441:32)
+    at Function._load (node:internal/modules/cjs/loader:1263:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:171:5)
+    at node:internal/main/run_main_module:36:49
