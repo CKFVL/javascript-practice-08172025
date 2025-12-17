@@ -1,5 +1,5 @@
 https://www.youtube.com/watch?v=eiC58R16hb8
-
+https://www.jsv9000.app/ - for analyzing the interactive visualization
 ########################
 browser APIs:
 Macro task:
@@ -7,7 +7,7 @@ Macro task:
     setInterval;
     fetch
 
-Micro task:
+Micro task (runs high priority tasks)
     Promise
 ########################
 function a(){
