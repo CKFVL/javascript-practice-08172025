@@ -1,1 +1,61 @@
 https://www.youtube.com/watch?v=eiC58R16hb8
+
+---
+function a(){
+    console.log("A")
+}
+setTimeout(() => console.log("B"), 0)
+a()
+console.log("C")
+Promise.resolve().then(() => console.log("D"))
+
+Step-by-step execution
+1️⃣ Synchronous code (Call Stack)
+
+JS runs all synchronous code top to bottom first.
+
+setTimeout(...)   // schedules a macrotask → B
+a()               // logs "A"
+console.log("C")  // logs "C"
+Promise.resolve() // schedules a microtask → D
+
+Output so far:
+A
+C
+
+2️⃣ Microtask Queue (highest priority)
+After the call stack becomes empty, JS runs ALL microtasks before touching macrotasks.
+
+Promise.then → console.log("D")
+
+Output:
+D
+
+3️⃣ Macrotask Queue (Task Queue)
+Now JS takes the next macrotask.
+
+setTimeout → console.log("B")
+Output:
+B
+
+✅ Final Output Order
+A
+C
+D
+B
+
+Why setTimeout(..., 0) is NOT immediate ❗
+0 means minimum delay, not instant
+
+It still goes to the macrotask queue
+Microtasks always run before macrotasks
+
+Execution model summary 🧠
+Call Stack (sync)
+   ↓
+Microtask Queue (Promises, queueMicrotask)
+   ↓
+Macrotask Queue (setTimeout, setInterval, I/O)
+
+One-liner rule to remember
+Promises beat timeouts. Always.
