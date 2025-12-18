@@ -57,11 +57,14 @@ Here, obj1 and obj2 reference the same object, so the comparison evaluates to tr
 // https://www.youtube.com/watch?v=RJaRRS27100
 var obj = { 0: 'a', 1: 'b', 2: 'c' }
 console.log(Object.keys(obj)) //keys only
+// produces an array of keys : [ '0', '1', '2' ]
 
 var obj2 = { foo: 'bar', baz: 42 }
 console.log(Object.values(obj2)) // values only
+// produces an array of values: [ 'a', 'b', 'c' ]
 
 console.log(Object.entries(obj2)) // entries only
+// produces an array of array[k,v] i.e. [['0','a'],['1','b'],['2','c']]
 
 // ########################################################################
 // to check if a property exists in object (prototype)
@@ -1119,6 +1122,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
