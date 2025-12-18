@@ -39,7 +39,7 @@ console.log("5" == 5) // true
 console.log("5" === 5) // false (strict equality ie., compare both identity and values)
 console.log("5.0" === 5.0) // false
 console.log([] == 0) // true, because [] -> "" -> 0
-console.log(true+1) // tru -> 1
+console.log(true+1) // tru -> 1 , prints 2
 
 If you want stronger typing, Use TypeScript, which adds compile-time type checking
 Edge cases
