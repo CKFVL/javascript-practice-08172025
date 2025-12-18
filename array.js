@@ -4,6 +4,16 @@ hobbies.findIndex((item) => {
 }
 )
 #####################
+const array1=[1,2,3] // array1 contains the reference of the values
+  const array2=array1 // array2 contains the copy of reference which array1 references
+
+  array2.push(5) // both references have 4 values now
+
+/ Adding elements with high indexes can create undefined "holes" in an array:
+newcars[10] = "7car";
+
+If you use named indexes, JavaScript will redefine the array to a standard object.
+#####################
 Array doesn't actually contain values, it refers to the values in memory and called as reference
 e.g.
   const array1=[1,2,3] // array1 contains the reference of the values
