@@ -1,3 +1,43 @@
+javascript.js
+strict.js
+string
+order of operations
+object
+object types
+object properties
+object destructuring
+stringify
+tdz
+array (slice and splice)
+rest and spread
+boolean
+---
+function
+constructor function
+
+closure
+lexicalbinding
+this (new,literal, function, array function)
+
+hoisting
+currying
+HOF
+
+diff b/w constructor and factory
+---
+call, apply and bind
+---
+promise
+async await
+
+---
+es6 class
+inheritance
+---
+callbackstarvation
+event loop
+
+####################
 document.querySelector('button').innerHTML
 document.querySelector('.js-buton').innerHTML
 
