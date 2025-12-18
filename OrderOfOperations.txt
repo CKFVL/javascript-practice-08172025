@@ -28,4 +28,4 @@ true < 3 --> true (bcoz Booleans get coerced to numbers in comparisons, here tru
 
 console.log(3 > 2 > 1)
 3 > 2 --> false
-false > 1 --> false (bcoz Booleans get coerced to numbers in comparisons, here false is coerced to 9)
+false > 1 --> false (bcoz Booleans get coerced to numbers in comparisons, here false is coerced to 1)
