@@ -106,6 +106,43 @@ console.log(myclass.prototype.y) // 1
 // ########################################################################
 Sevral ways to create objects:
 -----------------------------
+Object literal:
+   const literalPerson={
+     name: "pavan",
+     age: 40,
+     greet(){
+	console.log(`Hi, this is ${this.name}`}     
+     }
+   }
+
+   console.log(typeof literalPerson) // object
+   console.log(literalPerson.name)
+   literalPerson.greet()
+
+✅ Pros:
+	Simple & readable
+	Best for static objects
+	No this confusion during creation
+❌ Cons
+	Not ideal for creating many similar objects
+
+	example 2: add method to object
+	---------
+    const video = {
+    title: 'a',
+    play() {
+        console.log(this);
+		console.log(this.title);
+    }
+	};
+	video.play();
+	
+	// add method to video object
+	video.stop = function () {
+	    console.log(this);
+	}
+	video.stop();
+-----------------------------
 1. new Object()
    const person=new Object(); // use new
    person.name='pavan';
@@ -134,42 +171,6 @@ Sevral ways to create objects:
    }
 
    const classPerson=new Person('name', 40) // use new
-----------------------------------------------------------
-4. Object literal
-   const literalPerson={
-     name: "pavan",
-     age: 40,
-     greet(){
-	console.log(`Hi, this is ${this.name}`}     
-     }
-   }
-
-   console.log(literalPerson.name)
-   literalPerson.greet()
-
-✅ Pros:
-	Simple & readable
-	Best for static objects
-	No this confusion during creation
-❌ Cons
-	Not ideal for creating many similar objects
-
-	example 2:
-	---------
-    const video = {
-    title: 'a',
-    play() {
-        console.log(this);
-		console.log(this.title);
-    }
-	};
-	video.play();
-	
-	// add method to video object
-	video.stop = function () {
-	    console.log(this);
-	}
-	video.stop();
 ----------------------------------------------------------
 5. Factory function: A function that returns a new object
   function FactoryFunc(name, age){
@@ -1135,6 +1136,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
