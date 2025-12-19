@@ -362,7 +362,7 @@ const user = {
 *** Equivalent to Object.assign() for objects.
 ######################################################
 Other ways:
-
+more in https://github.com/CKFVL/javascript-practice-08172025/blob/main/function-methods-call-apply-bind.js
  With call() or apply()
 	function Person(name, age) {
 	  this.name = name;
@@ -1219,6 +1219,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
