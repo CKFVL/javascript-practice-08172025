@@ -352,8 +352,9 @@ const user = {
 
 *** Equivalent to Object.assign() for objects.
 ######################################################
+Other ways:
 
-6. With call() or apply()
+ With call() or apply()
 	function Person(name, age) {
 	  this.name = name;
 	  this.age = age;
@@ -1209,6 +1210,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
