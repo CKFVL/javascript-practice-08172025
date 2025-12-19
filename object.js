@@ -144,6 +144,7 @@ Sevral ways to create objects:
 	video.stop();
 -----------------------------
 2. new Object()
+	⚠️ Rarely used in modern code
    const objPerson=new Object(); // use new
    objPerson.name='pavan';
    objPerson.age=40;
@@ -1169,6 +1170,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
