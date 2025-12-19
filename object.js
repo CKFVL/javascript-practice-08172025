@@ -182,12 +182,21 @@ Two different objects are never equal unless they reference the same object.
 		typeof {} === typeof new Object() // true
 		{} === new Object() // false	
 ----------------------------------------------------------
-2. constructor function
+3. constructor function (Pre-ES6 pattern)
    function Person(name, age){
 	this.name=name,
 	this.age=age
    }
-   const funcPerson=new Person('pavan', 40) // use new
+
+	Person.prototype.greet = function(){
+		console.log(this.name
+	}
+    const funcPerson=new Person('pavan', 40) // use new
+
+	⚠️ Important
+		Must use new
+		this binding depends on new
+			User("Pavan", 35); // ❌ this → global / undefined (strict mode)
 
 	// when constructor function is created using Object.create, passed arguments/Object as {} is not passed to function's `this`
 	// Object.create(Object.prototype)
@@ -1170,6 +1179,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
