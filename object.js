@@ -289,6 +289,70 @@ Use cases
 ❌ Cons
 	Methods recreated per object (unless optimized)
 ---------------------------------------------------------- 
+7. Object.assign(): Merge properties from one or more objects into a new one (copy properties of one object to another)
+	const base = { name: 'Pavan' };
+	const info = { age: 30 };
+	
+	const person = Object.assign({}, base, info);
+
+ 	Example 2:
+    ----------
+	let toyota = {
+    drive() {
+        return "driving toyota"
+    },
+    music() {
+        return "playing in toyota"
+    }
+
+	}
+	
+	let camry = {
+	    drive() {
+	        return "driving camry"
+	    },
+	    doorType() {
+	        return "4 door"
+	    }
+	}
+	
+	// copies toyota's properties to camry's properties, 
+	// if same property or function is in destination object, then it'll be replaced with source's
+	Object.assign(camry, toyota)
+	console.dir(camry)
+	console.log(camry.drive())
+	
+	// useful when need to copy/create new object from existing object using literal i.e., shallow copy
+	let newToyota = Object.assign({}, toyota)
+	console.dir(newToyota)
+	
+	console.log(newToyota.drive())
+	
+	// also useful when new property or method needs to be added to existing object
+	let addToyotaProperty = Object.assign(toyota, {
+	    wifi() {
+	        return 'wifi added';
+	    },
+	    color: 'red'
+	});
+	
+	console.dir(addToyotaProperty)
+	console.log(addToyotaProperty.color)
+	console.log(addToyotaProperty.wifi())
+
+------------------------------------------------------
+Using Spread Operator
+const base = { role: "admin" };
+
+const user = {
+  ...base,
+  name: "Pavan",
+  age: 35
+};
+
+*** Equivalent to Object.assign() for objects.
+######################################################
+
 6. With call() or apply()
 	function Person(name, age) {
 	  this.name = name;
@@ -347,57 +411,6 @@ Use cases
 		console.log('name' in person6) // checks in person6 object and then in proptype too
 		console.log(person6.hasOwnProperty('name')) // checks in person6 object
 ----------------------------------------------------------
-9. Merge properties from one or more objects into a new one (copy properties of one object to another)
-	const base = { name: 'Pavan' };
-	const info = { age: 30 };
-	
-	const person = Object.assign({}, base, info);
-
- 	Example 2:
-    ----------
-	let toyota = {
-    drive() {
-        return "driving toyota"
-    },
-    music() {
-        return "playing in toyota"
-    }
-
-	}
-	
-	let camry = {
-	    drive() {
-	        return "driving camry"
-	    },
-	    doorType() {
-	        return "4 door"
-	    }
-	}
-	
-	// copies toyota's properties to camry's properties, 
-	// if same property or function is in destination object, then it'll be replaced with source's
-	Object.assign(camry, toyota)
-	console.dir(camry)
-	console.log(camry.drive())
-	
-	// useful when need to copy/create new object from existing object using literal i.e., shallow copy
-	let newToyota = Object.assign({}, toyota)
-	console.dir(newToyota)
-	
-	console.log(newToyota.drive())
-	
-	// also useful when new property or method needs to be added to existing object
-	let addToyotaProperty = Object.assign(toyota, {
-	    wifi() {
-	        return 'wifi added';
-	    },
-	    color: 'red'
-	});
-	
-	console.dir(addToyotaProperty)
-	console.log(addToyotaProperty.color)
-	console.log(addToyotaProperty.wifi())
-######################################################
 // Object.setPrototypeOf() : takes one object's method to be available for another object
 // e.g., Object.setPrototypeOf(destinationObject, sourceObject)
 // https://www.youtube.com/watch?v=mX7uWf9BL8A&list=PL7pEw9n3GkoW0ceMeoycg9D00YjPAbtvt&index=6
@@ -1196,6 +1209,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
