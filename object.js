@@ -201,6 +201,28 @@ Two different objects are never equal unless they reference the same object.
 	// when constructor function is created using Object.create, passed arguments/Object as {} is not passed to function's `this`
 	// Object.create(Object.prototype)
 ----------------------------------------------------------
+4. Object.create(<prototype>): Creates a new object with a specified prototype
+   const prototype={
+	greet(){
+	   console.log(`Hi this is ${this.name`)
+	}
+   };
+
+   const protoObject=Object.create(prototype)
+   protoObject.name='pavan'
+   protoObject.greet();
+
+   Using Object.create() inside a regular function
+	function personProto(name, age) {
+	  let obj = Object.create(null);
+	  obj.name = name;
+	  obj.age = age;
+	  return obj;
+	}
+	
+	const p3 = personProto("Charlie", 28);
+	console.log(p3.name); // Charlie
+----------------------------------------------------------
 3. ES6 Class syntax
    class Person{
 	constructor(name, age){
@@ -260,28 +282,6 @@ Two different objects are never equal unless they reference the same object.
 	Person.call(obj, "Dana", 35); // 'this' is obj
 	console.log(obj.name); // Dana
 
-----------------------------------------------------------
-7. Object.create: Creates a new object with a specified prototype
-   const prototype={
-	greet(){
-	   console.log(`Hi this is ${this.name`)
-	}
-   };
-
-   const protoObject=Object.create(prototype)
-   protoObject.name='pavan'
-   protoObject.greet();
-
-   Using Object.create() inside a regular function
-	function personProto(name, age) {
-	  let obj = Object.create(null);
-	  obj.name = name;
-	  obj.age = age;
-	  return obj;
-	}
-	
-	const p3 = personProto("Charlie", 28);
-	console.log(p3.name); // Charlie
 ----------------------------------------------------------
  	
 8. prototype pattern
@@ -1179,6 +1179,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
