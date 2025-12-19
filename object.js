@@ -201,7 +201,7 @@ Two different objects are never equal unless they reference the same object.
 	// when constructor function is created using Object.create, passed arguments/Object as {} is not passed to function's `this`
 	// Object.create(Object.prototype)
 ----------------------------------------------------------
-4. Object.create(<prototype>): Creates a new object with a specified prototype
+4. Object.create(<prototype>): (Pure Prototypal Inheritance) Creates a new object with a specified prototype
    const prototype={
 	greet(){
 	   console.log(`Hi this is ${this.name`)
@@ -222,8 +222,17 @@ Two different objects are never equal unless they reference the same object.
 	
 	const p3 = personProto("Charlie", 28);
 	console.log(p3.name); // Charlie
+
+🔥 Key Features
+	Direct control over prototype
+	No constructor function needed
+	Object.getPrototypeOf(user) === proto // true
+
+Use cases
+	Prototype-based design
+	Avoid constructor overhead
 ----------------------------------------------------------
-3. ES6 Class syntax
+5. ES6 Class syntax
    class Person{
 	constructor(name, age){
 	  this.name=name;
@@ -237,7 +246,7 @@ Two different objects are never equal unless they reference the same object.
 
    const classPerson=new Person('name', 40) // use new
 ----------------------------------------------------------
-5. Factory function: A function that returns a new object
+6. Factory function: A function that returns a new object
   function FactoryFunc(name, age){
   return {
 	    name,
@@ -271,6 +280,14 @@ Two different objects are never equal unless they reference the same object.
 		
 		person1.printPerson()
 		person2.printPerson()
+
+✅ Pros
+	No new
+	Safer this handling
+	Easy to compose
+	
+❌ Cons
+	Methods recreated per object (unless optimized)
 ---------------------------------------------------------- 
 6. With call() or apply()
 	function Person(name, age) {
@@ -1179,6 +1196,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
