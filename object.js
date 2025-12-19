@@ -106,7 +106,7 @@ console.log(myclass.prototype.y) // 1
 // ########################################################################
 Sevral ways to create objects:
 -----------------------------
-Object literal:
+1. Object literal:
    const literalPerson={
      name: "pavan",
      age: 40,
@@ -143,17 +143,17 @@ Object literal:
 	}
 	video.stop();
 -----------------------------
-1. new Object()
-   const person=new Object(); // use new
-   person.name='pavan';
-   person.age=40;
+2. new Object()
+   const objPerson=new Object(); // use new
+   objPerson.name='pavan';
+   objPerson.age=40;
 
 	const literalPerson = {
 	  name: "pavan",
 	  age: 40
 	};
 
-	console.log(person === literalPerson) // false (=== checks reference for objects)
+	console.log(objPerson === literalPerson) // false (=== checks reference for objects)
 		Why?
 		Objects are compared by reference, not by structure or values.
 		Even though both objects have the same properties and values, they are stored at different memory locations.
@@ -163,14 +163,14 @@ Object literal:
 📌 Key point
 Two different objects are never equal unless they reference the same object.
 
-	console.log(typeof person == typeof literalPerson) // true
+	console.log(typeof objPerson == typeof literalPerson) // true
 		Why?
 		typeof literalPerson // "object"
 		typeof objPerson     // "object"
 		So:
 		"object" == "object" // true
 
-	console.log(typeof person === typeof literalPerson) // true
+	console.log(typeof objPerson === typeof literalPerson) // true
 		Why?
 		Both sides are the same string
 		Same value and same type
@@ -1169,6 +1169,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
