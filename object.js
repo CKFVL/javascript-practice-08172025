@@ -84,20 +84,25 @@ console.dir(noPrototype)
 // ########################################################################
 
 'use strict'
-function myclass() {
+function myclass(){
+  
 }
 
-// Object.defineProperty
-myclass.prototype.x = 1;
+myclass.prototype.x=1
 Object.defineProperty(myclass.prototype, "y", {
   writable: true,
   value: 1
-});
+})
 
-var a = new myclass();
-a.x = 2;
-console.log(a.x); // 2
-console.log(myclass.prototype.x); // 1
+var a =new myclass();
+a.x=2
+
+console.log(a.x) // 2
+console.log(myclass.prototype.x) // 1
+
+a.y=55
+console.log(a.y) // 55
+console.log(myclass.prototype.y) // 1
 // ########################################################################
 Sevral ways to create objects:
 -----------------------------
@@ -1122,6 +1127,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
