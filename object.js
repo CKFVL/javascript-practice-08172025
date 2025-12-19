@@ -184,14 +184,23 @@ Two different objects are never equal unless they reference the same object.
 ----------------------------------------------------------
 3. constructor function (Pre-ES6 pattern)
    function Person(name, age){
-	this.name=name,
-	this.age=age
-   }
-
-	Person.prototype.greet = function(){
-		console.log(this.name
+	  this.name=name,
+	  this.age=age
 	}
-    const funcPerson=new Person('pavan', 40) // use new
+	
+	Person.prototype.greet=function(){
+	  console.log(`${this.name}`)
+	}
+	
+	const person=new Person('pavan', 40) // use new
+	
+	Person.prototype.bye=function(){
+	  console.log(`${this.name}`)
+	}
+	console.log(person.name)
+	
+	person.greet()
+	person.bye()
 
 	⚠️ Important
 		Must use new
@@ -1210,6 +1219,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
