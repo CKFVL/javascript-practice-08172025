@@ -569,29 +569,6 @@ Same behavior: this refers to the instance (p1).
  Again, this refers to the object the method is called on (person).
 
 // ########################################################################
-'use strict'
-// ways of creating objects
-// literal
-// constructor pattern
-// factory pattern
-// prototype pattern
-// dynamic prototype pattern : similar to constructor pattern, but properties/functions can be created only when they don't exist
-// default values can be setup in all above patterns, so new objects can inherit them.
-
-// Objects can be initialized using new Object(), Object.create(), Object.assign({}, anotherObject)
-	// to create an object with no properties/prototype
-	// Object.create(null)
-	
-	// when constructor function is created using Object.create, passed arguments/Object as {} is not passed to function's `this`
-	// Object.create(Object.prototype)
-
-// rule of thumb:
-// this : object that is executing the current function
-// if a function is a method in an Object, this refers to object itself
-// if a function is regular function i.e., not inside an object, this refers to global object
-//      in strict mode, global object can't be accessed inside a function using this
-// if a function is constructor function and is created using new operator, then this refers to arguments to it in new {} object
-
 // set/copy properties/methods
 	// Object.defineProperty
 	// Object.setPrototypeOf(dest, source) // copy one object to another
@@ -1219,6 +1196,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
