@@ -110,7 +110,7 @@ Sevral ways to create objects:
    const person=new Object(); // use new
    person.name='pavan';
    person.age=40;
-
+----------------------------------------------------------
 2. constructor function
    function Person(name, age){
 	this.name=name,
@@ -120,7 +120,7 @@ Sevral ways to create objects:
 
 	// when constructor function is created using Object.create, passed arguments/Object as {} is not passed to function's `this`
 	// Object.create(Object.prototype)
-
+----------------------------------------------------------
 3. ES6 Class syntax
    class Person{
 	constructor(name, age){
@@ -134,7 +134,7 @@ Sevral ways to create objects:
    }
 
    const classPerson=new Person('name', 40) // use new
-
+----------------------------------------------------------
 4. Object literal
    const literalPerson={
      name: "pavan",
@@ -147,12 +147,20 @@ Sevral ways to create objects:
    console.log(literalPerson.name)
    literalPerson.greet()
 
+✅ Pros:
+	Simple & readable
+	Best for static objects
+	No this confusion during creation
+❌ Cons
+	Not ideal for creating many similar objects
+
 	example 2:
 	---------
     const video = {
     title: 'a',
     play() {
         console.log(this);
+		console.log(this.title);
     }
 	};
 	video.play();
@@ -162,7 +170,7 @@ Sevral ways to create objects:
 	    console.log(this);
 	}
 	video.stop();
-
+----------------------------------------------------------
 5. Factory function: A function that returns a new object
   function FactoryFunc(name, age){
   return {
@@ -197,7 +205,7 @@ Sevral ways to create objects:
 		
 		person1.printPerson()
 		person2.printPerson()
-  
+---------------------------------------------------------- 
 6. With call() or apply()
 	function Person(name, age) {
 	  this.name = name;
@@ -208,7 +216,7 @@ Sevral ways to create objects:
 	Person.call(obj, "Dana", 35); // 'this' is obj
 	console.log(obj.name); // Dana
 
-
+----------------------------------------------------------
 7. Object.create: Creates a new object with a specified prototype
    const prototype={
 	greet(){
@@ -230,7 +238,7 @@ Sevral ways to create objects:
 	
 	const p3 = personProto("Charlie", 28);
 	console.log(p3.name); // Charlie
-
+----------------------------------------------------------
  	
 8. prototype pattern
 	var prototypeObj = function () { };
@@ -277,7 +285,7 @@ Sevral ways to create objects:
 		// to check if a property exists in object (prototype)
 		console.log('name' in person6) // checks in person6 object and then in proptype too
 		console.log(person6.hasOwnProperty('name')) // checks in person6 object
-
+----------------------------------------------------------
 9. Merge properties from one or more objects into a new one (copy properties of one object to another)
 	const base = { name: 'Pavan' };
 	const info = { age: 30 };
@@ -1127,6 +1135,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
