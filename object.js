@@ -639,81 +639,6 @@ console.log(consFn.color)
 // when constructor function is created using Object.create, passed arguments/Object as {} is not passed to function's `this`
 const consObjectFromCreate = Object.create(ConsFn.prototype);
 console.log(consObjectFromCreate.color)
-
-
-// Object.setPrototypeOf() : takes one object's method to be available for another object
-// e.g., Object.setPrototypeOf(destinationObject, sourceObject)
-// https://www.youtube.com/watch?v=mX7uWf9BL8A&list=PL7pEw9n3GkoW0ceMeoycg9D00YjPAbtvt&index=6
-let toyota = {
-    drive() {
-        return 'driving toyota';
-    }
-}
-
-let camry = {
-    wifi() {
-        return `camry's wifi`
-    },
-    drive() {// if camry needs to have its own drive method
-        //return 'driving camry';
-        // if need to use base/super class constructor in sub class, then use super constructor in template string
-        return `${super.drive()} camry`
-    }
-}
-// copies toyota's properties to camry's (__proto__)properties,  
-// if same property or function is in destination object, then it will NOT be replaced with source's
-Object.setPrototypeOf(camry, toyota);
-console.dir(camry)
-console.log(camry.drive())
-console.log(camry.wifi())
-
-// ---------------------------------------------------------------------
-// Object.assign(): copy properties of one object to another
-let toyota = {
-    drive() {
-        return "driving toyota"
-    },
-    music() {
-        return "playing in toyota"
-    }
-
-}
-
-let camry = {
-    drive() {
-        return "driving camry"
-    },
-    doorType() {
-        return "4 door"
-    }
-}
-
-// copies toyota's properties to camry's properties, 
-// if same property or function is in destination object, then it'll be replaced with source's
-Object.assign(camry, toyota)
-console.dir(camry)
-console.log(camry.drive())
-
-// useful when need to copy/create new object from existing object using literal i.e., shallow copy
-let newToyota = Object.assign({}, toyota)
-console.dir(newToyota)
-
-console.log(newToyota.drive())
-
-// also useful when new property or method needs to be added to existing object
-let addToyotaProperty = Object.assign(toyota, {
-    wifi() {
-        return 'wifi added';
-    },
-    color: 'red'
-});
-
-console.dir(addToyotaProperty)
-console.log(addToyotaProperty.color)
-console.log(addToyotaProperty.wifi())
-
-// also useful for function mixing
-// https://www.youtube.com/watch?v=DpGuDFK4xss&list=PL7pEw9n3GkoW0ceMeoycg9D00YjPAbtvt&index=8
 // ##########################################################################
 // https://www.youtube.com/watch?v=RJaRRS27100
 var obj = { 0: 'a', 1: 'b', 2: 'c' }
@@ -1196,6 +1121,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
