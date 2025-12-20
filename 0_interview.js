@@ -16,6 +16,7 @@ tdz
 hoisting
 array (slice and splice)
 rest and spread
+Object.assignVsSpread.js
 boolean
 ---
 function
