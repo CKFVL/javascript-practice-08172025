@@ -6,6 +6,8 @@ object
 object types
 object properties
 object destructuring
+ObjectLiteralVsJSON.js
+object property descriptors
 stringify
 tdz
 array (slice and splice)
