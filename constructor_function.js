@@ -133,7 +133,7 @@ class Person {
 "Classes" are syntactic sugar over constructor functions.
 
 🔥 Want a mental model?
-Concept	Constructor Function	Similar to
-Blueprint	Person	Java class
-Instance object	new Person()	Object created from class
-Shared methods	Person.prototype	Class methods
+Concept	        Constructor Function	Similar to
+Blueprint	    Person	                Java class
+Instance object	new Person()	        Object created from class
+Shared methods	Person.prototype	    Class methods
