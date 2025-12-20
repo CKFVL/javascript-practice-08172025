@@ -8,6 +8,7 @@ object properties
 object destructuring
 ObjectLiteralVsJSON.js
 object property descriptors
+object property existence
 stringify
 tdz
 array (slice and splice)
