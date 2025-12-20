@@ -10,6 +10,7 @@ ObjectLiteralVsJSON.js
 object property descriptors
 object property existence
 ObjectGetOwnPropertyDescriptors.js
+forloop.js
 stringify
 tdz
 array (slice and splice)
