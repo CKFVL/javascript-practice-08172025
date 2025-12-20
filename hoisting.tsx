@@ -25,7 +25,7 @@ https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea/c/6940cc19-77ec-8323-
 Hoisting order:
   -  function declarations (hoisted with their body)
       function myFunc() { ... }
-  -  var declarations (hoisted but not their assignments i.e. initialized as undefined)
+  -  var declarations (hoisted but not their assignments i.e. initialized as undefined so calling undefined → TypeError)
       var myFunc = function() { ... }
       *** hoisted as
       var myFunc; // value = undefined
