@@ -1,4 +1,5 @@
 Understanding summary:
+JSON:
   JSON properties are double-quoted
   JSON allows only string, boolean, number, array, object, null
   drops property with undefined value
