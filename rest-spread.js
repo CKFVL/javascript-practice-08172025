@@ -254,23 +254,3 @@ const newState = { ...state, occupation: 'programmer', skills: [...state.skills,
 
 console.log(state)
 console.log(newState)
-//#####################################################################
-//spread does shallow copy, it means it copies one level of data and not nested structured data.
-//e.g., 
-const state={
-  name:'pavan',
-  occupation:'develoepr',
-  skills:[]
-}
-
-//const newState={...state, occupation:'programmer'} 
-//newState.skills.push('js') // occupation value in newState will be programmer, but skills will be updated both in state and newState objects
-//so, to achieve immutability, do like below.
-//newState.skills=[...newState.skills,'js'] // will add js to skills in newState only
-
-// OR change occupation value and add skill to skills at sametime
-const newState={...state, occupation:'programmer',skills:[...state.skills,'js']}
-
-console.log(state)
-console.log(newState)
-
