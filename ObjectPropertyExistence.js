@@ -1,4 +1,12 @@
 Multiple ways to check whether a property exists on an object:
+
+Understanding summary:
+in -> checks prototype chain
+Object.keys/getOwnPropertyNames: enumerable only
+Object.hasOwnProperty -> checks in object itself
+undefined checks -> unreliable (do not depend)
+freeze/seal doesn't remove properties
+##################################
 1️⃣ in operator (own + inherited properties)
 const obj = { name: "pavan" };
 console.log("name" in obj);   // true
@@ -50,6 +58,14 @@ What is its value OR getter/setter?
 More at
 https://github.com/CKFVL/javascript-practice-08172025/blob/main/ObjectGetOwnPropertyDescriptor.js
 ##################################
+Object.create(null)
+const obj = Object.create(null);
+obj.a = 10;
+
+console.log("a" in obj);             // true (because checks in prototype chain)
+console.log(obj.hasOwnProperty("a"));// TypeError
+
+##################################
 Object.hasOwn() (ES2022+ ✅ BEST MODERN WAY)
 const obj = { name: "pavan" };
 console.log(Object.hasOwn(obj, "name")); // true
@@ -63,3 +79,36 @@ Cleaner than .call()
 👉 Preferred in modern JavaScript
 
 ##################################
+Object.freeze() (❌ Trap: removes properties -> No)
+const obj = Object.freeze({ a: 1 });
+
+console.log("a" in obj);        // true
+console.log(obj.hasOwnProperty("a")); // true
+
+##################################
+Non-enumerable property
+const obj = {};
+Object.defineProperty(obj, "secret", {
+  value: 42,
+  enumerable: false
+});
+
+console.log("secret" in obj);              // true
+console.log(Object.keys(obj).includes("secret")); // false because Object.keys() checks enumerability, not existence.
+
+##################################
+Optional chaining confusion: Optional chaining does not check existence.
+const obj = { a: undefined };
+
+console.log(obj?.a);        // undefined
+console.log("a" in obj);    // true
+##################################
+Delete vs undefined
+const obj = { a: 1 };
+
+obj.a = undefined;
+console.log("a" in obj); // true (property still exists)
+
+delete obj.a;
+console.log("a" in obj); // false
+
