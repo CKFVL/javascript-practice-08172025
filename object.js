@@ -603,7 +603,7 @@ Same behavior: this refers to the instance (p1).
 //ofArray
 //ofObject
 // ---------------------------------------------------------------------
-// literal
+literal
 // (initializer notation). An object initializer is a comma-delimited list of zero or more pairs of property 
 // names and associated values of an object, enclosed in curly braces ({}).
 // An object initializer is an expression that describes the initialization of an Object. 
@@ -704,7 +704,7 @@ var o = { a, b, c };
 // In other words,
 console.log((o.a === { a }.a)); // true
 // ##########################################################################
-//Object literal notation vs JSON
+Object literal notation vs JSON
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names
 // limitations of JSON:
 //- JSON permits only property definition using "property":value syntax
@@ -1121,6 +1121,7 @@ const obj={
 console.log(obj.height)
 delete obj.height
 console.log(obj.height)
+
 
 
 
