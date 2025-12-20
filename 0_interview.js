@@ -13,6 +13,7 @@ ObjectGetOwnPropertyDescriptors.js
 forloop.js
 stringify
 tdz
+hoisting
 array (slice and splice)
 rest and spread
 boolean
