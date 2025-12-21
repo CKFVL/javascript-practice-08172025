@@ -22,6 +22,12 @@ Arrow functions are the rebel children — they ignore this rule and just take t
 
 *** In regular functions, this is dynamic (decided at call time)
 *** In arrow functions, this is lexical (decided at creation time)
+
+Also
+*** only functions create scope, not objects.
+function () { } → creates new this
+() => { } → does NOT create new this
+{ } object literal → does NOT create new this
 ---
 Flow summary: (*** understand the content below this flow diagram)
 Is the function an arrow function?
