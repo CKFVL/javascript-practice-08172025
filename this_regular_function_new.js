@@ -340,3 +340,22 @@ const obj3={
 }
 
 obj3.log()
+
+Another example:
+const tagvideo = {
+    title: 'tag',
+    tags: ['a', 'b', 'c', 'd'],
+    showTags() {
+        this.tags.forEach(function (tag) {
+        console.log(this.title, tag)// title will be undefined because function is like regular function, not tagvideo's method
+        //this refers to global object
+        });
+        console.log('-----------------')
+        // instead pass this as an object to forEach function 
+        this.tags.forEach(function (tag) {
+            console.log(this.title, tag)
+        }, this);
+    }
+};
+
+tagvideo.showTags()
