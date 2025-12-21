@@ -1,3 +1,9 @@
+##############
+*** only functions create scope, not objects.
+function () { } → creates new this
+() => { } → does NOT create new this
+{ } object literal → does NOT create new this
+##############
 Arrow Function Syntax
 When working with Arrow Functions, you have a couple of "syntax shortcuts" available.
 
