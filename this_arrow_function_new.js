@@ -23,146 +23,48 @@ userName => { ... }
 Please note: 
 
 If your function takes no parameters, parentheses must not be omitted - () => { ... } is the only correct form in that case.
-
 If your function takes more than one parameter, you also must not omit parentheses - userName, userAge => { ... } would be invalid ((userName, userAge) => { ... } is correct)!
 
 2) Omitting function body curly braces
-
 If your arrow function contains no other logic but a return statement, you may omit the curly braces and the return keyword.
-
 Instead of
-
 number => { 
   return number * 3;
 }
 you could write
+number => number * 3; 
 
-number => number * 3;
+Arrow functions have two forms:
+Implicit return:
+  items.map(item => (
+    <li>{item}</li>
+  ));
+This is a single expression
+JavaScript automatically returns it
+
+Block body → explicit return required
+items.map(item => {
+  return <li>{item}</li>;
+});
+{} creates a function block
+JavaScript assumes you’ll write statements
+You must use return
+---
 The following code would be invalid:
-
 number => return number * 3; // invalid because return keyword must also be omitted!
 number => if (number === 2) { return 5 }; // invalid because if statements can't be returned
+
 3) Special case: Just returning an object
-
 If you go for the shorter alternative explained in 2) and you're trying to return a JavaScript object, you may end up with the following, invalid code:
-
 number => { age: number }; // trying to return an object
 This code would be invalid because JavaScript treats the curly braces as function body wrappers (not as code that creates a JS object).
 
 To "tell" JavaScript that an object should be created (and returned) instead, the code would need to be adjusted like this:
 
 number => ({ age: number }); // wrapping the object in extra parentheses
-By wrapping the object and its curly braces with an extra pair of parentheses, JavaScript understands that the curly braces are not there to define a function body but instead to create an object. Hence that object then gets returned.
+By wrapping the object and its curly braces with an extra pair of parentheses, JavaScript understands that the curly braces are not there to define a function body but instead to create an object. 
+  Hence that object then gets returned.
 
-Play
-12. Module Introduction
-2min
-Play
-13. Starting Project
-1min
-Play
-14. Adding JavaScript To A Page & How React Projects Differ
-7min
-Play
-15. React Projects Use a Build Process
-8min
-Play
-16. "import" & "export"
-12min
-Play
-17. Revisiting Variables & Values
-7min
-Play
-18. Revisiting Operators
-3min
-Play
-19. Revisiting Functions & Parameters
-8min
-Start
-Coding Exercise 1: Exercise: Working with Functions
-Play
-20. Arrow Functions
-2min
-Start
-21. More on the Arrow Function Syntax
-1min
-Play
-22. Revisiting Objects & Classes
-6min
-Play
-23. Arrays & Array Methods like map()
-11min
-Start
-Coding Exercise 2: Exercise: Array Methods
-Play
-24. Destructuring
-5min
-Start
-25. Destructuring in Function Parameter Lists
-1min
-Play
-26. The Spread Operator
-3min
-Play
-27. Revisiting Control Structures
-5min
-Play
-28. Manipulating the DOM - Not With React!
-1min
-Play
-29. Using Functions as Values
-7min
-Play
-30. Defining Functions Inside Of Functions
-2min
-Play
-31. Reference vs Primitive Values
-5min
-Start
-32. Next-Gen JavaScript - Summary
-4min
-Start
-33. JS Array Functions
-1min
-Start
-34. Module Resources
-1min
-Play
-538. Module Introduction
-1min
-Play
-539. Project Overview
-1min
-Play
-540. Introducing Compound Components
-11min
-Play
-541. Managing Multi-Component State with the Context API
-11min
-Play
-542. Grouping Compound Components
-6min
-Play
-543. Adding Extra Components For Reusability & Configurability
-9min
-Play
-544. Sharing Cross-Component State When Working With Compound Components
-6min
-Play
-545. Introducing & Using Render Props
-6min
-Play
-546. Adding Search To A React App
-4min
-Play
-547. Implementing a Search Functionality With Help Of Render Props
-4min
-Play
-548. Handling Keys Dynamically
-3min
-Play
-549. Working with Debouncing
-7min
 ##########################
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/689c92ef-918c-8323-ab81-4d4b4d54cab4
 ✅ Key takeaway for arrow functions:
