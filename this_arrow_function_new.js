@@ -127,10 +127,15 @@ user.getName(); // undefined
 Why undefined?
 this inside arrow function does NOT refer to user.
 It refers to the outer scope (global), where name does not exist.
-Object literals do not create their own scope. 
+Object literals do not create their own scope.
 Even though the arrow function is written inside the user object literal, the object itself does NOT create a scope.
-✅ Correct Rule
 
+*** only functions create scope, not objects.
+function () { } → creates new this
+() => { } → does NOT create new this
+{ } object literal → does NOT create new this
+
+✅ Correct Rule
 Arrow functions inherit this from the lexical (surrounding execution) scope, not from the object they are inside.
 Object literals do not create their own scope.
 So the getName arrow function’s surrounding scope is NOT user, but the global scope (or module scope).
