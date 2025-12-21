@@ -23,6 +23,29 @@ Arrow functions are the rebel children — they ignore this rule and just take t
 *** In regular functions, this is dynamic (decided at call time)
 *** In arrow functions, this is lexical (decided at creation time)
 ---
+Flow summary: (*** understand the content below this flow diagram)
+Is the function an arrow function?
+  │
+  ├── YES → Inherit `this` from surrounding scope
+  │             ▲
+  │             │
+  │    Closest enclosing scope:
+  │      ├─ Regular function? → Use its `this`
+  │      ├─ Another arrow? → Keep climbing outward
+  │      └─ Global/module? → Use global/module `this`
+  │
+  └── NO (Regular function)
+        │
+        ├── Called with `new`? → `this` = New object
+        │
+        ├── Called with .call/.apply/.bind?
+        │        → `this` = First argument passed
+        │
+        ├── Called as obj.method()? → `this` = Object left of dot
+        │
+        └── None of the above?
+                 → `this` = Global object (non-strict) or undefined (strict)
+----
 1️⃣ Global Context
 Outside of any function:
 console.log(this); 
