@@ -215,3 +215,9 @@ obj.inc();
 
 Arrow function inherits this from inc(),
 so it updates obj.count.
+
+########################
+Never call the function inside setTimeout
+setTimeout(fn, delay)   // ✔
+setTimeout(fn(), delay) // ❌
+Example in function-methods-call-apply-bind.js
