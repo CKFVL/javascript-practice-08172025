@@ -6,6 +6,7 @@ object
 object types
 object properties
 object destructuring
+ObjectPropertiesScope.js (important)
 ObjectLiteralVsJSON.js
 object property descriptors
 object property existence
