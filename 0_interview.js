@@ -19,20 +19,17 @@ rest and spread
 Object.assignVsSpread.js
 boolean
 ---
+call, apply and bind
+---
 function
 constructor function
-
-closure
-lexicalbinding
-this (new,literal, function, array function)
-
-hoisting
-currying
 HOF
-
+hoisting
+lexicalbinding
+closure
+currying
+this (new,literal, function, array function)
 diff b/w constructor and factory
----
-call, apply and bind
 ---
 promise
 async await
