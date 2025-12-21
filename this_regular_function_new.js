@@ -309,4 +309,34 @@ Is the function an arrow function?
         │
         └── None of the above?
                  → `this` = Global object (non-strict) or undefined (strict)
+Example:
+------
+  const obj={
+  name:'pavan',
+  log: ()=>{
+    console.log(this.name)
+  }
+}
 
+obj.log()
+
+const obj2={
+  name:'pavan',
+  log: function(){
+    console.log(this.name)
+  }
+}
+
+obj2.log()
+
+const obj3={
+  name:'pavan',
+  log: function(){
+    console.log('function ',this.name)
+    setTimeout(()=>{
+      console.log('arrow timeout',this.name)
+    }, 1000);
+  }
+}
+
+obj3.log()
