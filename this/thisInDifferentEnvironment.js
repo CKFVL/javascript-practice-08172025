@@ -46,3 +46,53 @@ Strict vs Non-strict mode
 So your Node.js  summary is almost correct, but slightly oversimplified:
 Top-level this → always module.exports (strict or non-strict).
 Inside functions → differs (global vs undefined).
+
+Example (in nodejs):
+---------
+'use strict'
+console.log(this) // nodejs: {}
+this.color = "qwewq" // nodejs: {color:qwewq}
+console.log("global scope: " + this.color) // qwewq
+
+var color = "sdsdf" // nodejs:color
+console.log("var scope: " + color)
+
+let Car = function (_color) {
+    this.color = _color; // purple
+    color = _color; // assigns to global var 'color'
+}
+
+let car = new Car('purple');
+console.log(car.color) // purple
+
+console.log("global scope again: " + this.color) // qwewq
+console.log("var scope again: " + color) // purple
+
+// function (non-method)
+function testThis(){
+  console.log(this)
+}
+testThis()
+
+Output:
+---------
+{}
+global scope: qwewq
+var scope: sdsdf
+purple
+global scope again: qwewq
+var scope again: purple
+undefined
+
+Above Example (in browser console-dev tools)
+(this equals window object)
+Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+global scope: qwewq
+var scope: sdsdf
+purple
+global scope again: purple
+var scope again: purple
+undefined
+
+
+
