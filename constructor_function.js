@@ -1,12 +1,8 @@
-Browser (scripts, not modules)
-Mode	    this
-Non-strict	window
-Strict	    undefined
----
-Node.js     (CommonJS)
-Mode	    this
-Non-strict	module.exports
-Strict	    module.exports (initially {})
+Environment	        Mode	        Global this (top-level)	            Function this (non-method)
+Browser	            Non-strict	    window(refers to global object)	    window
+                    Strict	        undefined	                        undefined
+Node.js	            Non-strict	    module.exports(initially {})	    global
+                    Strict	        module.exports(initially {})	    undefined
 #############################################
 how constructor function works in javascript
 ChatGPT said:
