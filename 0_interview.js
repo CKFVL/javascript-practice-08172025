@@ -28,7 +28,7 @@ hoisting
 lexicalbinding
 closure
 currying
-this (new,literal, function, array function)
+this (this_new,this_regular_function_new.js,this_arrow_function_new.js,this-literal.js, this_examples_new.js)
 diff b/w constructor and factory
 ---
 promise
