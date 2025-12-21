@@ -144,12 +144,6 @@ startBike(); // undefined → no left-of-dot
 
 ################
 Inside setTimeout or Callback
-function Timer() { 
-this.seconds = 0; 
-setInterval(() => { this.seconds++; console.log(this.seconds); }, 1000); } 
-
-new Timer();
-
 ✅ Code
 function Timer() {
   this.seconds = 0;
