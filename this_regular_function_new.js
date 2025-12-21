@@ -45,7 +45,7 @@ Is the function an arrow function?
         │
         └── None of the above?
                  → `this` = Global object (non-strict) or undefined (strict)
-----
+##############
 1️⃣ Global Context
 Outside of any function:
 console.log(this); 
