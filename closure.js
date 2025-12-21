@@ -1,6 +1,6 @@
 Scopes in js: local, global, closure
 ---
-
+Reference: https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/6892b9bd-eb34-8331-87b6-c22ab37b994d
 Lexical binding:
 ----------------
 the scope of the variable is based on the physical structure of the code (i.e. where variables or functions are written) - called as lexical scope or static scope
@@ -167,6 +167,7 @@ const user=CreateUser('pavan')
 console.log(newuser.checkPassword('secret123'))
 
 ---
+Function factory:
 function multiplier(factor) {
   return function (x) {
     return x * factor;
@@ -185,12 +186,44 @@ for (let i = 0; i < 3; i++) {
 }
 // Output: 0 1 2 (after 1 second)
 
+What happens:
+let is block-scoped
+Each iteration creates a new binding of i
+Each setTimeout callback closes over its own i
+
+{
+  let i = 0;
+  setTimeout(() => console.log(i), 1000);
+}
+{
+  let i = 1;
+  setTimeout(() => console.log(i), 1000);
+}
+{
+  let i = 2;
+  setTimeout(() => console.log(i), 1000);
+}
+
 ---
 4. Loop with Closure (using var) - classic trap
 for (var i = 0; i < 3; i++) {
   setTimeout(() => console.log(i), 1000);
 }
 // Output: 3 3 3 (not 0 1 2)
+
+What happens:
+var is function-scoped
+Only ONE i exists
+All callbacks reference the same i
+By the time callbacks run:
+i === 3
+
+Conceptually:
+var i;
+i = 0; setTimeout(() => console.log(i), 1000);
+i = 1; setTimeout(() => console.log(i), 1000);
+i = 2; setTimeout(() => console.log(i), 1000);
+i = 3; // loop ends
 
 Fix using closure:
 for (var i = 0; i < 3; i++) {
