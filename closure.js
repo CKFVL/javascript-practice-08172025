@@ -265,6 +265,21 @@ console.log(counter.increment())
 console.log(counter.getCount())
 console.log(counter.decrement())
 ---
+Counter Module Pattern
+const Counter = (function () {
+  let count = 0;
+
+  return {
+    increment: () => ++count,
+    decrement: () => --count,
+    get: () => count,
+  };
+})();
+
+console.log(Counter.increment()); // 1
+console.log(Counter.increment()); // 2
+console.log(Counter.get()); // 2
+---
 setTimeOutClosure:
 function delayedMessage(msg, delay) {
   setTimeout(() => {
