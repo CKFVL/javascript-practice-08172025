@@ -1,3 +1,13 @@
+Browser (scripts, not modules)
+Mode	    this
+Non-strict	window
+Strict	    undefined
+---
+Node.js     (CommonJS)
+Mode	    this
+Non-strict	module.exports
+Strict	    module.exports (initially {})
+#############################################
 how constructor function works in javascript
 ChatGPT said:
 
