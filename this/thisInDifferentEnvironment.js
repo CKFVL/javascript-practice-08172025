@@ -7,6 +7,14 @@ Node.js	                  Non-strict	    module.exports(initially {})	      glob
 Rule of thumb 🧠
 Never rely on DevTools console behavior to understand `this`
 
+Quick comparison
+Environment	          Strict             Mode	        this
+Browser               DevTools console	  Yes	        window
+Browser               <script> file	      Yes	        undefined
+Browser ES module	    Always              strict	    undefined
+Node.js               REPL	              Any	        global
+Node.js               CommonJS file	      Any	        module.exports
+
 Browser (scripts, not modules):
 ------------------------------
   Non-strict mode (global scope)
