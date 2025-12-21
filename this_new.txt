@@ -103,41 +103,51 @@ So global this.color and local car.color both end up "purple".
 ---
 In Node.js, strict mode or not, the top-level this behaves differently.
 
+//'use strict'
+// In Node global scope:
+// this = {} (module.exports)
+// So it sets:
+// module.exports.color = "qwewq"
+this.color = "qwewq"
+console.log("test global scope" + this.color) // qwewq
+
+// var in Node adds to global
+// → global.color = "sdsdf"
+var color = "sdsdf" // hoisted
+
+
+let Car = function (_color) {
+    this.color = _color; // / car.color = "purple"
+    color = _color; // modifies the global variable 'color'
+}
+
+let car = new Car('purple');
+console.log(car.color) // purple
+
+console.log("test global scope" + this.color) // qwewq
+console.log("test global scope" + color) // purple
+
 👉 In Node.js top-level this IS NOT global
-
 this is an empty object ({})
-
 NOT global
-
 So:
-
 this.color = "qwewq";
 
-
 creates a property ON THAT EMPTY OBJECT, NOT GLOBAL.
-
 Meanwhile:
-
 var color = "sdsdf";
 
 
 Still becomes a global variable (global.color).
-
 So:
-
 this.color = "qwewq"
-
-
 and
-
 color = "purple"
-
 
 modify two different things.
 
 🔍 Let’s break down Node.js behavior
 1. this.color = "qwewq"
-
 In Node global scope:
 this = {} (module.exports)
 
@@ -145,7 +155,6 @@ So it sets:
 module.exports.color = "qwewq"
 
 2. var color = "sdsdf"
-
 var in Node adds to global
 → global.color = "sdsdf"
 
@@ -155,9 +164,7 @@ color = _color;        // modifies the global variable 'color'
 
 
 So:
-
 global.color = "purple"
-
 But this.color at top level was set on a different object, so it stays "qwewq".
 
 🎉 Final Explanation for Your Exact Output
