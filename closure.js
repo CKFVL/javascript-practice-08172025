@@ -248,22 +248,6 @@ Today, you can achieve the same much more cleanly using let:
 for (let i = 0; i < 3; i++) {
   setTimeout(() => console.log(i), 1000);
 }
-
----
-Counter Module pattern:
-function counterFn(){
-  let count=0;
-
-  return {
-    increment: ()=> ++count,
-    decrement: ()=> --count,
-    getCount: ()=> count
-  }
-}
-const counter=new counterFn();
-console.log(counter.increment())
-console.log(counter.getCount())
-console.log(counter.decrement())
 ---
 Counter Module Pattern
 const Counter = (function () {
