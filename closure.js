@@ -149,6 +149,11 @@ Closure	        Function + access to outer scope variables, even after outer fun
 Created when	  A function is defined (not executed)
 Enables	        Data hiding, currying, memoization, function factories, module patterns
 ##############
+*** only functions create scope, not objects.
+function () { } → creates new this
+() => { } → does NOT create new this
+{ } object literal → does NOT create new this
+##############
 Closures examples:
 -----------------
 Data Privacy/Encapsulation:
