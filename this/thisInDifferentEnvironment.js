@@ -1,8 +1,10 @@
 Environment	              Mode	          Global this (top-level)	           Function this (non-method)
-Browser	                  Non-strict	    window(refers to global object)	      window
+Browser	                  Non-strict	    window(refers to global object)	    window
 (scripts, not modules)    Strict	        undefined	                          undefined
 Node.js	                  Non-strict	    module.exports(initially {})	      global
                           Strict	        module.exports(initially {})	      undefined
+Browser	                  Non-strict	    window(refers to global object)	      window
+(dev tools)               Strict	        window(refers to global object)	    undefined
 
 Rule of thumb 🧠
 Never rely on DevTools console behavior to understand `this`
