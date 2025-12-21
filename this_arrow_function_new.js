@@ -28,27 +28,27 @@ If your function takes more than one parameter, you also must not omit parenthes
 2) Omitting function body curly braces
 If your arrow function contains no other logic but a return statement, you may omit the curly braces and the return keyword.
 Instead of
-number => { 
-  return number * 3;
-}
+  number => { 
+    return number * 3;
+  }
 you could write
-number => number * 3; 
+  number => number * 3; 
 
 Arrow functions have two forms:
-Implicit return:
+1) Implicit return:
   items.map(item => (
     <li>{item}</li>
   ));
-This is a single expression
-JavaScript automatically returns it
+  This is a single expression
+  JavaScript automatically returns it
 
-Block body → explicit return required
-items.map(item => {
-  return <li>{item}</li>;
-});
-{} creates a function block
-JavaScript assumes you’ll write statements
-You must use return
+2) Block body → explicit return required
+  items.map(item => {
+    return <li>{item}</li>;
+  });
+  {} creates a function block
+  JavaScript assumes you’ll write statements
+  You must use return
 ---
 The following code would be invalid:
 number => return number * 3; // invalid because return keyword must also be omitted!
