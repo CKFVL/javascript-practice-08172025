@@ -40,30 +40,19 @@ test global scopepurple
 
 explanation:
 🚨 1. 'use strict' changes this in global scope
-
 In strict mode, inside a function this becomes undefined.
 But in the top-level global scope of a module or script:
-
 In browser (script) → this = window
-
 In strict mode browser console → STILL window
-
 In Node.js → this = {} (empty object)
-
 You are likely running this in a browser, so:
-
 this.color = "qwewq"
-
-
 adds a property to window.color.
 
 🚨 2. var color = "sdsdf" creates a global variable AND attaches to window
 
 In browsers:
-
 var color = "sdsdf"
-
-
 → also creates window.color = "sdsdf", overriding your earlier value "qwewq".
 
 So the sequence becomes:
@@ -71,6 +60,7 @@ So the sequence becomes:
 Step	Action	Result
 this.color = "qwewq"	sets window.color = "qwewq"	color = "qwewq"
 var color = "sdsdf"	replaces window.color	color = "sdsdf"
+
 🚗 3. Inside constructor Car
 this.color = _color;   // sets car.color = "purple"
 color = _color;        // assigns to global var 'color'
@@ -83,16 +73,11 @@ color = _color modifies global variable → window.color
 So after:
 
 new Car("purple")
-
-
 you get:
-
 car.color = "purple"
-
 window.color = "purple"
 
 🔥 Final Explanation Summary
-
 In global scope, this refers to window (in browsers), even in strict mode.
 var color attaches to the global object.
 Your constructor sets:
@@ -101,7 +86,7 @@ color → global variable → window.color
 So global this.color and local car.color both end up "purple".
 
 ---
-In Node.js, strict mode or not, the top-level this behaves differently.
+*** In Node.js, strict mode or not, the top-level this behaves differently.
 
 //'use strict'
 // In Node global scope:
@@ -137,7 +122,6 @@ creates a property ON THAT EMPTY OBJECT, NOT GLOBAL.
 Meanwhile:
 var color = "sdsdf";
 
-
 Still becomes a global variable (global.color).
 So:
 this.color = "qwewq"
@@ -145,12 +129,10 @@ and
 color = "purple"
 
 modify two different things.
-
 🔍 Let’s break down Node.js behavior
 1. this.color = "qwewq"
 In Node global scope:
 this = {} (module.exports)
-
 So it sets:
 module.exports.color = "qwewq"
 
@@ -161,7 +143,6 @@ var in Node adds to global
 3. Inside constructor:
 this.color = _color;   // car.color = "purple"
 color = _color;        // modifies the global variable 'color'
-
 
 So:
 global.color = "purple"
@@ -181,15 +162,11 @@ test global scopeqwewq
 test global scopepurple
 
 🚀 Want Proof?
-
 Run these in Node:
-
 console.log("this === global ?", this === global);
 console.log("this:", this);
 
-
 You’ll see:
-
 this === global ? false
 this: {}
 
@@ -198,10 +175,6 @@ In Node.js:
 
 this (top-level) → module.exports object
 (NOT global object)
-
 var x → attaches to global
-
 Arrow functions still capture lexical this, but that’s separate
-
-
 
