@@ -74,7 +74,7 @@ function testThis(){
 }
 testThis()
 
-Output:
+Output ('use strict')
 ---------
 {}
 global scope: qwewq
@@ -84,7 +84,39 @@ global scope again: qwewq
 var scope again: purple
 undefined
 
-Above Example (in browser console-dev tools)
+Output (not strict mode)
+---------
+Output:
+{}
+global scope: qwewq
+var scope: sdsdf
+purple
+global scope again: qwewq
+var scope again: purple
+<ref *1> Object [global] {
+  global: [Circular *1],
+  clearImmediate: [Function: clearImmediate],
+  setImmediate: [Function: setImmediate] {
+    [Symbol(nodejs.util.promisify.custom)]: [Getter]
+  },
+  clearInterval: [Function: clearInterval],
+  clearTimeout: [Function: clearTimeout],
+  setInterval: [Function: setInterval],
+  setTimeout: [Function: setTimeout] {
+    [Symbol(nodejs.util.promisify.custom)]: [Getter]
+  },
+  queueMicrotask: [Function: queueMicrotask],
+  structuredClone: [Function: structuredClone],
+  atob: [Function: atob],
+  btoa: [Function: btoa],
+  performance: [Getter/Setter],
+  fetch: [Function: fetch],
+  navigator: [Getter],
+  crypto: [Getter]
+}
+
+#########################
+Above Example (in browser console-dev tools- 'use strict')
 (this equals window object)
 Window {window: Window, self: Window, document: document, name: '', location: Location, …}
 global scope: qwewq
@@ -94,5 +126,13 @@ global scope again: purple
 var scope again: purple
 undefined
 
+(in browser console-dev tools- 'non strict mode')
+Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+VM98:4 global scope: qwewq
+VM98:7 var scope: sdsdf
+VM98:15 purple
+VM98:17 global scope again: purple
+VM98:18 var scope again: purple
+VM98:22 Window {window: Window, self: Window, document: document, name: '', location: Location, …}
 
 
