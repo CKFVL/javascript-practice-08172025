@@ -92,7 +92,6 @@ undefined
 
 ✅ Correct ways to fix it
 ✅ Option 1: Use bind
-
 Best and cleanest 👌
 setTimeout(pavan.sayName.bind(pavan), 3000)
 
