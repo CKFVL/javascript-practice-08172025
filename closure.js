@@ -25,6 +25,7 @@ console.log(outeddr())
 console.log(outeddr())
 console.log(outeddr())
 
+✅ What’s happening:
 inner() is lexically bound to the outer() function’s scope.
 Even after outer() has finished executing, the inner() function retains access to count because it was declared inside outer().
 This is possible because of closures, which are enabled by lexical binding.
@@ -162,7 +163,7 @@ function CreateUser(name){ // A factory function is any function that returns a 
   
 }
 
-const newuser=new CreateUser('pavan')
+const user=CreateUser('pavan')
 console.log(newuser.checkPassword('secret123'))
 
 ---
