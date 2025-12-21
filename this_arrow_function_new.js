@@ -4,13 +4,14 @@ function () { } → creates new this
 () => { } → does NOT create new this
 { } object literal → does NOT create new this
 ##############
+NOTE: Understand this first, this_regular_function_new.js and then read this page
+##############
 Arrow Function Syntax
 When working with Arrow Functions, you have a couple of "syntax shortcuts" available.
 
 Most importantly, you should know about the following alternatives:
 
 1) Omitting parameter list parentheses
-
 If your arrow functions takes exactly one parameter, you may omit the wrapping parentheses.
 
 Instead of
