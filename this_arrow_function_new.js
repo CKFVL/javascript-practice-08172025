@@ -135,6 +135,20 @@ function () { } → creates new this
 () => { } → does NOT create new this
 { } object literal → does NOT create new this
 
+Example:
+const user={
+  name: "Interview",
+  regularFn: function(){
+    console.log('regularFn', this.name)
+  },
+  arrowFn: () => {
+    console.log("arrowFn:", this.name)
+  }
+};
+
+user.regularFn();
+user.arrowFn();
+
 ✅ Correct Rule
 Arrow functions inherit this from the lexical (surrounding execution) scope, not from the object they are inside.
 Object literals do not create their own scope.
@@ -183,13 +197,6 @@ const object = {
 object.log(); // output: 10
 
 ###############################
-
-function Timer() { 
-this.seconds = 0; 
-setInterval(() => { this.seconds++; console.log(this.seconds); }, 1000); } 
-
-new Timer();
-
 ✅ Code
 function Timer() {
   this.seconds = 0;
@@ -201,18 +208,15 @@ function Timer() {
 }
 
 new Timer();
-
 ✔️ First Key Point — Constructor call with new
 
 When you call:
-
 new Timer();
 JavaScript does the following internally:
 Creates a new empty object
 → {}
 Sets this inside Timer() to that new object
 → this = {} (the new Timer instance)
-
 It adds the property:
 this.seconds = 0;
 So now the object is:
@@ -285,9 +289,7 @@ class Test {
 const t = new Test();
 t.increment(); // 1
 
-
 Arrow function increment captures this from the instance automatically.
-
 #################
 Arrow Function Created Here
           │
@@ -365,17 +367,3 @@ function Timer() {
 }
 
 new Timer(); //NaN
----
-###############
-const user={
-  name: "Interview",
-  regualrFn: function(){
-    console.log('regularFn', this.name)
-  },
-  arrowFn: () => {
-    console.log("arrowFn:", this.name)
-  }
-};
-
-user.regularFn();
-user.arrowFn();
