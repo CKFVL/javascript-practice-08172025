@@ -308,6 +308,9 @@ counter.increment()
 console.log(counter.get())
 ---
 // another example:
+https://github.com/CKFVL/javascript-practice-08172025/blob/main/fibonacci.js
+
+using ES6:
 'use strict'
 
 var fibonacci = function() {
