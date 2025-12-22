@@ -53,51 +53,72 @@ Inside functions → differs (global vs undefined).
 
 Example (in nodejs):
 ---------
-'use strict'
-console.log(this) // nodejs: {}
-this.color = "qwewq" // nodejs: {color:qwewq}
-console.log("global scope: " + this.color) // qwewq
+console.log(this)
+this.color = "qwewq"
+console.log("global scope: " + this.color)
 
-var color = "sdsdf" // nodejs:color
+var color = "sdsdf"
 console.log("var scope: " + color)
 
 let Car = function (_color) {
-    this.color = _color; // purple
-    color = _color; // assigns to global var 'color'
+    this.color = _color;
+    color = _color;
 }
 
+// constructor function
 let car = new Car('purple');
-console.log(car.color) // purple
+console.log('constructor function: ', car.color)
 
-console.log("global scope again: " + this.color) // qwewq
-console.log("var scope again: " + color) // purple
+console.log("global scope again: " + this.color)
+console.log("var scope again: " + color)
 
 // function (non-method)
 function testThis(){
-  console.log(this)
+  console.log('function (non-method)', this)
 }
 testThis()
+
+// arrow function
+const arrowfn=()=>{
+  console.log('this in arrow fn: ',this)
+}
+arrowfn()
+
+// object literal
+const person={
+  name:'pavan',
+  regFn: function(){
+    console.log('object literal regular function', this)
+  },
+  arrFn: ()=>{
+    console.log('object literal arrow function', this)
+  }
+}
+person.regFn()
+person.arrFn()
 
 Output ('use strict')
 ---------
 {}
 global scope: qwewq
 var scope: sdsdf
-purple
+constructor function:  purple
 global scope again: qwewq
 var scope again: purple
-undefined
+function (non-method) undefined
+this in arrow fn:  { color: 'qwewq' }
+object literal regular function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
+object literal arrow function { color: 'qwewq' }
 
 Output (not strict mode)
 ---------
-Output:
 {}
 global scope: qwewq
 var scope: sdsdf
-purple
+constructor function:  purple
 global scope again: qwewq
 var scope again: purple
-<ref *1> Object [global] {
+function (non-method) <ref *1> Object [global] {
   global: [Circular *1],
   clearImmediate: [Function: clearImmediate],
   setImmediate: [Function: setImmediate] {
@@ -118,7 +139,9 @@ var scope again: purple
   navigator: [Getter],
   crypto: [Getter]
 }
-
+this in arrow fn:  { color: 'qwewq' }
+object literal regular function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
+object literal arrow function { color: 'qwewq' }
 #########################
 Above Example (in browser console-dev tools- 'use strict')
 (this equals window object)
