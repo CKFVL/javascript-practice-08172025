@@ -34,14 +34,14 @@ diff b/w constructor and factory
 ---
 promise
 async await
-
 ---
 es6 class
 inheritance
 ---
+memoization
 callbackstarvation
 event loop
-
+tail recursion
 ####################
 document.querySelector('button').innerHTML
 document.querySelector('.js-buton').innerHTML
