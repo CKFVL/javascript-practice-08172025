@@ -146,46 +146,26 @@ object literal arrow function { color: 'qwewq' }
 Above Example (in browser console-dev tools- 'use strict')
 (this equals window object)
 Output:
-{}
-global scope: qwewq
-var scope: sdsdf
-constructor function:  purple
-global scope again: qwewq
-var scope again: purple
-function (non-method) undefined
-this in arrow fn:  { color: 'qwewq' }
-object literal regular function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
-object literal arrow function { color: 'qwewq' }
+Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+VM418:4 global scope: qwewq
+VM418:7 var scope: sdsdf
+VM418:16 constructor function:  purple
+VM418:18 global scope again: purple
+VM418:19 var scope again: purple
+VM418:23 function (non-method) undefined
+VM418:29 this in arrow fn:  Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+VM418:37 object literal regular function {name: 'pavan', regFn: ƒ, arrFn: ƒ}
+VM418:40 object literal arrow function Window {window: Window, self: Window, document: document, name: '', location: Location, …}
 ---
 (in browser console-dev tools- 'non strict mode')
 Output:
-{}
-global scope: qwewq
-var scope: sdsdf
-constructor function:  purple
-global scope again: qwewq
-var scope again: purple
-function (non-method) <ref *1> Object [global] {
-  global: [Circular *1],
-  clearImmediate: [Function: clearImmediate],
-  setImmediate: [Function: setImmediate] {
-    [Symbol(nodejs.util.promisify.custom)]: [Getter]
-  },
-  clearInterval: [Function: clearInterval],
-  clearTimeout: [Function: clearTimeout],
-  setInterval: [Function: setInterval],
-  setTimeout: [Function: setTimeout] {
-    [Symbol(nodejs.util.promisify.custom)]: [Getter]
-  },
-  queueMicrotask: [Function: queueMicrotask],
-  structuredClone: [Function: structuredClone],
-  atob: [Function: atob],
-  btoa: [Function: btoa],
-  performance: [Getter/Setter],
-  fetch: [Function: fetch],
-  navigator: [Getter],
-  crypto: [Getter]
-}
-this in arrow fn:  { color: 'qwewq' }
-object literal regular function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
-object literal arrow function { color: 'qwewq' }
+Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+VM422:4 global scope: qwewq
+VM422:7 var scope: sdsdf
+VM422:16 constructor function:  purple
+VM422:18 global scope again: purple
+VM422:19 var scope again: purple
+VM422:23 function (non-method) Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+VM422:29 this in arrow fn:  Window {window: Window, self: Window, document: document, name: '', location: Location, …}
+VM422:37 object literal regular function {name: 'pavan', regFn: ƒ, arrFn: ƒ}
+VM422:40 object literal arrow function Window {window: Window, self: Window, document: document, name: '', location: Location, …}
