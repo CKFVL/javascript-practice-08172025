@@ -90,3 +90,5 @@ for(item of obj){
   }
 }
 console.log(output)
+###############
+use reduce: 
