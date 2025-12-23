@@ -6,7 +6,8 @@ let items=[ {color: 'red', type: 'tv', age: 18},
 
 function excludeItems(items, excludes){
   const excludeMap=new Map();
-  
+
+  // Runs once per exclude rule → m
   excludes.forEach(({k,v})=>{
     if(!excludeMap.has(k)){
       excludeMap.set(k,v)
@@ -20,7 +21,10 @@ function excludeItems(items, excludes){
 
   
   console.log(excludeMap)
-  
+
+  // filter runs n times
+  // Inner for...of iterates over excludeMap → m
+  // O(n × m)
   items=items.filter(item => {
     for(const [k,v] of excludeMap){
       if(item[k] === v){
@@ -33,6 +37,10 @@ function excludeItems(items, excludes){
   console.log(items)
   
 }
+
+// ✅ Total Time Complexity
+// O(m) + O(n × m)  ⇒  O(n × m)
+//(The smaller O(m) is dominated by O(n × m))
 
 excludeItems(items, excludes)
 
