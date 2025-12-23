@@ -91,4 +91,14 @@ for(item of obj){
 }
 console.log(output)
 ###############
-use reduce: 
+const result=obj.reduce((acc, currentValue, index, obj)=>{
+  if(acc[currentValue['key']]!==undefined){
+    acc[currentValue['key']].push(currentValue);
+  }else{
+    acc[currentValue['key']]=[currentValue]
+  }
+  return acc;
+}, {})
+
+
+console.log(result)
