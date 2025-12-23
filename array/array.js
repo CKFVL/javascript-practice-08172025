@@ -1,3 +1,20 @@
+indexOf: returns index of element occurence
+findIndex: accepts a function
+find
+push
+pop
+shift
+unshift
+slice
+splice
+sort
+reverse
+map
+filter
+reduce
+every
+  
+#####################
 findIndex accepts a function:
 hobbies.findIndex((item) => {
   return item === 'sports'
