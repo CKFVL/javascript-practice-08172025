@@ -4,6 +4,23 @@ let items=[ {color: 'red', type: 'tv', age: 18},
 {color: 'silver', type: 'phone', age: 28}, 
 {color: 'bluw', type: 'book', age: 138}, ]
 
+approach 1:
+function excludeItems(items, excludes) {
+  excludes.forEach(pair => {
+    items = items.filter(item => item[pair.k] !== pair.v);
+  });
+  return items;
+}
+
+####################
+approach 2:
+function excludeItems(items, excludes) {
+  return items.filter(item =>
+    excludes.every(({ k, v }) => item[k] !== v)
+  );
+}
+####################
+approach 3:
 function excludeItems(items, excludes){
   const excludeMap=new Map();
 
@@ -43,4 +60,6 @@ function excludeItems(items, excludes){
 //(The smaller O(m) is dominated by O(n × m))
 
 excludeItems(items, excludes)
+####################
+approach 4:
 
