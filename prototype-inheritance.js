@@ -1,7 +1,7 @@
 In JS, everything is an object
-// every object in javascript has master Object and has a property called prototype, which allows to add new proeprties/methods.
-// when a new object is created from the prototype obejct, new object uses its properties.
-// advantage: prototype can be used when a variable or function/behaviour needs to be shared among the instances of function
+every object in javascript has master Object and has a property called prototype, which allows to add new proeprties/methods.
+when a new object is created from the prototype obejct, new object uses its properties.
+// advantage: *** DO NOT DRY***, prototype can be used when a variable or function/behaviour needs to be shared among the instances of function
 let car = function (model) {
     this.model = model;
 }
