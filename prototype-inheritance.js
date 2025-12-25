@@ -2,6 +2,39 @@ In JS, everything is an object
 every object in javascript has master Object and has a property called prototype, which allows to add new proeprties/methods.
 when a new object is created from the prototype obejct, new object uses its properties.
 advantage: *** DO NOT DRY***, prototype can be used when a variable or function/behaviour needs to be shared among the instances of function
+
+const p1={
+  fname: "pavan",
+  lname: "bhogala",
+  getFullName(){
+    return `${this.fname} ${this.lname}`
+  }
+}
+
+
+//const p2=Object.create(p1) // __proto__ is assigned with p1
+// OR equivalent of above to create from prototype
+const p2={
+  __proto__: p1
+}
+console.log(p2) // empty object
+console.log(p2.__proto__) // prints all data in p1
+console.log(p2.__proto__.fname)
+console.log(p2.__proto__.getFullName())
+// inheritance (gets value from __proto as fname is not available in p2 directly)
+console.log(p2.fname)
+console.log(p2.getFullName())
+
+p2.__proto__.fname="Hack"
+console.log('p1 after hack:', p1) // since object is pass by reference in JS
+
+// REAL WORLD Examples
+let fname='pavan bhogala'
+//several functions are available from wrapper classes 
+//e.g. in String, functions like concat, lastIndexOf, charAt, length are available automatically
+console.log(fname.__proto__) // prints String wrapper object with all functions, String {'', anchor: ƒ, at: ƒ, big: ƒ, blink: ƒ, …}
+
+// ###############################################################################################################################
 let car = function (model) {
     this.model = model;
 }
