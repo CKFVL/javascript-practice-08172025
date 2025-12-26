@@ -1,5 +1,6 @@
 In JS, everything is an object
-every object in javascript has master Object and has a property called prototype, which allows to add new proeprties/methods.
+every object in javascript has master Object and has a property called prototype, 
+which allows to add new properties/methods.
 when a new object is created from the prototype obejct, new object uses its properties.
 advantage: *** DO NOT DRY***, prototype can be used when a variable or function/behaviour needs to be shared among the instances of function
 
@@ -10,7 +11,6 @@ const p1={
     return `${this.fname} ${this.lname}`
   }
 }
-
 
 //const p2=Object.create(p1) // __proto__ is assigned with p1
 // OR equivalent of above to create from prototype
@@ -34,72 +34,175 @@ let fname='pavan bhogala'
 //e.g. in String, functions like concat, lastIndexOf, charAt, length are available automatically
 console.log(fname.__proto__) // prints String wrapper object with all functions, String {'', anchor: ƒ, at: ƒ, big: ƒ, blink: ƒ, …}
 
-// ###############################################################################################################################
-let car = function (model) {
-    this.model = model;
+Another example:
+----------------
+// run this in browser console
+const p1={
+  name: 'pavan',
+  age: 30
 }
-car.prototype.getModel() = function () {
-    return this.model;
-}
-console.log(car("jgjg"))
 
+const p2={
+  phone: '70988888',
+  __proto__: p1 // inherits p1 and then p1 inherits Object's prototype
+}
+
+const p3={
+  city: 'hyd',
+  __proto__: p2 // inherits p2 and then p1 then p1 inherits Object's prototype
+}
+
+console.log(p3)
 // ###############################################################################################################################
-var x = function (j) {
-    this.i = 0;
-    this.j = j;
+object created using new (constructor-based object creation):
+how it works internally:
+when you do:
+  function Person(name){
+    this.name=name
+  }
+
+  const p1=new Person();
+
+  JavaScript does four things:
+    - Creates a new empty object {}
+    - Sets its internal [[Prototype]] (i.e. __proto__) to Person.prototype
+    - Binds this inside Person to the new object
+    - Returns the object (unless constructor returns another object)
+
+
+add new method to object created from constructor function:
+  Person.prototype.greet=function(){
+    return `Hello ${this.name}`
+  }
+  console.log(p1.name)
+  console.log(p1.greet())
+
+Object.create() (Pure prototypal inheritance):
+How it works:
+  Object.create(proto) creates a new object with its prototype explicitly set to proto
+  const personProto={
+    name: 'pavan',
+    getName(){
+      return `Hello ${this.name}`
+    }
+  }
+
+  const p2=Object.create(personProto)
+  p2.name='guru'
+  console.log(p2.getName()) // Hello guru
+
+  👉 No constructor function
+  👉 No this binding logic
+  👉 Just direct prototype linkage
+
+Property descriptors:
+---------------------
+  Only Object.create() allows to define properties at creation time.
+  const emp=Object.create({}, {
+    name:{
+      value: 'Pavan',
+      writable: false,
+      enumerable: false
+    }
+  })
+
+  emp.name='Guru'
+  console.log(emp.name)
+  ❌ Cannot do this directly with new
+
+Memory & Prototype Chain:
+  Both share methods via prototype:
+
+  p1.__proto__ === Person.prototype      // true
+  p2.__proto__ === personProto            // true
+
+  No memory difference if used correctly.
+
+Does Object.create() call the constructor?
+No. Never.
+// ###############################################################################################################################
+Difference between __proto__ and prototype:
+
+Interview-ready explanation (memorize this)
+prototype is a property of constructor functions that defines what will be shared by all instances (created by using new)
+__proto__ is an internal reference on objects that points to their prototype and is used for property lookup.
+When an object is created using new, its __proto__ is set to the constructor’s prototype.
+
+1️⃣ prototype (belongs to constructor functions)
+What it is
+prototype is a property on a constructor function.
+It defines what will be shared by all objects created using new.
+
+Example
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype.sayHello = function () {
+  return `Hello, I am ${this.name}`;
 };
-x.prototype.getJ = function () {
-    return this.j;
-};
-
-var x1 = new x(1); // prototype can be used when a variable or function/behaviour needs to be shared among the instances of function
-var x2 = new x(2);
-
-console.log(x1.getJ())
-console.log(x2.getJ())
-
-// ###############################################################################################################################
-'use strict'
-var Job = function() {
-  console.log("trying for job..")
-  this.pays = true;
-}
-
-// prototype method
-Job.prototype.print = function() {
-  console.log(this.pays ? 'please hire me' : 'no thank you');
-}
-
-//subclass
-var TechJob = function(title, pays) {
-  Job.call(this) // calls constructor of Job but doesn't inherits prototype. useful when another function wants to default values from parent function. e.g., this.pays
-  this.title = title;
-  this.pays = pays
-}
-
-// inherit all the methods from prototype of Job (no property will be inherited that is initialized in constructor). i.e., only print method is inherited.
-TechJob.prototype = Object.create(Job.prototype); // inherit from job prototype
-//TechJob.prototype.constructor = TechJob; // constructor property will be preserved in TechJob __proto__
-
-// not allowed before setting prototype of another function
-TechJob.prototype.techprint = function() {
-  console.log(this.pays ? 'please hire me for tech job' : 'no thank you, do not need tech job');
-}
-var softwarePosition = new TechJob('Javascript Programmer', true)
-var softwarePosition2 = new TechJob('vb Programmer', false)
-
-console.log(softwarePosition.print())
-console.log(softwarePosition2.print())
 
 
-console.log(softwarePosition.techprint())
-console.log(softwarePosition2.techprint())
+Here:
+Person.prototype is an object
+Methods added here are shared by all instances
+When it’s used
+During object creation with new.
 
-TechJob.prototype.print = function() {
-  console.log(this.pays ? 'please hire me for tech job' : 'no thank you, do not need tech job');
-}
+2️⃣ __proto__ (belongs to objects)
+What it is
+__proto__ is an internal reference (accessor) on every JavaScript object.
+It points to the object’s prototype (what it inherits from).
 
-console.log(softwarePosition.print())
-console.log(softwarePosition2.print())
+Example
+const p1 = new Person("Pavan");
+p1.__proto__ === Person.prototype; // true
 
-// ###############################################################################################################################
+Key idea
+__proto__ connects an instance to its constructor’s prototype.
+
+3️⃣ How they work together (MOST IMPORTANT)
+function Person() {}
+const p = new Person();
+
+
+Internally JavaScript does:
+p.__proto__ = Person.prototype
+
+✔️ That’s the bridge between prototype and __proto__.
+4️⃣ Property lookup (Prototype Chain)
+p.sayHello();
+
+JS engine looks for sayHello in this order:
+p (own property)
+p.__proto__ → Person.prototype
+
+Person.prototype.__proto__ → Object.prototype
+null → stop
+
+5️⃣ Visual diagram
+Person (function)
+  |
+  └── prototype
+        |
+        └── sayHello()
+
+p (object)
+  |
+  └── __proto__ ───────▶ Person.prototype
+
+6️⃣ Key differences table
+Feature	prototype	__proto__
+Belongs to	Constructor function	All objects
+Purpose	Defines shared properties	Points to an object’s prototype
+Used when	Creating objects	Property lookup / inheritance
+Standard API	✅ Yes	❌ Legacy (but widely supported)
+Should you use it?	✅ Yes	⚠️ Avoid in production
+7️⃣ Modern & correct way (avoid __proto__)
+
+Instead of:
+obj.__proto__ = proto;
+
+Use:
+Object.getPrototypeOf(obj);
+Object.setPrototypeOf(obj, proto);

@@ -211,6 +211,10 @@ Two different objects are never equal unless they reference the same object.
 	// Object.create(Object.prototype)
 ----------------------------------------------------------
 4. Object.create(<prototype>): (Pure Prototypal Inheritance) Creates a new object with a specified prototype
+
+	Only Object.create() allows to define properties at creation time.
+	Example in prototype-inheritance.js file
+
    const prototype={
 	greet(){
 	   console.log(`Hi this is ${this.name`)
