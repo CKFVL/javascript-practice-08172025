@@ -1,7 +1,7 @@
 piyush garg interviews
 global execution context
 event loop
-https://www.youtube.com/watch?v=AOPmqw9scfc&list=PLinedj3B30sDi0keEOQU3n5p3Op28eN2e&index=4
+
 throttle
 LRU cache implementation
 tic tac toe : https://www.youtube.com/watch?v=rtKwy1k9lYY&list=PL4CFloQ4GGWIXCJJHwT6FPb5yVZcybuQW&index=5
