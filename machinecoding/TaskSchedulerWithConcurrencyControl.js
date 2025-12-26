@@ -12,7 +12,9 @@ class TaskScheduler{
   
   addTask(task){
     return new Promise((resolve, reject)=>{
-      async function __taskRunner(){ // nested regular function lose this and undefined in strict mode
+      // nested regular function loose `this`` and undefined in strict mode, so bind `this`
+      // otherwise another approach is to use arrow function (cleaner and preferred)
+      async function __taskRunner(){
         this.runningTasks+=1;
         try{
         const result=await task()
@@ -23,14 +25,15 @@ class TaskScheduler{
           reject(err)
         }finally{
           this.runningTasks-=1
-          runNextTask();
+          this.runNextTask();
         }
       }
       
       if(this.runningTasks <this.allowedConcurrentTasks){
-        // nested regular function lose this and undefined in strict mode, so bind this
+        // nested regular function loose `this`` and undefined in strict mode, so bind `this` or use call
         // otherwise another approach is to use arrow function (cleaner and preferred)
-       __taskRunner=__taskRunner.bind(this) 
+        //console.log('running task', task)
+       __taskRunner.call(this) 
       }else{
         this.__waitingQueue.push(__taskRunner.bind(this))
       }
@@ -39,18 +42,33 @@ class TaskScheduler{
 
   runNextTask(){
     if(this.runningTasks<this.allowedConcurrentTasks && this.__waitingQueue.length > 0){
+      console.log('picking task from queue')
       const nextTask=this.__waitingQueue.shift();
       nextTask();
     }
   }
 }
 
-const taskScheduler=new TaskScheduler(2)
+(async function main() {
+  const taskScheduler = new TaskScheduler(2);
 
-taskScheduler.addTask(()=>new Promise((resolve)=>{
-  resolve('Task 1')
-}))
+  await Promise.all([
+    taskScheduler.addTask(
+      () => new Promise(res => setTimeout(() => res("Task 1"), 1000))
+    ),
+    taskScheduler.addTask(
+      () => new Promise(res => setTimeout(() => res("Task 2"), 2000))
+    ),
+    taskScheduler.addTask(
+      () => new Promise(res => setTimeout(() => res("Task 3"), 1000))
+    ),
+    taskScheduler.addTask(
+      () => new Promise(res => setTimeout(() => res("Task 4"), 3000))
+    ),
+    taskScheduler.addTask(
+      () => new Promise(res => setTimeout(() => res("Task 5"), 1000))
+    )
+  ]);
 
-taskScheduler.addTask(()=>new Promise((resolve)=>{
-  resolve('Task 2')
-}))
+  console.log("All tasks completed");
+})();
