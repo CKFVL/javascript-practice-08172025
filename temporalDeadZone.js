@@ -9,6 +9,7 @@ understanding summary:
   -  accessing them before declaration: ReferenceError
   -  TDZ exists to catch early bugs
 
+  *** Refer hoisting.tsx for hoisting order
 #####################
 {
   // TDZ starts here
