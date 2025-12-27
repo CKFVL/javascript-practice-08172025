@@ -13,6 +13,7 @@ off(event, listener) --> removes a specific listener from an event
 once(event, listener) --> regsiters a listener that runs only once
 
 ###########
+https://www.youtube.com/watch?v=Gz8NVkPxOiM&list=PLinedj3B30sDi0keEOQU3n5p3Op28eN2e&index=9
 class MyEventEmitter{
   constructor(){
     this.__event_listeners={
@@ -38,14 +39,19 @@ class MyEventEmitter{
     
     const listeners=this.__event_listeners[event]
     listeners.forEach((listener)=>listener(...args))
+    return true;
   }
   
   off(event, listener){
     if(!this.__event_listeners[event]){
-      false;
+      return false;
     }
     
     this.__event_listeners[event]=this.__event_listeners[event].filter((l)=>l!==listener)
+
+    if (this.__event_listeners[event].length === 0) {
+      delete this.__event_listeners[event];
+    }
   }
   
   once(event, listener){
@@ -57,8 +63,7 @@ class MyEventEmitter{
       this.off(event, wrapperFn)
     }
 
-    this.on(event, wrapperFn)
-    return true;
+    return this.on(event, wrapperFn)
   }
 }
 
@@ -79,4 +84,7 @@ eventEmitter.emit('user:signup', 'pavan') // notifies all
 
 // calls once
 const logoutActivity=(username)=>console.log('logout user:', username)
-eventEmitter.once('user:logout',logoutActivity('guru'))
+eventEmitter.once('user:logout',logoutActivity)
+eventEmitter.emit('user:logout', 'pavan')
+
+eventEmitter.emit('user:logout', 'pavan') // no output
