@@ -1,3 +1,7 @@
+🧠 Mental model (interview gold)
+Debounce → “run AFTER the user stops”
+Throttle → “run AT MOST once per interval”
+#########
 <!DOCTYPE html>
 <html>
   <head>
