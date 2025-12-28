@@ -7,6 +7,7 @@ IIFE and setTimeout?
 module design pattern?
 https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-in-2024-c1044bcb0dfb
 promise? functions in promise?
+create own promise: https://www.youtube.com/watch?v=1l4wHWQCCIc
 local storage and cookie?
 diff between var, let and const?
 hoisting?
