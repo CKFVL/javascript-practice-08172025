@@ -5,6 +5,7 @@ function currying?
 memoization?
 IIFE and setTimeout?
 module design pattern?
+https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-in-2024-c1044bcb0dfb
 promise? functions in promise?
 local storage and cookie?
 diff between var, let and const?
