@@ -97,3 +97,40 @@ ds('Hard JS i')
 ##########
 Another example:
 https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/41699670#notes
+#########
+// function debouncFn(){
+//   let delayTimer;
+
+//   return function(searchTxt){
+//   clearTimeout(delayTimer)
+//   delayTimer=setTimeout(()=>{
+//     console.log(searchTxt)
+//   }, 1000);
+//   }
+// }
+
+// const dfn=debouncFn()
+// dfn('e')
+// dfn('ee')
+// dfn('eef')
+// dfn('eeff')
+// dfn('eeffr')
+
+
+function debouncFn(fn, delay){
+  let delayTimer;
+  
+  return function(...args){
+    clearTimeout(delayTimer)
+    delayTimer=  setTimeout(()=> fn.apply(this.args), delay)
+  }
+}
+
+function dfn(searchTxt){
+  console.log(searchTxt)
+}
+debouncFn(dfn('e'), 1000)
+debouncFn(dfn('ee'), 1000)
+debouncFn(dfn('eef'), 1000)
+debouncFn(dfn('eeff'), 1000)
+debouncFn(dfn('eeffr'), 1000)
