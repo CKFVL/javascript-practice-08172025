@@ -135,21 +135,17 @@ const withDefaults = new Proxy({}, {
 });
 
 8️⃣ Proxy vs Object.defineProperty
-Feature	Proxy	defineProperty
-Intercepts all ops	✅	❌
-Works with dynamic keys	✅	❌
-Array & function support	✅	❌
-Performance	Slightly slower	Faster
+Feature	                  Proxy	          defineProperty
+Intercepts all ops	      ✅	              ❌
+Works with dynamic keys	  ✅	              ❌
+Array & function support	✅	              ❌
+Performance	              Slightly slower	Faster
+
 9️⃣ Important Rules ⚠️
-
 Proxy does not clone the object
-
 Always return true in set
-
 Cannot proxy primitive values directly
-
 Revocable proxies exist (Proxy.revocable)
 
 10️⃣ One-Line Interview Definition
-
 A Proxy allows you to intercept and redefine fundamental operations on JavaScript objects or functions using handler traps.
