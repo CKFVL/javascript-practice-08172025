@@ -1,7 +1,4 @@
 customized promise
-react tanstack
-image optimization
-nextjs
 practcie: build quiz app
 tic tac toe : https://www.youtube.com/watch?v=rtKwy1k9lYY&list=PL4CFloQ4GGWIXCJJHwT6FPb5yVZcybuQW&index=5
 
@@ -14,3 +11,6 @@ https://www.youtube.com/watch?v=qJGR9lLcRc0
 https://www.youtube.com/watch?v=qTszFuibDEg
 https://www.youtube.com/watch?v=Y9IVUVQbth0
 
+react tanstack
+image optimization
+nextjs
