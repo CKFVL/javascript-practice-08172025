@@ -137,3 +137,19 @@ Concept	        Constructor Function	Similar to
 Blueprint	    Person	                Java class
 Instance object	new Person()	        Object created from class
 Shared methods	Person.prototype	    Class methods
+
+#####
+function Car(){
+  this.make='kia'
+  
+  return {make: 'tata'}
+}
+
+const mycar=new Car();
+console.log(mycar.make)
+#####
+(()=>{
+  let x=(y=10)
+})()
+
+console.log(typeof x)

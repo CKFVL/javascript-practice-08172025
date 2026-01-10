@@ -205,3 +205,29 @@ function getAge(...args){
 }
 
 getAge(12)
+
+---
+function sayHi(){
+  return (()=>0)()
+}
+
+console.log(typeof sayHi())
+console.log(sayHi())
+
+---
+function sayHi(){
+  return ()=>0
+}
+
+console.log(typeof sayHi()())
+
+---
+console.log(typeof typeof 1)
+
+---
+let data=[1,2,3].map(num =>{
+  if(typeof num === 'number') return;
+  return num*2
+})
+
+console.log(data)

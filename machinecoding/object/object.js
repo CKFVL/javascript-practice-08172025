@@ -28,3 +28,7 @@ console.log(obj.hasOwnProperty("hello"))
 
 const obj={a:1,b:2,c:3,a:4}
 console.log(obj)
+
+#########
+console.log([]==[])
+console.log([]===[])

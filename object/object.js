@@ -1,3 +1,4 @@
+In javascript, everything is either a primitive or object type
 // ########################################################################
 const object1={
     name: 'pavan',
@@ -67,6 +68,13 @@ console.log(obj1 == obj2)   // true
 console.log(obj1 === obj2)  // true
 Here, obj1 and obj2 reference the same object, so the comparison evaluates to true.
 
+
+function getInfo(member){
+  member.name='pavan'
+}
+const person={name: 'kumar'}
+getInfo(person)
+console.log(person)
 // ########################################################################
 // https://www.youtube.com/watch?v=RJaRRS27100
 var obj = { 0: 'a', 1: 'b', 2: 'c' }

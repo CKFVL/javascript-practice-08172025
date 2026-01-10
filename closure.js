@@ -382,3 +382,10 @@ function getAge(){
 
 getAge()
 
+---
+(()=>{
+  let x=y=10 // OR let x=(y=10)
+})()
+
+console.log(typeof y)
+console.log(typeof x)

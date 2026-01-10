@@ -395,6 +395,22 @@ trees.splice(3,1);
 
 console.log(trees); // ["redwood", "bay", "cedar", "maple"]
 
+---
+const numbers=[1,2,3]
+numbers[9]=11 // Indices 3–8 are empty slots, not undefined:
+console.log(numbers)
 
+---
+const numbers=[1,2,3] 
+numbers[9]=numbers // Indices 3–8 are empty slots, not undefined, but holes
+console.log(numbers)
+
+---
+const arr=[..."anil"]
+console.log(typeof arr)
+console.log(Array.isArray(arr))
+
+---
+console.log(typeof 3+4+'5')
 
 

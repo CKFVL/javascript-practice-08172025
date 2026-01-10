@@ -10,6 +10,12 @@ e.g.
     console.log("cart quantity:"+cartQuantity)
   }
 
+console.log(!!null)
+console.log(!!"")
+console.log(!!1)
+
+console.log(typeof [])
+
 ----
 and (&&) operator: returns first falsy value or last value (short-circuit)
 
