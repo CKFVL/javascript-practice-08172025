@@ -8,12 +8,26 @@ console.log(object1.name);
 const object2={
     'delivery-time': '1-day' // delivery-time has -  then it can't be accessible
 }
-console.log(object2['delivery-time');
+console.log(object2['delivery-time']);
 
 bracket notation can be used when property has - in it or need to use another variable
 e.g.
 let newName='bhogala'
 person[newName]='kumar'
+
+Key Rule to Remember 🧠
+	Bracket notation (obj[key]) evaluates the variable
+	Dot notation (obj.key) uses the literal property name
+
+let data = "size"
+const bird = {
+  size: 'small'
+}
+
+console.warn(bird[data])
+console.warn(bird["size"])
+console.warn(bird.size)
+console.warn(bird.data)
 
 // function inside object called Method
 cosnt object3={

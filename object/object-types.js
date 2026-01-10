@@ -198,3 +198,10 @@ console.log(3 > 2 > 1)
 3 > 2 --> false
 false > 1 --> false (bcoz Booleans get coerced to numbers in comparisons, here false is coerced to 9)
 Fix: console.log(3 > 2 && 2 > 1)
+
+---
+function getAge(...args){
+  console.log(typeof args)
+}
+
+getAge(12)
