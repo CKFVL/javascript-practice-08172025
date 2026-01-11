@@ -121,3 +121,11 @@ Promise.any([fetchUser(1), fetchPayment(11), fetchOrders(212)])
     console.error("Error occurred:", error);
   });
 
+###############
+// convert non-promised to promised based feature
+return new Promise((resolve, reject)=>{
+	resolve(dummydata)
+})
+export async function fetchData() {
+  await new Promise(resolve => setTimeout(resolve, 2000))
+}
