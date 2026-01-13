@@ -13,6 +13,8 @@ https://www.youtube.com/watch?v=qJGR9lLcRc0
 https://www.youtube.com/watch?v=qTszFuibDEg
 https://www.youtube.com/watch?v=Y9IVUVQbth0
 https://www.youtube.com/watch?v=M2RpzmyKfvQ&list=PLe3J6mZBq1xVDr297Yg0p1SHbdj_Oceld
+render last list in react: https://www.youtube.com/watch?v=LKeC1_mgokU
+https://www.youtube.com/watch?v=6s0OVdoo4Q4
 
 image optimization
 nextjs
