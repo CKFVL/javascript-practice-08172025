@@ -9,6 +9,7 @@ HOF can be used
   - reusable logic
   - compose behavior
 
+Achieve DRY principle
 ###############
 function createLogger(level){
   return function(msg){
