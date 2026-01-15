@@ -35,6 +35,6 @@ So internally:
 
 Adding them results in a tiny precision error:
 0.30000000000000004
-
+Fix:
 console.log((0.1+0.2).toFixed(2))
 
