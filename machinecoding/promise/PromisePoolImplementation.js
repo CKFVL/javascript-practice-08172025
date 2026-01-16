@@ -43,9 +43,7 @@ function newTask(nTask) {
     setTimeout(() => resolve(`task ${nTask} completed`), 1000)
   )
 }
-
 const taskArray = []
-
 for (let i = 0; i < 10; i++) {
   taskArray.push(() => newTask(i))
 }
