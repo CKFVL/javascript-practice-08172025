@@ -129,3 +129,57 @@ return new Promise((resolve, reject)=>{
 export async function fetchData() {
   await new Promise(resolve => setTimeout(resolve, 2000))
 }
+################################
+Valid ways to return a Promise:
+returning a promise directly:
+  function fetchData() {
+    return new Promise(resolve => {
+      setTimeout(() => resolve("data"), 1000)
+    })
+  }
+
+2. Using async (syntactic sugar)
+    async function fetchData() {
+      return "data"
+    }
+  This automatically returns a Promise:
+  fetchData().then(console.log) // "data"
+
+Equivalent to:
+function fetchData() {
+  return Promise.resolve("data")
+}
+
+When async is NOT required
+If you already return a Promise, adding async is optional:
+function getData() {
+  return fetch(url) // already a Promise
+}
+
+Same as:
+async function getData() {
+  return fetch(url)
+}
+
+✅ When async IS useful
+Use async when you want to use await:
+async function getUser() {
+  const res = await fetch(url)
+  return res.json()
+}
+Without async, await is illegal ❌
+⚠️ Common misconception
+async function test() {
+  return Promise.resolve(5)
+}
+
+
+This returns Promise<Promise<number>>? 👉 No.
+JavaScript automatically unwraps it → Promise<number>
+🧠 Summary
+| Case                                | Needs `async`? |
+| ----------------------------------- | -------------- |
+| Returns Promise manually            | ❌ No           |
+| Uses `await`                        | ✅ Yes          |
+| Returns value but should be Promise | ✅ Yes          |
+| Wraps existing Promise              | ❌ Optional     |
