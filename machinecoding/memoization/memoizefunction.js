@@ -5,6 +5,7 @@ function memoize(fn){
   // memoization should happen per function call, based on the function args, not at creation time
   // because JSON.stringify(fn) --> undefined
   // refer JSON.stringify pitfalls, better to use Map or weakmap for storing keys because cache key generation should be cheap
+  // implements decorator design pattern: https://www.youtube.com/watch?v=oFXyzJt9VeU&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=9
   const key=JSON.stringify(args)
   console.log(cache[key])
     //if(cache[key]){ fails for falsy values (0, false, null, '', undefined, [])
