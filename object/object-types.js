@@ -231,3 +231,9 @@ let data=[1,2,3].map(num =>{
 })
 
 console.log(data)
+
+---
+const a=[undefined]
+const b={'a':1}
+
+console.log(a[0]===b[0]) //true
