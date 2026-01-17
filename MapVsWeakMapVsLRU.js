@@ -1,7 +1,7 @@
 https://chatgpt.com/g/g-p-6949600657d88191bbc0c180fd623afb/c/694b5c37-371c-8323-978c-d6e1352971ef
 
 ✅ Quick Decision Guide
-Need iteration / size / ordering? → Map
+Need iteration / size / ordering? → Map (when you use object, getting size requires looping all the key-value pairs)
 Need GC-safe object metadata? → WeakMap
 Need bounded cache with eviction? → LRU Cache (Map-based)
 
