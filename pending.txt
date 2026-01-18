@@ -5,6 +5,7 @@ https://www.youtube.com/watch?v=P9Ldx1eTlRc&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM
 https://www.youtube.com/watch?v=M2RpzmyKfvQ&list=PLe3J6mZBq1xVDr297Yg0p1SHbdj_Oceld
 render last list in react: https://www.youtube.com/watch?v=LKeC1_mgokU
 https://www.youtube.com/watch?v=6s0OVdoo4Q4
+https://www.youtube.com/watch?v=L1Oc2ZLydvw
 
 image optimization
 nextjs
