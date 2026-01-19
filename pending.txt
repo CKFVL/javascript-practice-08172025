@@ -17,3 +17,8 @@ customized promise
 practcie: build quiz app
 tic tac toe : https://www.youtube.com/watch?v=rtKwy1k9lYY&list=PL4CFloQ4GGWIXCJJHwT6FPb5yVZcybuQW&index=5
 react tanstack
+
+
+############
+FE SYSTEM DESIGN:
+https://www.youtube.com/watch?v=U8Q_ymz4KcU
