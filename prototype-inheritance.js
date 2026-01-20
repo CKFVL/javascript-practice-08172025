@@ -1,3 +1,97 @@
+Understanding summary:
+  const d=new Date()
+  console.log(Date.prototype)
+  console.log(d.prototype)
+  // ######
+  console.log(Object.getPrototypeOf(d))
+
+  // prototype --> available on constructor function
+  // [[Prototype]] --> every object internally has it and can't be accessed directly
+  // __proto__ --> a getter/setter that exposes [[Prototype]]
+    // available as Object.prototype.__proto__ // not recommended for production
+
+Why __proto__ is discouraged
+  Performance – prototype mutation is slow
+  Clarity – hides intent
+  Historical baggage – introduced before ES5
+
+Object.getPrototypeOf() returns that internal prototype i.e. [[Prototype]]
+  This is equivalent to:
+    d.__proto__ === Date.prototype === Object.getPrototypeOf(d) // true
+  
+Visual Model:
+  d
+  ↓ [[Prototype]]
+  Date.prototype
+  ↓ [[Prototype]]
+  Object.prototype
+  ↓
+  null
+
+console.log((d.__proto__ === Date.prototype) && (Date.prototype === Object.getPrototypeOf(d))) // true
+
+*** Every object's root prototype is the Object (i.e., {}) prototype and then end with null
+Every object created via constructors or object literals ultimately inherits from Object.prototype, 
+except objects created with Object.create(null), which have no prototype.
+
+Important exception:
+  Object.create(null)
+  Prototype chain:
+    obj → null
+
+  ✔ No Object.prototype
+  ✔ No toString, hasOwnProperty, etc.
+
+Why this exception exists
+  Objects without Object.prototype are useful for:
+    Dictionary / map objects
+    Avoiding key collisions (toString, constructor)
+    Security-sensitive code
+    Example:
+    const dict = Object.create(null);
+    dict["toString"] = "safe";
+
+    console.log(dict.toString); // "safe"
+
+Primitives are not objects:
+  - don’t have prototype chains
+'abc'.toUpperCase(); // uses String.prototype temporarily
+
+let num=1
+console.log(num instanceof Number)
+let numobj=new Number(100)
+console.log(numobj instanceof Number)
+console.log('###############')
+
+let str='hello'
+console.log(str instanceof String)
+let strobj=new String('hello')
+console.log(strobj instanceof String)
+console.log('###############')
+// Object.getPrototypeOf can solve this to compare object type
+console.log(Object.getPrototypeOf(num))
+console.log(Object.getPrototypeOf(numobj))
+console.log('---------------')
+console.log(Object.getPrototypeOf(str))
+console.log(Object.getPrototypeOf(strobj))
+
+Refer Example: ObjectInstanceOfClass.js
+
+Summary Table:
+| Value                 | Ends at `Object.prototype`? |
+| --------------------- | --------------------------- |
+| `{}`                  | ✅ Yes                       |
+| `[]`                  | ✅ Yes                       |
+| `new Date()`          | ✅ Yes                       |
+| `function(){}`        | ✅ Yes                       |
+| `Object.create(null)` | ❌ No                        |
+| Primitives            | ❌ Not objects               |
+
+https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/696eeb4c-5ed4-8322-995c-fa210891c708
+############################
+
+
+############################
 In JS, everything is an object
 every object in javascript has master Object and has a property called prototype, 
 which allows to add new properties/methods.
@@ -206,3 +300,5 @@ obj.__proto__ = proto;
 Use:
 Object.getPrototypeOf(obj);
 Object.setPrototypeOf(obj, proto);
+
+###############################

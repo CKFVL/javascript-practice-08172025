@@ -153,3 +153,26 @@ console.log(mycar.make)
 })()
 
 console.log(typeof x)
+
+################
+Drawbacks of constructor function:
+Understanding summary:
+    -   constructor function body is passed as a string and evaluated at runtime, so it can open the door to code injection
+    -   often can be blocked by CSP.
+    -   do not enclose surrounding scope.
+    -   regualr functions are loaded once during script load but the constructor function must be parsed and compiled at runtime
+        which can significantly degrade performance.
+        
+Preferred alternatives
+// Normal function
+function sum(a, b) {
+  return a + b;
+}
+
+// Arrow function
+const sum = (a, b) => a + b;
+
+// Higher-order functions / closures
+const makeAdder = x => y => x + y;
+
+Reference: https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/696f7858-7ff8-832a-8e4b-18f41c088bb6
