@@ -20,3 +20,8 @@ function stringWithAlphabeticalOrder(aplphastr){
 }
 
 console.log(stringWithAlphabeticalOrder(str))
+
+############
+const input=[1,2,-2,11,7,1]
+let sortedArray=input.sort((a,b)=>a-b)
+console.log(sortedArray[1])

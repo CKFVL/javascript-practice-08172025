@@ -32,3 +32,22 @@ console.log(obj)
 #########
 console.log([]==[])
 console.log([]===[])
+
+########
+// get common values
+const input1={a:1, b:2, c:3, d:10, e:12}
+const input2={a:2, e:12, f:6, d:10}
+// output={d:10, e:12}
+let resobj={}
+for(const [key,value] of Object.entries(input1)){
+  if(Object.hasOwn(input2, key)){
+    if(input2[key]===value){
+      resobj[key]=value // do not use spread because its unnecssary to maintain immutability
+      }
+    }
+}
+
+console.log(resobj)
+
+Loops / algorithms → resobj[key] = value
+State updates (React/Redux) → spread + computed key
