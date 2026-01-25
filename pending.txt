@@ -1,6 +1,7 @@
 2 way binding
 patterns
 
+polyfills: https://www.youtube.com/watch?v=Th3rZjfKKhI
 https://www.youtube.com/watch?v=P9Ldx1eTlRc&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz
 https://www.youtube.com/watch?v=M2RpzmyKfvQ&list=PLe3J6mZBq1xVDr297Yg0p1SHbdj_Oceld
 render last list in react: https://www.youtube.com/watch?v=LKeC1_mgokU
