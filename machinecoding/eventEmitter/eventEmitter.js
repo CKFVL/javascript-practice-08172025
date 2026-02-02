@@ -14,3 +14,52 @@ design event emitter with 2 methods:
           If there are no callbacks subscribed to the given event, return an empty array. Otherwise, return an array of the results of all callback calls in the order 
           they were subscribed
 
+class EventEmitter {
+    constructor(){
+      this.eventMap=new Map([])
+    }
+    /**
+     * @param {string} eventName
+     * @param {Function} callback
+     * @return {Object}
+     */
+    subscribe(eventName, callback) {
+        if(this.eventMap.has(eventName)){
+          let eventArr=this.eventMap.get(eventName)
+          eventArr.push(callback)
+        }else{
+          this.eventMap.set(eventName, [callback])
+        }
+        return {
+            unsubscribe: () => {
+              if(this.eventMap.has(eventName)){
+                console.log('event found', eventName)
+                return this.eventMap.delete(eventName)?undefined:[]
+              }
+            }
+        };
+    }
+    
+    /**
+     * @param {string} eventName
+     * @param {Array} args
+     * @return {Array}
+     */
+    emit(eventName, args = []) {
+      const callbackArray=this.eventMap.get(eventName) || []
+      return callbackArray.map(cb=>cb(...args))
+      
+    }
+}
+
+const emitter=new EventEmitter();
+function onClickCallback(){return 99}
+function onClickCallback2(){return 999}
+const sub1=emitter.subscribe('onClick', onClickCallback)
+const sub2=emitter.subscribe('onClick', onClickCallback2)
+
+console.log(emitter.eventMap)
+console.log(emitter.emit('onClick'))
+
+console.log(sub1.unsubscribe())
+console.log(emitter.emit('onClick'))
