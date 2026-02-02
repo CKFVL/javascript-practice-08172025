@@ -14,6 +14,7 @@ design event emitter with 2 methods:
           If there are no callbacks subscribed to the given event, return an empty array. Otherwise, return an array of the results of all callback calls in the order 
           they were subscribed
 
+// 
 class EventEmitter {
     constructor(){
       this.eventMap=new Map([])
@@ -26,7 +27,7 @@ class EventEmitter {
     subscribe(eventName, callback) {
         if(this.eventMap.has(eventName)){
           let eventArr=this.eventMap.get(eventName)
-          eventArr.push(callback)
+          eventArr.push(callback) // Set also can be used instead of array
         }else{
           this.eventMap.set(eventName, [callback])
         }
