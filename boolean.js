@@ -96,3 +96,22 @@ console.log(3 > 2 > 1)
 3 > 2 --> false
 false > 1 --> false (bcoz Booleans get coerced to numbers in comparisons, here false is coerced to 9)
 
+##############################
+| Value       | Meaning       |
+| ----------- | ------------- |
+| `true`      | checked       |
+| `false`     | unchecked     |
+| `undefined` | never touched |
+
+In JavaScript:
+undefined
+is not a boolean — and relying on that leaks bugs
+
+What !! actually does
+!!value = explicit boolean coercion
+
+!!true        // true
+!!false       // false
+!!undefined   // false
+!!null        // false
+!!0           // false
