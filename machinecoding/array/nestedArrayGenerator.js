@@ -47,6 +47,10 @@ function* arrayGenerator(nArr){
     }
     
 }
+// OR
+// function* arrayGenerator(nArr){
+//       yield* nArr   
+// }
 const flattenArr=inorderTraversal([1, [2,3], 4, 5, [6,7,8,9]])
 console.log('flat arr',flattenArr)
 
