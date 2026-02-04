@@ -413,4 +413,12 @@ console.log(Array.isArray(arr))
 ---
 console.log(typeof 3+4+'5')
 
+---
+const arr=[1,2,3,4,5,6]
+const marr=[...arr, 7]
+console.log(marr)
+marr.push(8)
+console.log(marr)
+
+
 
