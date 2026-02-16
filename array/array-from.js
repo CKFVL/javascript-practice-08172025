@@ -18,3 +18,22 @@ Array.from vs [...]
     Supports mapping inline
     Works with array-like objects (not just iterables)
 
+########
+const tarr=new Array(5).fill(0).map((_, i) => '')
+console.log(tarr)
+
+const ff=Array.from({length: 5}).map((_,i)=>'')
+console.log(ff)
+
+const dd=Array.from({length:5}, ()=>'')
+console.log(dd)
+
+const twodarr=Array.from({length:5}, ()=>Array.from({length:5}, ()=>9))
+
+console.log(twodarr)
+
+const rr=Array.from({length:4}).map((_,i)=>Array.from({length:3}, ()=>'10'))
+console.log(rr)
+
+const ss=Array.from({length:5}).map((_,i)=>Array.from({length:4}).map((_,j)=>'11'))
+console.log(ss)
