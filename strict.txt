@@ -3,7 +3,21 @@
 -	Strict mode makes it easier to write “secure” JavaScript.
 
 How to use strict mode:
-Strict mode can be used in two ways – used in global scope for the entire script and can be applied to individual functions. Strict mode doesn’t work with block statements enclosed in {} braces.
+Strict mode can be used in two ways 
+  – used in global scope for the entire script (i.e., at the top of the script)
+      use strict";
+      x = 10; // ❌ ReferenceError
+  - and can be applied to individual functions.
+      function test() {
+        "use strict";
+          y = 20; // ❌ ReferenceError
+      }
+
+Strict mode doesn’t work with block statements enclosed in {} braces.
+     {
+        "use strict";
+        z = 30; // ✅ No error
+     }
 
 Examples of using Strict mode:
 // Using a variable, without declaring it, is not allowed:
@@ -19,3 +33,11 @@ x = {p1:10, p2:20}; // will throw an error
  // Deleting a function is also not allowed 
  Note: variables should not be deleted.
  
+######
+ES Modules are always strict
+If you’re using:
+  type="module"
+    or:
+  import/export
+
+Then strict mode is automatically enabled — no need to add "use strict".
