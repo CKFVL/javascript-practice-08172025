@@ -1,3 +1,12 @@
+Typical interview examples:
+console.log(null == undefined)
+console.log(null === undefined)
+console.log("5" == 5)
+console.log("5" === 5)
+console.log("5.0" === 5.0)
+console.log([] == 0)
+console.log(true+1)
+
 difference between regular function and arrow function?
 closures?
 function currying?
