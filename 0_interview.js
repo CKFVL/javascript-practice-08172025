@@ -2,15 +2,16 @@ javascript.js
 strict.js
 string
 order of operations
-object
-object types
-object properties
-object destructuring
-ObjectPropertiesScope.js (important)
-ObjectLiteralVsJSON.js
-object property descriptors
-object property existence
-ObjectGetOwnPropertyDescriptors.js
+object (folder)
+  null vs undefined
+  object types
+  object properties
+  object destructuring
+  ObjectPropertiesScope.js (important)
+  ObjectLiteralVsJSON.js
+  object property descriptors
+  object property existence
+  ObjectGetOwnPropertyDescriptors.js
 forloop.js
 stringify
 tdz

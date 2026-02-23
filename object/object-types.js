@@ -24,40 +24,6 @@ Array
 Function
 
 ###################
-difference between null and undefined javascript
-https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/693c1f08-c6b4-8324-9853-e19bbdda59c2
-
-undefined: A variable is declared but not assigned any value
-default value for uninitialized variables, missing function args, missing object properties
-
-typeof undefined=undefined
-
-undefined cases:
-let a;
-console.log(a); // undefined
-
-function test(x) {
-  console.log(x);
-}
-test(); // undefined
-
-let obj = {};
-console.log(obj.value); // undefined
-
-null:
-A variable is explicitly assigned to represent "no value" and must be explicitly assigned by the developer
-
-typeof null=object
-
-null cases:
-let user = null;  // user intentionally has no value
-console.log(user); // null
-
-function getUser() {
-  return null; // means “no user found”
-}
-
-###################
 dot notation on object:
 let person={
   name: 'pavan',
@@ -70,7 +36,7 @@ person.name='guru'
 // bracket notation
 person['name']='guru'
 
-bracket notation can be used when property has - in it or need to use another variable
+bracket notation can be used when property has - in it or need to use another variable/computed property
 e.g.
 let newName='bhogala'
 person[newName]='kumar'
@@ -101,12 +67,12 @@ JavaScript	      Weak	            Dynamic	        "5" + 2 → "52" (automatic co
 C	                Weak	            Static	        Implicit casts allowed (e.g., int to char) at compile time.
 ####################
 String coercion:
-console.log("5"-2) // converts 5 to number
+console.log("5"-2)
 
 Number coercion:
-console.log("10"-2) //8
-console.log("10"*"2") // 20
-console.log("10"/"2") // 5
+  console.log("10"-2) 
+  console.log("10"*"2") 
+  console.log("10"/"2")
 
 Boolean coercion:
 Falsy values:
@@ -118,42 +84,42 @@ if ("hello") {
 Non-empty string → coerced to true.
 
 Typical interview examples:
-console.log(null == undefined) // true
-console.log("5" == 5) // true
-console.log("5.0" === 5.0) // false
-console.log([] == 0) // true, because [] -> "" -> 0
-console.log(true+1) // tru -> 1
+console.log(null == undefined)
+console.log("5" == 5)
+console.log("5.0" === 5.0)
+console.log([] == 0)
+console.log(true+1)
 
 
 var msg = "Hello JS";
 console.log(msg);
-console.log("not a number" / 2); //NaN
-console.log("not a number" / 2 + 5); // NaN
+console.log("not a number" / 2);
+console.log("not a number" / 2 + 5);
 
-console.log(typeof Symbol("id")); //symbol
-console.log(typeof "foo"); //string
-console.log(typeof Infinity); //number
-console.log(typeof (typeof 223)) //string
+console.log(typeof Symbol("id"));
+console.log(typeof "foo");
+console.log(typeof Infinity);
+console.log(typeof (typeof 223))
 
 console.log(typeof null); // For null returns "object"–this is an error in the language, it’s not actually an object.
-console.log(typeof undefined); // undefined
-console.log(null === undefined); // false
-console.log(null == undefined); // undefined and null are equal in value
+console.log(typeof undefined);
+console.log(null === undefined);
+console.log(null == undefined);
 
-var y = new Number(123); // js number can be object too
+var y = new Number(123);
 console.log("typeof y" + typeof y);
-console.log(typeof Math); //object
-console.log(typeof [1, 2, 3, 3]); //typeof array=object
+console.log(typeof Math);
+console.log(typeof [1, 2, 3, 3]);
 ####################
-5 == '5.0' // results true as 5.0 is converted to 5
-5 === '5.0' // results false i.e. strict equality
+5 == '5.0'
+5 === '5.0'
 ####################
 typeof NaN is a number
 It represents undefined or unrepresentable numeric results
 Examples:
-  0 / 0          // NaN
-  Math.sqrt(-1)  // NaN
-  parseInt("x")  // NaN
+  0 / 0          
+  Math.sqrt(-1)  
+  parseInt("x")  
 
 Why not a separate type?
 JavaScript has only one numeric type:
@@ -168,25 +134,25 @@ Special values:
   NaN
 
 So:
-typeof Infinity // "number"
-typeof NaN      // "number"
+typeof Infinity 
+typeof NaN      
 
 Why this confuses people
 Because:
-NaN !== NaN // true 😄
+NaN !== NaN 
 
 This happens because:
 *** NaN is only javascript type that is not equal to anything- including itself
 
 so, 
-NaN == NaN      // false
-NaN === NaN    // false
-Object.is(NaN, NaN) // true ✅ (special case)
+NaN == NaN      
+NaN === NaN    
+Object.is(NaN, NaN) 
 
 So JavaScript gives you:
-Number.isNaN(value) // ✅ correct check
+Number.isNaN(value) 
 NOT:
-value === NaN       // ❌ always false
+value === NaN       
 -------
 console.log(1 < 2 < 3) --> true
 1 < 2 --> true
@@ -236,4 +202,4 @@ console.log(data)
 const a=[undefined]
 const b={'a':1}
 
-console.log(a[0]===b[0]) //true
+console.log(a[0]===b[0])
