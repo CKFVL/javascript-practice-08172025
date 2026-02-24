@@ -6,7 +6,9 @@ object (folder)
   null vs undefined
   object types
   object properties
+  object-prototype.js
   object destructuring
+  thisInDifferentEnvironment
   ObjectPropertiesScope.js (important)
   ObjectLiteralVsJSON.js
   object property descriptors
