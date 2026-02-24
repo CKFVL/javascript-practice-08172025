@@ -293,14 +293,23 @@ Object.defineProperty(o, 'conflict', {
 // Bear in mind that these attributes are not necessarily the descriptor's own properties. Inherited properties will be considered as well. 
 // In order to ensure these defaults are preserved, you might freeze the Object.prototype upfront, specify all options explicitly, 
 // or point to null with Object.create(null).
+// https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/699d0a1a-2478-8323-87b3-a03ce8d55830
 var obj = {};
-var descriptor = Object.create(null); // no inherited properties
-// not enumerable, not configurable, not writable as defaults
-descriptor.value = 'fsfs';
-Object.defineProperty(obj, 'city', descriptor);
-console.log(descriptor.value)
-descriptor.value='jhghj'
-console.log(descriptor.value)
+var descriptor = Object.create(null); 
+descriptor.name = "Pavan";
+  This creates:
+    An object with no prototype
+    No inherited properties (no toString, no hasOwnProperty, etc.)
+  But it does NOT change property descriptor defaults.
+  
+This behaves exactly like a normal object property.
+The descriptor will be:
+  {
+    value: "Pavan",
+    writable: true,
+    enumerable: true,
+    configurable: true
+  }
 
 // being explicit
 Object.defineProperty(obj, 'key', {
@@ -309,6 +318,44 @@ Object.defineProperty(obj, 'key', {
   writable: false,
   value: 'static'
 });
+
+Case 2: 
+  Using Object.defineProperty()
+  const obj = Object.create(null);
+
+  Object.defineProperty(obj, "age", {
+    value: 34
+  });
+
+  If you don’t specify descriptor flags, the defaults are:
+  {
+    value: 34,
+    writable: false,
+    enumerable: false,
+    configurable: false
+  }
+  ⚠️ This is true for any object, not just Object.create(null).
+
+Case 3: 
+  Using Object.create with property descriptors
+  Object.create has a second argument:
+
+  const obj = Object.create(null, {
+    salary: {
+      value: 50000
+    }
+  });
+
+  Same rule applies.
+  Default descriptor becomes:
+  {
+    value: 50000,
+    writable: false,
+    enumerable: false,
+    configurable: false
+  }
+  Because it internally behaves like Object.defineProperty().
+
 
 var sp = {
   ...o
@@ -400,68 +447,6 @@ arc.temperature; // 'get!'
 arc.temperature = 11;
 arc.temperature = 13;
 arc.getArchive(); // [{ val: 11 }, { val: 13 }]
-
-//----------------------------------------------------------------------
-'use strict'
-
-// Inheritance of properties
-//If an accessor property is inherited, its get and set methods will be called when the property is accessed and modified on descendant objects. 
-// If these methods use a variable to store the value, this value will be shared by all objects.
-function myclass() {
-}
-
-var value;
-Object.defineProperty(myclass.prototype, "x", {
-  get() {
-    return value;
-  },
-  set(x) {
-    value = x;
-  }
-});
-
-var a = new myclass();
-var b = new myclass();
-a.x = 1;
-console.log(b.x); // 1
-
-//This can be fixed by storing the value in another property. In get and set methods, this points to the object which is used to access or modify the property.
-
-//myclass.prototype.stored_x=33 // accessor properties will be set on prototype too
-Object.defineProperty(myclass.prototype, "x", {
-  get() {
-    return this.stored_x;
-  },
-  set(x) {
-    this.stored_x = x;
-  }
-});
-
-var a = new myclass();
-var b = new myclass();
-a.x = 1;
-console.log(a.x);
-console.log(b.x); // undefined OR 33 if stored_x is in myclass prototype
-console.log(myclass.prototype.stored_x) // 33 if stored_x is in myclass prototype
-
-//Unlike accessor properties, value properties are always set on the object itself, not on a prototype. 
-// However, if a non-writable value property is inherited, it still prevents from modifying the property on the object.
-function myclass() {
-}
-
-myclass.prototype.x = 1;
-Object.defineProperty(myclass.prototype, "y", {
-  writable: false,
-  value: 1
-});
-
-var a = new myclass();
-a.x = 2;
-console.log(a.x); // 2
-console.log(myclass.prototype.x); // 1
-a.y = 2; // Ignored, throws in strict mode
-console.log(a.y); // 1
-console.log(myclass.prototype.y); // 1
 
 //-------------------------------------------------------------------------
 // summary:
