@@ -1,95 +1,249 @@
+let newEmployee1 = {id:22, name: 'pavan', age: 34};
 let newEmployee2 = {id:23, name: 'bhogala', age: 34};
 let newEmployee3 = {id:24, name: 'vani', age: 41};
 
-//Object.defineProperty(newEmployee, 'name', {configurable:false, writable: true}) - throws error--Cannot redefine property: name
-let empArr=[newEmployee, newEmployee2, newEmployee3];
+let empArr=[newEmployee1, newEmployee2, newEmployee3];
 for(const emp of empArr){
   console.log(emp.name)
   console.log(emp.age)
 }
 console.log('$$$$$$$$$$$$$$$$$$')
-for(const emp in empArr){
+for(const emp in empArr){ // for...in iterates over indexes (keys), not the actual objects.
   console.log(emp)
   console.log(empArr[emp].name)
   console.log(empArr[emp].age)
 }
+// //Object.defineProperty(newEmployee1, 'name', {configurable:false, writable: true}) - throws error--Cannot redefine property: name
 
+What defineProperty controls
+It controls:
+| Attribute    | Meaning                |
+| ------------ | ---------------------- |
+| value        | actual value           |
+| writable     | can change value       |
+| enumerable   | shows in loops         |
+| configurable | can delete or redefine |
+
+https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/699d0a1a-2478-8323-87b3-a03ce8d55830
+In JavaScript, Object.defineProperty() lets you control property descriptors:
+writable → Can the value be changed?
+enumerable → Will it show up in loops like for...in or Object.keys() or console?
+configurable → Can the property be deleted or reconfigured?
+
+// If writable: false, the value cannot be changed.
+Object.defineProperty(newEmployee1, 'name', {writable: false})
+//Without strict mode → fails silently.
+// ❌ TypeError in strict mode
+//newEmployee1.name='newName'
+---
+enumerable:
+If enumerable: false, the property won’t appear in loops or Object.keys().
+const user = {};
+
+Object.defineProperty(user, "age", {
+  value: 34,
+  enumerable: false
+});
+
+console.log(Object.keys(user)); 
+// []  (age is hidden)
+
+for (let key in user) {
+  console.log(key);  // Nothing printed
+}
+
+console.log(user.age); 
+// 34 (still accessible directly)
+
+---
+//configurable
+If configurable: false, you cannot:
+  - Delete the property
+  - Change its descriptor (except writable → false)
+
+👉 Once configurable is false, it’s locked.
+
+const user = {};
+
+Object.defineProperty(user, "id", {
+  value: 101,
+  configurable: false,
+  enumerable: true // without this, property won't show up in loops like for...in or Object.keys() or console
+});
+console.log('user:',user)
+// TypeError: Cannot delete property 'id'
+// delete user.id
+
+// cannot redefine property
+// TypeError: Cannot redefine property: id
+Object.defineProperty(user, "id", {configurable: true})
+
+--> Change its descriptor (except writable → false)
+When a property has:
+
+configurable: false
+
+You cannot change its descriptor anymore — meaning you cannot change:
+  configurable
+  enumerable
+  convert data property ↔ accessor property
+  change get / set
+
+BUT there is one special exception:
+  If writable: true, you are allowed to change it to false.
+
+You can only move in one direction:
+  writable: true  →  writable: false ✅
+  writable: false →  writable: true ❌ (not allowed)
+
+
+Example 1 — Allowed Change (writable → false)
+  const obj = {};
+  Object.defineProperty(obj, "name", {
+    value: "Pavan",
+    writable: true,
+    configurable: false
+  });
+
+  // This is allowed
+  Object.defineProperty(obj, "name", {
+    writable: false
+  });
+
+  obj.name = "New Name";
+  console.log(obj.name); // Pavan (cannot change anymore)
+
+This works because we changed writable from true to false.
+
+🔎 Example 2 — Not Allowed (false → true)
+  Object.defineProperty(obj, "name", {
+    writable: true
+  });
+
+  ❌ TypeError: Cannot redefine property
+  Once configurable: false, you cannot change it back.
+
+
+Example 3 — Cannot Change enumerable
+const obj = {};
+Object.defineProperty(obj, "age", {
+  value: 34,
+  enumerable: true,
+  configurable: false
+});
+
+// Try changing enumerable
+Object.defineProperty(obj, "age", {
+  enumerable: false
+});
+
+❌ TypeError
+You cannot change enumerable when configurable is false.
+
+
+Example 4 — Cannot Convert to Getter/Setter
+const obj = {};
+Object.defineProperty(obj, "salary", {
+  value: 50000,
+  writable: true,
+  configurable: false
+});
+
+// Try converting to accessor property
+Object.defineProperty(obj, "salary", {
+  get() {
+    return 100000;
+  }
+});
+
+❌ TypeError
+Because converting between:
+
+Data property → Accessor property
+is not allowed when configurable: false.
+
+🧠 Why JavaScript Allows writable → false?
+Because making something more restrictive is safe.
+But making it less restrictive (like turning writable back to true) could break guarantees.
+So JavaScript only allows tightening, never loosening.
+---
+// When redefining an existing property, 
+// if you omit value, it keeps the existing value, but it's better practice to include all attributes explicitly.
+Object.defineProperty(newEmployee1, 'name', {configurable:true, value:'gurupavan'})
+console.log(newEmployee1)
+
+// for new property, the value will be undefined
+let newEmployee4={id:25, name: 'Nihitha', age: 44}
+Object.defineProperty(newEmployee4, 'phone', {})
+
+---
+Example:
+'use strict'
+const employee={}
+
+Object.defineProperty(employee, 'name', 
+{value:'bhogala gurupavan', 
+configurable: false, 
+enumerable: false, 
+writable: false})
+
+console.log(employee)
+
+// change the value (change enumerable:true when testing)
+employee.name='kumar'
+console.log(employee) // same value= { name: 'bhogala gurupavan' }
+
+console.log(Object.keys(employee)) // won't show up in loops or console or Object.keys
+
+// delete property: typeerror
+// delete employee.id
+
+// redefine property: TypeError: Cannot assign to read only property 'name'
+// Object.defineProperty(employee, 'name', {value:'kumar', enumerable:true})
+// Object.defineProperty(employee, 'name', {value:'reddy', writable:true})
+
+---
+🧠 Default Values
+
+If you don’t specify them:
+Object.defineProperty(obj, "prop", { value: 10 });
+
+Defaults are:
+{
+  writable: false,
+  enumerable: false,
+  configurable: false
+}
+
+⚠️ This is different from normal object properties:
+
+const obj = { prop: 10 };
+Defaults here are:
+{
+  writable: true,
+  enumerable: true,
+  configurable: true
+}
+###############################################
 // Property descriptors present in objects come in two main flavors: data descriptors and accessor descriptors. 
 //A data descriptor is a property that has a value, which may or may not be writable. 
 //An accessor descriptor is a property described by a getter-setter pair of functions. 
 //A descriptor must be one of these two flavors; it cannot be both.
 
-// Both data and accessor descriptors are objects. They share the following optional keys(The default value is in the case of defining properties using Object.defineProperty()):
+// Both data and accessor descriptors are objects. 
+// They share the following optional keys(The default value is in the case of defining properties using Object.defineProperty()):
+    - configurable
+    - enumerable
+    - writable
 
-// configurable
-//true if and only if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object. 
-// Defaults to false.
-
-######################################################
-//enumerable
-//true if and only if this property shows up during enumeration of the properties on the corresponding object. 
-// Defaults to false.
-// determines whether the property or symbol can be accessed via for...in loop or spread operator or Object.assign or Object.keys
-var o = {}
-Object.defineProperty(o, 'a', {
-  value: 1,
-  enumerable: true
-})
-
-Object.defineProperty(o, 'b', {
-  value: 1,
-  enumerable: false
-})
-
-Object.defineProperty(o, 'c', {
-  value: 1 // enumerable defaults to false
-})
-
-Object.defineProperty(o, Symbol.for('d'), {
-  value: 1,
-  enumerable: true
-})
-
-Object.defineProperty(o, Symbol.for('f'), {
-  value: 1,
-  enumerable: false
-})
-
-// enumerable defaults to true when creating a property by setting it
-o.e = 99
-
-for (var e in o) {
-  console.log(e)
-}
-
-console.log(Object.keys(o))
-console.log(o.c)
-
-##################
-Object.defineProperty(newEmployee, 'name', {
-  configurable: false,
-  writable: false,
-  enumerable: true
-});
-If you don’t give a value, the default is undefined.
-So even though the property exists and is enumerable, its value is still undefined.
-
-Object.defineProperty(newEmployee, 'name', {
-  value: 'pavan',
-  configurable: false,
-  writable: false,
-  enumerable: true
-});
-
-####################
 
 // A data descriptor also has the following optional keys:
-//value
-//The value associated with the property. Can be any valid JavaScript value (number, object, function, etc).
+// value
+// The value associated with the property. Can be any valid JavaScript value (number, object, function, etc).
 // Defaults to undefined.
-//writable
-//true if and only if the value associated with the property may be changed with an assignment operator.
-//Defaults to false.
+// writable
+// true if and only if the value associated with the property may be changed with an assignment operator.
+// Defaults to false.
 var o = {}; // Creates a new object
 
 o.a=37 // equivalent to
@@ -104,10 +258,12 @@ Object.defineProperty(o, 'a', {
 
 // An accessor descriptor also has the following optional keys:
 //get
-//A function which serves as a getter for the property, or undefined if there is no getter. When the property is accessed, this function is called without arguments and with this set to the object through which the property is accessed (this may not be the object on which the property is defined due to inheritance). The return value will be used as the value of the property.
+// A function which serves as a getter for the property, or undefined if there is no getter.
+// When the property is accessed, this function is called without arguments and with this set to the object through which the property is accessed (this may not be the object on which the property is defined due to inheritance). The return value will be used as the value of the property.
 //Defaults to undefined.
 //set
-//A function which serves as a setter for the property, or undefined if there is no setter. When the property is assigned to, this function is called with one argument (the value being assigned to the property) and with this set to the object through which the property is assigned.
+//A function which serves as a setter for the property, or undefined if there is no setter. 
+// When the property is assigned to, this function is called with one argument (the value being assigned to the property) and with this set to the object through which the property is assigned.
 //Defaults to undefined.
 var bValue = 38;
 Object.defineProperty(o, 'b', {
@@ -122,7 +278,8 @@ Object.defineProperty(o, 'b', {
 });
 o.b; // 38
 
-// If a descriptor has neither of value, writable, get and set keys, it is treated as a data descriptor. If a descriptor has both value or writable and get or set keys, an exception is thrown.
+// If a descriptor has neither of value, writable, get and set keys, it is treated as a data descriptor. 
+// If a descriptor has both value or writable and get or set keys, an exception is thrown.
 
 // You cannot try to mix both:
 // throws a TypeError: value appears
@@ -133,7 +290,9 @@ Object.defineProperty(o, 'conflict', {
   get() { return 0xdeadbeef; }
 });
 
-// Bear in mind that these attributes are not necessarily the descriptor's own properties. Inherited properties will be considered as well. In order to ensure these defaults are preserved, you might freeze the Object.prototype upfront, specify all options explicitly, or point to null with Object.create(null).
+// Bear in mind that these attributes are not necessarily the descriptor's own properties. Inherited properties will be considered as well. 
+// In order to ensure these defaults are preserved, you might freeze the Object.prototype upfront, specify all options explicitly, 
+// or point to null with Object.create(null).
 var obj = {};
 var descriptor = Object.create(null); // no inherited properties
 // not enumerable, not configurable, not writable as defaults
@@ -192,7 +351,8 @@ delete o.a; // Nothing happens
 console.log(o.a); // logs 1
 
 //Adding properties and default values
-//It is important to consider the way default values of attributes are applied. There is often a difference between simply using dot notation to assign a value and using Object.defineProperty(), as shown in the example below
+//It is important to consider the way default values of attributes are applied. 
+// There is often a difference between simply using dot notation to assign a value and using Object.defineProperty(), as shown in the example below
 var o = {};
 
 o.a = 1;
