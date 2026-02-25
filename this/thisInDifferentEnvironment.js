@@ -54,71 +54,148 @@ Inside functions → differs (global vs undefined).
 Example (in nodejs):
 ---------
 console.log(this)
-this.color = "qwewq"
-console.log("global scope: " + this.color)
+this.color='wewe'
+console.log('global color', this.color)
 
-var color = "sdsdf"
-console.log("var scope: " + color)
-
-let Car = function (_color) {
-    this.color = _color;
-    color = _color;
+var color='efewew'
+console.log('global color', this.color)
+console.log('var color..', color)
+console.log('##################')
+let Car=function(_color){ // constructor function
+  console.log(this) // local to constructor function
+  this.color=_color // local to constructor function
+  console.log('constrcutor fn init', this.color) 
+  color=_color // changes var color
+}
+let newcar=new Car('green')
+console.log('global color', this.color) // wewe
+console.log('var color', color) // green
+console.log('##################')
+let regCar=function(_color){
+  console.log(this) // window i.e. global in non-strict mode and undefined in strict mode
+  //this.color=_color // TypeError: Cannot set properties of undefined 
+  // console.log('regular fn init', this.color) // TypeError: Cannot read properties of undefined
+  color=_color // var color will be chnaged
 }
 
-// constructor function
-let car = new Car('purple');
-console.log('constructor function: ', car.color)
+let car2=regCar('lightyellow')
+console.log('global color', this.color) // wewe
+console.log('var color', color) // lightyellow
 
-console.log("global scope again: " + this.color)
-console.log("var scope again: " + color)
-
-// function (non-method)
-function testThis(){
-  console.log('function (non-method)', this)
+const arrCar=(__color)=>{
+  console.log(this) // inherits from parent scope
+  this.color==__color
+  // color=__color // var color changes
 }
-testThis()
-
-// arrow function
-const arrowfn=()=>{
-  console.log('this in arrow fn: ',this)
-}
-arrowfn()
+arrCar('lightblue')
+console.log('global color', this.color) // lightblue
+console.log('var color', color) // lightyellow
 
 // object literal
 const person={
-  name:'pavan',
+  name: 'pavan',
   regFn: function(){
-    console.log('object literal regular function', this)
+    console.log('object literal reg function', this) // object literal
   },
   arrFn: ()=>{
-    console.log('object literal arrow function', this)
+    console.log('object literal arrow function', this) // global color from `this`
   }
 }
 person.regFn()
 person.arrFn()
 
+
 Output ('use strict')
 ---------
 {}
-global scope: qwewq
-var scope: sdsdf
-constructor function:  purple
-global scope again: qwewq
-var scope again: purple
-function (non-method) undefined
-this in arrow fn:  { color: 'qwewq' }
-object literal regular function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
-object literal arrow function { color: 'qwewq' }
+global color wewe
+global color wewe
+var color.. efewew
+##################
+Car {}
+constrcutor fn init green
+global color wewe
+var color green
+##################
+undefined
+global color wewe
+var color lightyellow
+{ color: 'wewe' }
+global color wewe
+var color lightyellow
+object literal reg function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
+object literal arrow function { color: 'wewe' }
 
 Output (not strict mode)
 ---------
+// non-strict mode
+console.log(this) // {}
+this.color='wewe'
+console.log('global color', this.color) // wewe
+
+var color='efewew'
+console.log('global color', this.color) // wewe
+console.log('var color..', color) // efewew
+console.log('##################')
+let Car=function(_color){ // constructor function
+  console.log(this) // local to constructor function
+  this.color=_color // local to constructor function
+  console.log('constrcutor fn init', this.color) 
+  color=_color // changes var color
+}
+let newcar=new Car('green')
+console.log('global color', this.color) // wewe
+console.log('var color', color) // green
+console.log('##################')
+let regCar=function(_color){
+  console.log(this) // window i.e. global in non-strict mode and undefined in strict mode
+  console.log(global)
+  console.log('this===global --->', this===global)
+  this.color=_color // global
+  console.log('regular fn init', this.color) // global===this
+  color=_color // var color will be chnaged
+}
+console.log('regular function....')
+let car2=regCar('lightyellow')
+console.log('global color', this.color) // lightyellow but printing wewe why??
+console.log('var color', color) // lightyellow
+
+console.log('arrow function....')
+const arrCar=(__color)=>{
+  console.log(this) // inherits from parent scope i.e. global
+  this.color=__color
+  // color=__color // var color changes
+}
+arrCar('lightblue')
+console.log('global color', this.color) // lightblue
+console.log('var color', color) // lightyellow
+
+console.log('object literal...')
+// object literal
+const person={
+  name: 'pavan',
+  regFn: function(){
+    console.log('object literal reg function', this) // object literal
+  },
+  arrFn: ()=>{
+    console.log('object literal arrow function', this) // global color from `this`
+  }
+}
+person.regFn()
+person.arrFn()
+
 {}
-global scope: qwewq
-var scope: sdsdf
-constructor function:  purple
-global scope again: qwewq
-var scope again: purple
-function (non-method) <ref *1> Object [global] {
+global color wewe
+global color wewe
+var color.. efewew
+##################
+Car {}
+constrcutor fn init green
+global color wewe
+var color green
+##################
+regular function....
+<ref *1> Object [global] {
   global: [Circular *1],
   clearImmediate: [Function: clearImmediate],
   setImmediate: [Function: setImmediate] {
@@ -139,9 +216,39 @@ function (non-method) <ref *1> Object [global] {
   navigator: [Getter],
   crypto: [Getter]
 }
-this in arrow fn:  { color: 'qwewq' }
-object literal regular function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
-object literal arrow function { color: 'qwewq' }
+<ref *1> Object [global] {
+  global: [Circular *1],
+  clearImmediate: [Function: clearImmediate],
+  setImmediate: [Function: setImmediate] {
+    [Symbol(nodejs.util.promisify.custom)]: [Getter]
+  },
+  clearInterval: [Function: clearInterval],
+  clearTimeout: [Function: clearTimeout],
+  setInterval: [Function: setInterval],
+  setTimeout: [Function: setTimeout] {
+    [Symbol(nodejs.util.promisify.custom)]: [Getter]
+  },
+  queueMicrotask: [Function: queueMicrotask],
+  structuredClone: [Function: structuredClone],
+  atob: [Function: atob],
+  btoa: [Function: btoa],
+  performance: [Getter/Setter],
+  fetch: [Function: fetch],
+  navigator: [Getter],
+  crypto: [Getter]
+}
+this===global ---> true
+regular fn init lightyellow
+global color wewe
+var color lightyellow
+arrow function....
+{ color: 'wewe' }
+global color lightblue
+var color lightyellow
+object literal...
+object literal reg function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
+object literal arrow function { color: 'lightblue' }
+
 #########################
 Above Example (in browser console-dev tools- 'use strict')
 (this equals window object)

@@ -24,14 +24,14 @@ const object2={
 // shortcut notation for method
 const object2={
    message: message,
-   method = func function(){
+   method1: func function(){
 	console.log("hello")
    }
 }
 instead use shortcut notation
 const object2={
   message,
-  method(){
+  method1(){
 	console.log("hello")
   }
 }
