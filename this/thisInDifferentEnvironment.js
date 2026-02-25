@@ -126,16 +126,19 @@ var color lightyellow
 object literal reg function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
 object literal arrow function { color: 'wewe' }
 
-Output (not strict mode)
+(not strict mode)
 ---------
 // non-strict mode
+// this={} at top level (module.exports)
+// this=global in regular function
 console.log(this) // {}
 this.color='wewe'
-console.log('global color', this.color) // wewe
+console.log('this color', this.color) 
 
 var color='efewew'
-console.log('global color', this.color) // wewe
-console.log('var color..', color) // efewew
+console.log('this color', this.color) 
+console.log('global color', global.color)
+console.log('var color..', color) 
 console.log('##################')
 let Car=function(_color){ // constructor function
   console.log(this) // local to constructor function
@@ -144,29 +147,32 @@ let Car=function(_color){ // constructor function
   color=_color // changes var color
 }
 let newcar=new Car('green')
-console.log('global color', this.color) // wewe
+console.log('this color', this.color)
+console.log('global color', global.color)
 console.log('var color', color) // green
 console.log('##################')
 let regCar=function(_color){
   console.log(this) // window i.e. global in non-strict mode and undefined in strict mode
   console.log(global)
   console.log('this===global --->', this===global)
-  this.color=_color // global
+  this.color=_color // added to global
   console.log('regular fn init', this.color) // global===this
   color=_color // var color will be chnaged
 }
 console.log('regular function....')
 let car2=regCar('lightyellow')
-console.log('global color', this.color) // lightyellow but printing wewe why??
-console.log('var color', color) // lightyellow
+console.log('this color', this.color)
+console.log('global color', global.color)
+console.log('var color', color)
 
 console.log('arrow function....')
 const arrCar=(__color)=>{
-  console.log(this) // inherits from parent scope i.e. global
+  console.log(this) // inherits from parent scope i.e. this={}
   this.color=__color
   // color=__color // var color changes
 }
 arrCar('lightblue')
+console.log('this color', this.color) 
 console.log('global color', this.color) // lightblue
 console.log('var color', color) // lightyellow
 
@@ -176,6 +182,7 @@ const person={
   name: 'pavan',
   regFn: function(){
     console.log('object literal reg function', this) // object literal
+    console.log('object literal', this.color)
   },
   arrFn: ()=>{
     console.log('object literal arrow function', this) // global color from `this`
@@ -183,71 +190,6 @@ const person={
 }
 person.regFn()
 person.arrFn()
-
-{}
-global color wewe
-global color wewe
-var color.. efewew
-##################
-Car {}
-constrcutor fn init green
-global color wewe
-var color green
-##################
-regular function....
-<ref *1> Object [global] {
-  global: [Circular *1],
-  clearImmediate: [Function: clearImmediate],
-  setImmediate: [Function: setImmediate] {
-    [Symbol(nodejs.util.promisify.custom)]: [Getter]
-  },
-  clearInterval: [Function: clearInterval],
-  clearTimeout: [Function: clearTimeout],
-  setInterval: [Function: setInterval],
-  setTimeout: [Function: setTimeout] {
-    [Symbol(nodejs.util.promisify.custom)]: [Getter]
-  },
-  queueMicrotask: [Function: queueMicrotask],
-  structuredClone: [Function: structuredClone],
-  atob: [Function: atob],
-  btoa: [Function: btoa],
-  performance: [Getter/Setter],
-  fetch: [Function: fetch],
-  navigator: [Getter],
-  crypto: [Getter]
-}
-<ref *1> Object [global] {
-  global: [Circular *1],
-  clearImmediate: [Function: clearImmediate],
-  setImmediate: [Function: setImmediate] {
-    [Symbol(nodejs.util.promisify.custom)]: [Getter]
-  },
-  clearInterval: [Function: clearInterval],
-  clearTimeout: [Function: clearTimeout],
-  setInterval: [Function: setInterval],
-  setTimeout: [Function: setTimeout] {
-    [Symbol(nodejs.util.promisify.custom)]: [Getter]
-  },
-  queueMicrotask: [Function: queueMicrotask],
-  structuredClone: [Function: structuredClone],
-  atob: [Function: atob],
-  btoa: [Function: btoa],
-  performance: [Getter/Setter],
-  fetch: [Function: fetch],
-  navigator: [Getter],
-  crypto: [Getter]
-}
-this===global ---> true
-regular fn init lightyellow
-global color wewe
-var color lightyellow
-arrow function....
-{ color: 'wewe' }
-global color lightblue
-var color lightyellow
-object literal...
-object literal reg function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
-object literal arrow function { color: 'lightblue' }
 
 #########################
 Above Example (in browser console-dev tools- 'use strict')
