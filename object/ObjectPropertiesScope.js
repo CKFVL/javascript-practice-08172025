@@ -6,8 +6,7 @@ Variables (var, let, const) do not become object properties.
 Only assignments to `this` do.
 
 Key takeaways (important)
-  -  In strict mode, this is undefined in normal function calls
-    (In strict mode, this in a normal function without new is undefined)
+  -  In strict mode, this is undefined in normal function calls (thisInDifferentEnvironment.js has all details)
 
   -  Constructor functions must be called with new (Calling a constructor without new breaks this)
     Local variables (var, let, const) are not object methods (Local variables ≠ object properties)

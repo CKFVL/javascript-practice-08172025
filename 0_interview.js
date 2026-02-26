@@ -2,6 +2,7 @@ javascript.js
 strict.js
 string
 order of operations
+ExpressionBodyAndBlock.js
 object (folder)
   null vs undefined
   object types
@@ -9,6 +10,7 @@ object (folder)
   object-prototype.js
   object destructuring
   thisInDifferentEnvironment
+  this folder (thisInDifferentEnvironment.js, this_new,this_regular_function_new.js,this_arrow_function_new.js,this-literal.js, this_examples_new.js)
   ObjectPropertiesScope.js (important)
   ObjectLiteralVsJSON.js
   object property descriptors
@@ -18,6 +20,7 @@ forloop.js
 stringify
 tdz
 hoisting
+
 array (slice and splice)
 rest and spread
 Object.assignVsSpread.js
@@ -32,7 +35,6 @@ hoisting
 lexicalbinding
 closure
 currying
-this (thisInDifferentEnvironment.js, this_new,this_regular_function_new.js,this_arrow_function_new.js,this-literal.js, this_examples_new.js)
 diff b/w constructor and factory
 ---
 promise

@@ -5,10 +5,12 @@ Refer thisInDifferentEnvironment.js to understand the value of `this` in differe
 // this : object that is executing the current function
 // if a function is a method in an Object, this refers to object itself
 // if a function is regular function i.e., not inside an object, this refers to global object
-//      in strict mode, global object can't be accessed inside a function using this
+    //refer: thisInDifferentEnvironment.js
 // if a function is constructor function and is created using new operator, then this refers to arguments to it in new {} object
 
 ###########################
+previous understanding which is not required now to read this, so ignore to read this page
+understanding thisInDifferentEnvironment is enough
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/6933f8b8-f69c-8324-9029-58957892ed3c
 'use strict'
 this.color = "qwewq"
@@ -176,8 +178,7 @@ this: {}
 ✅ Summary
 In Node.js:
 
-this (top-level) → module.exports object
-(NOT global object)
-var x → attaches to global
+this (top-level) → module.exports object (NOT global object)
+var x → attaches to global i.e. window
 Arrow functions still capture lexical this, but that’s separate
 

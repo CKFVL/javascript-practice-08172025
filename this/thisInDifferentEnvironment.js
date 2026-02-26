@@ -1,4 +1,4 @@
-Environment	              Mode	          Global this (top-level)	           Regular Function this (non-method)
+Environment	              Mode	          Global this (top-level)	           (Regular Function this (non-method) and REPL)
 Browser	                  Non-strict	    window(refers to global object)	    window
 (scripts, not modules)    Strict	        undefined	                          undefined
 ---------------------------------------------------------------------------------------------------------
@@ -18,7 +18,20 @@ Browser               <script> file	      Yes	        undefined
 Browser ES module	    Always              strict	    undefined
 Node.js               REPL	              Any	        global
 Node.js               CommonJS file	      Any	        module.exports
+---
+REPL? https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/699fad4c-4ddc-8323-90b9-a422d64b229e
 
+When DOES it attach to global in Node?
+Only if you explicitly assign it:
+global.color = 'lightyellow'
+console.log(global.color) // 'lightyellow'
+
+Or in regular function (this === global)
+
+Or in Node REPL (special case):
+var color = 'lightyellow'
+global.color // 'lightyellow'
+---
 Browser (scripts, not modules):
 ------------------------------
   Non-strict mode (global scope)
@@ -57,9 +70,10 @@ console.log(this)
 this.color='wewe'
 console.log('global color', this.color)
 
-var color='efewew'
+var color='efewew' // var at the top level becomes a property of the global object (window).
 console.log('global color', this.color)
 console.log('var color..', color)
+//console.log(window.color) // window is undefined in nodejs
 console.log('##################')
 let Car=function(_color){ // constructor function
   console.log(this) // local to constructor function
