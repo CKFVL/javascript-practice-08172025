@@ -1,4 +1,4 @@
-Environment	              Mode	          Global this (top-level)	           Function this (non-method)
+Environment	              Mode	          Global this (top-level)	           Regular Function this (non-method)
 Browser	                  Non-strict	    window(refers to global object)	    window
 (scripts, not modules)    Strict	        undefined	                          undefined
 ---------------------------------------------------------------------------------------------------------
