@@ -47,7 +47,9 @@ Arrow functions have two forms:
   items.map(item => {
     return <li>{item}</li>;
   });
-  {} creates a function block
+  
+!!!!*** {} creates a function block ***!!!!
+
   JavaScript assumes you’ll write statements
   You must use return
 ---
@@ -79,10 +81,6 @@ OR
 ✅ They capture this lexically from where they are defined
 
 example:
-Key rule for arrow functions:
-❌ Arrow functions do NOT have their own this
-✅ They capture this lexically from where they are defined
-
 Where is this arrow function defined?
 ➡️ In the global scope, not inside obj’s execution context.
 In non-strict mode (browser):

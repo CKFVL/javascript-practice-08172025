@@ -8,6 +8,8 @@ https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/69339e84
 ✅ Key takeaway for regular functions:
 this is not lexical in normal functions — it’s dynamic.
 
+*** Lexical means: surrounding scope
+
 Here’s the one-line trick to instantly figure out this in any *** regular function call *** :
 *** Look to the left of the dot when the function is called — that’s your this.
 *** The object that actually calls the function decides what this will be inside that function.
@@ -30,6 +32,31 @@ Also
 function () { } → creates new this
 () => { } → does NOT create new this
 { } object literal → does NOT create new this
+
+*** only functions create scope, not objects.
+function () { } → creates new this
+() => { } → does NOT create new this
+{ } object literal → does NOT create new this
+
+Example:
+const user={
+  name: "Interview",
+  regularFn: function(){
+    console.log('regularFn', this.name)
+  },
+  arrowFn: () => {
+    console.log("arrowFn:", this.name)
+  }
+};
+
+Another example:
+let length = 10;
+const object = {
+  length: 5,
+  log: () => {
+    console.log(this.length);
+  },
+};
 ---
 Flow summary: (*** understand the content below this flow diagram)
 Is the function an arrow function?
@@ -341,7 +368,7 @@ const obj3={
   }
 }
 
-obj3.log()
+obj3.log() // arrow inherits from reg function
 
 Another example:
 const tagvideo = {
