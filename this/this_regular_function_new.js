@@ -30,24 +30,38 @@ Arrow functions are the rebel children — they ignore this rule and just take t
 Also
 *** only functions create scope, not objects.
 function () { } → creates new this
-() => { } → does NOT create new this
+() => { } → does NOT create new this (inherits from parent)
 { } object literal → does NOT create new this
 
-*** only functions create scope, not objects.
-function () { } → creates new this
-() => { } → does NOT create new this
-{ } object literal → does NOT create new this
+🧠 Deep Mental Model
+Think of arrow function as:
+"Borrow this from parent"
 
+Normal function:
+"I will decide this when I am called"
+
+---
 Example:
 const user={
   name: "Interview",
-  regularFn: function(){
+  regularFn: function(){// this is determined how the function is called
     console.log('regularFn', this.name)
+    const afn=()=>{ // arrow inherits this from parent
+      console.log('arrrrr fn', this.name)
+    }
+    afn()
   },
-  arrowFn: () => {
+  arrowFn: () => {// arrow inherits this from parent i.e. global
     console.log("arrowFn:", this.name)
+    const rfn=function(){// regular function is invoked in arrow function and name is not available in global
+      console.log('rfffffffn', this.name)
+    }
+    rfn()
   }
 };
+
+user.regularFn()
+user.arrowFn()
 
 Another example:
 let length = 10;
@@ -57,6 +71,64 @@ const object = {
     console.log(this.length);
   },
 };
+
+https://chatgpt.com/g/g-p-6949600657d88191bbc0c180fd623afb-javascript-practice/c/69a154f1-1cec-8320-83f2-0f0529edacdf
+
+function arrTimer(){
+  let arrcounter=0
+  //console.log(this)
+   let arrfn=()=>{
+    console.log(this.arrcounter++)
+  }
+  
+  return arrfn;
+}
+
+let arrvvv=arrTimer()
+arrvvv()
+
+const obj = {
+  count: 0,
+  inc() {
+    setTimeout(() => {
+      console.log(++this.count);
+    }, 0);
+  }
+};
+
+// Important rule:
+// this is decided by HOW a function is called.
+obj.inc();
+
+Inside inc, we call setTimeout
+setTimeout(() => {
+  console.log(++this.count);
+}, 0);
+
+Now the key question:
+What is this inside the arrow function?
+🧠 Arrow Function Rule
+Arrow functions:
+❌ Do NOT create their own this
+✅ Capture this from surrounding scope
+
+So the arrow function captures this from inc().
+And inside inc():
+this === obj
+
+So inside the arrow:
+this === obj
+🔥 What Gets Printed?
+Initial value:
+obj.count = 0
+
+Inside timeout:
+++this.count
+
+That becomes:
+++obj.count
+So:
+1
 ---
 Flow summary: (*** understand the content below this flow diagram)
 Is the function an arrow function?

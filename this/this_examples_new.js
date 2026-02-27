@@ -94,7 +94,7 @@ It prints the original this (global), not obj.
 
 ✔ Explanation:
 
-bind(), call(), apply() cannot change this of arrow functions.
+*** bind(), call(), apply() cannot change this of arrow functions.
 
 🔥 Q6. What does this print?
 let length = 10;
