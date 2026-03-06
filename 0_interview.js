@@ -20,6 +20,10 @@ stringify
 tdz
 hoisting
 
+coercion:
+  coercion.js
+  stringCoercion.js
+
 array (slice and splice)
 rest and spread
 Object.assignVsSpread.js
