@@ -60,4 +60,6 @@ Summary – Avoid eval() because:
 😵 Hard to debug
 
 #####################################################
-String constructor
+String constructor:
+  when you call String(value)
+  

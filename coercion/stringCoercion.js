@@ -1,3 +1,5 @@
+*** Read coercion.js before this
+
 when you call String(obj), similar to coercion rules in coercion.js, javascript performs ToPrimitive conversion with a "string" hint
 
 When you call String(value) for arrays:
