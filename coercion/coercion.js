@@ -57,7 +57,19 @@ Arrays and Objects:
     console.log(arr + 5); // 15
   
 
-  Plain objects use default Object.prototype.toString()
+  For normal/plain objects, 
+  For a normal (plain) JavaScript object, the default valueOf() method returns the object itself.
+  Plain objects inherit valueOf() from Object.prototype.valueOf.
+  The specification behavior is essentially:
+    Object.prototype.valueOf = function () {
+      return this;
+    }
+    So it simply returns the same object reference.
+    const obj = { name: "pavan", age: 10 };
+    obj.valueOf();
+    Output: { name: "pavan", age: 10 }
+    
+  the default toString() comes from Object.prototype.toString()
     Objects
       {} + {}
       In REPL it becomes:
