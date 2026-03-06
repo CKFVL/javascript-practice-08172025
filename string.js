@@ -58,3 +58,6 @@ Summary – Avoid eval() because:
 ❗ Allows arbitrary code execution (security issue)
 🐢 Slower (cannot be optimized)
 😵 Hard to debug
+
+#####################################################
+String constructor

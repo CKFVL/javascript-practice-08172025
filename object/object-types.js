@@ -13,15 +13,84 @@ Primitive types:
 String
 boolean
 number: javascript doesn't have special runtime value for integers, so there's no equivalent to int or float, so everything is Number
+bigint
 undefined
 null
 symbol
 
-Reference types:
+*** primitive types are not objects in JavaScript.
+But JavaScript has a special mechanism that makes primitives behave like objects temporarily, which causes confusion.
+
+Objects in Javascript:
+Objects are Reference types:
 ----------------
 Object
 Array
 Function
+  let obj = {name: "pavan"};
+  let arr = [1,2,3];
+  let date = new Date();
+
+*** These store references to memory, not the value directly.
+
+
+Why primitives sometimes behave like objects
+JavaScript temporarily wraps primitives with object wrappers when you access properties or methods.
+
+Example:
+let str = "hello";
+console.log(str.length);
+console.log(str.toUpperCase());
+
+Here "hello" is a primitive, but JS internally does this:
+new String("hello").toUpperCase()
+
+Temporary wrapper objects:
+
+Primitive	Wrapper   Object
+string	            String
+number	            Number
+boolean	            Boolean
+symbol	            Symbol
+bigint	            BigInt
+
+4️⃣ Proof primitives are not objects
+let str = "hello";
+console.log(typeof str);
+
+Output:
+string
+
+But:
+let strObj = new String("hello");
+console.log(typeof strObj);
+
+Output:
+object
+5️⃣ Important Interview Trick
+let str = "hello";
+
+str.x = 10;
+console.log(str.x);
+
+Output:
+undefined
+
+Why?
+JS creates temporary object
+new String("hello")
+property added
+object destroyed immediately
+So property does not persist.
+
+6️⃣ Special Weird Case (null)
+typeof null
+
+Output:
+"object"
+
+But null is still a primitive.
+This is a historical bug in JavaScript.
 
 ###################
 dot notation on object:

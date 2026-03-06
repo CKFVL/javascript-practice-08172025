@@ -3,11 +3,11 @@ JSON:
   JSON properties are double-quoted
   JSON allows only string, boolean, number, array, object, null
   drops property with undefined value
+  arrays with undefined becomes null
   functions are not serializable
   Dates become ISO strings
-  arrays with undefined becomes null
   NaN, infinity and -infinity will be treated as null
-  custom serializtion: toJSON() overrides default serialization
+  custom serialization: toJSON() overrides default serialization
 
 1️⃣ Object Literal (JavaScript Object)
 An object literal is a way to create an object directly in JavaScript.

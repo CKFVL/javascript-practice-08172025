@@ -6,14 +6,13 @@ ExpressionBodyAndBlock.js
 object (folder)
   null vs undefined
   object types
-  object properties
+  object properties/object property descriptors
   object-prototype.js
   object destructuring
   thisInDifferentEnvironment
   this folder (thisInDifferentEnvironment.js, this_new,this_regular_function_new.js,this_arrow_function_new.js,this-literal.js, this_examples_new.js)
   ObjectPropertiesScope.js (important)
   ObjectLiteralVsJSON.js
-  object property descriptors
   object property existence
   ObjectGetOwnPropertyDescriptors.js
 forloop.js
