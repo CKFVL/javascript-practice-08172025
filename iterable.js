@@ -26,3 +26,20 @@ const isUndefinedIterable=isIterable(undefined)
 console.log(isUndefinedIterable)
 const isStringIterable=isIterable("pavan")
 console.log(isStringIterable)
+
+Checking What the Iterator Returns
+You can also inspect the iterator itself.
+
+  const arr = [1,2];
+  const iterator = arr[Symbol.iterator]();
+  console.log(iterator.next());
+
+Output:
+{ value: 1, done: false }
+########
+function arguments is iterable in modern JS:
+function test(){
+  console.log(typeof arguments[Symbol.iterator] === "function");
+}
+
+test(1,2,3);
