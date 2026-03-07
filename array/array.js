@@ -1,5 +1,21 @@
 indexOf: returns index of element occurence
 findIndex: accepts a function
+e.g. console.log(arr.findIndex(x=>x===99))
+  How findIndex() works
+  Array.prototype.findIndex() expects a callback function that returns a boolean:
+
+  arr.findIndex((element, index, array) => {
+    return condition; // true or false
+  });
+
+  It returns the index of the first element where the callback returns a truthy value.
+  If nothing matches, it returns -1.
+
+  hobbies.findIndex((item) => {
+    return item === 'sports'
+    }
+  )
+
 find
 push
 pop
@@ -13,13 +29,7 @@ map
 filter
 reduce
 every
-  
-#####################
-findIndex accepts a function:
-hobbies.findIndex((item) => {
-  return item === 'sports'
-}
-)
+
 #####################
 const array1=[1,2,3] // array1 contains the reference of the values
   const array2=array1 // array2 contains the copy of reference which array1 references

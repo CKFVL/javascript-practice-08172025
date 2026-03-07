@@ -38,3 +38,5 @@ Adding them results in a tiny precision error:
 Fix:
 console.log((0.1+0.2).toFixed(2))
 
+##############
+console.log(JSON.stringify({ x: [10, undefined, function () {}, Symbol("")] }));

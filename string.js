@@ -19,6 +19,7 @@
 
 Type coercion (javascript is dynamic type language i.e., the type is associated with run-time values)
 -------------
+refer coercion.js for coercion rules
 If a string contains only number and any math operation with *-/ and another number, then it will be converted to number
 const str='55'
 console.log(str-33) // results 22

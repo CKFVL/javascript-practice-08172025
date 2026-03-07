@@ -14,8 +14,12 @@ console.log(JSON.stringify(new Date(2006, 0, 2, 15, 4, 5)));
 // #######################
 // https://chatgpt.com/g/g-p-6949600657d88191bbc0c180fd623afb/c/694b5ba8-c9a4-8323-9f8a-2fc581a13718
 One-Liner Summary (Very Important)
-“JSON.stringify(args) is unsafe for memoization because it breaks on object order, ignores functions, collapses values, crashes on circular references, 
-loses types, and is expensive. It’s okay for demos but not production.”
+“JSON.stringify(args) is unsafe for memoization because it breaks on 
+  - object order, 
+  - ignores functions, 
+  - collapses values, 
+  - crashes on circular references, 
+  - loses types, and is expensive. It’s okay for demos but not production.”
 ---
 1️⃣ Key order is not guaranteed (objects)
 
@@ -50,7 +54,6 @@ JSON.stringify({ fn: () => 5 }); // "{}"
 ➡️ Different inputs → same cache key.
 
 Interview takeaway:
-
 Functions are non-serializable and ignored.
 // ##############################################
 3️⃣ undefined, Symbol, and NaN collapse
@@ -77,15 +80,11 @@ JSON.stringify(d); // '"2023-12-31T18:30:00.000Z"'
 
 
 Problems:
-
 Timezone conversions
-
 Loses Date type
-
 Deserialized value is a string
 
 Interview takeaway:
-
 JSON loses type information.
 // ##############################################
 6️⃣ Prototype & class instances are flattened
@@ -97,42 +96,30 @@ class User {
 }
 
 const u = new User("Pavan");
-
 JSON.stringify(u); // '{"name":"Pavan"}'
 
 
 ➡️ Loses:
-
 Class identity
-
 Methods
-
 Prototype chain
 
 Interview takeaway:
-
 Instances become plain objects.
 ---
 7️⃣ Performance & memory cost (often overlooked)
-
 Deep objects → expensive serialization
-
 Happens on every function call
-
 Large inputs → GC pressure
 
 O(n) serialization cost per call
 
-
 Interview takeaway:
-
 Cache key generation should be cheap.
 
 // ####################################
 Classic Interview Follow-up Question
-
 Interviewer:
-
 “So how would you fix memoization keys?”
 
 Strong answers

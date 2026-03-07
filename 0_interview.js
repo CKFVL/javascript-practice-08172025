@@ -15,14 +15,14 @@ object (folder)
   ObjectLiteralVsJSON.js
   object property existence
   ObjectGetOwnPropertyDescriptors.js
+coercion:
+  coercion.js
+  stringCoercion.js
+
 forloop.js
 stringify
 tdz
 hoisting
-
-coercion:
-  coercion.js
-  stringCoercion.js
 
 array (slice and splice)
 rest and spread

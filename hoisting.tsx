@@ -2,13 +2,13 @@ console.log("value of age is", age);
 var age=30;
 
 console.log("value of age is", age)
-output: undefined, 30
+output: ??
 ##################
 age=100
 console.log("value of age is", age)
 var age=30
 console.log("value of age is", age)
-output: 100, 30
+
 
 ##################
 age=100
