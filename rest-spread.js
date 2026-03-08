@@ -1,4 +1,15 @@
 Spread: "Expands" an iterable (array, object, string) into individual elements
+built-in iterables in javascript
+    - array
+  - string
+  - Map
+  - Set
+  - arguments object (function arguments)
+  - TypedArray
+  - NodeList
+
+Also on Objects and Function calls.
+
 (Spread: "Take this box and dump out everything inside.")
 Example 1: Array Expansion
 let arr1=[1,2,3]
@@ -9,26 +20,70 @@ Example 2: Object expansion
 let obj1={a:1, b:2}
 let obj2={...obj1, c:3}
 
+Key Difference
+| Feature   | Spread                          | Rest                               |
+| --------- | ------------------------------- | ---------------------------------- |
+| Purpose   | Expand elements                 | Collect elements                   |
+| Direction | One → Many                      | Many → One                         |
+| Usage     | Arrays, objects, function calls | Function parameters, destructuring |
+| Result    | Individual values               | Array/Object                       |
+
 let person = { name: 'Pavan', age: 40, country: 'India' };
 // Spread adds properties
 let newPerson = { ...person, job: 'Engineer' };
 console.log(newPerson);
 // { name: 'Pavan', age: 40, country: 'India', job: 'Engineer' }
 
-3. clone object
+Example 3: function arguments
+function sum(x, y, z){
+  console.log(x+y+z)
+}
+sum(...[1,2,3])
+
+4. clone object
 const user = { name: "Pavan", age: 30 };
 const clone = { ...user };
 
 console.log(clone); // { name: "Pavan", age: 30 }
 
-Example 4: function arguments
-function sum(x, y, z){
-  console.log(x+y+z)
-}
-sum(...[1,2,3])
+*** Objects are non-iterable right, then how spread considers it as iterable?
+Object spread does NOT treat objects as iterables. 
+Objects are indeed non-iterable, but object spread uses a different mechanism than iterable spread.
+    An object is iterable only if it has:
+        obj[Symbol.iterator]
+
+    Plain objects {} are not iterable and Object spread does NOT use iterators.
+    Instead it copies own enumerable properties.
+        const obj={a:1,b:2}
+        const newObj={...obj}    
+    Internally similar to:
+        Object.assign({}, obj)
+
+    Or conceptually:
+    for (let key of Object.keys(obj)) {
+        newObj[key] = obj[key]
+    }
+
+    So it copies:
+        own properties
+        enumerable properties
+
+
 #####################################
 Rest: "Collects" all elements into single array or object
 (Rest: "Take all these items and pack others/them into a box.")
+
+Used in:
+    Function parameters
+    Array destructuring
+    Object destructuring
+
+Function parameters:
+    function sum(...numbers) {
+    return numbers.reduce((acc, n) => acc + n, 0);
+    }
+    console.log(sum(1, 2, 3, 4)); // 10
+
 // array destructuring
 let[first, ...restArr]=[1,2,3,4]
 console.log(first)
@@ -49,10 +104,6 @@ let { name, ...others } = newPerson;
 console.log(name);   // Pavan
 console.log(others); // { age: 40, country: 'India', job: 'Engineer' }
 
-function sum(...numbers) {
-  return numbers.reduce((acc, n) => acc + n, 0);
-}
-console.log(sum(1, 2, 3, 4)); // 10
 #####################################
 Backup:
 // Many JavaScript built-in functions support an arbitrary number of arguments.

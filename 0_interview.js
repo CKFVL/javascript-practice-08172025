@@ -3,6 +3,23 @@ strict.js
 string
 order of operations
 ExpressionBodyAndBlock.js
+
+function:
+  args:
+    function sum(a,b,c){
+      return a+b+c
+    }
+
+    const nums=[1,2,3]
+    console.log(sum(...nums)) // args
+
+  parameters:
+    function sum(...nums){
+      return numbers.reduce((a,b)=>a+b,0)
+    }
+  
+    console.log(sum(1,2,3))
+
 object (folder)
   null vs undefined
   object types
@@ -25,6 +42,7 @@ tdz
 hoisting
 
 array (slice and splice)
+iterable
 rest and spread
 Object.assignVsSpread.js
 boolean

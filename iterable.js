@@ -1,3 +1,12 @@
+Built in iterables in javascript:
+  - array
+  - string
+  - Map
+  - Set
+  - arguments object (function arguments)
+  - TypedArray
+  - NodeList
+
 to check if an object is iterable in JS, check whether it defines [Symbol.iterator] method.
 Simple check:
   const obj=[1,2,3]
@@ -43,3 +52,20 @@ function test(){
 }
 
 test(1,2,3);
+
+###########
+You can make an object iterable:
+
+const obj = {
+  a:1,
+  b:2,
+  [Symbol.iterator]() {
+    return Object.values(this)[Symbol.iterator]()
+  }
+}
+
+console.log([...obj])
+
+Output
+
+[1,2]
