@@ -1,4 +1,5 @@
-In JavaScript, call(), apply(), and bind() are methods available on every function. They allow you to control the value of this when a function is executed.
+In JavaScript, call(), apply(), and bind() are methods available on every function. 
+They allow you to control the value of this when a function is executed.
 
 call() invokes the function immediately, allowing you to manually set this and pass arguments one by one.
   function greet(greeting, punctuation) {

@@ -10,10 +10,6 @@ var fnexp = function incrementfnexp(i) {
 fnexp(1)
 
 ###########################
-fnexp = function incrementfnexp(i) {
-    console.log("func exp")
-}
-fnexp(1)
 
 Note: functions are values i.e. can be saved in a variable
 fnexp is created as variable and not recommended but it has an advantage that it is hoisted (i.e. it can be called before the line it is defined)

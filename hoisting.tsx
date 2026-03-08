@@ -31,6 +31,7 @@ Hoisting order:
       *** hoisted as
       var myFunc; // value = undefined
   -  let and const declarations (hoisted but uninitialized (TDZ) and Access before declaration → ReferenceError)
+        Note: hoisting doesn't work when the function is created using const or let
   -  execution
 
 example:
