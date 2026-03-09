@@ -37,14 +37,14 @@ Hoisting order:
 example:
 -------
 myFunc()
-var myFunc = function(){
+var myFunc2 = function(){
     console.log("First")
 }
-myFunc()
+myFunc2()
 function myFunc(){
     console.log("second")
 }
-myFunc()
+myFunc2()
 
 What the JS engine actually sees:
 After hoisting, your code becomes conceptually:
@@ -52,14 +52,14 @@ After hoisting, your code becomes conceptually:
 function myFunc() {
     console.log("second")
 }
-var myFunc; // does NOT override the function
+var myFunc2; // does NOT override the function
 // Execution starts here
 myFunc() // First call: myFunc refers to the function declaration
-myFunc = function(){ // Now the function declaration is overwritten by the function expression.
+myFunc2 = function(){ // Now the function declaration is overwritten by the function expression.
     console.log("First")
 }
-myFunc() // 
-myFunc()
+myFunc2() // 
+myFunc2()
 ############
 var variable=10;
 
@@ -117,7 +117,7 @@ const func1 = () =>{
     console.log("fun1")
 }
 
-function fun2(){
+function func2(){
     console.log("fun2")
 }
 

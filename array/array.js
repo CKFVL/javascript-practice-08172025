@@ -39,7 +39,6 @@ const array1=[1,2,3] // array1 contains the reference of the values
 / Adding elements with high indexes can create undefined "holes" in an array:
 newcars[10] = "7car";
 
-If you use named indexes, JavaScript will redefine the array to a standard object.
 #####################
 Array doesn't actually contain values, it refers to the values in memory and called as reference
 e.g.
@@ -74,8 +73,6 @@ console.log(Array.isArray([1,2])) // true
 push - adds element at the end of array
 splice(index, no. of values to remove) - remvoes an element from the array
 
-
-
 ###############
 // ways to create arrays
 var cars = ["Saab", "Volvo", "BMW"];
@@ -97,7 +94,6 @@ function arrFunction(value) {
 }
 
 // Associative Arrays (with named indexes): js doesn't support; arrays always use numbered indexes.
-// If you use named indexes, JavaScript will redefine the array to a standard object.
 // After that, some array methods and properties will produce incorrect results.
 var person = [];
 person["firstName"] = "John";
@@ -429,6 +425,40 @@ const marr=[...arr, 7]
 console.log(marr)
 marr.push(8)
 console.log(marr)
+##########################
+Arrays in Javascript are Objects:
+const arr=[12,3,4]
+console.log(typeof arr) // "object"
 
+Internally it behaves like an object with numeric keys:
+{
+  "0": 10,
+  "1": 20,
+  "2": 30
+}
+ what happens if you use named indexes:
+ const arr=[4,5,6]
+ arr.name='pavan'
+ console.log(arr) //Output: [1,2,3,name:"pavan"]
+The array still remains an array.
+console.log(Array.isArray(arr)); // true
 
+Important Difference: Not Part of Array Elements
+Named properties:
+  Do not affect length
+    const arr = [1,2,3];
+    arr.name = "pavan";
+    console.log(arr.length); // Output: 3
 
+  Are not iterated by array methods
+    arr.forEach(v => console.log(v)); // Output: 1,2,3
+
+  Are ignored by many array operations
+
+Bad practice:
+  const arr = [];
+  arr["name"] = "pavan";
+
+Better:
+  const obj = {};
+  obj.name = "pavan";
