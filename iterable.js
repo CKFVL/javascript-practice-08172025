@@ -17,6 +17,13 @@ because array is iterable, the output is true.
 Example with non-iterable object:
   const obj={name:'pavan', age:90}
   console.log(obj[Symbol.iterator]==='function') //output is false
+
+Once an object implements Symbol.iterator, it works with:
+  for...of
+  spread operator ...
+  Array.from()
+  destructuring
+
 #####
 Safe utility function:
 function isIterable(obj){
@@ -54,18 +61,31 @@ function test(){
 test(1,2,3);
 
 ###########
-You can make an object iterable:
+Arrays, Maps, Sets are iterable because they implement Symbol.iterator.
+Plain objects only support property enumeration, not iteration.
 
-const obj = {
-  a:1,
-  b:2,
-  [Symbol.iterator]() {
-    return Object.values(this)[Symbol.iterator]()
+You can make an object iterable:
+const user={
+  name:'pavan',
+  age: 30,
+  [Symbol.iterator](){
+    let entries=Object.entries(this)
+    let index=0
+    
+    return {
+      next(){
+        if(index<entries.length){
+          return {value:entries[index++], done: false}
+        }    
+        return {done:true}
+      }
+    }
   }
 }
 
-console.log([...obj])
-
-Output
-
-[1,2]
+for(const item of user){
+  console.log(item)
+}
+---
+2. Cleaner Version Using Generator (Recommended)
+A generator automatically creates the iterator.

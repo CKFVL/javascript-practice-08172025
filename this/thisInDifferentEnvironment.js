@@ -191,6 +191,8 @@ console.log('global color', this.color) // lightblue
 console.log('var color', color) // lightyellow
 
 console.log('object literal...')
+
+*** only functions create scope, not objects. (refer closure.js)
 // object literal
 const person={
   name: 'pavan',

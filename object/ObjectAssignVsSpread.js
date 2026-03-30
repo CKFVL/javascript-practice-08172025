@@ -116,10 +116,10 @@ Object.assign({}, obj); // { [Symbol(id)]: 1 }
 { ...obj };             // { [Symbol(id)]: 1 }
 
 9. Performance & Readability
-Aspect	Object.assign	Spread
-Readability	Verbose	Cleaner
-ES Version	ES6	ES2018
-Functional style	❌	✅
+Aspect	          Object.assign	  Spread
+Readability	      Verbose	        Cleaner
+ES Version	      ES6	            ES2018
+Functional style	❌	        ✅
 
 📌 Modern JS prefers spread for immutability
 

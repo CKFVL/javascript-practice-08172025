@@ -48,32 +48,23 @@ e.g.
   array2.push(5) // both references have 4 values now
 
 to have a copy of the reference, use slice()
-  const array1=[1,2,3]
-  const array2=array1.slice()
+  const arr=[1,2,3]
+  const arr2=arr.slice() //
+  console.log(arr2)
 
-  array2.push(5) // only pushes element to array2.
+  arr2.push(5)
+  console.log(arr2)
+  console.log(arr)
+
+  const arr3=[1, [2,3,4], 5, [[6,7], [8,9]]]
+  console.log(arr3)
+  const slicedarr=arr3.slice()
+  console.log(slicedarr)
+
+  const slicedarr2=arr3.slice(1)
+  console.log(slicedarr2)
   
-to get values from an array, destructuring can be used instead of indexes 
-  const [firstValue, secondValue]=[1,2,3] // where firstValue=1, secondValue=2
-
-const nameArray=["Max", "Pavan"]
-const firstName=nameArray[0]
-const lastName=nameArray[1]
-destructure array:
-const [firstName, lastName]=["Max", "Pavan"]
-###############
-Any value can be stored in an array
-e.g. [1, 'hello', true, {name: 'socks'}, [1, 2] ]
-
-console.log(typeof [1, 'hello', true, {name: 'socks'}, [1, 2] ]) //object
-console.log(typeof [1,2]) //object
-console.log(Array.isArray([1, 'hello', true, {name: 'socks'}, [1, 2] ])) // true
-console.log(Array.isArray([1,2])) // true
-###############
-push - adds element at the end of array
-splice(index, no. of values to remove) - remvoes an element from the array
-
-###############
+###########################
 // ways to create arrays
 var cars = ["Saab", "Volvo", "BMW"];
 console.log(cars);
@@ -172,7 +163,65 @@ console.log(fruits.toString());
 delete fruits[0];
 console.log(fruits.toString());
 
-########################
+##########################
+Arrays in Javascript are Objects:
+const arr=[12,3,4]
+console.log(typeof arr) // "object"
+
+Internally it behaves like an object with numeric keys:
+{
+  "0": 10,
+  "1": 20,
+  "2": 30
+}
+ what happens if you use named indexes:
+ const arr=[4,5,6]
+ arr.name='pavan'
+ console.log(arr) //Output: [1,2,3,name:"pavan"]
+The array still remains an array.
+console.log(Array.isArray(arr)); // true
+
+Important Difference: Not Part of Array Elements
+Named properties:
+  Do not affect length
+    const arr = [1,2,3];
+    arr.name = "pavan";
+    console.log(arr.length); // Output: 3
+
+  Are not iterated by array methods
+    arr.forEach(v => console.log(v)); // Output: 1,2,3
+
+  Are ignored by many array operations
+
+Bad practice:
+  const arr = [];
+  arr["name"] = "pavan";
+
+Better:
+  const obj = {};
+  obj.name = "pavan";
+#########################
+to get values from an array, destructuring can be used instead of indexes 
+  const [firstValue, secondValue]=[1,2,3] // where firstValue=1, secondValue=2
+
+const nameArray=["Max", "Pavan"]
+const firstName=nameArray[0]
+const lastName=nameArray[1]
+destructure array:
+const [firstName, lastName]=["Max", "Pavan"]
+###############
+Any value can be stored in an array
+e.g. [1, 'hello', true, {name: 'socks'}, [1, 2] ]
+
+console.log(typeof [1, 'hello', true, {name: 'socks'}, [1, 2] ]) //object
+console.log(typeof [1,2]) //object
+console.log(Array.isArray([1, 'hello', true, {name: 'socks'}, [1, 2] ])) // true
+console.log(Array.isArray([1,2])) // true
+###############
+push - adds element at the end of array
+splice(index, no. of values to remove) - remvoes an element from the array
+
+###############
 var fruitslc = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
 
 // get elements within a range(startIndex, endIndex-1)
@@ -374,7 +423,10 @@ var myarray=[1,2,3,4,5]
 myarray=[0,...myarray,6]
 
 // #######################################################################
-// When you delete an array element, the array length is not affected. This holds even if you delete the last element of the array. When the delete operator removes an array element, that element is no longer in the array. In the following example, trees[3] is removed with delete.
+// When you delete an array element, the array length is not affected. 
+// This holds even if you delete the last element of the array. 
+// When the delete operator removes an array element, that element is no longer in the array. 
+// In the following example, trees[3] is removed with delete.
 var trees = ['redwood', 'bay', 'cedar', 'oak', 'maple'];
 if (3 in trees) {
     // this is executed
@@ -425,40 +477,3 @@ const marr=[...arr, 7]
 console.log(marr)
 marr.push(8)
 console.log(marr)
-##########################
-Arrays in Javascript are Objects:
-const arr=[12,3,4]
-console.log(typeof arr) // "object"
-
-Internally it behaves like an object with numeric keys:
-{
-  "0": 10,
-  "1": 20,
-  "2": 30
-}
- what happens if you use named indexes:
- const arr=[4,5,6]
- arr.name='pavan'
- console.log(arr) //Output: [1,2,3,name:"pavan"]
-The array still remains an array.
-console.log(Array.isArray(arr)); // true
-
-Important Difference: Not Part of Array Elements
-Named properties:
-  Do not affect length
-    const arr = [1,2,3];
-    arr.name = "pavan";
-    console.log(arr.length); // Output: 3
-
-  Are not iterated by array methods
-    arr.forEach(v => console.log(v)); // Output: 1,2,3
-
-  Are ignored by many array operations
-
-Bad practice:
-  const arr = [];
-  arr["name"] = "pavan";
-
-Better:
-  const obj = {};
-  obj.name = "pavan";
