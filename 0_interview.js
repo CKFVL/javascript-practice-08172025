@@ -54,6 +54,7 @@ hoisting
 lexicalbinding
 closure
 currying
+function composition
 diff b/w constructor and factory
 
 ---

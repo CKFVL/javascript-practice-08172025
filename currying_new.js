@@ -1,11 +1,23 @@
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/693391c0-91e0-8320-98da-90fe817af68b
 
-Currying is a functional programming technique/pattern in JavaScript where a function that takes multiple arguments is transformed into a sequence of functions, each taking one argument at a time.
+Currying is a functional programming technique/pattern in JavaScript where a function that takes multiple arguments is transformed into a sequence of functions, 
+each taking one argument at a time.
+
+*** currying is function transformation (by splitting arguments) technique and not a composition pattern
+*** Each function returns another function until all arguments are provided.
+
+
+*** Understanding summary:
+transforms multiple args into a sequence of functions and each function returns another function until all args are provided.
+
+
 🔥 Simple Definition
-Currying transforms a function with multiple args into a sequence of unary functions:
 function f(a, b, c)
 into
 f(a)(b)(c)
+
+const add = (a) => (b) => a + b;
+add(2)(3); // 5
 
 How it works: Currying follows closure i.e. Each function call must retain access to the previous arguments
 
@@ -85,7 +97,6 @@ console.log(curry(1)(2)(3)); // 6
 
 Order of invocation is:
 **1 → a
-
 2 → b
 3 → c**
 
@@ -97,25 +108,17 @@ Because each pair of parentheses calls the next returned function.
 
 Step by step:
 Step 1: curry(1)
-
 Calls outer function
-
 Returns inner function function(b)
-
 a = 1
 
 Step 2: (2)
-
 Calls the function returned from step 1
-
 Returns another function function(c)
-
 b = 2
 
 Step 3: (3)
-
 Calls the last returned function
-
 c = 3
 
 Finally returns a + b + c
@@ -123,9 +126,7 @@ Finally returns a + b + c
 🧠 So the binding order is:
 
 a gets value first
-
 b gets value next
-
 c gets value last
 
 Each inner function remembers the outer variables because of closures.
@@ -155,11 +156,8 @@ reverse(1)(3)(2); // still 6
 
 
 Then the mapping would be:
-
 a = 1
-
 c = 3
-
 b = 2
 
 So order depends on how functions are nested, not the alphabetical order of parameters.
