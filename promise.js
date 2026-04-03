@@ -172,8 +172,6 @@ Without async, await is illegal ❌
 async function test() {
   return Promise.resolve(5)
 }
-
-
 This returns Promise<Promise<number>>? 👉 No.
 JavaScript automatically unwraps it → Promise<number>
 🧠 Summary
