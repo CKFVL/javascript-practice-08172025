@@ -1,6 +1,9 @@
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea/c/6892b9bd-eb34-8331-87b6-c22ab37b994d
 lexical binding:
-In javascript, the scope of the variable is determined by it's position in the source code and the nested functions have access to variables declared in their outer scope.
+variable scope is determined based on the physical structure of the code (i.e., where the variables and functions are written) - this is known as lexical scope.
+javascript uses lexical binding meaning the scope of the variable is determined by it's position the source code
+
+ the nested functions have access to variables declared in their outer scope.
 
 in case of a regular function,
 function outer(){

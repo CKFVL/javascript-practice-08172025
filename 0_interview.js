@@ -67,8 +67,8 @@ es6 class
 inheritance
 ---
 memoization
-callbackstarvation
 event loop
+callbackstarvation
 tail recursion
 ####################
 document.querySelector('button').innerHTML
