@@ -11,7 +11,7 @@ Array.from can be used to
 
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/696e1d84-b28c-8329-b3b9-af8b3421c404
 
-Array.from vs [...]
+Array.from Vs [...]
   Array.from("abc"); // ["a", "b", "c"]
   [..."abc"];       // ["a", "b", "c"]
   Why use Array.from?
@@ -19,6 +19,7 @@ Array.from vs [...]
     Works with array-like objects (not just iterables)
 
 ########
+// map creates a new array
 const tarr=new Array(5).fill(0).map((_, i) => '')
 console.log(tarr)
 
