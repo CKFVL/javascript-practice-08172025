@@ -272,3 +272,7 @@ const a=[undefined]
 const b={'a':1}
 
 console.log(a[0]===b[0])
+
+#######
+class A {}
+console.log(typeof A)

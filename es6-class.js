@@ -12,14 +12,99 @@ function createCar(color) {
 const redCar = createCar("red");
 redCar.drive(); // driving red car
 
-Characteristics:
-Just a function that returns an object.
-Doesn’t require new.
-this is optional — you can use closures instead.
-No prototype chain (each object gets its own copy of methods unless optimized with Object.create).
-Great for encapsulation (can use private variables via closure).
-More flexible, avoids new keyword issues.
-##############################
+OR
+-----
+Function-based (pre-ES6 style)
+  function Person(name){
+    this.name=name;
+  }
+
+  Person.prototype.sayHi=function(){
+    console.log(`Hi, I'm ${this.name}`)
+  }
+
+  const p1=new Person('pavan')
+
+ES6 Class:
+  class Person{
+    constructor(name){
+      this.name=name
+    }
+
+    sayHi(){
+      console.log(`Hi, I'm ${this.name}`)
+    }
+  }
+
+  const p1=new Person('Pavan')
+
+Internally, ES6 classes are just syntactic sugar over prototypes
+
+Key Differences:
+  - Hoisting behavior
+    Function:
+      const p=new Person('A'); // works
+      function Person(name){
+        this.name=name;
+      }
+
+    Class:
+      const p=new Person('A')
+      class Person{}
+
+  - Strict mode
+      Functions -> not strict by default
+      Classes -> always run in strict mode
+    
+  - Calling without new
+      Function:
+        function Person(name){
+          this.name=name
+        }
+        Person('Pavan') // can pollute global object
+
+      Class:
+        class Person{}
+        Person(); // TypeError
+
+  - Prototype handling
+      Function:
+        - you manually attach methods to prototype
+      Class:
+        - cleaner syntax, but still uses prototype internally
+
+  - enumerability
+      Function prototype methods:
+        Object.keys(Person.prototype)
+  
+      Class methods:
+        Object.keys(Person.prototype)
+  - Inheritance
+      Function
+        function Animal(){}
+        function Dog(){}
+
+        Dog.prototype=Object.create(Animal.prototype)
+
+      Class:
+        class Animal{}
+        class Dog extends Animal{}
+
+    Classes make inheritance much simpler
+
+Understanding summary:
+    ES6 Classes provide built-in inheritance (extends, super)
+    better for OOP style design
+
+    Functions (can act as)
+        - factory
+        - normal function
+        - constructor
+
+    better for functional style programming
+    Easier to compose and curry
+    you can use closures
+
 Constructor function: A constructor function is a function meant to be used with new.
 --------------------
 function Car(color) {
