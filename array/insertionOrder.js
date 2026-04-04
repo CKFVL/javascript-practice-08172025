@@ -27,7 +27,7 @@ console.log(arr);      // ['x', 'y']
 console.log(arr.foo);  // 'bar'
 
 
-foo exists, but it’s not an array element and won’t show up in iteration methods like map, forEach, etc.
+foo exists (i.e., named index), but it’s not an array element and won’t show up in iteration methods like map, forEach, etc.
 
 🔄 Iteration order (important)
 
@@ -66,13 +66,9 @@ Order is preserved, but you’ve got a hole.
 🧠 Contrast with objects (common confusion)
 
 Arrays → insertion order by index
-
 Objects → special rules:
-
 Integer-like keys sorted
-
 Then string keys (in insertion order)
-
 Then symbols
 
 If order really matters for key–value pairs → use Map.
