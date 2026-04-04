@@ -135,7 +135,8 @@ var args = [0, 1, 2];
 myFunction(...args); // spread
 
 // array literals
-// Without spread syntax, to create a new array using an existing array as one part of it, the array literal syntax is no longer sufficient and imperative code must be used instead using a combination of push(), splice(), concat(), etc. 
+// Without spread syntax, to create a new array using an existing array as one part of it, the array literal syntax is no longer sufficient 
+// and imperative code must be used instead using a combination of push(), splice(), concat(), etc. 
 // With spread syntax this becomes much more succinct:
 var parts = ['shoulders', 'knees'];
 var lyrics = ['head', ...parts, 'and', 'toes'];
