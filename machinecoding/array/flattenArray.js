@@ -24,8 +24,10 @@ console.log(res)
 // console.log(arr.flat()) // [ 1, 2, 3, [ 4, 5 ], 6, 7, 8, 9, 10 ] - 1 level only
 // console.log(arr.flatMap(x=>x)) // [ 1, 2, 3, [ 4, 5 ], 6, 7, 8, 9, 10 ] - 1 level only
 
-// console.log(arr.flat(Infinity)) // [1, 2, 3, 4,  5, 6, 7, 8, 9, 10]
+Approach: 1
+console.log(arr.flat(Infinity)) // [1, 2, 3, 4,  5, 6, 7, 8, 9, 10]
 
+Approach: 2
 let arr=[1,[2,3],[[4,5],6], 7, 8, [9,10, [3,4, [9,10]]]]
 //console.log(arr.flat())
 //console.log(arr.flat(Infinity))
@@ -50,7 +52,7 @@ flatArr=iterativeFlattening(arr)
 console.log(flatArr)
 
 ###### OR ############
-
+Approach: 3
 let arr=[1,[2,3],[[4,5],6], 7, 8, [9,10]]
 // iterative - large/deep arrays
 function iterativeFlattening(narr){
@@ -71,6 +73,7 @@ function iterativeFlattening(narr){
 
 console.log(iterativeFlattening(arr))
 
+Approach: 4
 // recursive - works for any
 //
 function flatten(arr) {

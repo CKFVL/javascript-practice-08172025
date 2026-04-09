@@ -272,8 +272,43 @@ console.log(fruitslc.slice(1)); // slices out elements starting from 1
 console.log(fruitslc.toString());
 console.log(fruitslc.slice(1, 3)); // slices out elements starting from 1 to 3
 console.log(fruitslc);
+########################
+//concat:
+two or more arrays can be combined to a new array
+const arr1=[1,2]
+const arr2=[3,4]
 
-//concat
+console.log(arr1.concat(arr2))
+---
+const a = [1];
+const b = [2];
+const c = [3];
+
+const result = a.concat(b, c);
+
+console.log(result); // [1, 2, 3]
+---
+Mixing Values and Arrays:
+const arr = [1, 2];
+const result = arr.concat(3, [4, 5]);
+
+console.log(result); // [1, 2, 3, 4, 5]
+
+---
+Nested Arrays (No Deep Flatten):
+const arr1 = [1];
+const arr2 = [[2, 3]];
+const result = arr1.concat(arr2);
+
+console.log(result); // [1, [2, 3]]
+
+Using Spread Instead (Modern Alternative)
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+
+const result = [...arr1, ...arr2];
+
+console.log(result); // [1, 2, 3, 4]
 ########################
 // Sorting arrays
 // sort function sorts array values as strings
