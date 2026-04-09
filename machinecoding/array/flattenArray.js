@@ -26,6 +26,31 @@ console.log(res)
 
 // console.log(arr.flat(Infinity)) // [1, 2, 3, 4,  5, 6, 7, 8, 9, 10]
 
+let arr=[1,[2,3],[[4,5],6], 7, 8, [9,10, [3,4, [9,10]]]]
+//console.log(arr.flat())
+//console.log(arr.flat(Infinity))
+
+function iterativeFlattening(arr){
+  let flatArr=[]
+  for(let i=0;i<arr.length;i++){
+    if(Array.isArray(arr[i])){
+      //console.log(arr[i])
+      flatArr.push(...iterativeFlattening(arr[i]))
+    }
+    else{
+      flatArr.push(arr[i])
+      console.log(flatArr)
+    }
+  }
+  
+  return flatArr
+}
+
+flatArr=iterativeFlattening(arr)
+console.log(flatArr)
+
+###### OR ############
+
 let arr=[1,[2,3],[[4,5],6], 7, 8, [9,10]]
 // iterative - large/deep arrays
 function iterativeFlattening(narr){

@@ -20,21 +20,13 @@ Example 2: Object expansion
 let obj1={a:1, b:2}
 let obj2={...obj1, c:3}
 
-Key Difference
-| Feature   | Spread                          | Rest                               |
-| --------- | ------------------------------- | ---------------------------------- |
-| Purpose   | Expand elements                 | Collect elements                   |
-| Direction | One → Many                      | Many → One                         |
-| Usage     | Arrays, objects, function calls | Function parameters, destructuring |
-| Result    | Individual values               | Array/Object                       |
-
 let person = { name: 'Pavan', age: 40, country: 'India' };
 // Spread adds properties
 let newPerson = { ...person, job: 'Engineer' };
 console.log(newPerson);
 // { name: 'Pavan', age: 40, country: 'India', job: 'Engineer' }
 
-Example 3: function arguments
+Example 3: function arguments (are the actual values you pass to the function when calling it.)
 function sum(x, y, z){
   console.log(x+y+z)
 }
@@ -74,7 +66,7 @@ Rest: "Collects" all elements into single array or object
 (Rest: "Take all these items and pack others/them into a box.")
 
 Used in:
-    Function parameters
+    Function parameters (placeholders are the variables listed in the function definition)
     Array destructuring
     Object destructuring
 
