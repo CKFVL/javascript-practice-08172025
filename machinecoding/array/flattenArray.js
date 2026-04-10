@@ -75,15 +75,30 @@ console.log(iterativeFlattening(arr))
 
 Approach: 4
 // recursive - works for any
-//
 function flatten(arr) {
   return arr.reduce((acc, val) =>
     Array.isArray(val)
-      ? acc.concat(flatten(val))
+      ? acc.concat(flatten(val)) // concat() does NOT modify acc, It creates a NEW array every time : many temporary arrays
       : acc.concat(val),
-    []
+    [] // The first element of the array is automatically used as the initial accumulator (acc)
   );
 }
 
 flatten([1, [2, [3, 4]], 5]);
 // [1, 2, 3, 4, 5]
+
+OR
+// run the previous logic in reduce
+function redFlattenArray(arr){
+  return arr.reduce((acc, currVal)=>{
+    if(Array.isArray(currVal)){
+      acc.push(...redFlattenArray(currVal)) //push() modifies the same array, No new array is created
+    }else{acc.push(currVal)}
+    return acc
+  }
+  ,[])
+}
+
+Use push (recommended)
+  Large arrays
+  Performance-critical code
