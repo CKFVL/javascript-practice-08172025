@@ -35,6 +35,8 @@ function spreadArray(arr){
   return newArr
 }
 
+// refer flattenArray.js for more approaches
+
 function inorderTraversal(arr){
     return spreadArray(arr)
     

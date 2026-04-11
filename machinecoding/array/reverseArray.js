@@ -32,6 +32,7 @@ for(let i=0;i<arr.length/2;i++){
   // const temp= arr[right]
   // arr[right]=arr[i]
   // arr[i]=temp
+  // right-- // move right pointer inward
   // This line swaps two elements using array destructuring.
   // This prevents:
   // swapping the same element twice: unnecessary work
