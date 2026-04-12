@@ -40,6 +40,11 @@ They are not. Each [] creates a new array instance, so:
 
 Different references ⇒ false
 
+Quick mental model
+  Primitive → compared by value
+  Object (arrays, objects, functions) → compared by reference
+
+Avoid == unless you really know what you're doing
 ########
 // get common values
 const input1={a:1, b:2, c:3, d:10, e:12}

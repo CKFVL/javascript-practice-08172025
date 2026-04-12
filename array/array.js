@@ -7,6 +7,10 @@ They are not. Each [] creates a new array instance, so:
 []  → object #2
 
 Different references ⇒ false
+
+Quick mental model
+  Primitive → compared by value
+  Object (arrays, objects, functions) → compared by reference
 ###############
 indexOf: returns index of element occurence
 findIndex: accepts a function

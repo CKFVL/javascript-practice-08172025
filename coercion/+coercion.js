@@ -22,6 +22,8 @@ JS evaluates + like this
         3 + "5"   // "35"
   - otherwise -> numeric addition
 
+Rule: If one operand is string → everything becomes string
+
 Examples That Show the Rule
 String wins
     1 + "2" + 3
