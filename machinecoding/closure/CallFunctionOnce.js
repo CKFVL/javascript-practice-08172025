@@ -30,3 +30,23 @@ const callonce=(fn)=>{
 
 const add=(a,b,c)=>a+b+c
 console.log(callonce(add)(1,22,3))
+
+Or drive it with number
+function callFnOnlyKTimes(k, fn){
+  let n=0;
+  return function(...args){
+    if(n>k){
+      console.log('function calls reached limit')
+      return
+    }
+    n++
+    return fn(...args)
+  }
+}
+
+let cfok=callFnOnlyKTimes(2, (name)=>console.log(`my name is ${name}`))
+cfok('pavan')
+cfok('pavan')
+cfok('pavan')
+
+cfok('pavan')

@@ -32,6 +32,13 @@ console.log(obj)
 #########
 console.log([]==[])
 console.log([]===[])
+In JSON, arrays are objects and objects are compared by the reference (memory address), not by value
+[] === []
+They are not. Each [] creates a new array instance, so:
+[]  → object #1
+[]  → object #2
+
+Different references ⇒ false
 
 ########
 // get common values

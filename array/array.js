@@ -1,3 +1,13 @@
+console.log([]==[])
+console.log([]===[])
+In JSON, arrays are objects and objects are compared by the reference (memory address), not by value
+[] === []
+They are not. Each [] creates a new array instance, so:
+[]  → object #1
+[]  → object #2
+
+Different references ⇒ false
+###############
 indexOf: returns index of element occurence
 findIndex: accepts a function
 e.g. console.log(arr.findIndex(x=>x===99))
