@@ -72,6 +72,14 @@ When you use ==, JavaScript follows type coercion rules.
           + operator
           string concatenation
 
+        Example:
+          [] == 0
+          Now JS needs to compare:
+          object vs number → must convert object → primitive
+          👉 THEN it does:
+          [].valueOf() → still object (array)
+          [].toString() → ""
+
 The + operator special case
   refer +coercion.js file
 
