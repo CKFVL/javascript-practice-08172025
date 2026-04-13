@@ -123,6 +123,9 @@ Weird but Important Cases
 
 [] == ![]         // true 😵
 Why ![] does NOT call [].toString()
+![] doesn't call toString() because:
+    Boolean conversion (ToBoolean) is primitive and direct, and objects are always truthy by definition
+
 When JS evaluates: ![], it does NOT try to convert the array to a string or number.
 Instead, it uses ToBoolean conversion.
 Rule: Boolean conversion is simple
