@@ -6,6 +6,6 @@ If you remember just these, you're 90% covered:
 === is safe → no coercion
 + with string → string concat
 Other operators → number conversion
-Falsy values are only 7
+Falsy values are only 7 (null, undefined, 0, -0, '', false, NaN)
 null == undefined only
 Objects convert to primitive before comparison

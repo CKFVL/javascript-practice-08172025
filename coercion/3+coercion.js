@@ -86,6 +86,13 @@ Special cases:
   Boolean:
   true + true --> 1+1 = 2
 
+
+More examples:
+    true+1=2
+    false+1=1
+    null+1=1
+    undefined+1=NaN
+
 ##############################################
 var ArrayWrapper=function(nums){
   this.nums=nums
