@@ -181,3 +181,121 @@ JavaScript automatically unwraps it → Promise<number>
 | Uses `await`                        | ✅ Yes          |
 | Returns value but should be Promise | ✅ Yes          |
 | Wraps existing Promise              | ❌ Optional     |
+
+######################################
+Examples:
+function returnPromise(){
+  return new Promise((resolve)=> console.log('hi')) // immediate execution
+}
+// Execution:
+    // Promise executor runs immediately → console.log('hi')
+    // resolve never called → Promise stays pending
+    // Output:
+    // hi
+    // Promise { <pending> }
+
+let rp=returnPromise()
+console.log(rp)
+
+async function returnPromiseAsync(){
+  return new Promise((resolve)=> console.log('hi')) // immediate execution
+}
+// Execution:
+// Same as above:
+// logs hi
+// inner promise is pending
+// async wraps it → returns a Promise that adopts inner state
+// Output:
+// hi
+// Promise { <pending> }
+let rpasync=returnPromiseAsync()
+console.log(rpasync)
+
+// Execution:
+// Promise resolved immediately
+// .then() → goes to microtask queue
+// .then() always async
+// Even if resolved immediately:
+function returnPromiseValue(){
+  return new Promise((resolve)=> resolve('hello handled by client')) // client will handle the result
+}
+let rpv=returnPromiseValue()
+rpv.then(l=>console.log(l))
+
+// Same behavior → another microtask queued
+function returnPromiseValueAsync(){
+  return new Promise((resolve)=> resolve('hello handled by client')) // client will handle the result
+}
+let rpvasync=returnPromiseValueAsync()
+rpvasync.then(l=>console.log(l))
+
+// ❗ What happens?
+// You never call resolve
+// So the Promise stays:
+// pobj // → pending forever
+// After 2 seconds:
+// setTimeout callback runs → logs message
+// But Promise is still pending
+
+// ✅ Timeline
+// t=0   → Promise created (pending)
+// t=2s  → console.log runs
+//       → Promise still pending ❌
+
+// Execution:
+// setTimeout scheduled → macrotask
+// Promise never resolved → stays pending
+// Output:
+// waiting...
+// done...
+// is promise pending Promise { <pending> }
+const pobj=new Promise((resolve)=>setTimeout(function() {console.log('helloattimeout', new Date())}, 2000))
+console.log('waiting...', new Date())
+console.log('done...', new Date())
+console.log('is promise pending', pobj)
+
+// ❗ What happens?
+// setTimeout(...) returns a timer ID (number in browsers, object in Node)
+// That value is immediately passed to resolve(...)
+// So:
+// pobjresolve // → fulfilled immediately
+// The timeout still runs later, but independent of the Promise
+// ✅ Timeline
+// t=0   → setTimeout scheduled
+//       → resolve(timerId) called immediately ✅
+//       → Promise fulfilled
+// t=2s  → console.log runs
+
+// Execution:
+// setTimeout scheduled (macrotask)
+// resolve(...) immediately → Promise fulfilled
+// .then() → microtask
+const pobjresolve=new Promise((resolve)=>resolve(setTimeout(function() {console.log('helloattimeout with resolve', new Date())}, 2000)))
+pobjresolve.then(l=>console.log('resolved'))
+
+// ✅ Correct Way
+// // behavior
+// t=0   → Promise pending
+// t=2s  → log + resolve()
+//       → Promise fulfilled
+
+// Execution:
+// Only schedules macrotask
+// No .then() → no microtask yet
+const pobjCorrect = new Promise((resolve) =>
+  setTimeout(() => {
+    console.log('hello after 2 sec', new Date())
+    resolve('done')
+  }, 2000)
+)
+
+Execution Order:
+🧠 Key Rules First (so the timeline makes sense)
+    Synchronous code runs first
+    Promise executor runs immediately
+    .then() callbacks → Microtasks queue
+    setTimeout → Macrotask queue
+
+Event loop priority:
+      Call Stack → Microtasks → Macrotasks
+
