@@ -88,10 +88,21 @@ Promise.all([fetchUser(1), fetchPayment(11), fetchOrders(21)])
 If you don’t want failures to stop the whole thing, use Promise.allSettled.*/
 Promise.allSettled([fetchUser(1), fetchPayment(11), fetchOrders(212)])
 .then(([users, payments, orders])=> {
-  console.log('##########Promise.all#####################')
-  console.log(users);
-  console.log(payments);
-  console.log(orders)
+  if(users.status === 'fulfilled'){
+          console.log('users', users.value)
+        }
+        
+        if(payments.status === 'fulfilled'){
+          console.log('payments', payments.value)
+        }
+        
+        if(orders.status === 'fulfilled'){
+          console.log('orders', addresses.value)
+        }
+        
+        if(orders.status === 'rejected'){
+          console.log(orders.reason)
+        }
 })
 .catch(error => {
     console.error("Error occurred:", error);
