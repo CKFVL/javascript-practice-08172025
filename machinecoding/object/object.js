@@ -15,7 +15,7 @@ console.log(a===b)
 #######
 check with "use strict" mode and without "use strict" mode
 let name;
-nmae={}
+name={}
 console.log(name)
 
 #########

@@ -1,7 +1,19 @@
-Weird but Important Cases
 [] == []          // false  (different references)
+arrays are objects and objects are compared by the reference (memory address), not by value
+[] === []
+They are not. Each [] creates a new array instance, so:
+[]  → object #1
+[]  → object #2
 
+Different references ⇒ false
 
+Quick mental model
+  Primitive → compared by value
+  Object (arrays, objects, functions) → compared by reference
+
+Avoid == unless you really know what you're doing
+############
+Weird but Important Cases
 [] == ![]         // true 😵
 Why ![] does NOT call [].toString()
 ![] doesn't call toString() because:

@@ -1,3 +1,7 @@
+Note:
+  - obj.__proto__ or Object.getPrototypeOf(obj) → for instances
+  - Class.prototype → for constructor functions
+
 func =()=> checkIfInstanceOf(new Date(), Date)
 func =()=> checkIfInstanceOf(5, Number)
 func = () => {
