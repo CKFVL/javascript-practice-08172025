@@ -4,16 +4,15 @@ string
 order of operations
 ExpressionBodyAndBlock.js
 
-function:
-  args:
-    function sum(a,b,c){
+function: args Vs parameters
+    function sum(a,b,c){ // Parameters (function definition): These are the variables listed when you define a function.
       return a+b+c
     }
 
     const nums=[1,2,3]
     console.log(sum(...nums)) // args
 
-  parameters:
+  Parameters (function definition): These are the variables listed when you define a function.
     function sum(...nums){
       return numbers.reduce((a,b)=>a+b,0)
     }
