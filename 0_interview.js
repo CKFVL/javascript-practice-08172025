@@ -144,6 +144,16 @@ use Math.max to find to find the highest number in an array
 use Math.min to find the smallest number in an array
 
 ---
+| Code                                      | What happens                       |
+| ----------------------------------------- | ---------------------------------- |
+| `setTimeout(resolve('done'), 2000)`       | ❌ runs immediately  and promise resolves instantly               |
+calling resolve('done') immediately instead of passing it as a callback
+so effectively this becomes, setTimeout(undefined, 2000) and does nothing useful
+| `setTimeout(resolve, 2000)`               | ✅ works, resolves with `undefined` |
+| `setTimeout(() => resolve('done'), 2000)` | ✅ correct, resolves with `'done'`  |
+If you see () → you're executing immediately
+---
+
 type=module
 <script type=module src="scripts/amazon.js">
 

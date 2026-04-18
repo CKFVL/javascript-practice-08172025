@@ -69,6 +69,9 @@ then(paymentVal=>{
 catch(error=> console.log(error)).finally('task completed')
 
 #############################################################
+
+
+#############################################################
 Run Tasks in Parallel with Promise.all
 /*Example: Run Tasks in Parallel with Promise.all
 fails fast → if any promise rejects, everything is considered failed.
@@ -193,6 +196,73 @@ JavaScript automatically unwraps it → Promise<number>
 | Returns value but should be Promise | ✅ Yes          |
 | Wraps existing Promise              | ❌ Optional     |
 
+######################################
+Simple intuition
+  Promise → “I’ll give you result later”
+  await → “Wait here until result comes”
+
+1️⃣ Without await
+  console.log('start...')
+  let ac = apiCall() // returns promise
+  console.log('continuing...')
+What happens:
+  apiCall() is invoked
+  It returns a Promise immediately
+  JavaScript does NOT wait
+  Execution continues right away
+Order of execution:
+  start...
+  continuing...
+Later (when promise resolves), nothing happens unless you handle it:
+ac.then(res => console.log(res))
+👉 Key idea:
+Promise is just a placeholder, execution doesn't pause
+
+2️⃣ With await
+  console.log('start...')
+  let ac = await apiCall()
+  console.log('continuing...')
+
+What happens:
+  apiCall() is invoked
+  await pauses execution of this function
+  JS waits until the Promise resolves
+  Then resumes execution
+  Order:
+  start...
+  (wait happens here)
+  continuing...
+
+👉 Key idea:
+    await unwraps the Promise and pauses execution (only inside async functions)
+
+  ⚠️ Important nuance
+
+await does NOT block the whole thread, only the current async function.
+  Under the hood:
+
+  JS registers a callback (microtask)
+  Frees the call stack
+  Resumes when Promise resolves
+
+Timeline comparison:
+    Without await
+      Call stack:
+      start → apiCall() → continuing → (later promise resolves)
+    With await
+      Call stack:
+      start → apiCall() → pause function
+                      ↓
+              promise resolves
+                      ↓
+              resume → continuing
+    💡 Equivalent form
+      This:
+      let ac = await apiCall()
+      Is roughly same as:
+      apiCall().then(ac => {
+        console.log('continuing...')
+      })
 ######################################
 Examples:
 function returnPromise(){
