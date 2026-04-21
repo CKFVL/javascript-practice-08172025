@@ -29,7 +29,7 @@ class TaskScheduler{
         }
       }
       
-      if(this.runningTasks <this.allowedConcurrentTasks){
+      if(this.runningTasks < this.allowedConcurrentTasks){
         // nested regular function loose `this`` and undefined in strict mode, so bind `this` or use call
         // otherwise another approach is to use arrow function (cleaner and preferred)
         //console.log('running task', task)

@@ -12,13 +12,41 @@ function createCar(color) {
 const redCar = createCar("red");
 redCar.drive(); // driving red car
 
+
+function Counter(){
+  let count=0;
+  
+  return {
+    increment: () => {
+      count++
+      return count;
+    },
+    reset: () => {
+      count=0
+      return count
+    }
+  }
+}
+let count = new Counter(); // This still works, but new is useless here because returning {...} overrides new, so new is ignored
+JS Internally does roughly this:
+  1. let obj={} // create empty object
+  2. obj.__proto__ = Counter.prototype; // link prototype
+  3. let result = Counter.call(obj) // call function with this = obj
+
+  4. if (result is object) return result;
+      else return obj;
+
 Characteristics:
 Just a function that returns an object.
 Doesn’t require new.
-this is optional — you can use closures instead.
+*** this is optional — you can use closures instead.
 No prototype chain (each object gets its own copy of methods unless optimized with Object.create).
 Great for encapsulation (can use private variables via closure).
 More flexible, avoids new keyword issues.
+
+🔥 Rule (VERY IMPORTANT)
+If a constructor returns an object, that object becomes the result of new.
+If it returns a primitive (number, string, etc.) or nothing, it is ignored.
 ##############################
 Constructor function: A constructor function is a function meant to be used with new.
 --------------------
