@@ -110,11 +110,9 @@ console.log(u.name); // Pavan
 
 
 Equivalent to:
-
 new User('Pavan')
 
 7️⃣ Reflect.ownKeys()
-
 Get all keys (including Symbols & non-enumerable)
 
 const obj = {
@@ -126,7 +124,6 @@ console.log(Reflect.ownKeys(obj));
 // ['a', Symbol(s)]
 
 Reflect + Proxy (MOST IMPORTANT USE CASE)
-
 👉 Every Proxy trap has a corresponding Reflect method
 
 Example: Safe Proxy forwarding
@@ -150,22 +147,16 @@ proxy.a = 20;  // logs + updates value
 🔥 Why use Reflect inside Proxy traps?
 
 ❌ Bad:
-
 target[prop] = value;
 return true;
 
-
 ✔ Good:
-
 return Reflect.set(target, prop, value, receiver);
 
 
 Because:
-
 Handles inheritance correctly
-
 Preserves default behavior
-
 Avoids subtle bugs with setters / prototypes
 
 Interview-ready comparison

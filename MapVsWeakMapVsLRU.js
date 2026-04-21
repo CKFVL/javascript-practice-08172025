@@ -25,17 +25,13 @@ Performance	O(1) avg for get/set
 When to use
 
 You need:
-
-iteration
-
-size
-
-predictable order
+  - iteration
+  - size
+  - predictable order
 
 Cache where you control eviction
 
 Replacing plain objects as dictionaries
-
 ⚠️ Pitfall
 let obj = {};
 map.set(obj, "value");
@@ -61,13 +57,11 @@ Iterable	❌ No iteration
 Size	❌ No .size
 Order	❌ No order
 Performance	O(1) avg
+
 When to use
-
-Attach metadata to objects
-
-Avoid memory leaks
-
-Private data pattern
+  Attach metadata to objects
+  Avoid memory leaks
+  Private data pattern
 
 Framework internals (React, Vue use this idea)
 

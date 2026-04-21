@@ -1,10 +1,19 @@
+console.log(foo)
+foo=1 // output : ??
+#######################
+console.log(foo)
+var foo=2 // output : ??
+#######################
+foo=3
+console.log(foo)
+var foo // output : ??
+#######################
 console.log("value of age is", age)
 var age=30
 console.log("value of age is", age)
 
 Output:
-undefined
-30
+??
 
 ###############
 age=100
@@ -13,8 +22,7 @@ var age=30
 console.log("value of age is", age)
 
 Output:
-100
-30
+??
 
 ###############
 myFun();
@@ -33,9 +41,7 @@ myFun();
 
 Output:
 ------
-second
-First
-First
+??
 
 ###############
 variablef=10;
@@ -52,8 +58,15 @@ console.log(variablef)
 var variablef=30
 console.log(variablef)
 // output
-// 10
-// 20
-// ReferenceError: foo is not defined
-// 20
-// 30
+??
+
+##################
+console.log(foo)
+foo=1 // output : ??
+
+console.log(foo)
+var foo=2 // output : ??
+
+foo=3
+console.log(foo)
+var foo // output : ??
