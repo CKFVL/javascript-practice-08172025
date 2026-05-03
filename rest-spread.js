@@ -30,13 +30,13 @@ Example 3: function arguments (are the actual values you pass to the function wh
 function sum(x, y, z){
   console.log(x+y+z)
 }
-sum(...[1,2,3])
+sum(...[1,2,3]) // args
 
 4. clone object
-const user = { name: "Pavan", age: 30 };
-const clone = { ...user };
+    const user = { name: "Pavan", age: 30 };
+    const clone = { ...user };
 
-console.log(clone); // { name: "Pavan", age: 30 }
+    console.log(clone); // { name: "Pavan", age: 30 }
 
 *** Objects are non-iterable right, then how spread considers it as iterable?
 Object spread does NOT treat objects as iterables. 

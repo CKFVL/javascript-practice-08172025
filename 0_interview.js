@@ -70,6 +70,12 @@ event loop
 callbackstarvation
 tail recursion
 ####################
+polyfills
+https://www.youtube.com/watch?v=Th3rZjfKKhI
+
+####################
+pending.txt 
+
 document.querySelector('button').innerHTML
 document.querySelector('.js-buton').innerHTML
 
