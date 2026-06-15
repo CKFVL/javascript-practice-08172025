@@ -53,7 +53,6 @@ When you use ==, JavaScript follows type coercion rules.
         null == false // false
         null == ''    // false
 
-
         undefined == 0     // false
         undefined == false // false
 --------
@@ -81,7 +80,7 @@ When you use ==, JavaScript follows type coercion rules.
           [].toString() → ""
 
 The + operator special case
-  refer +coercion.js file
+  refer 3+coercion.js file
 
 ##################
   Object -> primitive (arrays are objects, so JS tries to convert [] to primitive)
