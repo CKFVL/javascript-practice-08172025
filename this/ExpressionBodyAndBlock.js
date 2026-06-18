@@ -53,6 +53,6 @@ excludes.forEach(({k,v}) => {
 })
 
 Curly braces {} = block body
-Allows statements (if, for, return)
-Requires explicit return
-This is the correct syntax when you need control flow.
+  Allows statements (if, for, return)
+  Requires explicit return
+  This is the correct syntax when you need control flow.
