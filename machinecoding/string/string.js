@@ -47,6 +47,17 @@ const str='hello pavan'
 console.log(str.charCodeAt(2))
 console.log(String.fromCharCode(108))
 
+const str1='apple'
+const str2='banana'
+const str3='apple'
+
+console.log(str1.localeCompare(str2)) // return 1
+console.log(str1.localeCompare(str3)) // returns 0
+
+// includes
+const str='subscribe to my channel'
+console.log(str.includes('subscribe'))
+
 // usage of template string
 function test(subscribeStr, channel, person){
     console.log(subscribeStr, channel, person)
