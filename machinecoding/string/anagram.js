@@ -24,3 +24,40 @@ for(i=0;i<strarr1.length;i++){
 
 // or
 console.log(strarr1.join()===strarr2.join())
+
+// using object - pendiong
+// anagram: An anagram string is a word 
+// or phrase formed by rearranging the letters of another word or phrase, using all original characters exactly once
+let str1='listen'
+let str2='silnt'
+
+let obj1={}
+let obj2={}
+// approach using object
+for(let i=0;i<str1.length;i++){
+    if(obj1.hasOwnProperty(str1[i])){
+        obj1[str1[i]]=obj1[str1[i]]+1
+    }else{
+        obj1[str1[i]]=1
+    }
+}
+
+console.log(obj1)
+
+for(let j=0;j<str2.length;j++){
+    if(obj2.hasOwnProperty(str2[j])){
+        obj2[str2[j]]=obj2[str2[j]]+1
+    }else{
+        obj2[str2[j]]=1
+    }
+}
+console.log(obj2)
+
+for(i=0;i<str1.length;i++){
+    console.log(str1[obj1[i]])
+    console.log(str2[obj2[i]])
+    if(obj1[i]!==obj2[i]){
+        console.log('not anagram')
+        break
+    }
+}
