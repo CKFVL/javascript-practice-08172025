@@ -58,6 +58,11 @@ console.log(str1.localeCompare(str3)) // returns 0
 const str='subscribe to my channel'
 console.log(str.includes('subscribe'))
 
+// split
+split
+
+// join
+
 // usage of template string
 function test(subscribeStr, channel, person){
     console.log(subscribeStr, channel, person)
