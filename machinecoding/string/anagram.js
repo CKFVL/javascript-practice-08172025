@@ -29,7 +29,7 @@ console.log(strarr1.join()===strarr2.join())
 // anagram: An anagram string is a word 
 // or phrase formed by rearranging the letters of another word or phrase, using all original characters exactly once
 let str1='listen'
-let str2='silnt'
+let str2='silent'
 
 let obj1={}
 let obj2={}
@@ -53,11 +53,14 @@ for(let j=0;j<str2.length;j++){
 }
 console.log(obj2)
 
-for(i=0;i<str1.length;i++){
-    console.log(str1[obj1[i]])
-    console.log(str2[obj2[i]])
-    if(obj1[i]!==obj2[i]){
-        console.log('not anagram')
-        break
-    }
+if(Object.keys(obj1).length !== Object.keys(obj2).length){
+    console.log('not equal!')
 }
+
+for(const key in obj1){
+  if(obj1[key]!==obj2[key]){
+    console.log('not anagram')
+  }
+}
+
+console.log('is anagram')
