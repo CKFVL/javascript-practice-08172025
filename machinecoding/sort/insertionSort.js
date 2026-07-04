@@ -17,7 +17,8 @@ Algorithm:
 
     Store the current element (key).
     Compare it with elements to its left.
-    Shift larger elements one position to the right.
+    Shift larger elements *one position* to the right.
+                           ------------
     Insert the key into the correct position.
 
 // how you sort playing cards in your hand
@@ -38,3 +39,6 @@ for(let i=0;i<arr.length;i++){
 }
 
 console.log(arr)
+
+leet code problem:
+given the hesd of a singly linked FileList, sort the list using insertion sort and return the sorted list's head
