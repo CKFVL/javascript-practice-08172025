@@ -18,6 +18,7 @@ for(let i=0;i<arrLength-1;i++){
     }
 }
 
+
 console.log(arr)
 ###
 When to Use Selection Sort:
