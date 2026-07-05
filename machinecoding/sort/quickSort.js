@@ -47,3 +47,38 @@ Space Complexity:
 
     Auxiliary space: O(log n) on average (recursive call stack)
     Worst case: O(n) due to recursion depth
+
+code:
+function quickSort(arr, low, high){
+    if(low<high){
+        let pivotIndex=partition(arr, low, high)
+        quickSort(arr, low, pivotIndex-1)
+        quickSort(arr, pivotIndex+1, high)
+    }
+
+    return arr
+}
+
+function partition(arr, low, high){
+    /*
+    There are multiple partition techniques.
+The easiest one to understand is Lomuto Partition- We choose last element as the pivot.
+    */
+    let pivot=arr[high];
+    let i=low-1;
+    for(j=low;j<high;j++){
+        if(arr[j]<pivot){
+            i++;
+            [arr[j], arr[i]]=[arr[i], arr[j]]
+        }
+    }
+
+    [arr[i+1], arr[high]]=[arr[high], arr[i+1]]
+
+    return i+1
+}
+
+const arry=[8,4,7,2,9,1,5]
+console.log(quickSort(arry, 0, arry.length-1))
+const arry2=[8,4,2,6]
+console.log(quickSort(arry2, 0, arry2.length-1))
