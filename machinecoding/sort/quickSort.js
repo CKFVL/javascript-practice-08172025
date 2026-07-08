@@ -1,7 +1,7 @@
-What is Quick Sort?
+What is Quick Sort ?
 
-Quick Sort follows the Divide and Conquer approach.
-Instead of dividing the array into equal halves (like Merge Sort), it:
+    Quick Sort follows the Divide and Conquer approach.
+Instead of dividing the array into equal halves(like Merge Sort), it:
     Picks one element called the Pivot.
     Places the pivot in its correct sorted position.
     All smaller elements go to the left.
@@ -9,14 +9,14 @@ Instead of dividing the array into equal halves (like Merge Sort), it:
     Repeat the same process on both sides
 
 Example:
-    [8,4,7,2,9,1,5]
-    Pivot = 5
+[8, 4, 7, 2, 9, 1, 5]
+Pivot = 5
 
     After partition
-    [4,2,1 | 5 | 8,7,9]
+[4, 2, 1 | 5 | 8, 7, 9]
 
     Now sort
-    [4,2,1]      [8,7,9]
+[4, 2, 1][8, 7, 9]
 
 Real World Example
     Imagine arranging books by thickness.
@@ -29,56 +29,56 @@ Real World Example
     Eventually every book reaches its correct place.
 
 ----
-Partition:
+    Partition:
     There are multiple partition techniques.
     The easiest one to understand is Lomuto Partition.
         we choose last element as the pivot
 
 Time Complexity:
-    | Case    | Complexity |
+    | Case | Complexity |
     | ------- | ---------- |
-    | Best    | O(n log n) |
+    | Best | O(n log n) |
     | Average | O(n log n) |
-    | Worst   | O(n²)      |
-Worst case occurs when the pivot is always the smallest or largest element, such as an already sorted array when always choosing the first or last element as the pivot.
+    | Worst | O(n²) |
+    Worst case occurs when the pivot is always the smallest or largest element, such as an already sorted array when always choosing the first or last element as the pivot.
 
 Space Complexity:
-    Because Quick Sort sorts in place (no extra array like Merge Sort):
+    Because Quick Sort sorts in place(no extra array like Merge Sort):
 
-    Auxiliary space: O(log n) on average (recursive call stack)
+    Auxiliary space: O(log n) on average(recursive call stack)
     Worst case: O(n) due to recursion depth
 
 code:
-function quickSort(arr, low, high){
-    if(low<high){
-        let pivotIndex=partition(arr, low, high)
-        quickSort(arr, low, pivotIndex-1)
-        quickSort(arr, pivotIndex+1, high)
+function quickSort(arr, low, high) {
+    if (low < high) {
+        let pivotIndex = partition(arr, low, high)
+        quickSort(arr, low, pivotIndex - 1)
+        quickSort(arr, pivotIndex + 1, high)
     }
 
     return arr
 }
 
-function partition(arr, low, high){
+function partition(arr, low, high) {
     /*
     There are multiple partition techniques.
 The easiest one to understand is Lomuto Partition- We choose last element as the pivot.
     */
-    let pivot=arr[high];
-    let i=low-1;
-    for(j=low;j<high;j++){
-        if(arr[j]<pivot){
+    let pivot = arr[high];
+    let i = low - 1;
+    for (j = low; j < high; j++) {
+        if (arr[j] < pivot) {
             i++;
-            [arr[j], arr[i]]=[arr[i], arr[j]]
+            [arr[j], arr[i]] = [arr[i], arr[j]]
         }
     }
 
-    [arr[i+1], arr[high]]=[arr[high], arr[i+1]]
+    [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]]
 
-    return i+1
+    return i + 1
 }
 
-const arry=[8,4,7,2,9,1,5]
-console.log(quickSort(arry, 0, arry.length-1))
-const arry2=[8,4,2,6]
-console.log(quickSort(arry2, 0, arry2.length-1))
+const arry = [8, 4, 7, 2, 9, 1, 5]
+console.log(quickSort(arry, 0, arry.length - 1))
+const arry2 = [8, 4, 2, 6]
+console.log(quickSort(arry2, 0, arry2.length - 1))

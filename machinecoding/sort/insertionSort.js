@@ -42,3 +42,10 @@ console.log(arr)
 
 leet code problem:
 given the hesd of a singly linked FileList, sort the list using insertion sort and return the sorted list's head
+
+Time Complexity
+Case	                Complexity
+Best (already sorted)	O(n)
+Average	                O(n²)
+Worst (reverse sorted)	O(n²)
+Best case happens because the while loop performs only one comparison for each element.
