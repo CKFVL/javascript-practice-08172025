@@ -47,6 +47,9 @@ Examples
       You want to explicitly clear a variable.
       Indicate an intentional empty value (e.g., return null when item not found).
 
+
+Refer 1Equality.js file for coercion rules:
+-------------------------------------------
 Common Pitfalls
   1. typeof null === "object"
   This is a known JS bug and kept for backward compatibility.

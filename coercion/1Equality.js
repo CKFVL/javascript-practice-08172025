@@ -1,3 +1,22 @@
+Understanding summary:
+---------------------
+  - strict equality (no coercion happens)
+  - loose equality: coercion happens if types are different
+    Exception cases:
+      - null == undefined (always true as JS doesn't apply coercion rules)
+      - if one of the value is null, then coercion doesn't happen
+  - String Vs Number
+  - Boolean value is converted to number
+  - toString() called when 
+        - ==
+        - + operator
+        - string conactenate operation
+
+Object comparison: objects, arrays and functions are converted to primitive first and then use valueOf and toString()
+-----------------
+  - when one of the value to be compared is number, then JS calls valueOf and toString methods on the value that is object type
+    to convert to primitive value and then applies toString method
+
 Strict equality (===) : No coercion happens
   5 === '5' // false
 
@@ -76,7 +95,7 @@ When you use ==, JavaScript follows type coercion rules.
           Now JS needs to compare:
           object vs number → must convert object → primitive
           👉 THEN it does:
-          [].valueOf() → still object (array)
+          [].valueOf() → still object (array) (because valueOf method in array returns the same array)
           [].toString() → ""
 
 The + operator special case
@@ -95,14 +114,14 @@ The + operator special case
     [] === 0
 
   Step 2: Object -> primitive
-  Arrays are objects, so JS tries to convert [] to primitives
-    It does this using: 
-      valueOf()
-      toString()
+    Arrays are objects, so JS tries to convert [] to primitives
+      It does this using: 
+        valueOf()
+        toString()
 
   Step 3: [].toString()
-  Array.toString() joins elements with commas
-  empty array -> nothing to join -> empty string
+    Array.toString() joins elements with commas
+    empty array -> nothing to join -> empty string
 
   Step 4: String -> Number
   "" -> 0

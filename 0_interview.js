@@ -20,6 +20,7 @@ function: args Vs parameters
     console.log(sum(1,2,3))
 
 object (folder)
+  1Equality.js file (coercion rules)
   null vs undefined
   object types
   object properties/object property descriptors

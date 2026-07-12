@@ -1,15 +1,15 @@
 variable identifier rules:
+  - must not contain whitepace or special characters
+  - may contain numbers but not start with a number
+  - must not clash with reserved keywords
 
-must not contain whitepace or special characters
-
-may contain numbers but not start with a number
-
-must not clash with reserved keywords
-
+Exception cases:
+  - typeof NaN is a number (Infinity as well)
+  - typeof null is object
 ######################
 
-Primitive types:
-----------------
+JS has 7 Primitive types:
+------------------------
 String
 boolean
 number: javascript doesn't have special runtime value for integers, so there's no equivalent to int or float, so everything is Number
@@ -17,6 +17,13 @@ bigint
 undefined
 null
 symbol
+
+One important JavaScript quirk:
+  typeof null // "object"
+Even though typeof null returns "object", null is still a primitive type. This is a historical JavaScript behavior.
+The only non-primitive type is:
+  object
+Arrays, functions, dates, maps, etc. are objects or object-like reference values.
 
 *** primitive types are not objects in JavaScript.
 But JavaScript has a special mechanism that makes primitives behave like objects temporarily, which causes confusion.
@@ -26,6 +33,8 @@ Objects are Reference types:
 ----------------
 Object
 Array
+map
+date
 Function
   let obj = {name: "pavan"};
   let arr = [1,2,3];
@@ -77,14 +86,15 @@ Output:
 undefined
 
 Why?
-JS creates temporary object
-new String("hello")
-property added
-object destroyed immediately
-So property does not persist.
+  JS creates temporary object
+  new String("hello")
+  property added
+  object destroyed immediately
+  So property does not persist.
 
 6️⃣ Special Weird Case (null)
 typeof null
+
 
 Output:
 "object"
