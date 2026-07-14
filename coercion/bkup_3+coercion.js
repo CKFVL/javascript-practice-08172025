@@ -9,7 +9,7 @@ JS evaluates + like this
     a + b
   - convert objects -> primitive 
     If a or b are objects, Javascript calls:
-      - valueOf()
+      - valueOf()  (If valueOf() returns a primitive, JavaScript stops there and does not call toString())
       - if not primitive -> toString()
       Example:
         let obj = {

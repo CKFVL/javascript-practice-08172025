@@ -1,8 +1,7 @@
 type coercion happens in:
-  -> -, *, /, %
-  -> comparisons (>, <)
+  - > -, *, /, %
+  - > comparisons (>, <)
 
 examples:
-'5'-2 = 3
-'10' * 2 = 20
-
+  '5'-2 = 3
+  '10' * 2 = 20

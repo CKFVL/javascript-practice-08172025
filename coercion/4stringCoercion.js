@@ -10,12 +10,19 @@ When you call String(value) for arrays:
 Example: String([3,4,5])
 Step-by-step (Internal Conversion)
     Under the hood:
+        One important nuance: modern JavaScript first uses the object's primitive-conversion mechanism (Symbol.toPrimitive if defined).
+            Symbol.toPrimitive
+                ↓ if absent
+            valueOf()
+                ↓ if not primitive
+            toString()
 
-    String([3,4,5])
-    → ToPrimitive(array)
-    → array.toString()
-    → array.join(",")
-    → "3,4,5"
+        A simplified order for + is usually:
+            String([3,4,5])
+            → ToPrimitive(array)
+            → array.toString()
+            → array.join(",")
+            → "3,4,5"
 
 ###################
 console.log(String(100))
