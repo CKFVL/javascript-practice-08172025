@@ -1,3 +1,40 @@
+Understanding summary:
+---------------------
+  - writable=true: can change value
+  - enumerable=true: Property participates in common property enumeration (shows in loops or for...in or Object.keys(obj))
+  - configurable=true: can delete or redefine
+
+  *** defaults are true
+
+  properties created normally are enumerable by default:
+    const obj = {
+      name: "Pavan"
+    };
+
+    console.log(
+      Object.getOwnPropertyDescriptor(obj, "name").enumerable
+    ); // true
+
+  Whereas Object.defineProperty() defaults enumerable to false if you omit it:
+    Object.defineProperty(obj, "secret", {
+      value: 123
+    });
+
+    console.log(
+      Object.getOwnPropertyDescriptor(obj, "secret").enumerable
+    ); // false
+
+  When a property has:
+    configurable: false
+  You cannot change its descriptor anymore — meaning you cannot change:
+    configurable
+    enumerable
+    convert data property ↔ accessor property
+    change get / set
+  except, from writable: true to writable: false (to keep more safe)
+
+  Refer line 385
+#############################################################################
 let newEmployee1 = {id:22, name: 'pavan', age: 34};
 let newEmployee2 = {id:23, name: 'bhogala', age: 34};
 let newEmployee3 = {id:24, name: 'vani', age: 41};
@@ -8,6 +45,7 @@ for(const emp of empArr){
   console.log(emp.age)
 }
 console.log('$$$$$$$$$$$$$$$$$$')
+// enumerbale method
 for(const emp in empArr){ // for...in iterates over indexes (keys), not the actual objects.
   console.log(emp)
   console.log(empArr[emp].name)
@@ -26,18 +64,37 @@ It controls:
 
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/699d0a1a-2478-8323-87b3-a03ce8d55830
 In JavaScript, Object.defineProperty() lets you control property descriptors:
-writable → Can the value be changed?
-enumerable → Will it show up in loops like for...in or Object.keys() or console?
-configurable → Can the property be deleted or reconfigured?
+  writable → Can the value be changed?
+  enumerable → Will it show up in loops like for...in or Object.keys() or console?
+  configurable → Can the property be deleted or reconfigured?
 
 // If writable: false, the value cannot be changed.
 Object.defineProperty(newEmployee1, 'name', {writable: false})
 //Without strict mode → fails silently.
-// ❌ TypeError in strict mode
+newEmployee1.name='guru'
+// 'use strict'
+// ❌ TypeError in strict mode; TypeError: Cannot assign to read only property 'name' of object '#<Object>'
 //newEmployee1.name='newName'
 ---
-enumerable:
-If enumerable: false, the property won’t appear in loops or Object.keys().
+enumerable: false means the property exists and can still be accessed, but it is hidden from many property-enumeration operations.
+(the property won’t appear in loops or Object.keys())
+
+  https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/6a564a2d-9468-83ee-b220-01c8c2a5a059
+  | Operation                      | Does `"name"` appear?  |
+  | ------------------------------ | ---------------------  |
+  | Direct access: `obj.name`      | ✅                     |
+  | `"name" in obj`                | ✅                     |
+  | `Object.hasOwn(obj, "name")`   | ✅                     |
+  | `for...in`                     | ❌                     |
+  | `Object.keys()`                | ❌                     |
+  | `Object.values()`              | ❌                     |
+  | `Object.entries()`             | ❌                     |
+  | `{...obj}`                     | ❌                     |
+  | `Object.assign({}, obj)`       | ❌                     |
+  | `JSON.stringify(obj)`          | ❌                     |
+  | `Object.getOwnPropertyNames()` | ✅                     |
+  | `Reflect.ownKeys()`            | ✅                     |
+
 const user = {};
 
 Object.defineProperty(user, "age", {
@@ -55,6 +112,39 @@ for (let key in user) {
 console.log(user.age); 
 // 34 (still accessible directly)
 
+Important: for...of
+  for...of does not enumerate normal object properties at all:
+    for (const value of obj) {
+      // TypeError: obj is not iterable
+    }
+Simple mental model:
+    enumerable: true
+        ↓
+    Property participates in common property enumeration
+
+    enumerable: false
+        ↓
+    Property still exists
+    Property can still be accessed
+    But common enumeration/copying operations hide it
+
+*** Also, properties created normally are enumerable by default:
+    const obj = {
+      name: "Pavan"
+    };
+
+    console.log(
+      Object.getOwnPropertyDescriptor(obj, "name").enumerable
+    );// true
+
+*** Whereas Object.defineProperty() defaults enumerable to false if you omit it:
+    Object.defineProperty(obj, "secret", {
+      value: 123
+    });
+
+    console.log(
+      Object.getOwnPropertyDescriptor(obj, "secret").enumerable
+    ); // false
 ---
 //configurable
 If configurable: false, you cannot:
@@ -80,9 +170,7 @@ Object.defineProperty(user, "id", {configurable: true})
 
 --> Change its descriptor (except writable → false)
 When a property has:
-
-configurable: false
-
+  configurable: false
 You cannot change its descriptor anymore — meaning you cannot change:
   configurable
   enumerable
@@ -95,7 +183,6 @@ BUT there is one special exception:
 You can only move in one direction:
   writable: true  →  writable: false ✅
   writable: false →  writable: true ❌ (not allowed)
-
 
 Example 1 — Allowed Change (writable → false)
   const obj = {};
@@ -159,8 +246,7 @@ Object.defineProperty(obj, "salary", {
 ❌ TypeError
 Because converting between:
 
-Data property → Accessor property
-is not allowed when configurable: false.
+Data property → Accessor property is not allowed when configurable: false.
 
 🧠 Why JavaScript Allows writable → false?
 Because making something more restrictive is safe.
@@ -189,9 +275,10 @@ writable: false})
 
 console.log(employee)
 
-// change the value (change enumerable:true when testing)
-employee.name='kumar'
-console.log(employee) // same value= { name: 'bhogala gurupavan' }
+// strict mode -> TypeError: Cannot assign to read only property 'name' of object '#<Object>'
+employee.name='kumar' //
+console.log(employee) // non-strict mode -> same value= { name: 'bhogala gurupavan' } -> 
+
 
 console.log(Object.keys(employee)) // won't show up in loops or console or Object.keys
 

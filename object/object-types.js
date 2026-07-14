@@ -10,13 +10,13 @@ Exception cases:
 
 JS has 7 Primitive types:
 ------------------------
-String
-boolean
-number: javascript doesn't have special runtime value for integers, so there's no equivalent to int or float, so everything is Number
-bigint
-undefined
-null
-symbol
+  String
+  boolean
+  number: javascript doesn't have special runtime value for integers, so there's no equivalent to int or float, so everything is Number
+  bigint
+  undefined
+  null
+  symbol
 
 One important JavaScript quirk:
   typeof null // "object"
@@ -52,7 +52,7 @@ console.log(str.length);
 console.log(str.toUpperCase());
 
 Here "hello" is a primitive, but JS internally does this:
-new String("hello").toUpperCase()
+  new String("hello").toUpperCase()
 
 Temporary wrapper objects:
 
