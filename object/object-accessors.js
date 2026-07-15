@@ -32,6 +32,22 @@ In JavaScript, property descriptors are commonly divided into two types:
         }
     )
 
+// Default property descriptor
+// {
+//   value: 'pavan',
+//   writable: true,
+//   enumerable: true,
+//   configurable: true
+// }
+// https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea/c/69466f92-2624-8322-be0c-73e871657bac
+
+let emp={name: 'pavan'}
+emp.name='guru'
+console.log(emp.name)
+// Objects are extensible by default, so this works.
+emp.age=40
+console.log(emp.age)
+
 An object Cannot both specify accessors and a value or writable attribute:
 --------------------------------------------------------------------------
 // If a descriptor has neither of value, writable, get and set keys, it is treated as a data descriptor. 
@@ -113,6 +129,14 @@ Object.defineProperty(o, 'a', {
   configurable: false,
   enumerable: false
 });
+
+If you don’t give a value, the default is undefined.
+Object.defineProperty(newEmployee, 'name', {
+  configurable: false,
+  writable: false,
+  enumerable: true
+});
+So even though the property exists and is enumerable, its value is still undefined.
 ###########################
 // Bear in mind that these attributes are not necessarily the descriptor's own properties. Inherited properties will be considered as well. 
 // In order to ensure these defaults are preserved, you might freeze the Object.prototype upfront, specify all options explicitly, 

@@ -24,7 +24,6 @@ object (folder)
   null vs undefined
   object types
   object properties
-  object property descriptors
   object-accessors.js
   object-prototype.js
   object destructuring
