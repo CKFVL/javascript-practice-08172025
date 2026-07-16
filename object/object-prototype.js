@@ -1,11 +1,76 @@
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/699d0a1a-2478-8323-87b3-a03ce8d55830
-
+Note:
+----
+  *** Only functions have .prototype property.
+      function MyFn() {}
+      console.log(MyFn.prototype); // {}
+    *** Instances do not have a .prototype property.
+      Instead, the instance has an internal [[Prototype]] (accessible via Object.getPrototypeOf):
+      console.log(Object.getPrototypeOf(mf) === MyFn.prototype); // true
+      or
+      console.log(mf.__proto__ === MyFn.prototype); // true but it's legacy
+#############################################################################################################
 'use strict'
 //If an accessor property is inherited, its get and set methods will be called when the property is accessed 
 // and modified on descendant objects.
 // Accessor Property on Prototype
 function Person() {}
+// this code will cause infinite recursion, resulting in a RangeError: Maximum call stack size exceeded.
+// The property age is an accessor property (getter and setter).
+// so when JS executes it, it calls set method and inside the set method, this.age=value is called
+// but this.age is the same property
+// So, javascript calls the setter again
+      // Setter called
+          ↓
+      // this.age = value
+      //     ↓
+      // Setter called
+      //     ↓
+      // this.age = value
+      //     ↓
+      // Setter called
+      //     ↓
+      // ...
+    // This never ends.
+    // Eventually:
+    // RangeError: Maximum call stack size exceeded
+// The getter has the same problem
+// If you do, console.log(p.age);
+// The getter runs: 
+/*
+  get() {
+    console.log("Getter called");
+    return this.age;
+  }
+  Again, this.age tries to read the same property, which invokes the getter again.
+    Getter called
+        ↓
+    return this.age
+        ↓
+    Getter called
+        ↓
+    return this.age
+        ↓
+    Getter called
+    ...
 
+  RangeError: Maximum call stack size exceeded
+*/
+Object.defineProperty(Person.prototype, "age", {
+  get() {
+    console.log("Getter called");
+    return this.age;
+  },
+  set(value) {
+    console.log("Setter called");
+    this.age = value;
+  },
+  enumerable: true,
+  configurable: true
+});
+
+Correct approach:
+  The getter/setter should use a different backing property or use a private class field (e.g. #x) when working with ES classes.
 Object.defineProperty(Person.prototype, "age", {
   get() {
     console.log("Getter called");
@@ -50,11 +115,53 @@ Getter called
 
 🔥 Key Rule
     If an accessor property is inherited:
-    get() runs when reading
-    set() runs when writing
-    this refers to the actual object (p), not the prototype
-    That’s the important part.
----
+      get() runs when reading
+      set() runs when writing
+    *** this refers to the actual object (p), not the prototype, That’s the important part. ***
+
+    function Person() {}
+
+const p = new Person();
+
+Object.defineProperty(Person.prototype, "age", {
+  get() {
+    console.log("Getter called");
+    return this._age;
+  },
+  set(value) {
+    console.log("Setter called");
+    this._age = value;
+  },
+  enumerable: true,
+  configurable: true
+});
+
+// When You SET the Property
+p.age = 30;
+
+console.log(p)
+console.log(p.age) // 30
+console.log(p._age) // 30
+console.log(Person.prototype._age) // undefined
+console.log(Person.prototype.age) // undefined
+console.log('##################')
+Object.defineProperty(p, "phone", {
+    get(){
+        return this._phone;
+    },
+    set(value){
+        this._phone=value;
+    },
+    enumerable: true,
+    configurable: true
+})
+p.phone=709534
+console.log(p.phone)
+console.log(p._phone)
+console.log(Person.prototype.phone) // undefined
+console.log(Person.prototype._phone) // undefined
+
+##########################################################################################
 🔹 Compare With Value Property
 Now compare with a value property:
 function Person() {}
@@ -104,7 +211,8 @@ console.log(b.x)
 console.log(myFn.prototype.x)
 
 console.log('###########')
-//This can be fixed by storing the value in another property. In get and set methods, this points to the object which is used to access or modify the property.
+// This can be fixed by storing the value in another property. 
+// In get and set methods, this points to the object which is used to access or modify the property.
 Object.defineProperty(myFn.prototype, 'y',
 {
   get(){

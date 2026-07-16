@@ -20,7 +20,7 @@ function: args Vs parameters
     console.log(sum(1,2,3))
 
 object (folder)
-  1_+coercion-rules, 2booleanConversion, 3==coercion-rules, 4stringCoercion, 5NumberCoercion
+  1_+coercion-rules, 2booleanConversion, 3==coercion-rules, 4stringCoercion, 5NumberCoercion, rules.js, 
   null vs undefined
   object types
   object properties
