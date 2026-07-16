@@ -1,23 +1,24 @@
-Environment	              Mode	          Global this (top-level)	           (Regular Function this (non-method) and REPL)
-Browser	                  Non-strict	    window(refers to global object)	    window
-(scripts, not modules)    Strict	        undefined	                          undefined
----------------------------------------------------------------------------------------------------------
-Node.js	                  Non-strict	    module.exports(initially {})	      global
-                          Strict	        module.exports(initially {})	      undefined
----------------------------------------------------------------------------------------------------------
-Browser	                  Non-strict	    window(refers to global object)	      window
-(dev tools)               Strict	        window(refers to global object)	    undefined
+| Environment                  | Top-level `this`                                                            | Regular function `this` (not a method)        |
+| ---------------------------- | --------------------------------------------------------------------------- | --------------------------------------------- |
+| **Browser Script**           | Non-strict → `window                                                        | Non-strict → `window                          |
+                                 Strict → `undefined                                                           Strict → `undefined                           |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+| **Node.js (CommonJS)**       | Non-strict → `module.exports` (`{}` initially)                              | Non-strict → `global`                         |
+                                 Strict → `module.exports`                                                     Strict → `undefined`                          |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+| **Browser DevTools Console** | Non-strict → `window`                                                       | Non-strict → `window`                         |
+                                 Strict → `window`                                                             Strict → `undefined`                          |
+
+*** var at the top level becomes a property of the global object (window).
+  e.g., var color='efewew'
+        console.log('var color..', color)
+
+Constructor function:
+--------------------
+  `this` is local to constructor function
 
 Rule of thumb 🧠
 Never rely on DevTools console behavior to understand `this`
-
-Quick comparison
-Environment	          Strict             Mode	        this
-Browser               DevTools console	  Yes	        window
-Browser               <script> file	      Yes	        undefined
-Browser ES module	    Always              strict	    undefined
-Node.js               REPL	              Any	        global
-Node.js               CommonJS file	      Any	        module.exports
 ---
 REPL? https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/699fad4c-4ddc-8323-90b9-a422d64b229e
 
@@ -64,151 +65,117 @@ So your Node.js  summary is almost correct, but slightly oversimplified:
 Top-level this → always module.exports (strict or non-strict).
 Inside functions → differs (global vs undefined).
 
-Example (in nodejs):
+Example (in nodejs- non-strict mode):
 ---------
-console.log(this)
+console.log(this) //{} i.e. module.exports in nodejs
 this.color='wewe'
-console.log('global color', this.color)
+console.log('global color', this.color) // wewe
+console.log('module.exports', module.exports.color) // wewe
+console.log('global color', global.color) // properties assigned outside of regular function won't be available in global
 
-var color='efewew' // var at the top level becomes a property of the global object (window).
-console.log('global color', this.color)
-console.log('var color..', color)
-//console.log(window.color) // window is undefined in nodejs
+var color='efewew' 
+console.log('global color', this.color) //wewe
+console.log('var color..', color) // efewew
+//console.log(window.color) // error
 console.log('##################')
 let Car=function(_color){ // constructor function
   console.log(this) // local to constructor function
   this.color=_color // local to constructor function
   console.log('constrcutor fn init', this.color) 
-  color=_color // changes var color
+  color=_color  // var color
 }
 let newcar=new Car('green')
-console.log('global color', this.color) // wewe
-console.log('var color', color) // green
+console.log('global color -->', this.color) //wewe
+console.log('var color -->', color)  // green
 console.log('##################')
+
 let regCar=function(_color){
-  console.log(this) // window i.e. global in non-strict mode and undefined in strict mode
-  //this.color=_color // TypeError: Cannot set properties of undefined 
-  // console.log('regular fn init', this.color) // TypeError: Cannot read properties of undefined
-  color=_color // var color will be chnaged
+    this.color=_color // global (not equals to this or module.exports)
 }
 
-let car2=regCar('lightyellow')
-console.log('global color', this.color) // wewe
-console.log('var color', color) // lightyellow
-
+regCar('purple')
+console.log(global.color) // purple
+console.log(this.color) //wewe
+console.log(module.exports.color) // wewe
+console.log('arrow function --------')
 const arrCar=(__color)=>{
   console.log(this) // inherits from parent scope
-  this.color==__color
-  // color=__color // var color changes
-}
-arrCar('lightblue')
-console.log('global color', this.color) // lightblue
-console.log('var color', color) // lightyellow
-
-// object literal
-const person={
-  name: 'pavan',
-  regFn: function(){
-    console.log('object literal reg function', this) // object literal
-  },
-  arrFn: ()=>{
-    console.log('object literal arrow function', this) // global color from `this`
-  }
-}
-person.regFn()
-person.arrFn()
-
-
-Output ('use strict')
----------
-{}
-global color wewe
-global color wewe
-var color.. efewew
-##################
-Car {}
-constrcutor fn init green
-global color wewe
-var color green
-##################
-undefined
-global color wewe
-var color lightyellow
-{ color: 'wewe' }
-global color wewe
-var color lightyellow
-object literal reg function { name: 'pavan', regFn: [Function: regFn], arrFn: [Function: arrFn] }
-object literal arrow function { color: 'wewe' }
-
-(not strict mode)
----------
-// non-strict mode
-// this={} at top level (module.exports)
-// this=global in regular function
-console.log(this) // {}
-this.color='wewe'
-console.log('this color', this.color) 
-
-var color='efewew'
-console.log('this color', this.color) 
-console.log('global color', global.color)
-console.log('var color..', color) 
-console.log('##################')
-let Car=function(_color){ // constructor function
-  console.log(this) // local to constructor function
-  this.color=_color // local to constructor function
-  console.log('constrcutor fn init', this.color) 
-  color=_color // changes var color
-}
-let newcar=new Car('green')
-console.log('this color', this.color)
-console.log('global color', global.color)
-console.log('var color', color) // green
-console.log('##################')
-let regCar=function(_color){
-  console.log(this) // window i.e. global in non-strict mode and undefined in strict mode
-  console.log(global)
-  console.log('this===global --->', this===global)
-  this.color=_color // added to global
-  console.log('regular fn init', this.color) // global===this
-  color=_color // var color will be chnaged
-}
-console.log('regular function....')
-let car2=regCar('lightyellow')
-console.log('this color', this.color)
-console.log('global color', global.color)
-console.log('var color', color)
-
-console.log('arrow function....')
-const arrCar=(__color)=>{
-  console.log(this) // inherits from parent scope i.e. this={}
   this.color=__color
   // color=__color // var color changes
 }
 arrCar('lightblue')
-console.log('this color', this.color) 
 console.log('global color', this.color) // lightblue
 console.log('var color', color) // lightyellow
-
-console.log('object literal...')
-
-*** only functions create scope, not objects. (refer closure.js)
-// object literal
+console.log('object literal ---------------------')
 const person={
   name: 'pavan',
   regFn: function(){
     console.log('object literal reg function', this) // object literal
-    console.log('object literal', this.color)
   },
   arrFn: ()=>{
-    console.log('object literal arrow function', this) // global color from `this`
+    console.log('object literal arrow function', this) // from `this` or module.exports.color
+  }
+}
+person.regFn()
+person.arrFn()
+########################################################################################
+'use strict'
+------------
+'use strict'
+console.log(this) //{} i.e. module.exports in nodejs
+this.color='wewe'
+console.log('global color', this.color) // wewe
+console.log('module.exports', module.exports.color) // wewe
+console.log('global color', global.color) // properties assigned outside of regular function won't be available in global
+
+var color='efewew' 
+console.log('global color', this.color) //wewe
+console.log('var color..', color) // efewew
+//console.log(window.color) // error
+console.log('##################')
+let Car=function(_color){ // constructor function
+  console.log(this) // local to constructor function
+  this.color=_color // local to constructor function
+  console.log('constrcutor fn init', this.color) 
+  color=_color  // var color
+}
+let newcar=new Car('green')
+console.log('global color -->', this.color) //wewe
+console.log('var color -->', color)  // green
+console.log('##################')
+
+let regCar=function(_color){
+    //this.color=_color // undefined (TypeError: Cannot set properties of undefined (setting 'color'))
+}
+
+regCar('purple')
+console.log(global.color) // undefined
+console.log(this.color) //wewe
+console.log(module.exports.color) // wewe
+console.log('arrow function --------')
+const arrCar=(__color)=>{
+  console.log(this) // inherits from parent scope
+  this.color=__color
+  color=__color // var color changes
+}
+arrCar('lightblue')
+console.log('global color', this.color) // lightblue
+console.log('var color', color) // lightyellow
+console.log('object literal ---------------------')
+const person={
+  name: 'pavan',
+  regFn: function(){
+    console.log('object literal reg function', this) // object literal
+  },
+  arrFn: ()=>{
+    console.log('object literal arrow function', this) // from `this` or module.exports.color i.e. lightblue
   }
 }
 person.regFn()
 person.arrFn()
 
 #########################
-Above Example (in browser console-dev tools- 'use strict')
+Not important: Above Example (in browser console-dev tools- 'use strict')
 (this equals window object)
 Output:
 Window {window: Window, self: Window, document: document, name: '', location: Location, …}

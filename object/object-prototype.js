@@ -9,6 +9,16 @@ Note:
       console.log(Object.getPrototypeOf(mf) === MyFn.prototype); // true
       or
       console.log(mf.__proto__ === MyFn.prototype); // true but it's legacy
+
+      If an accessor property is inherited:
+        get() runs when reading
+        set() runs when writing
+    *** this refers to the actual object (p), not the prototype, That’s the important part. ***
+
+*** When assigning: ***
+  If prototype property is an accessor with setter, JS calls the setter instead.
+  If prototype property is a data property, JS creates a new own property.
+  Unlike accessor properties, value properties are always set on the object itself, not on a prototype.
 #############################################################################################################
 'use strict'
 //If an accessor property is inherited, its get and set methods will be called when the property is accessed 
@@ -180,9 +190,11 @@ console.log(Person.prototype.age); // 25
 Because value properties are overridden.
 🧠 Why Accessors Behave Differently
 
-When assigning:
-If prototype property is a data property, JS creates a new own property.
-If prototype property is an accessor with setter, JS calls the setter instead.
+*** When assigning: ***
+  If prototype property is an accessor with setter, JS calls the setter instead.
+  If prototype property is a data property, JS creates a new own property.
+  Unlike accessor properties, value properties are always set on the object itself, not on a prototype.
+  
 #######
 
 // If these methods use a shared variable to store the value, this value will be shared by all objects.

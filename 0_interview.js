@@ -3,7 +3,7 @@ strict.js
 string
 order of operations
 ExpressionBodyAndBlock.js
-
+###############################################################
 function: args Vs parameters
     function sum(a,b,c){ // Parameters (function definition): These are the variables listed when you define a function.
       return a+b+c
@@ -18,7 +18,11 @@ function: args Vs parameters
     }
   
     console.log(sum(1,2,3))
-
+###############################################################
+function
+constructor function
+HOF
+###############################################################
 object (folder)
   1_+coercion-rules, 2booleanConversion, 3==coercion-rules, 4stringCoercion, 5NumberCoercion, rules.js, 
   null vs undefined
@@ -27,7 +31,7 @@ object (folder)
   object-accessors.js
   object-prototype.js
   object destructuring
-  thisInDifferentEnvironment
+  ###################################################
   this folder (thisInDifferentEnvironment.js, this_new,this_regular_function_new.js,this_arrow_function_new.js,this-literal.js, this_examples_new.js)
   ObjectPropertiesScope.js (important)
   ObjectLiteralVsJSON.js
@@ -48,9 +52,6 @@ rest and spread
 Object.assignVsSpread.js
 boolean
 ---
-function
-constructor function
-HOF
 hoisting
 lexicalbinding
 closure
