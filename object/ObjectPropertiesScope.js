@@ -9,7 +9,7 @@ Key takeaways (important)
   -  In strict mode, this is undefined in normal function calls (thisInDifferentEnvironment.js has all details)
 
   -  Constructor functions must be called with new (Calling a constructor without new breaks this)
-    Local variables (var, let, const) are not object methods (Local variables ≠ object properties)
+     Local variables (var, let, const) are not object methods (Local variables ≠ object properties)
     (Local variables (like let say) cannot be accessed from outside the function)
 
   -  Missing let/var/const creates accidental globals
@@ -28,38 +28,50 @@ function personRegular(name) {
   say = () => { // behaves same way with let, const
     console.log(this.name);
   };
+
+  return function sayRegular(){
+    console.log(this.name+ 'in regualr function')
+  }
 }
 
 const pr=personRegular('kumar')
-pr.say()
+console.log(this) // module.exports in nodejs, which is equivalent to {}
+console.log(module.exports) // {}
+console.log(module.exports.name) // undefined because global/globalThis===this in non-strict mode
+console.log(global) // this is equivalent to global or globalThis (both are same) in regular function and in non-strict mode
+console.log(globalThis.name) //kumar - // this is equivalent to global or globalThis (both are same) in regular function and in non-strict mode
+globalThis.say() // kumar - arrow function inherits scope from parent i.e. nodejs
+//pr.personRegular()//  pr.personRegular is not a function because pr is not executed yet
+pr().sayRegular() // pr returns sayRegular
+//console.log(pr.name) // undefined
+pr.say() // undefined - arrow function is assigned to nodejs in this case. say is actually global, not a property of pr
 
 What actually happens (non-strict mode):
 1️⃣ personRegular('kumar') is called without new
 So in non-strict mode:
-this === globalThis   // window in browser, global in Node
+  this === globalThis   // this in window in browser and global in Node
 That means:
-this.name = name;
-➡️ sets a global variable:
-globalThis.name = "kumar"
+  this.name = name;
+  ➡️ sets a global variable:
+  globalThis.name = "kumar"
 
 In strict mode:
-If a normal function is called without new, this is undefined
-JavaScript does not auto-bind this to the global object
+  If a normal function is called without new, this is undefined
+  JavaScript does not auto-bind this to the global object
 So here:
-const pr = personRegular('kumar');
+  const pr = personRegular('kumar');
 You are calling personRegular like a regular function, not a constructor.
 Inside personRegular:
-this === undefined
+  this === undefined
 
 Then this line fails:
-this.name = name; // ❌ TypeError
+  this.name = name; // ❌ TypeError
 
 You’ll get:
-TypeError: Cannot set properties of undefined
-
+  TypeError: Cannot set properties of undefined
 -------------------------------------------------
 *** In non-strict mode:
-say = () => { ... } (very important)
+  say = () => { ... } (very important)
 Because there is no let / var / const, this creates another global variable:
 
 globalThis.say = () => {
@@ -67,66 +79,86 @@ globalThis.say = () => {
 };
 
 Also, arrow functions:
-❌ do NOT have their own this
-✅ capture this lexically (from where they’re created)
+  ❌ do NOT have their own this
+  ✅ capture this lexically (from where they’re created)
 
 So this inside say is the same this as in personRegular → globalThis.
-3️⃣ Return value of personRegular
-const pr = personRegular('kumar')
+  3️⃣ Return value of personRegular
+  const pr = personRegular('kumar')
 
 But personRegular returns nothing, so:
-pr === undefined
+  pr === undefined
 
 4️⃣ The crash
-pr.say()
-❌ Error:
-TypeError: Cannot read properties of undefined (reading 'say')
-
+  pr.say()
+  ❌ Error:
+  TypeError: Cannot read properties of undefined (reading 'say')
 Because:
-pr is undefined
-say is actually global, not a property of pr
+  pr is undefined
+  say is actually global, not a property of pr
 
 What does work (but is bad practice)
 This would actually work:
-say()
-And it would print:
-kumar
-Because both name and say were accidentally made global.
+  say()
+  And it would print:
+  kumar
+  Because both name and say were accidentally made global.
+
+'use strict'
+function personRegular(name) {
+  //this.name = name; // strict mode- undefined in regular this function
+
+//   say = () => { // arrow function will be tried to assign to global object i.e., undefined in regular function
+//     console.log(this.name);
+//   };
+
+  return function sayRegular(){
+    console.log(this.name+ 'in regular function')
+  }
+}
+
+const pr=personRegular('kumar')
+console.log(this) // module.exports in nodejs, which is equivalent to {}
+console.log(module.exports) // {}
+console.log(module.exports.name) // undefined as no variable `name` is assigned
+console.log(global) // this is equivalent to global or globalThis (both are same)
+console.log(globalThis.name) //undefined - // this is equivalent to global or globalThis (both are same) in regular function ***and in non-strict mode
+//globalThis.say() // kumar - arrow function inherits scope from parent i.e. nodejs since this === undefined in strict mode, TypeError: globalThis.say is not a function
+pr().sayRegular() // pr returns sayRegular but TypeError: Cannot read properties of undefined (reading 'name')
 
 *** In strict mode:
-❌ Problem 1: this is undefined (strict mode)
+  ❌ Problem 1: this is undefined (strict mode)
 
 You are calling the function without new:
-const pr = personRegular('kumar');
+  const pr = personRegular('kumar');
 
 In strict mode:
-this inside a regular function = undefined
+  this inside a regular function = undefined
 So this line crashes immediately:
-this.name = name;
+  this.name = name;
 
 Error you get:
-TypeError: Cannot set properties of undefined (setting 'name')
-➡️ The function never finishes execution.
+  TypeError: Cannot set properties of undefined (setting 'name')
+  ➡️ The function never finishes execution.
 
 ❌ Problem 2: say is an undeclared variable
 This line:
-say = () => { ... };
-
+  say = () => { ... };
 In non-strict mode, this would:
-Create a global variable (bad but allowed)
+  Create a global variable (bad but allowed)
 In strict mode:
-Assigning to an undeclared variable is illegal
+  Assigning to an undeclared variable is illegal
 Error:
-ReferenceError: say is not defined
+  ReferenceError: say is not defined
+  So even if the first error didn’t exist, this one would stop execution.
 
-So even if the first error didn’t exist, this one would stop execution.
 ❌ Problem 3: pr is undefined
-Because personRegular does not return anything:
-const pr = personRegular('kumar');
-// pr === undefined
+  Because personRegular does not return anything:
+  const pr = personRegular('kumar');
+  // pr === undefined
 
 So this line would fail anyway:
-pr.say(); // TypeError
+  pr.say(); // TypeError
 ###################################################
 function personRegular(name) {
   this.name = name;
@@ -144,7 +176,7 @@ What happens step by step (non-strict mode)
 1️⃣ Function called without new
 personRegular('kumar')
 So:
-this === globalThis   // window (browser)
+this === globalThis   // window (browser) or global in regular function
 
 This line:
 this.name = name;

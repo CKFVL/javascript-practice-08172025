@@ -31,16 +31,19 @@ object (folder)
   object-accessors.js
   object-prototype.js
   object destructuring
-  ###################################################
+###############################################################
   this folder (thisInDifferentEnvironment.js, this_new,this_regular_function_new.js,this_arrow_function_new.js,this-literal.js, this_examples_new.js)
-  ObjectPropertiesScope.js (important)
+  ObjectPropertiesScope.js (important) 
+    go through correct ways of creating functions to avoid scope issue with this in browser or nodejs or regular functions
+      way #1 — use new + regular method
+      way #2 — arrow function
+      way #3 — modern class (best)
+      way #4 — Return an object (factory pattern)
+      
   ObjectLiteralVsJSON.js
   object property existence
   ObjectGetOwnPropertyDescriptors.js
-coercion:
-  coercion.js
-  stringCoercion.js
-
+###############################################################
 forloop.js
 stringify
 tdz
