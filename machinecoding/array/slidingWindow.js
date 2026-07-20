@@ -1,4 +1,5 @@
-The sliding window algorithm is a technique used to solve problems involving *** contiguous subarrays or substrings efficiently ***. 
+The sliding window algorithm is a technique used to solve problems involving *** contiguous subarrays 
+or substrings efficiently ***. 
 Instead of checking every possible subarray (which is often O(n2)), it "slides" a window over the array or string, 
 making the solution O(n) in many cases.
 
@@ -59,3 +60,162 @@ Now the condition is satisfied (sum >= 7).
 
     Condition fails, so expand again.
     Continue until the end.
+
+Visual representation:
+---------------------
+The sliding window is easiest to understand visually. 
+Imagine a window moving across the string. The window always contains unique characters.
+    Let's dry run "abcabcbb".
+        String:  a  b  c  a  b  c  b  b
+        Index :  0  1  2  3  4  5  6  7
+    
+    left = start of window
+    right = end of window
+
+Step 1:
+    right = 0
+     a  b  c  a  b  c  b  b
+ [L,R]
+    Window = "a"
+    Length = 1
+    Max = 1
+
+Step 2:
+    right = 1
+     a  b  c  a  b  c  b  b
+  [L    R]
+    Window = "ab"
+    Length = 2
+    Max = 2
+
+Step 3:
+    right = 2
+     a  b  c  a  b  c  b  b
+    [L     R]
+
+Window = "abc"
+Length = 3
+Max = 3
+
+Step 4 (Duplicate 'a')
+right = 3
+ a  b  c  a  b  c  b  b
+[L        R]
+
+Window = "abca"
+Duplicate found!
+Instead of restarting, we shrink the window from the left.
+Remove 'a'
+ a  b  c  a  b  c  b  b
+    L     R
+
+Window = "bca"
+Now all characters are unique again.
+Length = 3
+Max = 3
+
+Step 5:
+-------
+right = 4
+ a  b  c  a  b  c  b  b
+    L        R
+
+Window = "bcab"
+Duplicate 'b'
+Remove left characters until 'b' is gone.
+Remove 'b'
+ a  b  c  a  b  c  b  b
+       L        R
+Window = "cab"
+Length = 3
+
+Step 6:
+right = 5
+ a  b  c  a  b  c  b  b
+       L           R
+
+Window = "cabc"
+Duplicate 'c'
+Remove 'c'
+
+ a  b  c  a  b  c  b  b
+          L       R
+
+Window = "abc"
+Length = 3
+
+Step 7
+
+right = 6
+
+ a  b  c  a  b  c  b  b
+          L          R
+
+Window = "abcb"
+
+Duplicate 'b'
+
+Remove until old 'b' disappears.
+
+Remove 'a'
+
+ b  c  b
+
+Still duplicate.
+
+Remove 'b'
+
+ c  b
+
+Now unique.
+
+Window becomes
+
+ a  b  c  a  b  c  b  b
+             L       R
+
+Window = "cb"
+Length = 2
+
+Step 8:
+
+right = 7
+
+ a  b  c  a  b  c  b  b
+             L          R
+
+Window = "cbb"
+
+Duplicate 'b'
+
+Remove 'c'
+
+bb
+
+Still duplicate.
+
+Remove 'b'
+
+b
+
+Window becomes
+
+ a  b  c  a  b  c  b  b
+                L      R
+
+Window = "b"
+
+Length = 1
+
+Final Answer
+Maximum window ever seen:
+
+abc
+
+Length = 3
+
+the window never moves backward:
+    right only moves forward (0 → n-1).
+    left only moves forward (never decreases).
+
+Because each pointer visits each character at most once, the algorithm runs in O(n) time.
