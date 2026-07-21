@@ -10,7 +10,7 @@ JSON:
   custom serialization: toJSON() overrides default serialization
 
 1️⃣ Object Literal (JavaScript Object)
-An object literal is a way to create an object directly in JavaScript.
+  An object literal is a way to create an object directly in JavaScript.
 
 const person = {
   name: "Pavan",

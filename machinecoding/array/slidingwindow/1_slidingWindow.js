@@ -233,8 +233,8 @@ When Should You Use Sliding Window?
         ✅ Contiguous substrings
         ✅ Finding maximum/minimum length
         ✅ Counting distinct characters
-        ✅ Fixed-size windows
-        ✅ Variable-size windows
+        ✅ Fixed-size windows (max. sum of subarray of size)
+        ✅ Variable-size windows (largest substring without repeating characters)
 
     Examples:
         Maximum sum of size k
