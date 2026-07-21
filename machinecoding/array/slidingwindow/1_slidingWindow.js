@@ -224,3 +224,21 @@ Because each pointer visits each character at most once, the algorithm runs in O
 program:
 -------------
 (refer findLargestSubStringwithoutrepeatingCharacters.js file)
+
+
+#################################################################
+When Should You Use Sliding Window?
+    Use it when the problem involves:
+        ✅ Contiguous subarrays
+        ✅ Contiguous substrings
+        ✅ Finding maximum/minimum length
+        ✅ Counting distinct characters
+        ✅ Fixed-size windows
+        ✅ Variable-size windows
+
+    Examples:
+        Maximum sum of size k
+        Longest substring without repeating characters
+        Minimum window substring
+        Longest subarray with sum ≤ k
+        Maximum average subarray
