@@ -61,8 +61,8 @@ Now the condition is satisfied (sum >= 7).
     Condition fails, so expand again.
     Continue until the end.
 
-Visual representation:
----------------------
+Visual representation for finding longest substring without repeating characters:
+------------------------------------------------------------------------------
 The sliding window is easiest to understand visually. 
 Imagine a window moving across the string. The window always contains unique characters.
     Let's dry run "abcabcbb".
@@ -131,6 +131,7 @@ Length = 3
 
 Step 6:
 right = 5
+
  a  b  c  a  b  c  b  b
        L           R
 
@@ -219,3 +220,7 @@ the window never moves backward:
     left only moves forward (never decreases).
 
 Because each pointer visits each character at most once, the algorithm runs in O(n) time.
+
+program:
+-------------
+(refer findLargestSubStringwithoutrepeatingCharacters.js file)
