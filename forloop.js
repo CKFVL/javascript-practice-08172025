@@ -10,7 +10,7 @@ for(const emp of empArr){
   console.log('-----------')
 }
 console.log('$$$$$$$$$$$$$$$$$$')
-for(const emp in empArr){
+for(const emp in empArr){ // works on indexes
   console.log(emp)
   console.log(empArr[emp].name)
   console.log(empArr[emp].age)
