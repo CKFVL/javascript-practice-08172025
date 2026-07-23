@@ -1,11 +1,11 @@
 Multiple ways to check whether a property exists on an object:
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/69467679-df8c-8322-9408-8493c2bfe29f
 Understanding summary:
-in -> checks prototype chain
-Object.keys/getOwnPropertyNames: enumerable only
-Object.hasOwnProperty -> checks in object itself
-undefined checks -> unreliable (do not depend)
-freeze/seal doesn't remove properties
+  in -> checks prototype chain
+  Object.keys/getOwnPropertyNames: enumerable only
+  Object.hasOwnProperty -> checks in object itself
+  undefined checks -> unreliable (do not depend)
+  freeze/seal doesn't remove properties
 ##################################
 1️⃣ in operator (own + inherited properties)
 const obj = { name: "pavan" };
@@ -13,9 +13,9 @@ console.log("name" in obj);   // true
 console.log("toString" in obj); // true (inherited from Object.prototype)
 
 ✅ Use when
-You want to know if the property exists anywhere in the prototype chain
+  You want to know if the property exists anywhere in the prototype chain
 ❌ Avoid when
-You only care about the object’s own properties
+  You only care about the object’s own properties
 
 ##################################
 2️⃣ hasOwnProperty() (own properties only)
@@ -32,8 +32,8 @@ obj.name = "pavan";
 obj.hasOwnProperty("name"); // ❌ TypeError
 
 ✅ Safe version (recommended)
-Object.prototype.hasOwnProperty.call(obj, "name");
-AAnother example:
+  Object.prototype.hasOwnProperty.call(obj, "name");
+Another example:
 const obj = {
   hasOwnProperty: () => false,
   name: "pavan"
