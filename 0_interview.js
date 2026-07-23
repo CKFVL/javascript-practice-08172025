@@ -23,15 +23,6 @@ function
 constructor function
 HOF
 ###############################################################
-object (folder)
-  1_+coercion-rules, 2booleanConversion, 3==coercion-rules, 4stringCoercion, 5NumberCoercion, rules.js, 
-  null vs undefined
-  object types
-  object properties
-  object-accessors.js
-  object-prototype.js
-  object destructuring
-###############################################################
   this folder (thisInDifferentEnvironment.js, this_new,this_regular_function_new.js,this_arrow_function_new.js,this-literal.js, this_examples_new.js)
   ObjectPropertiesScope.js (important) 
     go through correct ways of creating functions to avoid scope issue with this in browser or nodejs or regular functions
@@ -41,8 +32,18 @@ object (folder)
       way #4 — Return an object (factory pattern)
       
   ObjectLiteralVsJSON.js
-  object property existence
+  ObjectPropertyExistence.js
+  object.create(null).js
   ObjectGetOwnPropertyDescriptors.js
+###############################################################
+object (folder)
+  1_+coercion-rules, 2booleanConversion, 3==coercion-rules, 4stringCoercion, 5NumberCoercion, rules.js, 
+  null vs undefined
+  object types
+  object properties
+  object-accessors.js
+  object-prototype.js
+  object destructuring
 ###############################################################
 forloop.js
 stringify

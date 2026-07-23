@@ -312,3 +312,11 @@ Defaults here are:
   configurable: true
 }
 ###############################################
+const obj = {};
+Object.defineProperty(obj, "secret", {
+  value: 42,
+  enumerable: false
+});
+
+console.log("secret" in obj);              // true
+console.log(Object.keys(obj).includes("secret")); // false because Object.keys() checks enumerability, not existence.

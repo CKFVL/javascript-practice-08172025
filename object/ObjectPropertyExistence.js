@@ -8,9 +8,9 @@ Understanding summary:
   freeze/seal doesn't remove properties
 ##################################
 1️⃣ in operator (own + inherited properties)
-const obj = { name: "pavan" };
-console.log("name" in obj);   // true
-console.log("toString" in obj); // true (inherited from Object.prototype)
+  const obj = { name: "pavan" };
+  console.log("name" in obj);   // true
+  console.log("toString" in obj); // true (inherited from Object.prototype)
 
 ✅ Use when
   You want to know if the property exists anywhere in the prototype chain
@@ -27,32 +27,35 @@ console.log(obj.hasOwnProperty("toString")); // false
 You want to check only the object’s own properties
 ⚠️ Gotcha
 Can be overridden or missing:
-const obj = Object.create(null);
-obj.name = "pavan";
-obj.hasOwnProperty("name"); // ❌ TypeError
+  const obj = Object.create(null);
+  obj.name = "pavan";
+  obj.hasOwnProperty("name"); // ❌ TypeError
+
+*** refer object.create(null).js file ***
 
 ✅ Safe version (recommended)
   Object.prototype.hasOwnProperty.call(obj, "name");
-Another example:
-const obj = {
-  hasOwnProperty: () => false,
-  name: "pavan"
-};
 
-console.log(obj.hasOwnProperty("name")); // false
+Another example:
+  const obj = {
+    hasOwnProperty: () => false,
+    name: "pavan"
+  };
+
+  console.log(obj.hasOwnProperty("name")); // false
 Fix:
-Object.prototype.hasOwnProperty.call(obj, "name"); // true, so Never trust obj.hasOwnProperty() directly.
+  Object.prototype.hasOwnProperty.call(obj, "name"); // true, so Never trust obj.hasOwnProperty() directly.
 ##################################
 Object.getOwnPropertyDescriptor()
 
 Object.getOwnPropertyDescriptor(obj, prop)
 ➡️ Returns metadata about an own property of an object.
 It tells you:
-Does the property exist?
-Is it writable?
-Is it enumerable?
-Is it configurable?
-What is its value OR getter/setter?
+  Does the property exist?
+  Is it writable?
+  Is it enumerable?
+  Is it configurable?
+  What is its value OR getter/setter?
 
 “Object.getOwnPropertyDescriptor() is the only API that tells me both whether a property exists and how it behaves.”
 More at
@@ -63,8 +66,7 @@ const obj = Object.create(null);
 obj.a = 10;
 
 console.log("a" in obj);             // true (because checks in prototype chain)
-console.log(obj.hasOwnProperty("a"));// TypeError
-
+console.log(obj.hasOwnProperty("a"));// TypeError *** refer object.create(null).js file ***
 ##################################
 Object.hasOwn() (ES2022+ ✅ BEST MODERN WAY)
 const obj = { name: "pavan" };
@@ -72,11 +74,11 @@ console.log(Object.hasOwn(obj, "name")); // true
 console.log(Object.hasOwn(obj, "toString")); // false
 
 ✅ Why this is best
-No prototype issues
-No overrides
-Works with Object.create(null)
-Cleaner than .call()
-👉 Preferred in modern JavaScript
+  No prototype issues
+  No overrides
+  Works with Object.create(null)
+  Cleaner than .call()
+  👉 Preferred in modern JavaScript
 
 ##################################
 Object.freeze() (❌ Trap: removes properties -> No)
