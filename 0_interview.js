@@ -45,10 +45,10 @@ object (folder)
   object-prototype.js
   object destructuring
 ###############################################################
-forloop.js
-stringify
-tdz
-hoisting
+  forloop.js
+  stringify
+  tdz
+  hoisting
 
 array (slice and splice)
 iterable

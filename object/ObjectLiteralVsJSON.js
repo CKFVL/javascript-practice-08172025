@@ -5,11 +5,45 @@ JSON:
 
   JSON is strict, silent, and lossy
   It throws on syntax, drops unsupported values, and converts types.
+
+  Stringify:
     drops property with undefined value (while stringify)
+      let newEmployee = { id: 1, name: undefined};
+      let stemp=JSON.stringify(newEmployee)
+      console.log(stemp) // {"id":1}
+
     functions are not serializable (Dropped without error)
+      let newEmployee = { id: 1, name: undefined, test(){
+          console.log("test")
+      }};
+      let stemp=JSON.stringify(newEmployee)
+      console.log(stemp) // {"id":1}
+
     Dates become ISO strings (while stringify)
+      const nd=new Date()
+      let newEmployee = { id: 1, name: undefined, test(){
+          console.log("test")
+      }, nd};
+      let stemp=JSON.stringify(newEmployee)
+      console.log(stemp) // {"id":1,"nd":"2026-07-23T05:01:25.865Z"}
+
     NaN, infinity and -infinity will be treated as null (while stringify)
+      const nd=new Date()
+      let newEmployee = { id: 1, name: undefined, test(){
+          console.log("test")
+      }, nd, NaN, Infinity, };
+      let stemp=JSON.stringify(newEmployee)
+      console.log(stemp) // {"id":1,"nd":"2026-07-23T05:01:25.865Z","NaN":null,"Infinity":null}
+
     arrays with undefined becomes null (while stringify)
+      const nd=new Date()
+      const arr=[1, undefined, 3]
+      let newEmployee = { id: 1, name: undefined, test(){
+          console.log("test")
+      }, nd, NaN, Infinity, arr};
+      let stemp=JSON.stringify(newEmployee)
+      console.log(stemp) // {"id":1,"nd":"2026-07-23T05:03:13.450Z","NaN":null,"Infinity":null,"arr":[1,null,3]}
+
     custom serialization: toJSON() overrides default serialization
 
 1️⃣ Object Literal (JavaScript Object)
@@ -27,13 +61,13 @@ const person = {
 Key characteristics
 Exists inside JavaScript runtime
 Can contain:
-functions (methods)
-undefined
-symbols
+  functions (methods)
+  undefined
+  symbols
 
 Property names do not need quotes
-Trailing commas are allowed
-Used for logic, behavior, state
+  Trailing commas are allowed
+  Used for logic, behavior, state
 
 2️⃣ JSON (JavaScript Object Notation)
 JSON is a data-exchange format, not a JavaScript object.
@@ -44,10 +78,10 @@ JSON is a data-exchange format, not a JavaScript object.
 }
 
 Key characteristics
-Text format (string)
-Language-independent (used between client ↔ server)
-Used for data transfer & storage
-Very strict syntax
+  Text format (string)
+  Language-independent (used between client ↔ server)
+  Used for data transfer & storage
+  Very strict syntax
 
 3️⃣ Key Differences (Side-by-Side)
 Feature	            Object Literal	      JSON

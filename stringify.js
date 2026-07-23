@@ -1,3 +1,45 @@
+JSON. stringify:
+  Stringify:
+    drops property with undefined value (while stringify)
+      let newEmployee = { id: 1, name: undefined};
+      let stemp=JSON.stringify(newEmployee)
+      console.log(stemp) // {"id":1}
+
+    functions are not serializable (Dropped without error)
+      let newEmployee = { id: 1, name: undefined, test(){
+          console.log("test")
+      }};
+      let stemp=JSON.stringify(newEmployee)
+      console.log(stemp) // {"id":1}
+
+    Dates become ISO strings (while stringify)
+      const nd=new Date()
+      let newEmployee = { id: 1, name: undefined, test(){
+          console.log("test")
+      }, nd};
+      let stemp=JSON.stringify(newEmployee)
+      console.log(stemp) // {"id":1,"nd":"2026-07-23T05:01:25.865Z"}
+
+    NaN, infinity and -infinity will be treated as null (while stringify)
+      const nd=new Date()
+      let newEmployee = { id: 1, name: undefined, test(){
+          console.log("test")
+      }, nd, NaN, Infinity, };
+      let stemp=JSON.stringify(newEmployee)
+      console.log(stemp) // {"id":1,"nd":"2026-07-23T05:01:25.865Z","NaN":null,"Infinity":null}
+
+    arrays with undefined becomes null (while stringify)
+      const nd=new Date()
+      const arr=[1, undefined, 3]
+      let newEmployee = { id: 1, name: undefined, test(){
+          console.log("test")
+      }, nd, NaN, Infinity, arr};
+      let stemp=JSON.stringify(newEmployee)
+      console.log(stemp) // {"id":1,"nd":"2026-07-23T05:03:13.450Z","NaN":null,"Infinity":null,"arr":[1,null,3]}
+
+    custom serialization: toJSON() overrides default serialization
+
+------------------------------------------------------------------------------------
 console.log(JSON.stringify({ x: 5, y: 6 }));
 // Expected output: '{"x":5,"y":6}'
 
@@ -80,9 +122,9 @@ JSON.stringify(d); // '"2023-12-31T18:30:00.000Z"'
 
 
 Problems:
-Timezone conversions
-Loses Date type
-Deserialized value is a string
+  Timezone conversions
+  Loses Date type
+  Deserialized value is a string
 
 Interview takeaway:
 JSON loses type information.
@@ -100,9 +142,9 @@ JSON.stringify(u); // '{"name":"Pavan"}'
 
 
 ➡️ Loses:
-Class identity
-Methods
-Prototype chain
+  Class identity
+  Methods
+  Prototype chain
 
 Interview takeaway:
 Instances become plain objects.
@@ -142,6 +184,4 @@ function stableStringify(obj) {
 
 Option 3: WeakMap (gold-star answer)
 const cache = new WeakMap();
-
-
 ➡️ No memory leaks, reference-safe.
