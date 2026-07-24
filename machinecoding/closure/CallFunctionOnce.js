@@ -19,8 +19,8 @@ const callonce=(fn)=>{
   let called=false
   return function(...args){
     if(!called){
+      called=true 
       return fn(...args)
-      called=true  
     }
     
     return undefined
@@ -29,7 +29,15 @@ const callonce=(fn)=>{
 }
 
 const add=(a,b,c)=>a+b+c
-console.log(callonce(add)(1,22,3))
+let twicecalledsum=callonce(add);
+
+console.log(twicecalledsum(1,22,3))
+console.log(twicecalledsum(1,22,3))
+
+const sub=(a,b)=>a-b;
+let twicecalledsub=callonce(sub)
+console.log(twicecalledsub(4,3))
+console.log(twicecalledsub(9,7))
 
 Or drive it with number
 function callFnOnlyKTimes(k, fn){

@@ -87,7 +87,7 @@ So the engine internally sees this as:
   console.log(variable);
   variable = 30;
 ##################
-variable=10
+variable=10;
 (() => {
     foo=100;
     console.log(variable)
@@ -95,17 +95,20 @@ variable=10
     var foo=100
     variable=20
     console.log(variable)
+    console.log(foo)
 })();
 
-console.log(foo)
-console.log(variable)
+console.log(foo);
+console.log(variable);
+
 var variable=30
 
-// 10, 100, 20, 
+// 10, 20,
 // throws error (foo was declared with var inside the IIFE
 // It is NOT accessible outside
 // ⛔ Execution stops here
 // ➡️ The remaining lines do not run))
+// 20
 
 ############
 - arrow function is not hoisted

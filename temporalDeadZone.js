@@ -1,6 +1,7 @@
-TDZ is the time between entering a scope and the moment a let or const variable is declared, during which accessing that variable throws a ReferenceError.
+TDZ is the time between entering a scope and the moment a let or const variable is declared, 
+during which accessing that variable throws a ReferenceError.
 Key point: You cannot access a let or const variable before its declaration — even to assign it.
-TDZ is block-scoped, not function-scoped.
+*** TDZ is block-scoped, not function-scoped. ***
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/6940cc19-77ec-8323-bc1f-6c13bbae2226
 understanding summary:
 ---------------------
@@ -31,7 +32,7 @@ Common interview trick
 let a = 10;
 
 function test() {
-  console.log(a); // ❌ ReferenceError (not 10!)
+  console.log(a); // ❌ ReferenceError (not 10!) because a inside test shadows the outer a
   let a = 20;
 }
 
