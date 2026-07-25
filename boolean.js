@@ -19,10 +19,10 @@ console.log(typeof [])
 ----
 and (&&) operator: returns first falsy value or last value (short-circuit)
 
-console.log(true && 1 && "yes" && null && "done"); // null
+  console.log(true && 1 && "yes" && null && "done"); // null
 
 let variable1=5 && "hello"
-console.log(variable1) // prints hello
+  console.log(variable1) // prints hello
 
 let variable1=false && "hello"
 console.log(variable1) // prints false
@@ -63,7 +63,7 @@ Guard operator or "nullish coalescing" operator (??):
   let maxRetries2 = config.retries ?? 3;   // ✅ 0 (good default — only null/undefined are replaced)
 ----
 // find out if an expression (or a variable) is true
-console.log(Boolean(10 > 9)); // true
+console.log(Boolean(10 > 9));
 
 // everything with a value is true
 console.log(Boolean(100));
