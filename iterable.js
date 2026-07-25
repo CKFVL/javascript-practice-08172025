@@ -11,7 +11,6 @@ to check if an object is iterable in JS, check whether it defines [Symbol.iterat
 Simple check:
   const obj=[1,2,3]
   console.log(typeof obj[Symbol.iterator]==='function')
-
 because array is iterable, the output is true.
 
 Example with non-iterable object:

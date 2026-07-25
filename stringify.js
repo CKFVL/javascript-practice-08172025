@@ -1,4 +1,4 @@
-JSON. stringify:
+JSON. stringify: supported values are string, number, boolean, null, array and objective
   Stringify:
     drops property with undefined value (while stringify)
       let newEmployee = { id: 1, name: undefined};

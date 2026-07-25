@@ -45,20 +45,17 @@ object (folder)
   object-prototype.js
   object destructuring
 ###############################################################
-  forloop.js
-  stringify
-  tdz
-  hoisting
+forloop.js
+stringify.js
+tdz (temporalDeadZone.js)
+hoisting.tsx
 
-array (slice and splice)
-iterable
-rest and spread
-Object.assignVsSpread.js
+iterable (generatorFunction.js)
+rest-spread.js
+ObjectAssignVsSpread.js
+
 boolean
 ---
-hoisting
-lexicalbinding
-closure
 currying
 function composition
 diff b/w constructor and factory
@@ -83,6 +80,7 @@ polyfills
 https://www.youtube.com/watch?v=Th3rZjfKKhI
 
 ####################
+array (slice and splice)
 pending.txt 
 
 document.querySelector('button').innerHTML

@@ -1,7 +1,8 @@
-Understanding summary:
-  -  both are used to copy properties from 1 or more objects into a target object
+Understanding summary- assign vs spread:
+  -  both are used to copy properties from 1 or more objects into a target object (from left to right)
   -  Object.assign mutates target, Spread never mutates
   -  Object.assign returns target object, Spread returns new object
+      SourceBuffer, use Spread for immutability and Object.assign for mutating target object
   -  Object.assign ignores when source is null or undefined while Spread throws error.
   -  both copy only enumerable own properties and performs shallow copy
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/694695db-2c48-8321-a008-36904495ae0d
@@ -37,18 +38,17 @@ const result = { ...{ a: 1 } };
 📌 If you pass an existing object as target, Object.assign mutates it. Spread always creates a new object.
 
 3. Return Value
-Feature	Object.assign	Spread
-Returns	Target object	New object
-Mutates	Yes (target)	No
-const obj = { a: 1 };
-const result = Object.assign(obj, { b: 2 });
-
-obj === result; // true
+    Feature	  Object.assign	  Spread
+    Returns	  Target object	  New object
+    Mutates	  Yes (target)	  No
+    const obj = { a: 1 };
+    const result = Object.assign(obj, { b: 2 });
+    console.log(obj === result); // true
 
 4. Handling null and undefined
-Spread ❌ throws error
-{ ...null }       // ❌ TypeError
-{ ...undefined }  // ❌ TypeError
+    Spread ❌ throws error
+    { ...null }       // ❌ TypeError
+    { ...undefined }  // ❌ TypeError
 
 Object.assign ✅ ignores them
 Object.assign({}, null, undefined);
@@ -56,24 +56,17 @@ Object.assign({}, null, undefined);
 
 
 📌 Real interview trick question
-
 5. Property Copying Behavior (Same for Both)
-
 Both:
+  Copy only enumerable own properties
+  Perform shallow copy
+  Override properties from left → right
 
-Copy only enumerable own properties
-
-Perform shallow copy
-
-Override properties from left → right
-
-const obj = { a: 1, a: 2 };
-
-Object.assign({}, obj); // { a: 2 }
-{ ...obj }              // { a: 2 }
+  const obj = { a: 1, a: 2 };
+  Object.assign({}, obj); // { a: 2 }
+  { ...obj }              // { a: 2 }
 
 6. Getters Execution (Subtle Difference)
-
 Both invoke getters, but order differs slightly in complex cases.
 
 const source = {

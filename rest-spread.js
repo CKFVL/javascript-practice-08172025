@@ -1,6 +1,6 @@
 Spread: "Expands" an iterable (array, object, string) into individual elements
 built-in iterables in javascript
-    - array
+  - array
   - string
   - Map
   - Set
@@ -12,19 +12,19 @@ Also on Objects and Function calls.
 
 (Spread: "Take this box and dump out everything inside.")
 Example 1: Array Expansion
-let arr1=[1,2,3]
-let arr2=[3,...arr1,5] // Spread creates a new array with extra elements
-console.log(arr2)
+    let arr1=[1,2,3]
+    let arr2=[3,...arr1,5] // Spread creates a new array with extra elements
+    console.log(arr2)
 
 Example 2: Object expansion
-let obj1={a:1, b:2}
-let obj2={...obj1, c:3}
+    let obj1={a:1, b:2}
+    let obj2={...obj1, c:3}
 
-let person = { name: 'Pavan', age: 40, country: 'India' };
-// Spread adds properties
-let newPerson = { ...person, job: 'Engineer' };
-console.log(newPerson);
-// { name: 'Pavan', age: 40, country: 'India', job: 'Engineer' }
+    let person = { name: 'Pavan', age: 40, country: 'India' };
+    // Spread adds properties
+    let newPerson = { ...person, job: 'Engineer' };
+    console.log(newPerson);
+    // { name: 'Pavan', age: 40, country: 'India', job: 'Engineer' }
 
 Example 3: function arguments (are the actual values you pass to the function when calling it.)
 function sum(x, y, z){
@@ -59,8 +59,6 @@ Objects are indeed non-iterable, but object spread uses a different mechanism th
     So it copies:
         own properties
         enumerable properties
-
-
 #####################################
 Rest: "Collects" all elements into single array or object
 (Rest: "Take all these items and pack others/them into a box.")
