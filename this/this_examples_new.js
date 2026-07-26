@@ -8,8 +8,7 @@ const user = {
 
 user.greet();
 
-🧠 Answer:
-undefined
+🧠 Answer: ??
 
 ✔ Explanation:
 
@@ -29,7 +28,7 @@ const user = {
 user.show()();  
 
 🧠 Answer:
-Pavan
+??
 
 ✔ Explanation:
 
@@ -53,8 +52,7 @@ const p = new Person("Pavan");
 const say = p.say;
 say();
 
-🧠 Answer:
-Pavan
+🧠 Answer: ??
 
 ✔ Explanation:
 
@@ -73,8 +71,7 @@ const obj = {
 const fn = obj.method;
 fn();
 
-🧠 Answer:
-undefined
+🧠 Answer: ??
 
 ✔ Explanation:
 
@@ -88,7 +85,7 @@ const obj = { msg: "Hello" };
 
 say.bind(obj)();
 
-🧠 Answer:
+🧠 Answer: ??
 
 It prints the original this (global), not obj.
 
@@ -108,8 +105,7 @@ const object = {
 
 object.log();
 
-🧠 Answer:
-10
+🧠 Answer: ??
 
 ✔ Explanation:
 
@@ -132,9 +128,7 @@ const obj = {
 obj.arrow();
 obj.regular();
 
-🧠 Answer:
-100
-200
+🧠 Answer: ??
 
 ✔ Explanation:
 
@@ -158,9 +152,7 @@ const obj = {
 obj.a()();  // ?
 obj.b()();  // ?
 
-🧠 Answer:
-10
-undefined
+🧠 Answer: ??
 
 ✔ Why?
 
@@ -186,9 +178,7 @@ const fn2 = t.b;
 fn1(); 
 fn2();
 
-🧠 Answer:
-5
-undefined
+🧠 Answer: ??
 
 ✔ Explanation:
 
@@ -208,8 +198,7 @@ const obj = {
 
 obj.inc();
 
-🧠 Answer:
-1
+🧠 Answer: ??
 
 ✔ Explanation:
 
@@ -217,7 +206,3 @@ Arrow function inherits this from inc(),
 so it updates obj.count.
 
 ########################
-Never call the function inside setTimeout
-setTimeout(fn, delay)   // ✔
-setTimeout(fn(), delay) // ❌
-Example in function-methods-call-apply-bind.js

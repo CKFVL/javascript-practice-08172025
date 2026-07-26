@@ -4,7 +4,7 @@ Is the function an arrow function?
   │             ▲
   │             │
   │    Closest enclosing scope:
-  │      ├─ Regular function? → Use its `this`
+  │      ├─ Regular function? → Use its `this` (refer Q3 in this_examples_new.js, Even when detached and stored in variable say, it still remembers the original this = instance of Person.)
   │      ├─ Another arrow? → Keep climbing outward
   │      └─ Global/module? → Use global/module `this`
   │
@@ -31,3 +31,6 @@ rule of thumb:
     // if a function is regular function defined in browser or nodejs i.e., not inside an object, this refers to global object
         //refer: thisInDifferentEnvironment.js
     // if a function is constructor function and is created using new operator, then this refers to arguments to it in new {} object
+###################################################################
+bind(), call(), apply() cannot change this of arrow functions.
+Refer Q5 in this_examples_new.js
