@@ -1,9 +1,3 @@
-
-Never call the function inside setTimeout
-setTimeout(fn, delay)   // ✔
-setTimeout(fn(), delay) // ❌
-Example in function-methods-call-apply-bind.js
-
 https://www.youtube.com/watch?v=eiC58R16hb8
 https://www.jsv9000.app/ - for analyzing the interactive visualization
 ########################
