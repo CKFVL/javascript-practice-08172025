@@ -31,7 +31,16 @@ stringify.js
 tdz (temporalDeadZone.js)
 hoisting.tsx
 ###############################################################
-  this folder (thisInDifferentEnvironment.js, this_new,this_regular_function_new.js,this_arrow_function_new.js,this-literal.js, this_examples_new.js)
+  this folder
+    - masterflow.js
+    - this_var.js
+    - thisInDifferentEnvironment.js
+    - this_new
+    - this_regular_function_new.js
+    - this_arrow_function_new.js
+    - this-literal.js
+    - this_examples_new.js
+
   // rule of thumb:
     // this : object that is executing the current function
     // if a function is a method in an Object ({}), this refers to object itself

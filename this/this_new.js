@@ -9,8 +9,8 @@ Refer thisInDifferentEnvironment.js to understand the value of `this` in differe
 // if a function is constructor function and is created using new operator, then this refers to arguments to it in new {} object
 
 ###########################
-previous understanding which is not required now to read this, so ignore to read this page
-understanding thisInDifferentEnvironment is enough
+Just for practice:
+-----------------
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/6933f8b8-f69c-8324-9029-58957892ed3c
 'use strict'
 this.color = "qwewq"
