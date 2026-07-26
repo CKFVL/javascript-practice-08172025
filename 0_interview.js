@@ -20,11 +20,25 @@ function: args Vs parameters
   
     console.log(sum(1,2,3))
 ###############################################################
-function
-constructor function
-HOF
+  function
+  constructor function
+  HOF
+  function composition
+  currying
+###############################################################
+forloop.js
+stringify.js
+tdz (temporalDeadZone.js)
+hoisting.tsx
 ###############################################################
   this folder (thisInDifferentEnvironment.js, this_new,this_regular_function_new.js,this_arrow_function_new.js,this-literal.js, this_examples_new.js)
+  // rule of thumb:
+    // this : object that is executing the current function
+    // if a function is a method in an Object ({}), this refers to object itself
+    // if a function is regular function i.e., not inside an object, this refers to global object
+        //refer: thisInDifferentEnvironment.js
+    // if a function is constructor function and is created using new operator, then this refers to arguments to it in new {} object
+
   ObjectPropertiesScope.js (important) 
     go through correct ways of creating functions to avoid scope issue with this in browser or nodejs or regular functions
       way #1 — use new + regular method
@@ -46,21 +60,11 @@ object (folder)
   object-prototype.js
   object destructuring
 ###############################################################
-forloop.js
-stringify.js
-tdz (temporalDeadZone.js)
-hoisting.tsx
-
-iterable (generatorFunction.js)
+iterable.js (GeneratorFunction.js)
 rest-spread.js
 ObjectAssignVsSpread.js
-
-boolean
 ---
-currying
-function composition
-diff b/w constructor and factory
-
+diff b/w constructor and factory (diff-bw-factory-constructor-fn.js)
 ---
 call, apply and bind
 ---

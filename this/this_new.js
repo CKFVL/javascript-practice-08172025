@@ -3,7 +3,7 @@ Refer thisInDifferentEnvironment.js to understand the value of `this` in differe
 
 // rule of thumb:
 // this : object that is executing the current function
-// if a function is a method in an Object, this refers to object itself
+// if a function is a method in an Object ({}), this refers to object itself
 // if a function is regular function i.e., not inside an object, this refers to global object
     //refer: thisInDifferentEnvironment.js
 // if a function is constructor function and is created using new operator, then this refers to arguments to it in new {} object

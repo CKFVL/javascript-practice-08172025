@@ -1,7 +1,7 @@
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/693391c0-91e0-8320-98da-90fe817af68b
 
-Currying is a functional programming technique/pattern in JavaScript where a function that takes multiple arguments is transformed into a sequence of functions, 
-each taking one argument at a time.
+Currying is a functional programming technique/pattern in JavaScript where a function that 
+takes multiple arguments is transformed into a sequence of functions, each taking one argument at a time.
 
 *** currying is function transformation (by splitting arguments) technique and not a composition pattern
 *** Each function returns another function until all arguments are provided.

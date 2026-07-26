@@ -21,7 +21,7 @@ class LRUCache{
    // element already exists
    // delete and move it to end
    if(this.lruMap.has(key)){  
-     lruMap.delete(key)
+     this.lruMap.delete(key)
    }
    // new element
    // if capacity reaches the limit

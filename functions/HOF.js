@@ -1,5 +1,6 @@
 understanding summary:
-  - pass function as argument to another function
+HOF is any function that
+  - pass one or more functions as arguments to another function
   - return function as a result
 
 https://chatgpt.com/g/g-p-693c2d35c83c819185f2dde0fbdd798c-reactjs/c/6965e058-72b0-8323-adcc-963936bbec32
