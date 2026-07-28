@@ -1,18 +1,9 @@
-Factory function: A factory function is a normal function that returns an object.
-----------------
-function createCar(color) {
-  return {
-    color,
-    drive() {
-      console.log(`driving ${this.color} car`);
-    }
-  };
-}
+Use a Factory Function when you want simplicity, encapsulation, or privacy.
+Use a Constructor Function (or class) when you want prototype-based inheritance and method sharing.
 
-const redCar = createCar("red");
-redCar.drive(); // driving red car
-
-
+#################################
+Constructor function: A constructor function is a function meant to be used with new.
+--------------------
 function Counter(){
   let count=0;
   
@@ -36,20 +27,16 @@ JS Internally does roughly this:
   4. if (result is object) return result;
       else return obj;
 
-Characteristics:
-  Just a function that returns an object.
-  Doesn’t require new.
-  *** this is optional — you can use closures instead.
-  No prototype chain (each object gets its own copy of methods unless optimized with Object.create).
-  Great for encapsulation (can use private variables via closure).
-  More flexible, avoids new keyword issues.
 
 🔥 Rule (VERY IMPORTANT)
 If a constructor returns an object, that object becomes the result of new.
 If it returns a primitive (number, string, etc.) or nothing, it is ignored.
-##############################
-Constructor function: A constructor function is a function meant to be used with new.
---------------------
+
+
+So, 
+  console.log(Object.getPrototypeOf(count) === Counter.prototype); // false
+  console.log(Object.getPrototypeOf(count) === Object.prototype); // false
+---
 function Car(color) {
   this.color = color;
 }
@@ -102,6 +89,3 @@ let redCar=new Car('black');
 redCar.drive()
 
 ##############################
-In short:
-Use a Factory Function when you want simplicity, encapsulation, or privacy.
-Use a Constructor Function (or class) when you want prototype-based inheritance and method sharing.

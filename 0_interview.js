@@ -22,8 +22,9 @@ function: args Vs parameters
 ###############################################################
   function
   constructor function
+  factoryFunction.js
   diff b/w constructor and factory (diff-bw-factory-constructor-fn.js)
-  HOF
+  HOF.js
   function composition
   currying
 ###############################################################
