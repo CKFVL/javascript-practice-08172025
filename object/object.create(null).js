@@ -26,12 +26,12 @@ So it does not inherit methods like:
     constructor
 
 Step 2: Add a property
-obj.name = "pavan";
-Now the object looks like:
-    {
-    name: "pavan"
-    }
-But its prototype is still null.
+    obj.name = "pavan";
+    Now the object looks like:
+        {
+        name: "pavan"
+        }
+    But its prototype is still null.
 
 Step 3: Call hasOwnProperty
     obj.hasOwnProperty("name");

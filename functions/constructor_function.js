@@ -1,3 +1,34 @@
+Summary:
+----------
+    Rule (VERY IMPORTANT)
+    -   If a constructor returns an object, that object becomes the result of new.
+    -   If it returns a primitive (number, string, etc.) or nothing, it is ignored.
+
+function Counter(){
+  let count=0;
+  
+  return {
+    increment: () => {
+      count++
+      return count;
+    },
+    reset: () => {
+      count=0
+      return count
+    }
+  }
+}
+
+let count = new Counter();
+JS Internally does roughly this:
+  1. let obj={} // create empty object
+  2. obj.__proto__ = Counter.prototype; // link prototype
+  3. let result = Counter.call(obj) // call function with this = obj
+
+  4. if (result is object) return result;
+      else return obj;
+
+#################################################
 how constructor function works in javascript
 ChatGPT said:
 

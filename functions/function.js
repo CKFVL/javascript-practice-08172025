@@ -1,3 +1,26 @@
+function Counter(){
+  let count=0;
+  
+  return {
+    increment: () => {
+      count++
+      return count;
+    },
+    reset: () => {
+      count=0
+      return count
+    }
+  }
+}
+let count = new Counter();
+JS Internally does roughly this:
+  1. let obj={} // create empty object
+  2. obj.__proto__ = Counter.prototype; // link prototype
+  3. let result = Counter.call(obj) // call function with this = obj
+
+  4. if (result is object) return result;
+      else return obj;
+###############################
 //https://www.youtube.com/watch?v=eY7u388cvM4
 // Function:
 function increment(i) {

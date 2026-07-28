@@ -37,12 +37,12 @@ JS Internally does roughly this:
       else return obj;
 
 Characteristics:
-Just a function that returns an object.
-Doesn’t require new.
-*** this is optional — you can use closures instead.
-No prototype chain (each object gets its own copy of methods unless optimized with Object.create).
-Great for encapsulation (can use private variables via closure).
-More flexible, avoids new keyword issues.
+  Just a function that returns an object.
+  Doesn’t require new.
+  *** this is optional — you can use closures instead.
+  No prototype chain (each object gets its own copy of methods unless optimized with Object.create).
+  Great for encapsulation (can use private variables via closure).
+  More flexible, avoids new keyword issues.
 
 🔥 Rule (VERY IMPORTANT)
 If a constructor returns an object, that object becomes the result of new.
@@ -61,9 +61,9 @@ const blueCar = new Car("blue");
 blueCar.drive(); // driving blue car
 
 Characteristics:
-Invoked with new.
-this refers to the new object being constructed.
-Methods are placed on Car.prototype, so shared across all instances.
+  Invoked with new.
+  this refers to the new object being constructed.
+  Methods are placed on Car.prototype, so shared across all instances.
 Faster in memory usage (methods not duplicated per object).
 If you forget new, this may point to the global object (or undefined in strict mode).
 

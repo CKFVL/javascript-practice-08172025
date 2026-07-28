@@ -4,6 +4,9 @@ Note:
   *** Only functions have .prototype property.
       function MyFn() {}
       console.log(MyFn.prototype); // {}
+
+    Methods are placed on .prototype and are avaialable across all instances.
+
     *** Instances do not have a .prototype property.
       Instead, the instance has an internal [[Prototype]] (accessible via Object.getPrototypeOf):
       console.log(Object.getPrototypeOf(mf) === MyFn.prototype); // true
@@ -19,6 +22,7 @@ Note:
   If prototype property is an accessor with setter, JS calls the setter instead.
   If prototype property is a data property, JS creates a new own property.
   Unlike accessor properties, value properties are always set on the object itself, not on a prototype.
+
 #############################################################################################################
 'use strict'
 //If an accessor property is inherited, its get and set methods will be called when the property is accessed 

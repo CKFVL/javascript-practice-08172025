@@ -22,6 +22,7 @@ function: args Vs parameters
 ###############################################################
   function
   constructor function
+  diff b/w constructor and factory (diff-bw-factory-constructor-fn.js)
   HOF
   function composition
   currying
@@ -73,8 +74,7 @@ iterable.js (GeneratorFunction.js)
 rest-spread.js
 ObjectAssignVsSpread.js
 ---
-diff b/w constructor and factory (diff-bw-factory-constructor-fn.js)
----
+https://chatgpt.com/g/g-p-6949600657d88191bbc0c180fd623afb-javascript-practice/c/6a683a38-ccc0-83ee-affc-4fc50b0f88cf
 call, apply and bind
 ---
 promise

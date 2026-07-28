@@ -1,0 +1,1 @@
+https://chatgpt.com/g/g-p-6949600657d88191bbc0c180fd623afb-javascript-practice/c/6a683a38-ccc0-83ee-affc-4fc50b0f88cf
