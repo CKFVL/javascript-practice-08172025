@@ -1,5 +1,5 @@
 In JavaScript, call(), apply(), and bind() are methods available on every function. 
-They allow you to control the value of this when a function is executed.
+They allow you to control the value of `this`` when a function is executed.
 
 call() invokes the function immediately, allowing you to manually set this and pass arguments one by one.
   function greet(greeting, punctuation) {
@@ -11,6 +11,7 @@ call() invokes the function immediately, allowing you to manually set this and p
   greet.call(person, 'Hello', '!');
 
 ---
+To access properties of another object:
 Example:
 const pavan = {
   name: "pavan kumar",
@@ -56,61 +57,60 @@ After 3 seconds:
 pavan kumar
 
 What ACTUALLY happens
-pavan.sayName() is executed immediately
-Its return value (undefined) is passed to setTimeout
+  pavan.sayName() is executed immediately
+  Its return value (undefined) is passed to setTimeout
 
 So effectively JS sees:
-setTimeout(undefined, 3000)
-
+  setTimeout(undefined, 3000)
 That means:
-sayName runs right now
-setTimeout has nothing valid to call later
+  sayName runs right now
+  setTimeout has nothing valid to call later
 
 Why this happens
-setTimeout expects a function reference, not a function call.
+  setTimeout expects a function reference, not a function call.
 
 ❌ Wrong:
-setTimeout(pavan.sayName(), 3000)
+  setTimeout(pavan.sayName(), 3000)
 
 ✅ Right:
-setTimeout(pavan.sayName, 3000)
+  setTimeout(pavan.sayName, 3000)
 
 But wait… there’s another problem 👇
-The this problem
+The `this` problem
 If you do:
-setTimeout(pavan.sayName, 3000)
+  setTimeout(pavan.sayName, 3000)
 
-After 3 seconds, this will NOT be pavan.
+After 3 seconds, `this` will NOT be pavan.
 Why?
-Because sayName is called as a plain function, not as a method.
+  Because sayName is called as a plain function, not as a method.
 
 So:
-this === window   // non-strict mode
-this === undefined // strict mode
+  this === window   // non-strict mode
+  this === undefined // strict mode
 
 Result:
-undefined
+  undefined
 
 ✅ Correct ways to fix it
-✅ Option 1: Use bind
-Best and cleanest 👌
-setTimeout(pavan.sayName.bind(pavan), 3000)
+  ✅ Option 1: Use bind
+  Best and cleanest 👌
+  setTimeout(pavan.sayName.bind(pavan), 3000)
 
-✅ Option 2: Wrap in a function
-setTimeout(() => {
-    pavan.sayName()
-}, 3000)
+  ✅ Option 2: Wrap in a function
+  setTimeout(() => {
+      pavan.sayName()
+  }, 3000)
 
-✅ Option 3: Store reference first
-const fn = pavan.sayName.bind(pavan)
-setTimeout(fn, 3000)
+  ✅ Option 3: Store reference first
+  const fn = pavan.sayName.bind(pavan)
+  setTimeout(fn, 3000)
 
 Key Takeaways 🧠
 Never call the function inside setTimeout
 setTimeout(fn, delay)   // ✔
 setTimeout(fn(), delay) // ❌
 
-this depends on how a function is called
+`this` depends on how a function is called
 obj.method() → this === obj
 method() → this is lost
 
@@ -121,11 +121,10 @@ Exactly 👍
 Let’s make that sentence precise and crystal-clear.
 
 What “called as a plain function” means
-In JavaScript, this is decided at call time, not where the function is defined.
+In JavaScript, `this` is decided at call time, not where the function is defined.
 
 Method call ✅
-pavan.sayName()
-
+  pavan.sayName()
 
 Here:
 The call site has an object before the dot
@@ -176,7 +175,7 @@ Output → Hi Pavan...
 Useful when you already have arguments in an array.
 ##################
 bind() does not invoke the function immediately.
-Instead, it returns a new function with this permanently set (and optionally preset arguments). You can call it later.
+Instead, it returns a new function with `this` permanently set (and optionally preset arguments). You can call it later.
   const greetPavan = greet.bind(person, 'Hey');
   greetPavan('?');
 

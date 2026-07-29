@@ -20,10 +20,11 @@ function: args Vs parameters
   
     console.log(sum(1,2,3))
 ###############################################################
-  function
+  function (regular)
   constructor function
   factoryFunction.js
   diff b/w constructor and factory (diff-bw-factory-constructor-fn.js)
+  arrowFunction.js (refer this folder to understand how this works in browser, constructor function, regular function and arrow function)
   HOF.js
   function composition
   currying
@@ -33,7 +34,7 @@ stringify.js
 tdz (temporalDeadZone.js)
 hoisting.tsx
 ###############################################################
-  this folder
+  this folder (to understand how this works in browser, constructor function, regular function and arrow function)
     - masterflow.js
     - this_var.js
     - thisInDifferentEnvironment.js
@@ -76,7 +77,7 @@ rest-spread.js
 ObjectAssignVsSpread.js
 ---
 https://chatgpt.com/g/g-p-6949600657d88191bbc0c180fd623afb-javascript-practice/c/6a683a38-ccc0-83ee-affc-4fc50b0f88cf
-call, apply and bind
+call, apply and bind (callVsApplyVsBind.js)
 ---
 promise
 async await
