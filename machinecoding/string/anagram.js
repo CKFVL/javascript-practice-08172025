@@ -64,3 +64,16 @@ for(const key in obj1){
 }
 
 console.log('is anagram')
+
+Similar approach can be achieved by using map.
+#####################################
+approach 3:
+// anagram
+const str1='listen';
+const str2='silent';
+
+const arr1=str1.split('').sort().join('');
+const arr2=str2.split('').sort().join('');
+
+console.log(arr1===arr2)
+

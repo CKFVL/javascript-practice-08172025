@@ -85,7 +85,6 @@ async await
 es6 class
 inheritance
 ---
-memoization
 event loop
 callbackstarvation
 tail recursion
