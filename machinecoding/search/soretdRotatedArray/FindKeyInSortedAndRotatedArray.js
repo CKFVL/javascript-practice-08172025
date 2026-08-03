@@ -1,3 +1,21 @@
+/*
+* A sorted and rotated array is an array that was originally sorted (ascending or descending) and then rotated (elements shifted circularly).
+*
+* Right Rotation: A right rotation moves the last element to the front.
+*   [1, 2, 3, 4, 5, 6, 7]
+*   1st right rotation:
+*       [7, 1, 2, 3, 4, 5, 6]
+*
+* Left Rotation: If you rotate the original array to the left, you get:
+*   [1, 2, 3, 4, 5, 6, 7]
+*   1st left rotation:
+*       [2, 3, 4, 5, 6, 7, 1]
+*
+* The standard interview problem assumes right rotations.
+
+  Efficient Solution (Binary Search) - O(log n)
+    The minimum element is the pivot where the rotation happened.
+ */
 // Binary search should exclude mid after checking it.
 
 // sorted and rotated array
