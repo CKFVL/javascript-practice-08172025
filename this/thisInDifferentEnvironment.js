@@ -1,3 +1,8 @@
+this is not determined by where the function was defined. For a normal function, it is determined by how it is called.
+function () { } → creates new this
+arrow function, () => { } → does NOT create new this
+{ } object literal → does NOT create new this
+
 | Environment                  | Top-level `this`                                                            | Regular function `this` (not a method)        |
 | ---------------------------- | --------------------------------------------------------------------------- | --------------------------------------------- |
 | **Browser Script**           | Non-strict → `window                                                        | Non-strict → `window                          |

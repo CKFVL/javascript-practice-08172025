@@ -1,3 +1,5 @@
+In JavaScript, `this` is decided at call time, not where the function is defined.
+
 Is the function an arrow function?
   │
   ├── YES → Inherit `this` from surrounding scope
