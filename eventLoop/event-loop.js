@@ -1,6 +1,9 @@
 https://www.youtube.com/watch?v=eiC58R16hb8
 https://www.jsv9000.app/ - for analyzing the interactive visualization
 ########################
+call stack -> Microtask queue -> Macrotask queue
+  Micro task (runs high priority tasks)
+########################
 browser APIs:
 Macro task:
     setTimeout
@@ -9,8 +12,6 @@ Macro task:
 
 Micro task (runs high priority tasks)
     Promise
-########################
-call stack -> Microtask queue -> Macrotask queue
 ########################
 function a(){
     console.log("A")
@@ -22,7 +23,6 @@ Promise.resolve().then(() => console.log("D"))
 
 Step-by-step execution
 1️⃣ Synchronous code (Call Stack)
-
 JS runs all synchronous code top to bottom first.
 
 setTimeout(...)   // schedules a macrotask → B
@@ -36,15 +36,12 @@ C
 
 2️⃣ Microtask Queue (highest priority)
 After the call stack becomes empty, JS runs ALL microtasks before touching macrotasks.
-
 Promise.then → console.log("D")
-
 Output:
 D
 
 3️⃣ Macrotask Queue (Task Queue)
 Now JS takes the next macrotask.
-
 setTimeout → console.log("B")
 Output:
 B
@@ -69,7 +66,8 @@ Microtask Queue (Promises, queueMicrotask)
 Macrotask Queue (setTimeout, setInterval, I/O)
 
 One-liner rule to remember
-Promises beat timeouts. Always.
+Promises beat timeouts. Always. but Only .then(), await, or queueMicrotask() schedule microtasks.
+Promise.resolve(console.log(3)) doesn't schedule microtask
 
 ########################
 console.log(1)

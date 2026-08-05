@@ -226,7 +226,7 @@ Side-by-Side Comparison
 Feature	Constructor         Function	                              ES6 Class
 Syntax	                    Function + manual prototype methods	    class { constructor() { } method() { } }
 Prototype methods	          Must assign manually	                  Declared inside class body automatically
-Hoisting	✅                 Function declarations hoisted	        ❌ Class declarations not hoisted
+Hoisting	✅                Function declarations hoisted	        ❌ Class declarations not hoisted
 Call without new	          Possible (buggy: this global/undefined)	❌ Throws TypeError
 Strict mode	                Optional	                              Always in strict mode
 enumerable of methods	      Methods are enumerable	                Methods are non-enumerable by default
