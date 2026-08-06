@@ -67,6 +67,7 @@ console.log('waiting...', new Date())
 ####################################################################
 const pobjresolve = new Promise((resolve) => resolve(setTimeout(function () { console.log('helloattimeout with resolve', new Date()) }, 2000)))
 pobjresolve.then(l => console.log('resolved'))
+console.log('log before ...')
 // resolve executes immediately
 // prints resolved first and then helloattimeout with resolve
 
