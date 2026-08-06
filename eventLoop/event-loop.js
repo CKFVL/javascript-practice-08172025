@@ -134,7 +134,7 @@ async function returnPromiseAsync(){
 // Promise { <pending> }
 let rpasync=returnPromiseAsync()
 console.log(rpasync)
-
+#############################################################
 // Execution:
 // Promise resolved immediately
 // .then() → goes to microtask queue
@@ -152,7 +152,7 @@ function returnPromiseValueAsync(){
 }
 let rpvasync=returnPromiseValueAsync()
 rpvasync.then(l=>console.log(l))
-
+#############################################################
 // ❗ What happens?
 // You never call resolve
 // So the Promise stays:
@@ -195,7 +195,9 @@ console.log('is promise pending', pobj)
 // resolve(...) immediately → Promise fulfilled
 // .then() → microtask
 const pobjresolve=new Promise((resolve)=>resolve(setTimeout(function() {console.log('helloattimeout with resolve', new Date())}, 2000)))
+console.log('settimeout scheduled')
 pobjresolve.then(l=>console.log('resolved'))
+console.log('callstack execution')
 
 // ✅ Correct Way
 // // behavior

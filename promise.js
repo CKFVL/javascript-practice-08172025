@@ -13,10 +13,62 @@ A promise
     - eager -> starts executing immediately when created
       - cannot be cancelled once started
 ####################################################################
+Synchronous code runs first
+    Promise executor runs immediately
+  .then() callbacks → Microtasks queue // runs asynchronously i.e., runs after when other code in callstack is executed.
+    setTimeout → Macrotask queue
+
+Only .then(), await, or queueMicrotask() schedule microtasks.
+i.e., "When this Promise is fulfilled, call my function
+
+const np=new Promise((resolve, reject)=>{
+    console.log('log: no resolve called') // so called immediately
+})
+
+console.log('Promise status:', np) // promise is still in pending state
+console.log(`log: promise is still in pending state`) 
+// ###########################################
+const npr=new Promise((resolve, reject)=>{
+    resolve('Promise becomes fulfilled synchronously') // this will make promise fulfilled but it's still synchronous
+})
+console.log('Promise status:', npr) // synchronous
+console.log(`log: promise fulfilled but it's still synchronous`) 
+// ###########################################
+const nprmicrotask=new Promise((resolve, reject)=>{
+    resolve(`promise fulfilled and it's asynchronous`) // this will make promise fulfilled
+})
+console.log('Promise as microtask status:', nprmicrotask)
+nprmicrotask.then(res=>console.log(res)) // scheduled as microtask and runs asynchronously i.e. in the order of call stack -> micro tasks -> macro tasks
+console.log(`log: promise fulfilled and it's asynchronous`)
+// ###########################################
+console.log('###########################################')
+const pobj=new Promise((resolve)=>
+setTimeout(
+    function() {
+        console.log('setTimeout ran', new Date())
+    }, 1000)
+)
+console.log('log: is promise pending in setTimeout', pobj) // promise is not resolved or rejected so it'll be still in pending state
+console.log('waiting...', new Date())
+console.log('###########################################')
+const pobjresolve=new Promise((resolve)=>
+setTimeout(
+    function() {
+        console.log('helloattimeout', new Date())
+        resolve('promise fulfilled finally!')
+    }, 3000)
+)
+
+console.log('is promise pending?', pobjresolve) // even though promise fulfilled, the result returned by resolve('promise fulfilled') won't be printed
+// the result returned by resolve can be captured using then (which allows to schedule it as microtask)
+pobjresolve.then(d=>console.log('promise fulfilled and this ran asynchronously', pobjresolve))
+console.log('waiting...', new Date())
+####################################################################
+####################################################################
 const pobjresolve = new Promise((resolve) => resolve(setTimeout(function () { console.log('helloattimeout with resolve', new Date()) }, 2000)))
 pobjresolve.then(l => console.log('resolved'))
 // resolve executes immediately
-// prints resolved first and then elloattimeout with resolve
+// prints resolved first and then helloattimeout with resolve
 
 
 function getOrders(userId) {
