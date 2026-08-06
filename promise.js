@@ -26,7 +26,12 @@ const np=new Promise((resolve, reject)=>{
 })
 
 console.log('Promise status:', np) // promise is still in pending state
-console.log(`log: promise is still in pending state`) 
+console.log(`log: promise is still in pending state`)
+
+So your mental model should be:
+  Promise executor = synchronous
+  resolve/reject = synchronous state transition
+  then/catch/finally callback = asynchronous microtask
 // ###########################################
 const npr=new Promise((resolve, reject)=>{
     resolve('Promise becomes fulfilled synchronously') // this will make promise fulfilled but it's still synchronous
@@ -64,6 +69,52 @@ console.log('is promise pending?', pobjresolve) // even though promise fulfilled
 pobjresolve.then(d=>console.log('promise fulfilled and this ran asynchronously', pobjresolve))
 console.log('waiting...', new Date())
 ####################################################################
+const nprmicrotask = new Promise((resolve, reject) => {
+    resolve('resolved promise') 
+    // Promise becomes fulfilled synchronously
+})
+
+console.log(nprmicrotask)
+
+nprmicrotask.then(res => console.log(res))
+// .then() callback is scheduled as a microtask
+
+There are two separate things:
+  new Promise(executor)
+          ↓
+  executor runs SYNCHRONOUSLY
+          ↓
+  resolve(...)
+          ↓
+  Promise becomes fulfilled SYNCHRONOUSLY
+          ↓
+  .then(callback)
+          ↓
+  callback runs ASYNCHRONOUSLY as a MICROTASK
+
+For example:
+  console.log("A");
+  const p = new Promise(resolve => {
+      console.log("B");
+      resolve("C");
+  });
+
+  console.log("D");
+
+  p.then(value => console.log(value));
+
+  console.log("E");
+Output:
+  A → synchronous
+  B → Promise executor is synchronous
+  D → synchronous
+  E → synchronous
+  C → .then() callback is a microtask
+
+So your mental model should be:
+  Promise executor = synchronous
+  resolve/reject = synchronous state transition
+  then/catch/finally callback = asynchronous microtask
 ####################################################################
 const pobjresolve = new Promise((resolve) => resolve(setTimeout(function () { console.log('helloattimeout with resolve', new Date()) }, 2000)))
 pobjresolve.then(l => console.log('resolved'))
