@@ -91,14 +91,14 @@ tail recursion
 ####################
 browserObjects.js
 ####################
-polyfills
-https://www.youtube.com/watch?v=Th3rZjfKKhI
-####################
 array (folder)
 map (folder)
 math (folder)
 ####################
 pending.txt
+####################
+polyfills
+https://www.youtube.com/watch?v=Th3rZjfKKhI
 ####################
 document.querySelector('button').innerHTML
 document.querySelector('.js-buton').innerHTML
