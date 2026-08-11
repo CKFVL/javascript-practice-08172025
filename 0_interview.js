@@ -68,7 +68,7 @@ object (folder)
   null vs undefined
   object types
   object properties
-  object-accessors.js
+  object-propert-descriptors.js
   object-prototype.js
   object destructuring
 ###############################################################
@@ -100,6 +100,7 @@ pending.txt
 
 document.querySelector('button').innerHTML
 document.querySelector('.js-buton').innerHTML
+
 
 document.querySelector('button').innerText
 

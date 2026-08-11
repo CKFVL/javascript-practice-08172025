@@ -1,5 +1,5 @@
-https://www.youtube.com/watch?v=Th3rZjfKKhI
-
+prototype use cases:
+------------------
 // map polyfill
 Array.prototype.myMap=function(callback){
     this.temp=[];
@@ -17,3 +17,5 @@ const mularr=arr.myMap((num, i, arr)=>{
 })
 
 console.log(mularr)
+
+########################

@@ -15,6 +15,17 @@ In JavaScript, property descriptors are commonly divided into two types:
     obj.name = "John";
     console.log(obj.name); // John
 
+    // an example of data descriptor - valid
+    const emp={"firstName": 'pavan', 'lastName': 'bhogala'}
+    Object.defineProperty(emp, "name",
+      {
+          value: "guru",
+          writable: true, // optional
+          configurable: true,
+          enumerable: true
+      }
+    )
+
 2. Accessor descriptor:
     An accessor descriptor uses get and/or set functions instead of directly storing a value.
     const emp={"firstName": 'pavan', 'lastName': 'bhogala'}
@@ -48,13 +59,14 @@ console.log(emp.name)
 emp.age=40
 console.log(emp.age)
 
-An object Cannot both specify accessors and a value or writable attribute:
+An object Cannot specify both accessors and a value or writable attribute:
 --------------------------------------------------------------------------
 // If a descriptor has neither of value, writable, get and set keys, it is treated as a data descriptor. 
 // If a descriptor has both value or writable and get or set keys, an exception is thrown.
 
     const emp={"firstName": 'pavan', 'lastName': 'bhogala'}
 
+    // an example of data descriptor - valid
     Object.defineProperty(emp, "name",
     {
         value: "guru",
@@ -97,10 +109,9 @@ Object.defineProperty(emp, "fullname",
     }
 )
 
-// You cannot try to mix both:
-// throws a TypeError: value appears
-// only in data descriptors,
+// value appears only in data descriptors,
 // get appears only in accessor descriptors
+// You cannot try to mix both: throws a TypeError: 
 Object.defineProperty(o, 'conflict', {
   value: 0x9f91102,
   get() { return 0xdeadbeef; }
