@@ -105,7 +105,7 @@ Object.create(null) means:
         hasOwnProperty()
 
 But this does NOT change property-descriptor defaults.
-// writable: true, enumerable: true, configurable: true
+// Object.create(null)- writable: true, enumerable: true, configurable: true
 const descriptor = Object.create(null);
 descriptor.name = "Pavan";
 console.log(Object.getPrototypeOf(descriptor) === Object.prototype)
@@ -114,20 +114,20 @@ console.log(descprop)
 
 // Inspecting a Descriptor
 // getOwnPropertyDescriptor: gets descriptors for all own properties.
-// writable: true, enumerable: true, configurable: true
+// Object literal- writable: true, enumerable: true, configurable: true
 const obj={}
 console.log(Object.getPrototypeOf(obj) === Object.prototype)
 obj.name='guru';
 const objdesc=Object.getOwnPropertyDescriptor(obj, 'name')
 console.log(objdesc)
 
-// writable: false, enumerable: false, configurable: false
+// Object.defineProperty- writable: false, enumerable: false, configurable: false
 const objdef={}
 const objper=Object.defineProperty(objdef, 'name', {value:'gurupavan kumar'})
 console.log(Object.getPrototypeOf(objper) === Object.prototype)
 console.log(Object.getOwnPropertyDescriptor(objper, 'name'))
 
-// writable: false, enumerable: true, configurable: false
+// Object.freeze- writable: false, enumerable: true, configurable: false
 const objfreeze=Object.freeze({name:'pavan'})
 console.log(Object.getOwnPropertyDescriptor(objfreeze, 'name'))
 
