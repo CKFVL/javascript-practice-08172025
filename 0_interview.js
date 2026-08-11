@@ -93,19 +93,18 @@ browserObjects.js
 ####################
 polyfills
 https://www.youtube.com/watch?v=Th3rZjfKKhI
-
 ####################
-array (slice and splice)
-pending.txt 
-
+array (folder)
+map (folder)
+math (folder)
+####################
+pending.txt
+####################
 document.querySelector('button').innerHTML
 document.querySelector('.js-buton').innerHTML
-
-
 document.querySelector('button').innerText
 
 move js code to script section
-
 block elements like p, div takes up an entire line by itself
 
 getElementById
@@ -123,66 +122,10 @@ To link another css file in a html, use
 
 To link another javascript file in a html, use
 <script src="<file-path>"></script>
-
 ###################
-javascript.js
-#################
-string.js
-###################
-OrderOfOperations.txt
-###################
-ways to create array:
-const array=[1,2,3]
----
-const array1=[1,2,3] // array1 contains the reference of the values
-  const array2=array1 // array2 contains the copy of reference which array1 references
-
-  array2.push(5) // both references have 4 values now
-
-/ Adding elements with high indexes can create undefined "holes" in an array:
-newcars[10] = "7car";
-
-If you use named indexes, JavaScript will redefine the array to a standard object.
-----
-slice: copy or extract
-splice(index, deleteCount, item1, item2,....) - ad/remove/replace
-
----
-difference between array and object
-array: numbered index
-object: named index
----
-There is no need to use the JavaScript's built-in array constructor new Array().
-// The new keyword only complicates the code. It can also produce some unexpected results:
-var points = new Array(40, 100); // Creates an array with two elements (40 and 100)
-console.log(points);
-// What if I remove one of the elements?
-var points = new Array(40); // Creates an array with 40 undefined elements !!!!!
-console.log(points);
-
----
-how to recognize an array
----
-Array methods: pop, push, shift, unshift, delete
----
-sort function sorts array values as strings
-can produce wrong sorting for numbers, so use comapre function instead
-
----
 use Math.max to find to find the highest number in an array
 use Math.min to find the smallest number in an array
-
 ---
-| Code                                      | What happens                       |
-| ----------------------------------------- | ---------------------------------- |
-| `setTimeout(resolve('done'), 2000)`       | ❌ runs immediately  and promise resolves instantly               |
-calling resolve('done') immediately instead of passing it as a callback
-so effectively this becomes, setTimeout(undefined, 2000) and does nothing useful
-| `setTimeout(resolve, 2000)`               | ✅ works, resolves with `undefined` |
-| `setTimeout(() => resolve('done'), 2000)` | ✅ correct, resolves with `'done'`  |
-If you see () → you're executing immediately
----
-
 type=module
 <script type=module src="scripts/amazon.js">
 
@@ -195,110 +138,15 @@ Surprisingly, someNameOfYourChoice is totally up to you.
 Named exports have to be imported by their name:
 import { someData } from './path/to/file.js';
 ---
-boolean.js
-falsy values: false, 0, '', NaN, Undefined, null [any value other than this is truthy]
-
----
-&& operator
-
-|| operator
-
----
-object destructuring:
----
-hoisting.js
-temporalDeadZone
----
-object-properties.js:
-//A data descriptor is a property that has a value, which may or may not be writable. 
-//An accessor descriptor is a property described by a getter-setter pair of functions. 
-
-data descriptor:
-var o = {}; // Creates a new object
-o.a=37 // equivalent to
-// Example of an object property added
-// with defineProperty with a data property descriptor
-Object.defineProperty(o, 'a', {
-  value: 37,
-  writable: true,
-  enumerable: true,
-  configurable: true
-});
-
-// An accessor descriptor
-var bValue = 38;
-Object.defineProperty(o, 'b', {
-  // Using shorthand method names (ES2015 feature).
-  // This is equivalent to:
-  // get: function() { return bValue; },
-  // set: function(newValue) { bValue = newValue; },
-  get() { return bValue; },
-  set(newValue) { bValue = newValue; },
-  enumerable: true,
-  configurable: true
-});
-o.b; // 38
-
----
-Object.defineProperty (value, configurable, writable, enumerable)
-	obj.a (configurable, writable, enumerable set to true by default)
-	Object.defineProperty(o, 'a', { value: 1 }); (configurable, writable, enumerable set to false by default)
-
--	can be used when need to define setters and getters
--	inheritance
--	Unlike accessor properties, value properties are always set on the object itself, not on a prototype.
-
-by default, object created with Object.defineProperty() is immutable(i.e., enumerable:false, configurable: false, writable:false)
-// value assigned to object, via dot notation, object.property is not immutable (i.e., enumerable:true, configurable: true, writable:true)
-	// i.e., properties defined without Object.defineProperty can be assigned or changed anytime.
-// objects defined with Object.defineProperty() has the following optional keys: configurable and enumerable
-// object can't have both data (value & writable) and accessor descriptors (get & set)
-// if an object doesn't have any descriptor properties, it is data descriptor by default.
-// configurable property helps in determining whether a property can be deleted or its attributes can be changed (except value and writable)
-// enumerable property determines whether the property or symbol can be accessed via for...in loop or spread operator or Object.assign or Object.keys
-// To avoid inheritance, freeze the Object.prototype upfront, specify all options explicitly, or point to null 
-// with Object.create(null).
-// If a value is shared, then objects created using Object.defineProperty will read or write to the same value using accessor properties (get/set methods) and to the prototype properties too.
-// unlike accessor properties, value properties will always be set on object itself but not on prototype. However, if a non-writable value property is inherited, it still prevents from modifying the property on the object.
-
----
 to veirfy if property exists
 console.log(obj.foo);         // 2
 console.log(Object.getOwnPropertyNames(obj)); // ["name", "score", "foo"]
 console.log(Object.getOwnPropertyDescriptor(obj, "foo"));
-
----
-function.js
-
----
-lexical binding:
-variable scope is determined based on the physical structure of the code (i.e., where the variables and functions are written) - this is known as lexical scope.
-
-javascript uses lexical binding meaning the scope of the variable is determined by it's position the source scode and the nested functions have access to variables declared in their outer scope.
----
-currying_new.txt
----
-this_regular_function_new.txt
-this_arrow_function_new.txt
-this_examples_new.txt
-
-Also, refer MasterFlowForThis.jpeg
-
 ---
 redirection
-
----
-promise
----
-async/await
----
-even-loop.txt
----
-callbackStarvation.js
----
 udemy-react-javascript-refresher.js
 ############
-Top5 questions by chatgpt:
+Top5 questions by chatgpt: (for interview prep)
 LRU Cache
 https://www.youtube.com/watch?v=7_WxOdeCv9k
 
@@ -312,4 +160,5 @@ https://www.youtube.com/watch?v=Gz8NVkPxOiM&list=PLinedj3B30sDi0keEOQU3n5p3Op28e
 Debounce and throttle
 https://www.youtube.com/watch?v=3o47TTtF2u0&list=PLinedj3B30sDi0keEOQU3n5p3Op28eN2e&index=11
 
-
+############
+machine coding
