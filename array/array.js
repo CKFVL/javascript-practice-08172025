@@ -1,24 +1,27 @@
-ways to create array:
-const array=[1,2,3]
+1_waysToCreateArray.js
+2_array-from.js
 ---
-const array1=[1,2,3] // array1 contains the reference of the values
-const array2=array1 // array2 contains the copy of reference which array1 references
+Arrays in JavaScript are objects.
+Therefore, you can attach arbitrary properties to them and it doesn't affect length of the array.
+  const arr = [];
+  arr.name = 'pavan';
+  console.log(typeof arr);       // "object"
+  console.log(Array.isArray(arr)); // true
+  console.log(arr.length) // 0
 
-  array2.push(5) // both references have 4 values now
-
-/ Adding elements with high indexes can create undefined "holes" in an array:
+However, this is generally not recommended if you want key-value data. Use an object instead:
+  const person = {
+      name: 'pavan',
+      age: 20,
+      phone: 7095340538
+  };
+---
+Adding elements with high indexes can create undefined "holes" in an array:
 newcars[10] = "7car";
-
-If you use named indexes, JavaScript will redefine the array to a standard object.
-----
-slice: copy or extract
-splice(index, deleteCount, item1, item2,....) - ad/remove/replace
-
 ---
 difference between array and object
 array: numbered index
 object: named index
-
 ---
 There is no need to use the JavaScript's built-in array constructor new Array().
 // The new keyword only complicates the code. It can also produce some unexpected results:
@@ -27,16 +30,51 @@ console.log(points);
 // What if I remove one of the elements?
 var points = new Array(40); // Creates an array with 40 undefined elements !!!!!
 console.log(points);
+---
+Array methods: pop, push, shift (deletes element at beginning), unshift (adds element at beginning), delete, 
+  find
+  slice
+  splice
+  sort
+  reverse
+  map
+  filter
+  reduce
+  every
 
----
-how to recognize an array
----
-Array methods: pop, push, shift, unshift, delete
+// add element to array
+newcars.push("newcar1");
+
+// Adding elements with high indexes can create undefined "holes" in an array:
+newcars[10] = "7car";
+
+// Array methods:
+//pop : removes last element of array
+console.log(fruits.pop());
+//push: pushes element at the end of array
+console.log(fruits.push("hgk"));
+//shift: similar to pop, but removes first element and shifts the elements to lower indexes
+// returns the element that was removed
+console.log(fruits.shift());
+//unshift : similar to push, but it adds the element at the 0th index and shifts all other elements to upper indexes
+console.log(fruits.unshift("seiurhew"));
+//toString
+console.log(fruits.toString());
+
+// changing elements
+
+// deleting elements: Using delete leaves undefined holes in the array. Use pop() or shift() instead.
+delete fruits[0];
+console.log(fruits.toString());
 ---
 sort function sorts array values as strings
 can produce wrong sorting for numbers, so use comapre function instead
-
 ####################
+Array doesn't actually contain values, it refers to the values in memory and called as reference
+const array1=[1,2,3] // array1 contains the reference of the values
+const array2=array1 // array2 contains the copy of reference which array1 references
+
+array2.push(5) // both references have 4 values now
 
 console.log([]==[])
 console.log([]===[])
@@ -47,8 +85,9 @@ They are not. Each [] creates a new array instance, so:
 []  → object #2
 
 Different references ⇒ false
+check coercion rules - coercion rules apply only when the object types are different.
 
-Quick mental model
+Quick mental model:
   Primitive → compared by value
   Object (arrays, objects, functions) → compared by reference
 ###############
@@ -69,28 +108,8 @@ e.g. console.log(arr.findIndex(x=>x===99))
     return item === 'sports'
     }
   )
-
-find
-push
-pop
-shift
-unshift
-slice
-splice
-sort
-reverse
-map
-filter
-reduce
-every
-
 #####################
-const array1=[1,2,3] // array1 contains the reference of the values
-  const array2=array1 // array2 contains the copy of reference which array1 references
-
-  array2.push(5) // both references have 4 values now
-
-/ Adding elements with high indexes can create undefined "holes" in an array:
+Adding elements with high indexes can create undefined "holes" in an array:
 newcars[10] = "7car";
 
 #####################
@@ -100,44 +119,20 @@ e.g.
   const array2=array1 // array2 contains the copy of reference which array1 references
 
   array2.push(5) // both references have 4 values now
+  console.log(arr1) // [1,2,3,5]
 
+sliceVsSpread.js:
+------------------
 to have a copy of the reference, use slice()
-  const arr=[1,2,3]
-  const arr2=arr.slice() //
-  console.log(arr2)
-
-  arr2.push(5)
-  console.log(arr2)
-  console.log(arr)
-
-  const arr3=[1, [2,3,4], 5, [[6,7], [8,9]]]
-  console.log(arr3)
-  const slicedarr=arr3.slice()
-  console.log(slicedarr)
+  const arr3=array1.slice()
+  arr3.push(8989)
+  console.log(arr1) // [1,2,3,5]
+  console.log(arr3) // [1,2,3,5, 8989]  
 
   const slicedarr2=arr3.slice(1)
-  console.log(slicedarr2)
-  
+  console.log(arr1) // [1,2,3,5]
+  console.log(slicedarr2) // [2,3,5]
 ###########################
-// ways to create arrays
-var cars = ["Saab", "Volvo", "BMW"];
-console.log(cars);
-var newcars = new Array("Saab", "Volvo", "BMW"); //There might not be needed to use new Array().
-console.log(newcars);
-
-// add element to array
-newcars.push("newcar1");
-
-// Adding elements with high indexes can create undefined "holes" in an array:
-newcars[10] = "7car";
-
-console.log(newcars);
-
-newcars.forEach(arrFunction);
-function arrFunction(value) {
-  console.log(value);
-}
-
 // Associative Arrays (with named indexes): js doesn't support; arrays always use numbered indexes.
 // After that, some array methods and properties will produce incorrect results.
 var person = [];
@@ -176,14 +171,12 @@ console.log(typeof points); // object
 console.log(points instanceof Array); // true
 console.log(Array.isArray(points)); // true
 console.log(points.constructor === Array); // true
-console.log(Array.isArray(points)); // true
 
 var arrpoints = [40, 100];
 console.log(typeof arrpoints); // object
 console.log(arrpoints instanceof Array); // true
 console.log(Array.isArray(arrpoints));// true
 console.log(arrpoints.constructor === Array);// true
-console.log(Array.isArray(arrpoints)); // true
 
 //-------------------------------------------------------------
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
@@ -197,37 +190,17 @@ console.log(fruits instanceof Array); // returns true
 
 console.log("##########");
 console.log(fruits.constructor === Array);
-
-// Array methods:
-//pop : removes last element of array
-console.log(fruits.pop());
-//push: pushes element at the end of array
-console.log(fruits.push("hgk"));
-//shift: similar to pop, but removes first element and shifts the elements to lower indexes
-// returns the element that was removed
-console.log(fruits.shift());
-//unshift : similar to push, but it adds the element at the 0th index and shifts all other elements to upper indexes
-console.log(fruits.unshift("seiurhew"));
-//toString
-console.log(fruits.toString());
-
-// changing elements
-
-// deleting elements: Using delete leaves undefined holes in the array. Use pop() or shift() instead.
-delete fruits[0];
-console.log(fruits.toString());
-
 ##########################
 Arrays in Javascript are Objects:
 const arr=[12,3,4]
 console.log(typeof arr) // "object"
 
 Internally it behaves like an object with numeric keys:
-{
-  "0": 10,
-  "1": 20,
-  "2": 30
-}
+  {
+    "0": 10,
+    "1": 20,
+    "2": 30
+  }
  what happens if you use named indexes:
  const arr=[4,5,6]
  arr.name='pavan'
@@ -272,10 +245,6 @@ console.log(typeof [1,2]) //object
 console.log(Array.isArray([1, 'hello', true, {name: 'socks'}, [1, 2] ])) // true
 console.log(Array.isArray([1,2])) // true
 ###############
-push - adds element at the end of array
-splice(index, no. of values to remove) - remvoes an element from the array
-
-###############
 var fruitslc = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
 
 // get elements within a range(startIndex, endIndex-1)
@@ -295,30 +264,6 @@ fruitslc.forEach(f=> console.log(f))
 splicedArray.forEach(f=>console.log(f))
 
 ########################
-let fruitslc = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
-let slicedFruits=fruitslc.slice(2, 4)// startIndex, endIndex-1
-slicedFruits.forEach(sf=> console.log(sf))
-
-console.log('##########')
-let splicedFruits=fruitslc.splice(2, 4)// startIndex, endIndex
-splicedFruits.forEach(sf=> console.log(sf))
-
-console.log('##########')
-let fruitsnew = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
-console.log(fruitsnew.length)
-console.log('@@@@@@@@@@@@@')
-let fruitslc2 = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
-let splicedFruitsww=fruitslc2.splice(1,0, "kiwi", "watermelon") // splice(startIndex, endIndex)
-splicedFruitsww.forEach(f=>console.log(f))
-console.log('@@@@@@@@@@@@@')
-fruitslc2.forEach(f=>console.log(f))
-console.log('@@@@@@@@@@@@@')
-let splicedFruitsNew=fruitsnew.splice(1,3, "kiwi", "pomegranate", "jackfruit")
-splicedFruitsNew.forEach(fr=> console.log(fr))
-console.log('##########')
-fruitsnew.forEach(fn=>console.log(fn))
-
-########################
 // slice: slices out a piece of an array to new array and doesn't remove any elements from source array
 // a way of achieving immutability
 var fruitslc = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
@@ -326,6 +271,29 @@ console.log(fruitslc.slice(1)); // slices out elements starting from 1
 console.log(fruitslc.toString());
 console.log(fruitslc.slice(1, 3)); // slices out elements starting from 1 to 3
 console.log(fruitslc);
+########################
+let fruitslc = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+let slicedFruits=fruitslc.slice(2, 4)// startIndex, endIndex-1
+slicedFruits.forEach(sf=> console.log(sf))
+console.log(fruitslc)
+console.log('##########')
+let splicedFruits=fruitslc.splice(2, 4)// startIndex, endIndex
+splicedFruits.forEach(sf=> console.log(sf)) // Lemon, Apple, Mango
+console.log(fruitslc) // Banana, Orange
+console.log('$$$$$$$$$$$$$$$')
+let fruitsnew = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+console.log(fruitsnew.length) // 5
+let fruitslc2 = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+let splicedFruitsww=fruitslc2.splice(1,0, "kiwi", "watermelon") // 1,0 means, don't delete any elements
+splicedFruitsww.forEach(f=>console.log(f)) //  output: nothing
+console.log('%%%%%%%%%%%%%%%%%%%%%%%%')
+fruitslc2.forEach(f=>console.log(f)) // Banana, kiwi, watermelon, Lemon, Apple, Mango
+console.log('@@@@@@@@@@@@@')
+let splicedFruitsNew=fruitsnew.splice(1,3, "kiwi", "pomegranate", "jackfruit")
+splicedFruitsNew.forEach(fr=> console.log(fr)) // Orange, Lemon, Apple
+console.log('##########')
+fruitsnew.forEach(fn=>console.log(fn)) //  Banana, kiwi, pomegranate, jackfruit, Mango
+
 ########################
 //concat:
 two or more arrays can be combined to a new array
@@ -392,7 +360,12 @@ var pointsMathMax = [40, 100, 1, 5, 25, 10];
 function myArrayMax(arr) {
   return Math.max.apply(null, arr);
 }
-console.log(myArrayMax(pointsMathMax));
+console.log(myArrayMax(pointsMathMax)); // 100
+
+function myArrayMin(arr) {
+  return Math.min.apply(null, arr);
+}
+console.log(myArrayMin(pointsMathMax)); // 1
 
 // sort object arrays
 var cars = [
@@ -437,7 +410,6 @@ var filteredNumbers = numbers2.filter(function (n, i, numbers2) {
 });
 console.log(filteredNumbers);
 ########################
-
 // every : checks every element and true if all pass a test
 var numbers = [45, 4, 9, 16, 25];
 var allOver18 = numbers.every(myFunction);
@@ -447,13 +419,48 @@ function myFunction(value) {
 }
 
 console.log(allOver18);
-########################
-// similary Array.some
 
-//indexOf: searches for element and returns the element's index
+const arr=[7,7,7,7,7]
+console.log(arr.every((e)=>{
+    if(e===7){
+        return true
+    }
+}))
+
+const arr2=[7,6,7,7,7]
+console.log(arr2.every((e)=>{
+    if(e===7){
+        return true
+    }
+}))
+
+const somearr=[6,6,6,6]
+console.log(somearr.some((e)=>{
+    if(e===7){
+        return true
+    }
+}))
+
+const somearr2=[7,7,6,7,7]
+console.log(somearr2.some((e)=>{
+    if(e===6){
+        return true
+    }
+}))
+########################
+// indexOf: searches for element and returns the element's index
 // lastIndexOf: searches from end of array
-//find(): returns the first element that passes a test
+// find(): returns the first element that passes a test
 // findIndex: returns the index of first element that passes a test
+const arr=[2,5,8,4,8,9]
+console.log(arr.indexOf(8))
+console.log(arr.lastIndexOf(8))
+
+// find() → returns the element if found, otherwise undefined.
+console.log(arr.find((e, index, arr)=>{
+    return e===7
+})) // undefined
+
 var numbers = [4, 9, 16, 25, 29];
 var first = numbers.find(myFunction);
 
@@ -461,7 +468,7 @@ function myFunction(value, index, array) {
   return value > 18;
 }
 
-console.log(first);
+console.log(first); // if value > 188 returns undefined
 // ################################################################
 let spArray = []
 spArray.push(...newArr) //use spread for copying array
@@ -542,6 +549,12 @@ console.log(typeof 3+4+'5')
 ---
 const arr=[1,2,3,4,5,6]
 const marr=[...arr, 7]
+console.log(marr)
+marr.push(8)
+console.log(marr)
+
+const arr=[1,2,3,4,5,6]
+const marr=[ 7, ...arr]
 console.log(marr)
 marr.push(8)
 console.log(marr)

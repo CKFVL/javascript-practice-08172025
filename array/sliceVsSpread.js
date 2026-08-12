@@ -1,3 +1,8 @@
+Summary:
+  slice: copy or extract
+  splice(index, deleteCount, item1, item2,....) - ad/remove/replace
+  spread: create a new array from iterable
+----
 both slice and spread are used to copy arrays
 slice creates a shallow copy of the part (or all) of an array
 Characteristics:
@@ -12,7 +17,7 @@ Characteristics:
     console.log(part); // [2,3,4]
 
 spread:
-  Spread expands iterable elements into a new array.
+  Spread expands iterable elements into a new array. [iterables in JS are array, string, map, set, function args. Refer iterbale.js]
     const arr = [1,2,3,4,5];
     const copy = [...arr];
     console.log(copy); // [1,2,3,4,5]
@@ -35,13 +40,13 @@ Key differences:
 | Syntax             | Method                   | Language operator |
 
 When to use what
-  Use slice()
-  When extracting part of an array
-  When you want index-based copying
-  arr.slice(2,5)
+  Use slice():
+    When extracting part of an array
+    When you want index-based copying
+    arr.slice(2,5)
 
-  Use spread
-  When merging arrays
-  When adding elements
-  When working with iterables
-  [...arr, 6]
+  Use spread:
+    When merging arrays
+    When adding elements
+    When working with iterables
+    [...arr, 6]
