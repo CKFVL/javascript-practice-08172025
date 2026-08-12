@@ -85,6 +85,16 @@ const user={
 for(const item of user){
   console.log(item)
 }
+
+OR
+        const obj = {
+            0: 'a',
+            1: 'b',
+            length: 2
+        };
+
+        const arr = Array.from(obj);
+        console.log(arr); // ['a', 'b']
 ---
 2. Cleaner Version Using Generator (Recommended)
 A generator automatically creates the iterator.
