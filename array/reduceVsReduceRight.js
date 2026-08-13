@@ -145,6 +145,218 @@ const numsgrouped=numsgrouping.reduce((acc, current, index, arr)=>{
 }, {'even':[], 'odd':[]});
 console.log(numsgrouped)
 
+// group employees by dept
+const employees = [
+  { name: "Pavan", dept: "IT" },
+  { name: "John", dept: "HR" },
+  { name: "Mike", dept: "IT" },
+  { name: "Sara", dept: "Finance" },
+  { name: "David", dept: "HR" }
+];
+/*
+{
+  IT: [
+    { name: "Pavan", dept: "IT" },
+    { name: "Mike", dept: "IT" }
+  ],
+  HR: [
+    { name: "John", dept: "HR" },
+    { name: "David", dept: "HR" }
+  ],
+  Finance: [
+    { name: "Sara", dept: "Finance" }
+  ]
+}
+*/
+const empgroup=employees.reduce((acc, current, index, arr)=>{
+    if(!acc[current.dept]){
+        acc[current.dept]=[];
+    }
+    acc[current.dept].push(current);
+
+    return acc;
+}, {})
+
+console.log(empgroup)
+
+// Find the highest-paid employee in each department
+const employees = [
+  { name: "Pavan", dept: "IT", salary: 90000 },
+  { name: "Mike", dept: "IT", salary: 120000 },
+  { name: "John", dept: "HR", salary: 70000 },
+  { name: "Sara", dept: "HR", salary: 95000 },
+  { name: "David", dept: "Finance", salary: 110000 }
+];
+// expected
+/*{
+  IT: { name: "Mike", dept: "IT", salary: 120000 },
+  HR: { name: "Sara", dept: "HR", salary: 95000 },
+  Finance: { name: "David", dept: "Finance", salary: 110000 }
+}*/
+const maxsal=employees.reduce((acc, current, index, arr)=>{
+    return Math.max(acc,current.salary);
+}, 0);
+
+console.log(maxsal);
+
+// Flatten a nested array — one level
+const arr = [
+  [1, 2],
+  [3, 4],
+  [5, 6]
+];
+
+const nestedarr=arr.reduce((acc, current, index, arr)=>{
+    acc.push(...current);
+    return acc;
+},[])
+console.log(nestedarr)
+
+// Build a frequency map of characters
+const str = "javascript";
+// {
+//   j: 1,
+//   a: 2,
+//   v: 1,
+//   s: 1,
+//   c: 1,
+//   r: 1,
+//   i: 1,
+//   p: 1,
+//   t: 1
+// }
+
+const freqobj=str.split("").reduce((acc, current, index, arr)=>{
+    const accurrent=acc[current]
+    if(accurrent){
+        acc[current]=accurrent+1;
+    }else{
+        acc[current]=1;
+    }
+
+    return acc;
+},{})
+
+console.log(freqobj)
+
+// Calculate cart summary
+const cart = [
+  { product: "Laptop", price: 50000, quantity: 1 },
+  { product: "Mouse", price: 1000, quantity: 2 },
+  { product: "Keyboard", price: 2000, quantity: 1 }
+];
+// prodcue
+// {
+//   totalItems: 4,
+//   totalPrice: 54000
+// }
+const cartobj=cart.reduce((acc, current, index, arr)=>{
+    acc.totalItems+=current.quantity;
+    acc.totalPrice+=current.price;
+    return acc;
+}, {'totalItems':0, 'totalPrice':0})
+console.log(cartobj)
+
+// Group transactions by user and calculate total
+const transactions = [
+  { user: "Pavan", amount: 1000 },
+  { user: "John", amount: 500 },
+  { user: "Pavan", amount: 2000 },
+  { user: "John", amount: 1500 },
+  { user: "Mike", amount: 3000 }
+];
+/*
+    {
+        Pavan: 3000,
+        John: 2000,
+        Mike: 3000
+    }
+*/
+const grtx=transactions.reduce((acc, current, index, arr)=>{
+    if(acc[current.user]===undefined){
+        acc[current.user]=current.amount;
+        console.log(acc)
+    }else{
+        const accuser=acc[current.user]+current.amount;
+        acc[current.user]=accuser;
+    }
+    return acc;
+}, {})
+
+console.log(grtx)
+
+// find duplicate numbers
+const nums = [1, 2, 3, 2, 4, 5, 1, 6, 3, 3];
+const noduparr=[]
+const duparray=nums.reduce((acc, current, index, arr)=>{
+    //if(noduparr.indexOf(current)!==-1){
+    if(noduparr.includes(current) && !acc.includes(current)){
+        acc.push(current)
+    }else{
+        noduparr.push(current)
+    }
+
+    return acc;
+}, [])
+
+console.log(duparray)
+
+// using set
+// find duplicate numbers
+const nums = [1, 2, 3, 2, 4, 5, 1, 6, 3, 3];
+const numset=new Set([])
+const duparray=nums.reduce((acc, current, index, arr)=>{
+    //if(noduparr.indexOf(current)!==-1){
+    if(numset.has(current) && !acc.includes(current)){
+        acc.push(current)
+    }else{
+        numset.add(current)
+    }
+
+    return acc;
+}, [])
+
+console.log(duparray)
+
+// Nested categories → count products
+const products = [
+  { name: "Laptop", category: "Electronics", price: 50000 },
+  { name: "Phone", category: "Electronics", price: 30000 },
+  { name: "Shirt", category: "Clothing", price: 2000 },
+  { name: "Jeans", category: "Clothing", price: 3000 },
+  { name: "TV", category: "Electronics", price: 40000 }
+];
+// expected
+/*
+    {
+  Electronics: {
+    count: 3,
+    totalPrice: 120000
+  },
+  Clothing: {
+    count: 2,
+    totalPrice: 5000
+  }
+}
+*/
+
+const nestedcat=products.reduce((acc, current, index, arr)=>{
+    if(acc[current.category]===undefined){
+        acc[current.category]={
+            count: 1, totalPrice: current.price
+        }
+    }else{
+        const catobj=acc[current.category];
+        catobj.count+=1;
+        catobj.totalPrice+=current.price;
+        acc[current.category]=catobj;
+    }
+
+    return acc;
+}, {});
+
+console.log(nestedcat)
+
 #############################################################################
 // similarly reduceRight --> processes the array from right to left instead of left to right
 const arr = [4, 3, 2, 1]
