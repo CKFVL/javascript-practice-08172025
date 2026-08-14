@@ -1,47 +1,109 @@
+Summary:
+  - call, apply and bind are methods available on every function which allow to control the value of `this` when a function is executed OR to access properties of another Object.
+      bind() does not invoke the function immediately.
+      call() invokes the function immediately.
+      apply() invokes the function immediately and takes arguments as an Array.
+  - person1.greet.call(person2) means: greet.call(person2) i.e. → execute greet() with this = person2
+  - person1.sayName().call(person2), .call() works on functions, not on the result of a function call, so
+      it should be person1.sayName.call(person2)
+  - setTimeout(pavan.sayName(), 3 * 1000): setTimeout expects a function reference, not a function call.
+    The function loses its owning object because it is invoked without an object reference at the call site, so this no longer points to object
+    bind, arrow functions, or wrappers preserve this.
+    (Never call the function inside setTimeout)
+  - What “called as a plain function” means
+    In JavaScript, `this` is decided at call time, not where the function is defined.
+    *** Look at the call site, not the declaration.
+-----------------------------------------------------------------------------------------------------------------------------
 In JavaScript, call(), apply(), and bind() are methods available on every function. 
-They allow you to control the value of `this`` when a function is executed.
-OR To access properties of another object
+They allow you to control the value of `this`` when a function is executed OR To access properties of another object.
 
 call() invokes the function immediately, allowing you to manually set this and pass arguments one by one.
-  function greet(greeting, punctuation) {
-    console.log(greeting + ' ' + this.name + punctuation);
-  }
-  
-  const person = { name: 'Pavan' };
-  
-  greet.call(person, 'Hello', '!');
+
+  function.call(thisArg, arg1, arg2, ...)
+    - invokes the function immediately
+    - sets this to the first argument
+    - passes subsequent arguments individually
+
+    Example1:
+    ----------
+    function greet(greeting, punctuation) {
+      console.log(greeting + ' ' + this.name + punctuation);
+    }
+    
+    const person = { name: 'Pavan' };
+    greet.call(person, 'Hello', '!');
+
+    you are saying:
+      execute greet.call, but make this refer to person. (If no name available in person object, then the output will be Hello undefined !)
+
+        greet.call(person, 'Hello', '!'); =this is effectively: person.call = greet;
+        Now person temporarily looks like:
+        const person = {
+            name: 'pavan',
+            call: greet
+        };
 
 ---
 To access properties of another object:
-Example:
-const pavan = {
-  name: "pavan kumar",
-  sayName: function () {
-    console.log(this.name)
+  Example 2:
+-----------
+  const pavan = {
+    name: "pavan kumar",
+    sayName: function () {
+      console.log(this.name)
+    }
   }
-}
 
-const guru = {
-  name: "guru kumar",
-  sayName: function () {
-    console.log(this.name)
+  const guru = {
+    name: "guru kumar",
+    sayName: function () {
+      console.log(this.name)
+    }
   }
-}
 
-guru.sayName().call(pavan) // The function jhon.sayName() itself returns undefined
-Becomes:
-undefined.call(pavan)
-TypeError: Cannot read properties of undefined (reading 'call')
-    at Object.<anonymous> (/index.js:13:15)
-    at Module._compile (node:internal/modules/cjs/loader:1469:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
-    at Module.load (node:internal/modules/cjs/loader:1288:32)
-    at Module._load (node:internal/modules/cjs/loader:1104:12)
-    at Function.executeUserEntryPoint [as runMain]
+  guru.sayName().call(pavan) // The function jhon.sayName() itself returns undefined
+  Becomes:
+  undefined.call(pavan)
+  TypeError: Cannot read properties of undefined (reading 'call')
+      at Object.<anonymous> (/index.js:13:15)
+      at Module._compile (node:internal/modules/cjs/loader:1469:14)
+      at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+      at Module.load (node:internal/modules/cjs/loader:1288:32)
+      at Module._load (node:internal/modules/cjs/loader:1104:12)
+      at Function.executeUserEntryPoint [as runMain]
 
-.call() works on functions, not on the result of a function call
-guru.sayName.call(pavan) // sayName is not invoked yet and output is pavan kumar
+  Note: *** .call() works on functions, not on the result of a function call ***
+  execute guru with this = pavan
+  guru.sayName.call(pavan) // output is pavan kumar
 
+Example 3:
+-----------
+    const person1={
+      name:'pavan',
+      greet:function(){
+          console.log(this.name, 'age: ', this.age)
+      }
+    }
+
+    const person2={
+      name:'guru',
+      address:'345 west',
+      age: 20,
+      getAddress: function(){
+          console.log(this.address)
+      }
+    }
+
+    const person3={
+      age: 50,
+      phone: 123455666
+      getAddress: function(){
+          console.log(this.phone)
+      }
+  }
+
+  person1.greet.call(person2) // output: guru age: 20, means: greet.call(person2) i.e. → execute greet() with this = person2
+  person1.greet.call(person3) // output: undefined age: 50, means: greet.call(person3) i.e. → execute greet() with this = person3
 ---
 https://chatgpt.com/g/g-p-6932cd86cb2481918db0c75be634dfea-javascript/c/69419c87-83bc-8322-82df-2e913a6ac755
 const pavan = {
@@ -54,8 +116,8 @@ const pavan = {
 setTimeout(pavan.sayName(), 3 * 1000)
 
 What you EXPECT
-After 3 seconds:
-pavan kumar
+  After 3 seconds:
+  pavan kumar
 
 What ACTUALLY happens
   pavan.sayName() is executed immediately
@@ -117,7 +179,7 @@ method() → this is lost
 
 bind, arrow functions, or wrappers preserve this
 
-Because sayName is called as a plain function, not as a method.
+*** Because sayName is called as a plain function, not as a method. ***
 Exactly 👍
 Let’s make that sentence precise and crystal-clear.
 
