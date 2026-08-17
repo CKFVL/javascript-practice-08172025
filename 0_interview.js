@@ -100,28 +100,41 @@ pending.txt
 polyfills
 https://www.youtube.com/watch?v=Th3rZjfKKhI
 ####################
-document.querySelector('button').innerHTML
-document.querySelector('.js-buton').innerHTML
-document.querySelector('button').innerText
-
 move js code to script section
-block elements like p, div takes up an entire line by itself
-
-getElementById
-getElementsByClassName
-
-difference between getElementsByClassName and querySelectorAll
-difference between getElementById and querySelector
-
-whenever the value is extracted from HTML element, its awlays a string type.
-
-block level elements
 
 To link another css file in a html, use
 <link rel="stylesheet" href="styles/<file-path> >
 
 To link another javascript file in a html, use
 <script src="<file-path>"></script>
+
+Example:
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>Debounce</title>
+        <link rel="stylesheet" href="styles.css" />
+      </head>
+      <body>
+          <h1 class="title">Hello World!</h1>
+          <p id="currentTime"></p>
+          <script src="script.js"></script>
+          <span>
+            <label>Search</label>
+            <input type='text'>
+          </input></span>
+          
+      </body>
+    </html>
+
+    script.js:
+      function showTime() {
+        document.getElementById('currentTime').innerHTML = new Date().toUTCString();
+      }
+      showTime();
+      setInterval(function () {
+        showTime();
+      }, 1000);
 ###################
 use Math.max to find to find the highest number in an array
 use Math.min to find the smallest number in an array
@@ -130,15 +143,17 @@ type=module
 <script type=module src="scripts/amazon.js">
 
 You got two different types of exports: default (unnamed) and named exports:
-default => export default ...;
-named => export const someData = ...;
+  default => export default ...;
+  named => export const someData = ...;
+  
 You can import default exports like this:
-import someNameOfYourChoice from './path/to/file.js';
+  import someNameOfYourChoice from './path/to/file.js';
+
 Surprisingly, someNameOfYourChoice is totally up to you.
 Named exports have to be imported by their name:
-import { someData } from './path/to/file.js';
+  import { someData } from './path/to/file.js';
 ---
-to veirfy if property exists
+to verify if property exists
 console.log(obj.foo);         // 2
 console.log(Object.getOwnPropertyNames(obj)); // ["name", "score", "foo"]
 console.log(Object.getOwnPropertyDescriptor(obj, "foo"));
