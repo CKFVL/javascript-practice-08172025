@@ -73,6 +73,7 @@ function search(str){
 // search('Hard JS i')
 
 function debouncedSearch(fn, delay){
+// Create the timer once, keep replacing that timer whenever the event happens.
 let timer; // If You declared timer outside debouncedSearch:  
 // That makes timer global/shared, not tied to a specific debounced function.
 // Why this is a problem
