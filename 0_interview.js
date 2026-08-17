@@ -25,14 +25,17 @@ function: args Vs parameters
   factoryFunction.js
   diff b/w constructor and factory (diff-bw-factory-constructor-fn.js)
   arrowFunction.js (refer this folder to understand how this works in browser, constructor function, regular function and arrow function)
-  HOF.js
+  HOF.js, HOF-anonymous-fn.txt
   function composition
   currying
+###############################################################
+encapsulation
 ###############################################################
 forloop.js
 stringify.js
 tdz (temporalDeadZone.js)
 hoisting.tsx
+errorTypes.js
 ###############################################################
   this folder (to understand how this works in browser, constructor function, regular function and arrow function)
     - masterflow.js
@@ -84,6 +87,7 @@ async await
 ---
 es6 class
 inheritance
+prototype-inheritance.js
 ---
 event loop
 callbackstarvation
@@ -91,7 +95,7 @@ tail recursion
 ####################
 browserObjects.js
 ####################
-array (folder)
+array (folder), immutability.js
 map (folder)
 math (folder)
 ####################
@@ -158,22 +162,21 @@ console.log(obj.foo);         // 2
 console.log(Object.getOwnPropertyNames(obj)); // ["name", "score", "foo"]
 console.log(Object.getOwnPropertyDescriptor(obj, "foo"));
 ---
-redirection
 udemy-react-javascript-refresher.js
 ############
 Top5 questions by chatgpt: (for interview prep)
-LRU Cache
-https://www.youtube.com/watch?v=7_WxOdeCv9k
-
-Global execution context
-
-Task scheduler
-
-Event emitter
-https://www.youtube.com/watch?v=Gz8NVkPxOiM&list=PLinedj3B30sDi0keEOQU3n5p3Op28eN2e&index=10
-
-Debounce and throttle
-https://www.youtube.com/watch?v=3o47TTtF2u0&list=PLinedj3B30sDi0keEOQU3n5p3Op28eN2e&index=11
+  - LRU Cache
+    https://www.youtube.com/watch?v=7_WxOdeCv9k
+  - Global execution context (GlobalExecutionContext.js)
+  - Task scheduler
+  - Event emitter
+    https://www.youtube.com/watch?v=Gz8NVkPxOiM&list=PLinedj3B30sDi0keEOQU3n5p3Op28eN2e&index=10
+  - Debounce and throttle
+    https://www.youtube.com/watch?v=3o47TTtF2u0&list=PLinedj3B30sDi0keEOQU3n5p3Op28eN2e&index=11
 
 ############
 machine coding
+############
+proxy.js
+redirection.js
+############
