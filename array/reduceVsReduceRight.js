@@ -9,7 +9,7 @@
       string        → concatenation
       array         → flatten / collect
       object        → grouping / counting
-      nested object → complex aggregation
+      nested object → complex aggregation (example: flattenArray.js)
 
 Always ask these 3 questions
       Question 1: What am I processing ? (whether it is number, array, object, string, nested object)

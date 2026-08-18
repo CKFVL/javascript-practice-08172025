@@ -1,7 +1,7 @@
 https://www.youtube.com/watch?v=XoGjPdPTAVA&list=PLQpVsaqBj4RIpDQIVowFni58LsK4cM9Qz&index=28
 
-var ArrayWrapper=function(nums){
-  this.nums=nums
+var ArrayWrapper = function (nums) {
+  this.nums = nums
 }
 
 // For objects, JavaScript coercion order is:
@@ -11,16 +11,18 @@ var ArrayWrapper=function(nums){
 // Because you overrode valueOf(), JS knows exactly how to treat your object as a number.
 
 // valueOf() tells JavaScript how to convert an object into a primitive value (number)
-ArrayWrapper.prototype.valueOf=function(){
+ArrayWrapper.prototype.valueOf = function () {
   return this.nums.reduce(
-    (n,a)=>n+a,0  
+    (n, a) => n + a, 0
   )
 }
 
-const obj1=new ArrayWrapper([1,2])
+const obj1 = new ArrayWrapper([1, 2])
+// The key point is: valueOf() doesn't change what obj1 is. 
+// It tells JavaScript what primitive value to use when the object needs to participate in operations that require a primitive.
 console.log(obj1)
-const obj2=new ArrayWrapper([4,5])
-console.log(obj2)
+const obj2 = new ArrayWrapper([4, 5])
+console.log(obj1 + obj2) // 12
 
 // What JavaScript does internally
 // When JS sees + with objects:
@@ -37,7 +39,7 @@ console.log(obj2)
 // 12
 // console.log(obj1+obj2)
 
-ArrayWrapper.prototype.toString=function(){
+ArrayWrapper.prototype.toString = function () {
   return `[${String(this.nums)}]`
 }
 

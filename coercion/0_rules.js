@@ -9,3 +9,6 @@ Other operators → number conversion
 Falsy values are only 7 (null, undefined, 0, -0, '', false, NaN)
 null == undefined only
 Objects convert to primitive before comparison
+
+Custom wrapper example:
+    arrayWrapper.js

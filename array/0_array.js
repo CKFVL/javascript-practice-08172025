@@ -41,6 +41,7 @@ Array methods: pop, push, shift (deletes element at beginning), unshift (adds el
   filter
   reduce
   every
+  concat
 
 // add element to array
 newcars.push("newcar1");
@@ -66,6 +67,8 @@ console.log(fruits.toString());
 // deleting elements: Using delete leaves undefined holes in the array. Use pop() or shift() instead.
 delete fruits[0];
 console.log(fruits.toString());
+
+concat() does NOT modify original array, It creates a NEW array every time
 ---
 sort function sorts array values as strings
 can produce wrong sorting for numbers, so use comapre function instead
