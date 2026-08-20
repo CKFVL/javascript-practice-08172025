@@ -40,4 +40,24 @@ mapping nested arrays:
   const mulmatrix=matrix.map(row=>row.map(n=>n*2))
   console.log(mulmatrix)  
 
+#######################################
+     const fi=cartState.findIndex(obj => obj.productId===action.payload.productId)
+     if(fi>-1){
+            const productItem=cartState[fi];
+            productItem.amount+=action.payload.amount;
+            productItem.quantity+=action.payload.quantity
+        }
 
+        const item=cartState.find(obj=>obj.producId===action.payload.productId);
+        // OR
+        if(item){
+            item.quantity+=action.payload.quantity;
+            item.amount+=action.payload.amount;
+        }
+
+        // OR
+        cartState.map((obj, index)=>{
+            obj.productId===action.payload.productId? {
+                ...obj, quantity: obj.quantity+action.payload.quantity, amount: obj.amount+action.payload.amount
+            }: obj
+        })
