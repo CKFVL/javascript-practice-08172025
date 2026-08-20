@@ -1,5 +1,24 @@
-Key rule
+Key rule:
 👉 Parentheses () mean “expression body”, not a block.
+
+Using {} like this means JavaScript block, not JSX return.
+
+You need either:
+  Parentheses (...) for returning JSX (implicit return), or
+  Use return inside {}.
+
+🧠 Key points
+  🔹 When you use { } inside the arrow function → it becomes a block → MUST return
+Example:
+items.map(item => { 
+  return <li>{item}</li>;
+});
+
+🔹 When you use ( ) → React treats it as an implicit return
+Example:
+items.map(item => (
+  <li>{item}</li>
+));
 ############
 const excludeMap=new Map();
   
