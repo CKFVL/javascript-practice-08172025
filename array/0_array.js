@@ -111,6 +111,28 @@ e.g. console.log(arr.findIndex(x=>x===99))
     return item === 'sports'
     }
   )
+       // update properties in an object
+       const fi=cartState.findIndex(obj => obj.productId===action.payload.productId)
+        if(fi>-1){
+            const productItem=cartState[fi];
+            productItem.amount+=action.payload.amount;
+            productItem.quantity+=action.payload.quantity
+        }
+
+        const item=cartState.find(obj=>obj.producId===action.payload.productId);
+
+        // OR
+        if(item){
+            item.quantity+=action.payload.quantity;
+            item.amount+=action.payload.amount;
+        }
+
+        // OR
+        cartState.map((obj, index)=>{
+            obj.productId===action.payload.productId? {
+                ...obj, quantity: obj.quantity+action.payload.quantity, amount: obj.amount+action.payload.amount
+            }: obj
+        })
 #####################
 Adding elements with high indexes can create undefined "holes" in an array:
 newcars[10] = "7car";
