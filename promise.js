@@ -555,3 +555,164 @@ Execution Order:
 Event loop priority:
       Call Stack → Microtasks → Macrotasks
 
+##################################################################
+Promise resolution with await and then:
+Mental Model:
+                 ┌──→ .then() ──→ result means "When the Promise resolves, give me the resolved value."
+Promise ─────────┤
+                 └──→ await ────→ result means "Wait for the Promise and give me the resolved value."
+
+Both consume a Promise and give you its resolved value. The main difference is the syntax and how control flow is expressed.
+
+1. Promise → .then() → result
+   Suppose we have:
+    // getUser() returns a Promise.
+    const getUser = () => {
+      return fetch("https://jsonplaceholder.typicode.com/users/1");
+    };
+
+    Using .then():
+      getUser()
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+      });
+
+    Think of it as:
+        getUser()
+          ↓
+        Promise
+          ↓
+        .then() // The value received inside .then() is the resolved value.
+          ↓
+        resolved result
+          ↓
+        data
+
+2. Promise → await → result
+    Same operation using await:
+      const getUserData = async () => {
+        const response = await getUser(); // equals to .then()
+        const data = await response.json(); // response.json() → returns a Promise
+        console.log(data);
+      };
+
+    Think of it as:
+      getUser() (response.json())
+        ↓
+      Promise
+        ↓
+      await
+        ↓
+      resolved result
+        ↓
+      response
+
+------------
+          fetch(url)
+            ↓
+          Promise<Response>
+            ↓ await
+          Response object
+            ↓
+          response.json()
+            ↓
+          Promise<Object>
+            ↓ await
+          JavaScript object
+
+Simple example without fetch
+Create a Promise:
+    const getNumber = () => {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(100);
+        }, 1000);
+      });
+    };
+getNumber() returns: Promise
+
+.then() version
+    getNumber().then(result => {
+      console.log(result);
+    });
+
+After one second: 100
+
+Flow:
+  getNumber()
+     ↓
+  Promise
+     ↓
+   .then()
+     ↓
+   result
+     ↓
+    100
+
+await version: 
+const calculate = async () => {
+  const result = await getNumber();
+  console.log(result);
+};
+
+After one second: 100
+
+Flow:
+  getNumber()
+     ↓
+  Promise
+     ↓
+   await
+     ↓
+   result
+     ↓
+    100
+
+Very important: What does await actually do?
+Consider:
+  const promise = getNumber();
+  console.log(promise);
+
+  You'll get something like:
+  Promise { <pending> }
+
+  But:
+  const result = await getNumber();
+  console.log(result);
+
+gives:
+100
+
+const getNumber=()=>{
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            resolve(100)
+        }, 1000)
+    });
+}
+getNumber().then(data => console.log(data));
+
+const getData= async ()=>{
+    const promdata=await getNumber(); // equals to .then, but since it's await, async must be used. async again wraps the result as a promise
+    return promdata;
+}
+const pdata=getData();
+console.log(pdata.then(d=>console.log(pdata)))
+
+const pdataawait=await getData();
+console.log(pdataawait);
+
+So:
+  Promise → await → resolved value
+  .then() does the same thing
+  const promise = getNumber();
+
+  promise.then(result => {
+    console.log(result);
+  });
+
+Here:
+  Promise → .then() → resolved value

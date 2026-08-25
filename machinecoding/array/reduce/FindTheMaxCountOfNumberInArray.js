@@ -12,25 +12,13 @@ let maxIndex=arr.reduce((minIdx, currentValue, currentIndex, arr)=>{
 console.log(maxIndex)
 
 //######
-let arrk=[1,2,3,12,2,3,12, 1,2,3,2121,2]
+// max. value
+let fobj={'one':1, "two":9, "three": 3, "four": 4, "five": 5}
+const arrredobj=Object.keys(fobj).reduce((maxValue, currval, index, arr)=>{
+   return fobj[currval] > maxValue ? fobj[currval]: maxValue;
+}, 0)
 
-function freqCount(arr){
-  let freqObj={}
-  arr.forEach(elem=>{
-    if(freqObj.hasOwnProperty(elem)){
-      freqObj[elem]++
-    }else{
-      freqObj[elem]=1
-    }
-  })
-  return freqObj
-}
-
-function findMax(fObj){
-  return Object.keys(fObj).reduce((maxKey, currentKey) => {
-    return fObj[currentKey] > fObj[maxKey] ? currentKey : maxKey
-  })
-}
+console.log(arrredobj)
 
 function findIndexOfMax(fObj){
   let fkeys= Object.keys(fObj)
