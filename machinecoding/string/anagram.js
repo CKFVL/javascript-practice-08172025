@@ -76,4 +76,16 @@ const arr1=str1.split('').sort().join('');
 const arr2=str2.split('').sort().join('');
 
 console.log(arr1===arr2)
+#####################################
+const str1='listen';
+const str2='silent';
+
+console.log(str1.split('').sort().join(''))
+console.log(str2.split('').sort().join(''))
+
+const intArr=str1.split('').map(c=>c.charCodeAt(0)).sort().map(i=>String.fromCharCode(i));
+console.log(intArr)
+
+const intarr2=str2.split('').map(c=>c.charCodeAt(0)).sort().map(n=>String.fromCharCode(n));
+console.log(intarr2)
 
